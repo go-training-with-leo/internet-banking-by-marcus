@@ -23,6 +23,7 @@
     "react-scripts": "5.0.1",
     "react-select": "^5.7.0",
     "reselect": "^4.1.7",
+    "uuid": "^9.0.0",
     "web-vitals": "^2.1.0",
     "yup": "^0.32.11"
   },
