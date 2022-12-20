@@ -1,8 +1,10 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { Home, Login } from 'pages';
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from 'core/PrivateRoute';
+import store from 'core/store';
 
 function RoutesApp() {
 	return (
@@ -24,7 +26,11 @@ function RoutesApp() {
 }
 
 function App() {
-	return <RoutesApp />;
+	return (
+		<Provider store={store}>
+			<RoutesApp />
+		</Provider>
+	);
 }
 
 export default App;

@@ -17,7 +17,6 @@
 		"indent": ["warn", "tab"],
 		"quotes": ["error", "single"],
 		"semi": ["error", "always"],
-		"arrow-body-style": ["error", "always"],
 		"import/prefer-default-export": "off",
 		"no-console": ["error", { "allow": ["warn"] }],
 		"no-undef": "off",
@@ -27,6 +26,8 @@
 		"react/forbid-prop-types": 0,
 		"jsx-a11y/click-events-have-key-events": "off",
 		"jsx-a11y/no-noninteractive-element-interactions": 0,
+		"no-param-reassign": 0,
+		"arrow-body-style": 0,
 		"react/function-component-definition": [
 			"error",
 			{
