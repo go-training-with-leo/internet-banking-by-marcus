@@ -1,11 +1,25 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import auth from 'global/redux/reducers/auth';
+import reducers from 'core/reducers';
+import persistReducer from 'redux-persist/es/persistReducer';
+import persistStore from 'redux-persist/es/persistStore';
+import storage from 'redux-persist/lib/storage';
+
+const persistConfig = {
+	key: 'root',
+	storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
-	reducer: {
-		auth,
-	},
+	reducer: persistedReducer,
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({
+			serializableCheck: false,
+		}),
 });
 
-export default store;
+const persistor = persistStore(store);
+
+export { store, persistor };

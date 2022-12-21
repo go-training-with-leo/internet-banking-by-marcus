@@ -5,12 +5,12 @@ const auth = createSlice({
 
 	initialState: {
 		isLoading: false,
-		currentUser: {},
+		currentUser: { name: 'fas' },
 	},
 
 	reducers: {
 		setUser: (state, action) => {
-			state.user = action.payload;
+			state.currentUser = action.payload;
 		},
 	},
 });

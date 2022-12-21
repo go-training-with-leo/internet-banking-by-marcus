@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import { Home, Login } from 'pages';
 import PrivateRoute from 'core/PrivateRoute';
-import store from 'core/store';
+import { store, persistor } from 'core/store';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from 'services/firebase';
+import { setUser } from 'global/redux/reducers/auth';
+import { PersistGate } from 'redux-persist/integration/react';
 
 function RoutesApp() {
+	const dispatch = useDispatch();
 	useEffect(() => {
 		const unsub = onAuthStateChanged(auth, (user) => {
-			console.warn(user);
+			dispatch(setUser(user));
 		});
 
 		return () => unsub();
@@ -41,8 +44,10 @@ function RoutesApp() {
 function App() {
 	return (
 		<Provider store={store}>
-			<ToastContainer />
-			<RoutesApp />
+			<PersistGate loading={null} persistor={persistor}>
+				<ToastContainer />
+				<RoutesApp />
+			</PersistGate>
 		</Provider>
 	);
 }
