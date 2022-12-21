@@ -2,20 +2,20 @@
 INTERNET - BANKING
 
 ## Deployment
-**Note:** [Live demo]()
+**Note:** [Live demo](https://eightbank.netlify.app/)
 
 ## Prerequisite
 
-### NPM
+### yarn
 
 ```bash
-npm install -g npm
+npm install -g yarn
 ```
 
 ### Installation
 
 ```bash
-npm install
+yarn
 ```
 
 ### Environment variables
@@ -35,7 +35,7 @@ REACT_APP_FIREBASE_MEASUREMENT_ID=
 ### Run environment
 
 ```bash
-npm run start
+yarn start
 ```
 
 ### Jest Test
@@ -43,13 +43,12 @@ npm run start
 To run test
 
 ```
-npm test (-u: to update snapshot) or npm test <file>
+yarn test (-u: to update snapshot, -a: to run all tests file) <file>
 ```
 
-Test file must be on __tests__/src/
+Test file must be on /src/__tests__
 Test file must have extension .test.js(x)
 Mock module on __tests__/__mocks__/
-Setup file __tests__/jest.setup.js
 
 Cheers 🍺🍺
 Happy coding!

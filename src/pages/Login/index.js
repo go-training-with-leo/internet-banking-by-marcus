@@ -15,7 +15,6 @@ const Login = () => {
 
 	const { currentUser } = useSelector((state) => state.auth);
 
-	console.warn(currentUser);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const captchaToken = captchaRef.current.getValue();

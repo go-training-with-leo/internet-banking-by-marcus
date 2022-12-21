@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import App from 'core/App';
 import reportWebVitals from 'reportWebVitals';
 
+import 'normalize.css';
 import 'assets/scss/global.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
