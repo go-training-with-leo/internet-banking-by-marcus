@@ -21,16 +21,13 @@ const Home = () => {
 				content: 'test dispatch',
 			})
 		);
-		await authentication.signIn(
-			'marcus.nguyen.goldenowl@gmail.com',
-			'password123'
-		);
+		authentication.signOut();
 		toast.success('Test success toast !', options.default);
 	};
 
 	return (
 		<div className='page'>
-			<button onClick={handleClick}>Dispatch</button>
+			<button onClick={handleClick}>SignOut</button>
 		</div>
 	);
 };

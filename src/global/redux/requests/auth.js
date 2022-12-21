@@ -1,10 +1,22 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+	sendPasswordResetEmail,
+	signInWithEmailAndPassword,
+	signOut,
+} from 'firebase/auth';
 
 import { auth } from 'services/firebase';
 
 const authentication = {
-	signIn: async (email, password) => {
-		await signInWithEmailAndPassword(auth, email, password);
+	signIn: (email, password) => {
+		signInWithEmailAndPassword(auth, email, password);
+	},
+
+	forgotPassword: async (email) => {
+		sendPasswordResetEmail(auth, email);
+	},
+
+	signOut: () => {
+		signOut(auth);
 	},
 };
 
