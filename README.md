@@ -1,8 +1,8 @@
-# EQ - ASSIGNMENT
-EQ - ASSIGNMENT, a website test your EQ
+# INTERNET - BANKING
+INTERNET - BANKING
 
 ## Deployment
-**Note:** [Live demo](https://eq-assignment.netlify.app)
+**Note:** [Live demo]()
 
 ## Prerequisite
 
