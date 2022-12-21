@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Home, Login } from 'pages';
 import PrivateRoute from 'core/PrivateRoute';
 import store from 'core/store';
+import { ToastContainer } from 'react-toastify';
 
 function RoutesApp() {
 	return (
@@ -28,6 +29,7 @@ function RoutesApp() {
 function App() {
 	return (
 		<Provider store={store}>
+			<ToastContainer />
 			<RoutesApp />
 		</Provider>
 	);
