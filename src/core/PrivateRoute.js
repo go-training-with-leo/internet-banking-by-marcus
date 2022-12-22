@@ -4,18 +4,18 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const PrivateRoute = ({ children }) => {
-	const { currentUser } = useSelector((state) => state.auth);
-	const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		if (!currentUser) navigate('/login');
-	}, [currentUser, navigate]);
+  useEffect(() => {
+    if (!currentUser) navigate('/login');
+  }, [currentUser, navigate]);
 
-	return children;
+  return children;
 };
 
 PrivateRoute.propTypes = {
-	children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default PrivateRoute;

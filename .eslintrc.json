@@ -14,7 +14,7 @@
 	},
 	"plugins": ["react", "eslint-plugin-import"],
 	"rules": {
-		"indent": ["warn", "tab"],
+		"indent": ["warn", 2],
 		"quotes": ["error", "single"],
 		"semi": ["error", "always"],
 		"import/prefer-default-export": "off",

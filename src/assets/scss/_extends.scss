@@ -1,21 +1,21 @@
 @import "assets/scss/variables.scss";
 
 @mixin Responsive($canvas) {
-	@if $canvas == XS {
-		@media only screen and (min-width: $XS) {
-			@content;
-		}
-	} @else if $canvas == SM {
-		@media only screen and (min-width: $SM) {
-			@content;
-		}
-	} @else if $canvas == MD {
-		@media only screen and (min-width: $MD) {
-			@content;
-		}
-	} @else if $canvas == XL {
-		@media only screen and (min-width: $XL) {
-			@content;
-		}
-	}
+  @if $canvas == XS {
+    @media only screen and (min-width: $XS) {
+      @content;
+    }
+  } @else if $canvas == SM {
+    @media only screen and (min-width: $SM) {
+      @content;
+    }
+  } @else if $canvas == MD {
+    @media only screen and (min-width: $MD) {
+      @content;
+    }
+  } @else if $canvas == XL {
+    @media only screen and (min-width: $XL) {
+      @content;
+    }
+  }
 }
