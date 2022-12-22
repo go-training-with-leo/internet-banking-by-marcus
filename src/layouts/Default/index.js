@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import Header from 'components/Header';
 import Sidebar from 'components/Sidebar';
@@ -6,7 +6,6 @@ import Sidebar from 'components/Sidebar';
 import 'layouts/Default/style.scss';
 
 const Default = ({ children }) => {
-  console.warn('rerender');
   return (
     <div className='page-layout'>
       <Sidebar />
@@ -18,4 +17,9 @@ const Default = ({ children }) => {
   );
 };
 
-export default Default;
+Default.whyDidYouRender = {
+  logOnDifferentValues: true,
+  customName: 'Menu',
+};
+
+export default memo(Default);

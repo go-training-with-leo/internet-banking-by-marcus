@@ -10,6 +10,7 @@ import { auth } from 'services/firebase';
 import Layout from 'layouts/Default';
 import routes from 'routes';
 import { setUser } from 'global/redux/auth/slice';
+
 import PrivateRoute from './PrivateRoute';
 
 import 'react-toastify/dist/ReactToastify.css';

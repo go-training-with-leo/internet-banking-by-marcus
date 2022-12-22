@@ -10,8 +10,6 @@ const authentication = {
   signIn: async (email, password) => {
     const res = await signInWithEmailAndPassword(auth, email, password);
 
-    console.warn(res.user);
-
     return res.user;
   },
 

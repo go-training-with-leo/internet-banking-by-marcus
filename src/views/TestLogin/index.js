@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,7 +15,6 @@ const TestLogin = () => {
   const navigate = useNavigate();
 
   const { currentUser } = useSelector((state) => state.auth);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const captchaToken = captchaRef.current.getValue();
@@ -54,5 +53,9 @@ const TestLogin = () => {
     </div>
   );
 };
+TestLogin.whyDidYouRender = {
+  logOnDifferentValues: true,
+  customName: 'Menu',
+};
 
-export default TestLogin;
+export default memo(TestLogin);
