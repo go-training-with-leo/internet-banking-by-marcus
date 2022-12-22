@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Home = React.lazy(() => import('views/Home'));
-const Login = React.lazy(() => import('views/Login'));
+const Home = React.lazy(() => import('views/TestHome'));
+const Login = React.lazy(() => import('views/TestLogin'));
 const PageNotFound = React.lazy(() => import('views/PageNotFound'));
 
 const routes = [

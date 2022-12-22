@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import authentication from 'global/redux/auth/request';
 import { signIn } from 'global/redux/auth/thunk';
 
-const Login = () => {
+const TestLogin = () => {
   const captchaRef = useRef(null);
 
   const dispatch = useDispatch();
@@ -55,4 +55,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default TestLogin;

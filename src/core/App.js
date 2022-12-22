@@ -4,15 +4,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ToastContainer } from 'react-toastify';
 
-// import PrivateRoute from 'core/PrivateRoute';
 import { store, persistor } from 'core/store';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from 'services/firebase';
-
-import 'react-toastify/dist/ReactToastify.css';
+import Layout from 'layouts/Default';
 import routes from 'routes';
 import { setUser } from 'global/redux/auth/slice';
 import PrivateRoute from './PrivateRoute';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 function RoutesApp() {
   const dispatch = useDispatch();
@@ -59,7 +59,9 @@ function App() {
           theme='light'
           hideProgressBar
         />
-        <RoutesApp />
+        <Layout>
+          <RoutesApp />
+        </Layout>
       </PersistGate>
     </Provider>
   );

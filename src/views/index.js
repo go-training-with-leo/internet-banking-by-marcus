@@ -1,5 +1,5 @@
-import Home from 'views/Home';
-import Login from 'views/Login';
+import Home from 'views/TestHome';
+import Login from 'views/TestLogin';
 import PageNotFound from 'views/PageNotFound';
 
 export { Home, Login, PageNotFound };
