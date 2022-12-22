@@ -8,14 +8,15 @@ import { ToastContainer } from 'react-toastify';
 import { store, persistor } from 'core/store';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from 'services/firebase';
-import { setUser } from 'global/redux/auth/slice';
 
 import 'react-toastify/dist/ReactToastify.css';
 import routes from 'routes';
+import { setUser } from 'global/redux/auth/slice';
 import PrivateRoute from './PrivateRoute';
 
 function RoutesApp() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       dispatch(setUser(user));

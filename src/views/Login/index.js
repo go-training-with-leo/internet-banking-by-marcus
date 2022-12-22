@@ -1,13 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import authentication from 'global/redux/auth/request';
+import { signIn } from 'global/redux/auth/thunk';
 
 const Login = () => {
   const captchaRef = useRef(null);
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -21,7 +24,9 @@ const Login = () => {
         email: { value: email },
         password: { value: password },
       } = e.target;
-      authentication.signIn(email, password);
+
+      dispatch(signIn({ email, password }));
+
       toast.success('LogIn !');
     } else toast.error('Check captcha !');
   };

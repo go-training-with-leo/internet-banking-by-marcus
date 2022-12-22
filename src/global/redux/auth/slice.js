@@ -1,16 +1,32 @@
-const { createSlice } = require('@reduxjs/toolkit');
+import { createSlice } from '@reduxjs/toolkit';
+
+import { signIn } from './thunk';
 
 const auth = createSlice({
   name: 'authentication',
 
   initialState: {
+    currentUser: {},
     isLoading: false,
-    currentUser: { name: 'fas' },
+    isFetched: false,
   },
 
   reducers: {
     setUser: (state, action) => {
       state.currentUser = action.payload;
+    },
+  },
+
+  extraReducers: {
+    [signIn.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [signIn.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [signIn.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.currentUser = action?.payload?.data;
     },
   },
 });
