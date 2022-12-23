@@ -17,7 +17,7 @@
     font-size: $size;
   }
   
-  %text-bold {
+  %text-bold-#{$size} {
     font-size: $size;
     font-weight: 700;
   } 
