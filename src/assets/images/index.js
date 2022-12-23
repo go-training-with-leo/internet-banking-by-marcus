@@ -1,3 +1,4 @@
-import Logo from 'assets/images/logos/EightBank.svg';
+import { ReactComponent as PlusIcon } from 'assets/images/icons/Cross.svg';
+import { ReactComponent as DeleteIcon } from 'assets/images/icons/Delete.svg';
 
-export { Logo };
+export { PlusIcon, DeleteIcon };
