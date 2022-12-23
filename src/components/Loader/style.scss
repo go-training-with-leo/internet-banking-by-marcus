@@ -1,0 +1,45 @@
+@import "assets/scss/mixins.scss";
+
+.loader-container {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translateX(-50%) translateY(-50%);
+  @include setFlex(row, center, center, null, null);
+  .loader {
+    transform: rotateZ(45deg);
+    perspective: 300px;
+    border-radius: 50%;
+    color: gray;
+    &.small {
+      @include setWidthHeight(30px, 30px);
+    }
+
+    &.normal {
+      @include setWidthHeight(50px, 50px);
+    }
+
+    &.large {
+      @include setWidthHeight(70px, 70px);
+    }
+
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: inherit;
+      height: inherit;
+      border-radius: 50%;
+      transform: rotateX(70deg);
+      animation: 1s spin linear infinite;
+    }
+    &:after {
+      transform: rotateY(70deg);
+      animation-delay: 0.4s;
+    }
+  }
+}

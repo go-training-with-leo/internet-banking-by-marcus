@@ -9,6 +9,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from 'services/firebase';
 import Layout from 'layouts/Default';
 import routes from 'routes';
+import Loader from 'components/Loader';
 import { setUser } from 'global/redux/auth/slice';
 
 import PrivateRoute from './PrivateRoute';
@@ -28,9 +29,7 @@ function RoutesApp() {
 
   return (
     <Router>
-      <Suspense
-        fallback={<span style={{ backgroundColor: 'red' }}>Loading...</span>}
-      >
+      <Suspense fallback={<Loader size='large' />}>
         <Routes>
           {routes.map((route) => (
             <Route
