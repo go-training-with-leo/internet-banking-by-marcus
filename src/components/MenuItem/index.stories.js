@@ -16,9 +16,8 @@ const Template = (args) => {
 const Default = Template.bind({});
 
 Default.args = {
-  icon: <PlusIcon fill='#000' />,
+  icon: <PlusIcon fill='gray' />,
   children: 'Label',
-  isActive: true,
 };
 
 export { Default };

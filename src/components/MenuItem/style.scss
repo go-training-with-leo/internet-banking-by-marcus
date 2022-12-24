@@ -8,7 +8,7 @@
   padding-left: 26px;
   background-color: $black-medium;
   color: $pure-white;
-  
+
   font-family: $font-family;
   font-weight: 700;
   cursor: pointer;
@@ -16,5 +16,14 @@
 
   &:hover {
     background-image: $menu-gradient;
+  }
+
+  &.active {
+    
+    box-shadow: 0px 4px 4px #111111;
+
+    &:hover {
+      background: $black-medium;
+    }
   }
 }
