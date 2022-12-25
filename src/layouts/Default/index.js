@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 
 import Header from 'components/Header';
-import Sidebar from 'components/Sidebar';
+import SideBar from 'components/SideBar';
+import MenuItem from 'components/MenuItem';
 
 import 'layouts/Default/style.scss';
-import MenuItem from 'components/MenuItem';
 import {
   Clock,
   Contact,
@@ -45,7 +45,7 @@ const listItem = [
 const Default = ({ children }) => {
   return (
     <div className='page-layout'>
-      <Sidebar
+      <SideBar
         bottomItem={
           <MenuItem icon={<User width={20} height={20} />}>Account</MenuItem>
         }
@@ -58,7 +58,7 @@ const Default = ({ children }) => {
             {item.label}
           </MenuItem>
         ))}
-      </Sidebar>
+      </SideBar>
       <div className='page-layout__right'>
         <Header />
         {children}

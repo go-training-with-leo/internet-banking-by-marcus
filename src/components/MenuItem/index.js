@@ -34,12 +34,13 @@ const MenuItem = ({ icon, isActive, children, onClick }) => {
 MenuItem.defaultProps = {
   isActive: false,
   children: undefined,
+  icon: null,
   onClick: undefined,
 };
 
 MenuItem.propTypes = {
   isActive: PropTypes.bool,
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.node,
   children: PropTypes.string,
   onClick: PropTypes.func,
 };

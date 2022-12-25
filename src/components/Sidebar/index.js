@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import { EightLogo } from 'assets/images';
 
-import 'components/Sidebar/style.scss';
+import 'components/SideBar/style.scss';
 
-const Sidebar = ({ children, bottomItem }) => {
+const SideBar = ({ children, bottomItem }) => {
   return (
     <div className='side-bar'>
       <div className='side-bar__top'>
@@ -17,14 +17,14 @@ const Sidebar = ({ children, bottomItem }) => {
   );
 };
 
-Sidebar.defaultProps = {
+SideBar.defaultProps = {
   children: undefined,
   bottomItem: undefined,
 };
 
-Sidebar.propTypes = {
+SideBar.propTypes = {
   children: PropTypes.node,
   bottomItem: PropTypes.node,
 };
 
-export default Sidebar;
+export default SideBar;
