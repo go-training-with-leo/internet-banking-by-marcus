@@ -53,9 +53,5 @@ const TestLogin = () => {
     </div>
   );
 };
-TestLogin.whyDidYouRender = {
-  logOnDifferentValues: true,
-  customName: 'Menu',
-};
 
 export default memo(TestLogin);
