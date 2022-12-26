@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import authentication from 'global/redux/auth/request';
 
-const TestHome = () => {
+const TestDashboard = () => {
   const handleClick = async () => {
     authentication.signOut();
     toast.success('Test success toast !');
@@ -16,4 +16,4 @@ const TestHome = () => {
   );
 };
 
-export default TestHome;
+export default TestDashboard;

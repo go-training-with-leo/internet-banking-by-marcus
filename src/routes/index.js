@@ -1,14 +1,14 @@
 import React from 'react';
 
-const Home = React.lazy(() => import('views/TestHome'));
-const Login = React.lazy(() => import('views/TestLogin'));
-const PageNotFound = React.lazy(() => import('views/PageNotFound'));
+const TestDashboard = React.lazy(() => import('views/TestDashboard'));
+const Login = React.lazy(() => import('views/pages/TestLogin'));
+const PageNotFound = React.lazy(() => import('views/pages/PageNotFound'));
 
 const routes = [
   {
     id: 1,
     path: '/',
-    component: Home,
+    component: TestDashboard,
   },
   {
     id: 2,
