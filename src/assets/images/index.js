@@ -1,4 +1,4 @@
-import { ReactComponent as PlusIcon } from 'assets/images/icons/cross.svg';
-import { ReactComponent as DeleteIcon } from 'assets/images/icons/delete.svg';
+import { ReactComponent as PlusIcon } from 'assets/images/icons/cash.svg';
+import { ReactComponent as DeleteIcon } from 'assets/images/icons/alert.svg';
 
 export { PlusIcon, DeleteIcon };

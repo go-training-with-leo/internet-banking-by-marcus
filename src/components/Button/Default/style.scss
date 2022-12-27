@@ -1,0 +1,43 @@
+@import 'assets/scss/variables.scss';
+@import "assets/scss/mixins.scss";
+@import 'assets/scss/extends.scss';
+
+$font-colors: ("white": $pure-white,"red": $red-orange,"gray": $medium-gray);
+$bg-colors: ("red": $red-orange,"black": $black-medium);
+
+.button {
+
+    @extend %button;
+
+    &.default {
+        background-color: $red-orange;
+        color: $pure-white;
+    }
+
+    &.small {
+        @include setWidthHeight(123px, 52px);
+    }
+
+    &.normal {
+        @include setWidthHeight(162px, 52px);
+    }
+
+    @each $name, $font-color in $font-colors {
+        &.color-#{$name} {
+            color: $font-color;
+        }
+    }
+
+    @each $name, $background in $bg-colors {
+        &.bg-#{$name} {
+            background-color: $background;
+        }
+    }
+
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.1);
+    }
+
+}

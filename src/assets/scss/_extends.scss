@@ -1,6 +1,15 @@
 @import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
 
+%button {
+  width: fit-content;
 
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+
+  @include setFlex(row, center, center, 24px, null);
+}
 
 @each $size in sizes {
   %text-normal-#{$size} {
@@ -10,15 +19,15 @@
     font-weight: 300;
     font-size: $size;
   }
-  
+
   %text-regular-#{$size} {
     font-family: $font-family;
     font-weight: 400;
     font-size: $size;
   }
-  
+
   %text-bold {
     font-size: $size;
     font-weight: 700;
-  } 
+  }
 }
