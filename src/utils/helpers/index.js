@@ -1,7 +1,16 @@
-const accessToken = {
-  set: (token) => localStorage.setItem('accessToken', token),
-  get: () => localStorage.getItem('accessToken'),
-  remove: () => localStorage.removeItem('accessToken'),
-};
+import { StorageKey } from 'utils/constants';
 
-export { accessToken };
+const saveLocalStorage = (
+  props,
+  { type = 'setItem' | 'getItem' | 'removeItem' }
+) => localStorage[type](props.key, props.value);
+
+const saveLoginToken = (accessToken) =>
+  localStorage.setItem(StorageKey.authAccessToken, accessToken);
+
+const getLoginToken = () => localStorage.get(StorageKey.authAccessToken);
+
+const removeLoginToken = () =>
+  localStorage.removeItem(StorageKey.authAccessToken);
+
+export { saveLoginToken, getLoginToken, removeLoginToken, saveLocalStorage };

@@ -7,12 +7,6 @@ export default {
   component: Loader,
 };
 
-const Template = (args) => {
-  return <Loader {...args} />;
-};
-
-const Default = Template.bind({});
-
-Default.args = {};
+const Default = <Loader />;
 
 export { Default };

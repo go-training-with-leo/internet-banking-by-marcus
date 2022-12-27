@@ -6,14 +6,6 @@ export default {
   component: Button,
 };
 
-const Template = (args) => {
-  return <Button {...args} />;
-};
-
-const Default = Template.bind({});
-
-Default.args = {
-  children: <span>Default Button</span>,
-};
+const Default = <Button>Label</Button>;
 
 export { Default };

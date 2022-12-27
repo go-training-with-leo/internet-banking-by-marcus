@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { ToastContainer } from 'react-toastify';
 
 import { store, persistor } from 'core/store';
+import 'global/libs';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from 'services/firebase';
 import Layout from 'layouts/Default';
@@ -14,9 +15,7 @@ import { setUser } from 'global/redux/auth/slice';
 
 import PrivateRoute from './PrivateRoute';
 
-import 'react-toastify/dist/ReactToastify.css';
-
-function RoutesApp() {
+function AppRoute() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -60,7 +59,7 @@ function App() {
           hideProgressBar
         />
         <Layout>
-          <RoutesApp />
+          <AppRoute />
         </Layout>
       </PersistGate>
     </Provider>
