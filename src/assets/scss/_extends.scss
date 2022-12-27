@@ -1,0 +1,24 @@
+@import "assets/scss/variables.scss";
+
+
+
+@each $size in sizes {
+  %text-normal-#{$size} {
+    font-family: $font-family;
+    letter-spacing: 0;
+    line-height: normal;
+    font-weight: 300;
+    font-size: $size;
+  }
+  
+  %text-regular-#{$size} {
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: $size;
+  }
+  
+  %text-bold {
+    font-size: $size;
+    font-weight: 700;
+  } 
+}

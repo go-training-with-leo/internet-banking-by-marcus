@@ -1,0 +1,10 @@
+<svg width="15" height="15" viewBox="0 0 15 15" fill="currentColor"
+  xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd"
+    d="M7.34567 2.25L1.5 12.375H13.1913L7.34567 2.25ZM7.34567 3.75L2.79904 11.625H11.8923L7.34567 3.75Z"
+    fill="inherit" />
+  <path
+    d="M8.09567 10.5C8.09567 10.9142 7.75988 11.25 7.34567 11.25C6.93146 11.25 6.59567 10.9142 6.59567 10.5C6.59567 10.0858 6.93146 9.75 7.34567 9.75C7.75988 9.75 8.09567 10.0858 8.09567 10.5Z"
+    fill="inherit" />
+  <path d="M6.59567 6H8.09567V9H6.59567V6Z" fill="inherit" />
+</svg>
