@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import SideBar from 'components/SideBarr';
+import SideBar from 'components/SideBar';
 import SideBarItem from 'components/SideBarItem';
 import { PlusIcon } from 'assets/images';
 

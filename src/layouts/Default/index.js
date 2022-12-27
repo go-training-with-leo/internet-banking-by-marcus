@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
 import Header from 'components/Header';
-import SideBar from 'components/SideBarr';
+import SideBar from 'components/SideBar';
 
 import 'layouts/Default/style.scss';
 
