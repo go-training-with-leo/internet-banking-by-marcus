@@ -3,23 +3,30 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import 'components/Loader/style.scss';
+import { Loading } from 'assets/images';
 
-const Loader = ({ color, size }) => {
+const Loader = ({ small, medium, large }) => {
   return (
-    <div className='loader-container'>
-      <div className={classNames('loader', [color, size])} />
-    </div>
+    <Loading
+      className={classNames('loader', {
+        medium: medium,
+        small: small,
+        large: large,
+      })}
+    />
   );
 };
 
 Loader.defaultProps = {
-  color: 'default',
-  size: 'normal',
+  small: false,
+  medium: true,
+  large: false,
 };
 
 Loader.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'normal', 'large']),
+  small: PropTypes.bool,
+  medium: PropTypes.bool,
+  large: PropTypes.bool,
 };
 
 export default Loader;

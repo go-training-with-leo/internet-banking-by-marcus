@@ -7,6 +7,6 @@ export default {
   component: Loader,
 };
 
-const Default = () => <Loader />;
+const Default = () => <Loader small />;
 
 export { Default };

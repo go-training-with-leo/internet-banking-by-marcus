@@ -2,13 +2,20 @@
 @import "assets/scss/mixins.scss";
 
 %button {
-  width: fit-content;
-
+  width: 100%;
+  height: 52px;
+  font-family: $font-family;
+  font-size: 15px;
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
 
   @include setFlex(row, center, center, 24px, null);
+  transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.1);
+    }
 }
 
 @each $size in sizes {

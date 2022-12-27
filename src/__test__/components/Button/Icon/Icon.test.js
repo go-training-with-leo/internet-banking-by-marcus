@@ -2,7 +2,8 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import DefaultButton from 'components/Button/Default';
+import IconButton from 'components/Button/Icon';
+import { PlusIcon } from 'assets/images';
 
 beforeAll(() => {
   jest.spyOn(console, 'error').mockImplementation(() => {});
@@ -12,25 +13,29 @@ test('Test default props button', () => {
   const handleClick = jest.fn();
 
   const tree = render(
-    <DefaultButton onClick={handleClick}>Text</DefaultButton>
+    <IconButton onClick={handleClick}>
+      Label
+      <PlusIcon />
+    </IconButton>
   );
 
   const button = tree.getByRole('button');
 
   expect(button.className).toMatch('button');
 
-  expect(button).toHaveTextContent('Text');
+  expect(button).toHaveTextContent('Label');
+
+  expect(button.childElementCount).toEqual(1);
+
+  expect(console.error).toBeCalledTimes(1);
 
   fireEvent.click(button);
-  expect(handleClick).toBeCalledTimes(1);
 
   expect(tree).toMatchSnapshot();
 });
 
 test('Test classname on Button', () => {
-  const tree = render(
-    <DefaultButton className='testClass'>Label</DefaultButton>
-  );
+  const tree = render(<IconButton className='testClass'>Label</IconButton>);
   const button = tree.getByRole('button');
 
   expect(button.className).not.toMatch('testClass');
@@ -42,9 +47,9 @@ test('Test classname on Button', () => {
 
 test('Wrong Props & right props', () => {
   const tree = render(
-    <DefaultButton className='ghost' disabled>
+    <IconButton className='ghost' danger disabled>
       Label
-    </DefaultButton>
+    </IconButton>
   );
 
   const button = tree.getByRole('button');
@@ -58,7 +63,7 @@ test('Wrong Props & right props', () => {
 });
 
 test('Loading in button', () => {
-  const tree = render(<DefaultButton loading>Label</DefaultButton>);
+  const tree = render(<IconButton loading>Label</IconButton>);
 
   const button = tree.getByRole('button');
 
@@ -69,7 +74,7 @@ test('Loading in button', () => {
 test('Test onClick on Button', () => {
   const handleClick = jest.fn();
   const tree = render(
-    <DefaultButton onClick={handleClick}>Test onClick</DefaultButton>
+    <IconButton onClick={handleClick}>Test onClick</IconButton>
   );
 
   const button = tree.getByRole('button');
