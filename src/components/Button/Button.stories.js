@@ -6,6 +6,6 @@ export default {
   component: Button,
 };
 
-const Default = <Button>Label</Button>;
+const Default = () => <Button>Label</Button>;
 
 export { Default };
