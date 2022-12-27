@@ -1,9 +1,10 @@
 import { StorageKey } from 'utils/constants';
 
-const saveLocalStorage = (
-  props,
-  { type = 'setItem' | 'getItem' | 'removeItem' }
-) => localStorage[type](props.key, props.value);
+const saveLocalStorage = ({
+  type = 'setItem' | 'getItem' | 'removeItem',
+  key,
+  value,
+}) => localStorage[type](key, value);
 
 const saveLoginToken = (accessToken) =>
   localStorage.setItem(StorageKey.authAccessToken, accessToken);
