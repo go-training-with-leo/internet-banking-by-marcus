@@ -15,7 +15,11 @@ test('Test default props', () => {
 test('Test event & props', () => {
   const handleClick = jest.fn();
 
-  const tree = render(<SideBarItem isActive>Text</SideBarItem>);
+  const tree = render(
+    <SideBarItem isActive onClick={handleClick}>
+      Text
+    </SideBarItem>
+  );
 
   const sidebarItem = tree.container.querySelector('div.sidebar-item');
 
