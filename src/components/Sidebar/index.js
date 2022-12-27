@@ -1,13 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import 'components/Sidebar/style.scss';
+import { EightLogo } from 'assets/images';
 
-const Sidebar = () => {
+import 'components/SideBar/style.scss';
+
+const SideBar = ({ children, bottomItem }) => {
   return (
     <div className='side-bar'>
-      <div>sidebar</div>
+      <div className='side-bar__top'>
+        <EightLogo className='logo' />
+        <div className='list-item'>{children}</div>
+      </div>
+      {bottomItem}
     </div>
   );
 };
 
-export default Sidebar;
+SideBar.defaultProps = {
+  children: undefined,
+  bottomItem: undefined,
+};
+
+SideBar.propTypes = {
+  children: PropTypes.node,
+  bottomItem: PropTypes.node,
+};
+
+export default SideBar;
