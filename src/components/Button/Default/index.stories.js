@@ -9,6 +9,8 @@ export default {
   component: Button,
 };
 
-const Default = () => <Button startIcon={<DeleteIcon />}>Label</Button>;
+const Default = () => (
+  <Button startIcon={<DeleteIcon width={20} height={20} />}>Label</Button>
+);
 
 export { Default };
