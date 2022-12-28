@@ -6,6 +6,9 @@ import { ReactComponent as Transfer } from 'assets/images/icons/transfer.svg';
 import { ReactComponent as Clock } from 'assets/images/icons/time.svg';
 import { ReactComponent as Cash } from 'assets/images/icons/cash.svg';
 import { ReactComponent as User } from 'assets/images/icons/user.svg';
+import { ReactComponent as NotifyBusy } from 'assets/images/icons/notificationBusy.svg';
+import { ReactComponent as NotifyFree } from 'assets/images/icons/notificationFree.svg';
+import { ReactComponent as NotifyRemove } from 'assets/images/icons/notificationRemove.svg';
 import { ReactComponent as EightLogo } from 'assets/images/icons/eightBank.svg';
 
 export {
@@ -18,4 +21,7 @@ export {
   Clock,
   Cash,
   User,
+  NotifyBusy,
+  NotifyFree,
+  NotifyRemove,
 };

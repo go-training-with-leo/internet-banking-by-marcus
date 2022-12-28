@@ -10,7 +10,9 @@ const Default = ({ children }) => {
     <div className='page-layout'>
       <SideBar />
       <div className='page-layout__right'>
-        <Header />
+        <Header title='Contacts' notifyFree>
+          <button>Button</button>
+        </Header>
         {children}
       </div>
     </div>
