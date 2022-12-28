@@ -4,6 +4,7 @@ import Header from 'components/Header';
 import Sidebar from 'components/Sidebar';
 
 import 'layouts/Default/style.scss';
+import { Eye } from 'assets/images';
 
 const Default = ({ children }) => {
   return (
@@ -12,6 +13,7 @@ const Default = ({ children }) => {
       <div className='page-layout__right'>
         <Header />
         {children}
+        <img src={Eye} alt='fasdf' />
       </div>
     </div>
   );
