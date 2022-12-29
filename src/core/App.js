@@ -10,7 +10,6 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from 'services/firebase';
 import Layout from 'layouts/Default';
 import routes from 'routes';
-import Loader from 'components/Loader';
 import { setUser } from 'global/redux/auth/slice';
 
 import PrivateRoute from './PrivateRoute';
@@ -28,7 +27,7 @@ function AppRoute() {
 
   return (
     <Router>
-      <Suspense fallback={<Loader size='large' />}>
+      <Suspense fallback={<span>Loading...</span>}>
         <Routes>
           {routes.map((route) => (
             <Route
