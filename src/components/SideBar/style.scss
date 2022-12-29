@@ -1,0 +1,24 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+@import "assets/scss/extends.scss";
+
+.side-bar {
+  width: fit-content;
+  min-width: 223px;
+  height: 100vh;
+
+  @include setFlex(column, space-between, null, null, null);
+
+  background-color: $black-medium;
+
+  &__top {
+    @include setFlex(column, null, null, 44px, null);
+    & > .logo {
+      margin-top: 22px;
+      margin-left: 24px;
+    }
+    & > .list-item {
+      @include setFlex(column, null, null, 18px, null);
+    }
+  }
+}

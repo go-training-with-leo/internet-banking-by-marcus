@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import TextAreaInput from '.';
 
 export default {
-  title: 'Input',
+  title: 'TextArea',
   component: TextAreaInput,
 };
 
