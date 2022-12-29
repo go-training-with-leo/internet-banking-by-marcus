@@ -1,0 +1,53 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+@import "assets/scss/extends.scss";
+
+.modal-container {
+  @include setWidthHeight(100vw, 100vh);
+  @include setFlex(row, center, center, null, null);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(17, 17, 17, 0.6);
+
+  &.closeModal {
+    display: none;
+  }
+
+  .modal {
+    @include setWidthHeight(435px, fit-content);
+    background-image: $gray-gradient;
+    padding: 60px 54px;
+    color: $pure-white;
+    border-radius: 25px;
+    font-family: $font-family;
+
+    transition: all 0.6s linear;
+
+    &-header {
+      @include setFlex(row, space-between, center, null, null);
+      padding-bottom: 27px;
+      
+      & > .title {
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 34px;
+      }
+  
+      & > .cancel {
+         @include setFlex(row, null, center, 13px, null);
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 20px;
+        color: $medium-gray;
+        cursor: pointer;
+        user-select: none;
+      }
+    }
+  
+    &-body {
+      padding-top: 27px;
+    }
+  }
+}
