@@ -2,31 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { capitalFirstLetter, isNumber } from 'utils/helpers';
+
 import './style.scss';
 
-const SmallCard = ({ isActive, label, children, handleClick }) => {
+const SmallCard = ({ isActive, label, children, onClick }) => {
   return (
     <div
       className={classNames('small-card', { active: isActive })}
       role='listitem'
-      onClick={handleClick}
+      onClick={onClick}
     >
-      {children}
-      <span className='label'>{label}</span>
+      {isNumber(children)}
+      <span className='label'>{capitalFirstLetter(label)}</span>
     </div>
   );
 };
 
 SmallCard.defaultProps = {
   isActive: false,
-  handleClick: undefined,
+  onClick: undefined,
 };
 
 SmallCard.propTypes = {
   isActive: PropTypes.bool,
   label: PropTypes.string.isRequired,
   children: PropTypes.number.isRequired,
-  handleClick: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 export default SmallCard;

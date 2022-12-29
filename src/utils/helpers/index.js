@@ -14,4 +14,19 @@ const getLoginToken = () => localStorage.get(StorageKey.authAccessToken);
 const removeLoginToken = () =>
   localStorage.removeItem(StorageKey.authAccessToken);
 
-export { saveLoginToken, getLoginToken, removeLoginToken, saveLocalStorage };
+const capitalFirstLetter = (text) => {
+  return text && text[0].toUpperCase() + text.slice(1).toLowerCase();
+};
+
+const isNumber = (number) => {
+  return /\d/.test(number) ? number : 'Invalid type';
+};
+
+export {
+  saveLoginToken,
+  getLoginToken,
+  removeLoginToken,
+  saveLocalStorage,
+  capitalFirstLetter,
+  isNumber,
+};

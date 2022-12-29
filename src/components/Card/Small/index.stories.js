@@ -8,9 +8,7 @@ export default {
 };
 
 const SmallCard = () => (
-  <SmallCardComponent isActive label='VISA'>
-    9829
-  </SmallCardComponent>
+  <SmallCardComponent label='VISA'>090031</SmallCardComponent>
 );
 
 export { SmallCard };
