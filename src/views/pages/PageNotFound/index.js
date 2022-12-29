@@ -1,12 +1,7 @@
-import Loader from 'components/Loader';
 import React from 'react';
 
 const PageNotFound = () => {
-  return (
-    <div className='page-container'>
-      <Loader size='small' />
-    </div>
-  );
+  return <div className='page-container'>PageNotFound</div>;
 };
 
 export default PageNotFound;

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Loading } from 'assets/images';
 
 import 'components/Loader/style.scss';
-import { Loading } from 'assets/images';
 
 const Loader = ({ small, medium, large }) => {
   return (

@@ -1,0 +1,44 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+@import "assets/scss/extends.scss";
+
+.sidebar-item {
+  @include setWidthHeight(197px, 67px);
+  @include setFlex(row, start, center, 22px, null);
+  position: relative;
+  padding-left: 26px;
+  background-color: $black-medium;
+  color: $pure-white;
+
+  font-family: $font-family;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+
+  svg {
+    fill: $medium-gray;
+  }
+
+  &:hover {
+    background-image: $menu-gradient;
+    
+    svg {
+      fill: $pure-white;
+    }
+
+  }
+
+  &.active {
+    
+    box-shadow: 0px 4px 4px #111111;
+    z-index: 50;
+
+    svg {
+      fill: $red-orange;
+    }
+
+    &:hover {
+      background: $black-medium;
+    }
+  }
+}
