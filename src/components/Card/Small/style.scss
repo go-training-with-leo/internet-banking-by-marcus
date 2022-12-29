@@ -1,6 +1,5 @@
 @import "assets/scss/mixins.scss";
 @import "assets/scss/variables.scss";
-@import "assets/scss/extends.scss";
 
 .small-card {
   @include setWidthHeight(94px, 48px);

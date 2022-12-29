@@ -10,6 +10,9 @@ import { ReactComponent as NotifyBusy } from 'assets/images/icons/notificationBu
 import { ReactComponent as NotifyFree } from 'assets/images/icons/notificationFree.svg';
 import { ReactComponent as NotifyRemove } from 'assets/images/icons/notificationRemove.svg';
 import { ReactComponent as EightLogo } from 'assets/images/icons/eightBank.svg';
+import { ReactComponent as MasterCard } from 'assets/images/icons/masterCard.svg';
+import { ReactComponent as Visa } from 'assets/images/icons/visa.svg';
+import { ReactComponent as Napas } from 'assets/images/icons/napas.svg';
 
 export {
   PlusIcon,
@@ -24,4 +27,7 @@ export {
   NotifyBusy,
   NotifyFree,
   NotifyRemove,
+  MasterCard,
+  Visa,
+  Napas,
 };

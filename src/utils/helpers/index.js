@@ -19,7 +19,17 @@ const capitalFirstLetter = (text) => {
 };
 
 const isNumber = (number) => {
-  return /\d/.test(number) ? number : 'Invalid type';
+  return /\d/.test(number);
+};
+
+const preProcessMoney = (number) => {
+  return isNumber(number)
+    ? Number(number)
+      .toLocaleString('en-US', { style: 'currency', currency: 'VND' })
+      .slice(1)
+      .split(',')
+      .join(' ')
+    : 'Invalid type';
 };
 
 export {
@@ -29,4 +39,5 @@ export {
   saveLocalStorage,
   capitalFirstLetter,
   isNumber,
+  preProcessMoney,
 };

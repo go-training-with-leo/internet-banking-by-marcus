@@ -13,7 +13,7 @@ const SmallCard = ({ isActive, label, children, onClick }) => {
       role='listitem'
       onClick={onClick}
     >
-      {isNumber(children)}
+      {isNumber(children) ? children : 'Invalid type'}
       <span className='label'>{capitalFirstLetter(label)}</span>
     </div>
   );
