@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import DefaultInput from 'components/Input/Default';
+import DefaultInput from 'components/Input';
 import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
 

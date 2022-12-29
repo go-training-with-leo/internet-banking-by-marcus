@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { AlertYellow, User, Locker, Eye, EyeCross } from 'assets/images';
 
-import 'components/Input/Default/style.scss';
+import 'components/Input/style.scss';
 
 const Input = ({
   register,
