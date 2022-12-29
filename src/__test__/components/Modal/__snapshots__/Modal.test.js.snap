@@ -7,9 +7,11 @@ Object {
     <div>
       <div
         class="modal-container closeModal"
+        role="dialog"
       >
         <div
           class="modal"
+          role="dialog"
         >
           <div
             class="modal-header"
@@ -49,9 +51,11 @@ Object {
   "container": <div>
     <div
       class="modal-container closeModal"
+      role="dialog"
     >
       <div
         class="modal"
+        role="dialog"
       >
         <div
           class="modal-header"
@@ -148,9 +152,11 @@ Object {
     <div>
       <div
         class="modal-container closeModal"
+        role="dialog"
       >
         <div
           class="modal"
+          role="dialog"
         >
           <div
             class="modal-header"
@@ -190,9 +196,11 @@ Object {
   "container": <div>
     <div
       class="modal-container closeModal"
+      role="dialog"
     >
       <div
         class="modal"
+        role="dialog"
       >
         <div
           class="modal-header"
@@ -289,9 +297,11 @@ Object {
     <div>
       <div
         class="modal-container"
+        role="dialog"
       >
         <div
           class="modal"
+          role="dialog"
         >
           <div
             class="modal-header"
@@ -331,9 +341,11 @@ Object {
   "container": <div>
     <div
       class="modal-container"
+      role="dialog"
     >
       <div
         class="modal"
+        role="dialog"
       >
         <div
           class="modal-header"

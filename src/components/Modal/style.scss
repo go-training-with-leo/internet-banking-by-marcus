@@ -22,13 +22,14 @@
     color: $pure-white;
     border-radius: 25px;
     font-family: $font-family;
+    z-index: 50;
 
     transition: all 0.6s linear;
 
     &-header {
       @include setFlex(row, space-between, center, null, null);
       padding-bottom: 27px;
-      
+
       & > .title {
         font-weight: 700;
         font-size: 25px;

@@ -9,9 +9,17 @@ import './style.scss';
 const Modal = ({ title, cancel, isClose, children }) => {
   const [toggle, setToggle] = useState(isClose);
 
+  const handleToggle = () => {
+    setToggle(true);
+  };
+
   return (
-    <div className={classNames('modal-container', { closeModal: toggle })}>
-      <div className='modal'>
+    <div
+      className={classNames('modal-container', { closeModal: toggle })}
+      role='dialog'
+      onClick={handleToggle}
+    >
+      <div className='modal' onClick={(e) => e.stopPropagation()} role='dialog'>
         <div className='modal-header'>
           <span className='title'>{title}</span>
           {cancel && (
@@ -19,7 +27,7 @@ const Modal = ({ title, cancel, isClose, children }) => {
               className='cancel'
               role='button'
               tabIndex='0'
-              onClick={() => setToggle(!toggle)}
+              onClick={handleToggle}
             >
               <Cancel width={20} height={20} />
               <span>CANCEL</span>

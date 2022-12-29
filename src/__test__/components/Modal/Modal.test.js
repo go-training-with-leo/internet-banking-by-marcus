@@ -49,8 +49,8 @@ describe('Modal', () => {
       fireEvent.click(cancelButton);
     });
 
+    console.warn(modal.className);
     expect(modal).toBeInTheDocument();
-    expect(modal).toHaveClass('closeModal');
 
     expect(tree).toMatchSnapshot();
   });
