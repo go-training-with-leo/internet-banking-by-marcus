@@ -104,7 +104,6 @@ test('Test error input', async () => {
     fireEvent.change(input, { target: { value: 'This is a string' } });
   });
 
-  console.warn(iconElement);
   expect(input).toHaveAttribute('type', 'text');
   expect(input.value).toMatch('This is a string');
 
