@@ -11,6 +11,11 @@ import { ReactComponent as NotifyFree } from 'assets/images/icons/notificationFr
 import { ReactComponent as NotifyRemove } from 'assets/images/icons/notificationRemove.svg';
 import { ReactComponent as EightLogo } from 'assets/images/icons/eightBank.svg';
 import { ReactComponent as MasterCard } from 'assets/images/icons/masterCard.svg';
+import { ReactComponent as Next } from 'assets/images/icons/next.svg';
+import { ReactComponent as Back } from 'assets/images/icons/back.svg';
+import { ReactComponent as Ellipse } from 'assets/images/icons/ellipse.svg';
+
+import { ReactComponent as Loading } from 'assets/images/icons/loadingV2.svg';
 import { ReactComponent as Visa } from 'assets/images/icons/visa.svg';
 import { ReactComponent as Napas } from 'assets/images/icons/napas.svg';
 
@@ -30,4 +35,8 @@ export {
   MasterCard,
   Visa,
   Napas,
+  Loading,
+  Next,
+  Back,
+  Ellipse,
 };

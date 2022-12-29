@@ -6,6 +6,7 @@ import './style.scss';
 import { EightLogo, MasterCard, Napas, Visa } from 'assets/images';
 import classNames from 'classnames';
 import { preProcessMoney } from 'utils/helpers';
+import Loader from 'components/Loader';
 
 const Card = ({
   idCard,
@@ -17,39 +18,50 @@ const Card = ({
   expireTime,
   onClick,
 }) => {
-  console.warn(preProcessMoney(children));
   return (
     <div
       className={classNames('card-container', {
-        'master-card': masterCard,
-        'visa-card': visaCard,
         'napas-card': napasCard,
+        'visa-card': visaCard,
+        'master-card': masterCard,
+        loading: isLoading,
       })}
     >
-      {isLoading && (
-        <div className='card' role='button' tabIndex={0} onClick={onClick}>
-          <EightLogo />
-          <span className='card-money'>{preProcessMoney(children)} VND</span>
-          <div className='card-info'>
-            <div className='info'>
-              <span className='info-id'>{idCard}</span>
-              <span className='info-expire'>{expireTime}</span>
+      <div
+        className={classNames('card', { loading: isLoading })}
+        role='button'
+        tabIndex={0}
+        onClick={onClick}
+      >
+        {isLoading ? (
+          <Loader fill='red' />
+        ) : (
+          <>
+            <EightLogo />
+            <span className='card-money'>{preProcessMoney(children)} VND</span>
+            <div className='card-info'>
+              <div className='info'>
+                <span className='info-id'>{idCard}</span>
+                <span className='info-expire'>{expireTime}</span>
+              </div>
+              {masterCard ? (
+                <MasterCard data-testid='master-card' />
+              ) : visaCard ? (
+                <Visa data-testid='visa-card' fill='white' />
+              ) : (
+                napasCard && <Napas data-testid='napas-card' />
+              )}
             </div>
-            {masterCard ? (
-              <MasterCard />
-            ) : visaCard ? (
-              <Visa fill='white' />
-            ) : (
-              napasCard && <Napas />
-            )}
-          </div>
-        </div>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 };
 
 Card.defaultProps = {
+  idCard: undefined,
+  children: undefined,
   visaCard: false,
   masterCard: false,
   napasCard: false,
@@ -59,8 +71,8 @@ Card.defaultProps = {
 };
 
 Card.propTypes = {
-  idCard: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
+  idCard: PropTypes.string,
+  children: PropTypes.string,
   expireTime: PropTypes.string,
   visaCard: PropTypes.bool,
   masterCard: PropTypes.bool,

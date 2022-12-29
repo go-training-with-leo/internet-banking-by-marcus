@@ -27,7 +27,8 @@ SmallCard.defaultProps = {
 SmallCard.propTypes = {
   isActive: PropTypes.bool,
   label: PropTypes.string.isRequired,
-  children: PropTypes.number.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
   onClick: PropTypes.func,
 };
 

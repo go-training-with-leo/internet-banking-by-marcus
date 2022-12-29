@@ -11,4 +11,10 @@ const SmallCard = () => (
   <SmallCardComponent label='VISA'>090031</SmallCardComponent>
 );
 
-export { SmallCard };
+const SmallCardActive = () => (
+  <SmallCardComponent isActive label='VISA'>
+    090031
+  </SmallCardComponent>
+);
+
+export { SmallCard, SmallCardActive };
