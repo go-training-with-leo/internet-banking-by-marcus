@@ -1,39 +1,61 @@
-import React from 'react';
+import React, { cloneElement } from 'react';
+import PropTypes from 'prop-types';
 
 import './style.scss';
-import { PlusIcon } from 'assets/images';
 
-const Table = () => {
-  const data = [
-    { id: 1, name: 'Wasif', age: 21, email: 'wasif@email.com' },
-    { id: 2, name: 'Ali', age: 19, email: 'ali@email.com' },
-    { id: 3, name: 'Saad', age: 16, email: 'saad@email.com' },
-    { id: 4, name: 'Asad', age: 25, email: 'asad@email.com' },
-  ];
-  const titles = Object.keys(data[0]);
-  const renderHeader = titles.map((title) => <th key={title}>{title}</th>);
-  const renderData = data.map((item) => {
+const Table = ({ dataTable, children, headerTable }) => {
+  const titles = dataTable.length !== 0 ? Object.keys(dataTable[0]) : null;
+
+  const renderActions = () => {
+    const foundedActions = children?.find((child) => {
+      return child?.props?.title === 'actions';
+    });
+    return foundedActions;
+  };
+
+  const renderData = dataTable?.map((row, index) => {
     return (
-      <tr key={item?.id}>
-        {titles.map((title) => (
-          <td key={title}>{item[title]}</td>
-        ))}
-        <td>
-          <PlusIcon onClick={() => console.warn('fd')} />
-          <PlusIcon />
-        </td>
+      <tr className='table-body-row'>
+        <td className='order'>{index + 1}</td>
+        {titles?.map((title) => {
+          const foundedChild = children?.find((child) => {
+            return child?.props?.title === title;
+          });
+
+          return foundedChild !== undefined
+            ? cloneElement(
+              children?.find((child) => {
+                return child?.props?.title === title;
+              }),
+              { children: row[title] }
+            )
+            : foundedChild;
+        })}
+        {renderActions()}
       </tr>
     );
   });
 
   return (
-    <table>
+    <table className='table'>
       <tbody>
-        <tr>{renderHeader}</tr>
+        {headerTable}
         {renderData}
       </tbody>
     </table>
   );
+};
+
+Table.defaultProps = {
+  dataTable: undefined,
+  headerTable: undefined,
+  children: undefined,
+};
+
+Table.propTypes = {
+  dataTable: PropTypes.array,
+  headerTable: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
 };
 
 export default Table;
