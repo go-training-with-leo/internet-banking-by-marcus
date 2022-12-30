@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const Table = ({ dataTable, children, headerTable }) => {
-  const titles = dataTable.length !== 0 ? Object.keys(dataTable[0]) : null;
+  const titles = dataTable !== undefined ? Object.keys(dataTable[0]) : null;
 
   const renderActions = () => {
     const foundedActions = children?.find((child) => {

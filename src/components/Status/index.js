@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 import { Cancel, Check, Clock, Reverse } from 'assets/images';
 
-const Status = ({ failed, success, refund, paid, unpaid, cancelled }) => {
+const Status = ({ failed, success, refund, paid, unpaid, canceled }) => {
   return (
     <div
       className={classNames('status', {
@@ -14,7 +14,7 @@ const Status = ({ failed, success, refund, paid, unpaid, cancelled }) => {
         refund: refund,
         paid: paid,
         unpaid: unpaid,
-        cancelled: cancelled,
+        canceled: canceled,
       })}
     >
       {failed ? (
@@ -37,16 +37,16 @@ const Status = ({ failed, success, refund, paid, unpaid, cancelled }) => {
           <Check width={20} height={20} fill='green' />
           <span>Paid</span>
         </>
-      ) : unpaid ? (
+      ) : canceled ? (
         <>
-          <Clock width={20} height={20} fill='yellow' />
-          <span>Unpaid</span>
+          <Cancel width={20} height={20} fill='red' />
+          <span>Canceled</span>
         </>
       ) : (
-        cancelled && (
+        unpaid && (
           <>
-            <Cancel width={20} height={20} fill='red' />
-            <span>Canceled</span>
+            <Clock width={20} height={20} fill='yellow' />
+            <span>Unpaid</span>
           </>
         )
       )}
@@ -60,7 +60,7 @@ Status.defaultProps = {
   refund: false,
   paid: false,
   unpaid: true,
-  cancelled: false,
+  canceled: false,
 };
 
 Status.propTypes = {
@@ -69,6 +69,6 @@ Status.propTypes = {
   refund: PropTypes.bool,
   paid: PropTypes.bool,
   unpaid: PropTypes.bool,
-  cancelled: PropTypes.bool,
+  canceled: PropTypes.bool,
 };
 export default Status;
