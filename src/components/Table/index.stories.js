@@ -34,6 +34,27 @@ const dataTable = [
     email: 'asad@email.com',
     status: 'success',
   },
+  {
+    id: 'CM5',
+    name: 'Asad',
+    age: 25,
+    email: 'asad@email.com',
+    status: 'success',
+  },
+  {
+    id: 'CM6',
+    name: 'Asad',
+    age: 25,
+    email: 'asad@email.com',
+    status: 'success',
+  },
+  {
+    id: 'CM7',
+    name: 'Asad',
+    age: 25,
+    email: 'asad@email.com',
+    status: 'success',
+  },
 ];
 
 const headerTable = (
