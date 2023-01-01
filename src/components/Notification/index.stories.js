@@ -10,30 +10,42 @@ export default {
 const messages = [
   {
     id: 'MSG1',
+    account: {
+      type: 'lender',
+      name: 'Jusin Doe',
+      last4Digit: '4968',
+    },
     type: 'removed',
-    content:
-      'Your lender (Justin Doe/ 4089) has removed a debt reminder of you',
     time: '09:51:36 23/05/2020',
   },
   {
     id: 'MSG2',
+    account: {
+      type: 'debtor',
+      name: 'Jusin Doe',
+      last4Digit: '4968',
+    },
     type: 'repaid',
-    content:
-      'Your lender (Justin Doe/ 4089) has removed a debt reminder of you',
     time: '09:51:36 23/05/2020',
   },
   {
     id: 'MSG3',
+    account: {
+      type: 'lender',
+      name: 'Jusin Doe',
+      last4Digit: '4968',
+    },
     type: 'removed',
-    content:
-      'Your lender (Justin Doe/ 4089) has removed a debt reminder of you',
     time: '09:51:36 23/05/2020',
   },
   {
     id: 'MSG4',
+    account: {
+      type: 'lender',
+      name: 'Jusin Doe',
+      last4Digit: '4968',
+    },
     type: 'removed',
-    content:
-      'Your lender (Justin Doe/ 4089) has removed a debt reminder of you',
     time: '09:51:36 23/05/2020',
   },
 ];

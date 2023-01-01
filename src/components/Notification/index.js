@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { CreditCardDone, NotifyRemove } from 'assets/images';
 
@@ -12,14 +13,43 @@ const Notification = ({ messages }) => {
         messages?.map((message) => (
           <div className='notification-item' key={message?.id}>
             {message?.type === 'removed' ? (
-              <NotifyRemove width={60} height={60} />
+              <NotifyRemove
+                width={60}
+                height={60}
+                fill={
+                  message?.account?.type === 'lender'
+                    ? '#27AE60'
+                    : message?.account?.type === 'debtor' && '#EF230C'
+                }
+              />
             ) : (
               message?.type === 'repaid' && (
-                <CreditCardDone width={60} height={60} />
+                <CreditCardDone
+                  width={50}
+                  height={50}
+                  fill={
+                    message?.account?.type === 'lender'
+                      ? '#27AE60'
+                      : message?.account?.type === 'debtor' && '#EF230C'
+                  }
+                />
               )
             )}
-            <div className='time-detail'>
-              <span>{message?.content}</span>
+            <div className='content'>
+              <span>
+                Your{' '}
+                <span
+                  className={classNames({
+                    [message?.account?.type]: message?.account?.type,
+                  })}
+                >
+                  {message?.account?.type}
+                </span>{' '}
+                ({message?.account?.name}/ {message?.account?.last4Digit}) has{' '}
+                {message?.type} a debt{' '}
+                {message?.type === 'removed' ? 'reminder of ' : 'to '}
+                you
+              </span>
               <span>{message?.time}</span>
             </div>
           </div>
@@ -36,7 +66,7 @@ Notification.defaultProps = {
 };
 
 Notification.propTypes = {
-  messages: PropTypes.object,
+  messages: PropTypes.array,
 };
 
 export default Notification;

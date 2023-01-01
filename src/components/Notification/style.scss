@@ -10,16 +10,23 @@
   color: $pure-white;
   border-radius: 10px;
   overflow-y: auto;
+  font-family: $font-family;
   background-image: linear-gradient(180deg, #26292e 0%, #16181c 100%);
   &::-webkit-scrollbar {
     display: none;
   }
+
+  
   &-item {
     @include setFlex(row, space-between, center, 20px, null);
-  
-    & > .time-detail{
-      p {
-        margin: 0;
+
+    .content{
+      .lender {
+        color: #27AE60;
+      }
+
+      .debtor {
+        color: $red-orange;
       }
       @include setFlex(column, null, null, 5px, null)
     }
