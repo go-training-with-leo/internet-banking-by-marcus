@@ -6,9 +6,9 @@ import { ACB, DeleteIcon, PlusIcon } from 'assets/images';
 
 const country = [
   { label: 'ACB', value: '1', icon: ACB },
-  { label: 'India', value: 'India', icon: PlusIcon },
-  { label: 'China', value: 'China', icon: DeleteIcon },
-  { label: 'Finland', value: 'Finland', icon: PlusIcon },
+  { label: 'India', value: '2', icon: PlusIcon },
+  { label: 'China', value: '3', icon: DeleteIcon },
+  { label: 'Finland', value: '4', icon: PlusIcon },
 ];
 
 export default function PageNotFound() {
