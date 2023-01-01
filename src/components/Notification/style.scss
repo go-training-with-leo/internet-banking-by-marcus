@@ -1,0 +1,27 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+@import "assets/scss/extends.scss";
+
+.notification {
+  @include setWidthHeight(272px, fit-content);
+  max-height: 266px;
+  padding: 20px 16px;
+  @include setFlex(column, null, null, 20px, null);
+  color: $pure-white;
+  border-radius: 10px;
+  overflow-y: auto;
+  background-image: linear-gradient(180deg, #26292e 0%, #16181c 100%);
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &-item {
+    @include setFlex(row, space-between, center, 20px, null);
+  
+    & > .time-detail{
+      p {
+        margin: 0;
+      }
+      @include setFlex(column, null, null, 5px, null)
+    }
+  }
+}
