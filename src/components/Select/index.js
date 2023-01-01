@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Select, { components } from 'react-select';
 
-// import { ArrowDown } from 'assets/images';
+import colourStyles from './SelectStyle';
 
 import './style.scss';
-import colourStyles from './selectStyle';
 
 const { Option } = components;
 
