@@ -1,0 +1,38 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+@import "assets/scss/extends.scss";
+
+.stepper {
+  @include setWidthHeight(100%, 80px);
+  @include setFlex(row, null, center, null, cull);
+  padding: 0 25px;
+  background-color: $red-orange;
+  color: $pure-white;
+  font-family: $font-family;
+
+  &-number {
+    font-weight: 700;
+    font-size: 30px;
+    padding-right: 25px;
+    border-right: $pure-white 2px solid;
+    height: 40px;
+  }
+
+  &-content {
+    @include setFlex(column, space-between, null, 10px, null);
+
+    padding-left: 25px;
+
+    & > .title {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 27px;
+    }
+
+    & > .detail {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+}
