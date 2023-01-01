@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const HeaderCell = ({ children, key }) => {
+const HeaderCell = ({ children }) => {
   return (
-    <th className='table-header-cell' key={key}>
+    <th className='table-header-cell'>
       <div>{children}</div>
     </th>
   );
