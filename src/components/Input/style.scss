@@ -1,0 +1,49 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.input {
+  @include setWidthHeight(100%, 54px);
+  @include setFlex(row, null, center, 17px, null);
+  padding: 8px 16px;
+  color: $medium-gray;
+  border-bottom: $medium-gray 2px solid;
+
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 14px;
+  background-color: $black-dark;
+
+  &-container {
+    @include setFlex(column, space-between, null, 8px, null);
+    flex: 2;
+
+    & > input {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: $pure-white;
+    }
+  }
+  label {
+    font-weight: 400;
+  }
+
+  img {
+    cursor: pointer;
+  }
+
+  &.error {
+    border-bottom: $yellow 2px solid;
+    z-index: 50;
+    color: $yellow;
+  }
+
+  &.disabled {
+    background-color: rgba(17, 17, 17, 0.8);
+    cursor:not-allowed;
+    pointer-events: none;
+    color: $medium-gray;
+    border-bottom: $medium-gray 2px solid;
+  }
+}
