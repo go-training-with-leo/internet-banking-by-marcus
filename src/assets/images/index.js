@@ -5,6 +5,7 @@ import { ReactComponent as Contact } from 'assets/images/icons/contact.svg';
 import { ReactComponent as Transfer } from 'assets/images/icons/transfer.svg';
 import { ReactComponent as Clock } from 'assets/images/icons/time.svg';
 import { ReactComponent as Cash } from 'assets/images/icons/cash.svg';
+import { ReactComponent as Cancel } from 'assets/images/icons/cancel.svg';
 import { ReactComponent as User } from 'assets/images/icons/user.svg';
 import { ReactComponent as NotifyBusy } from 'assets/images/icons/notificationBusy.svg';
 import { ReactComponent as NotifyFree } from 'assets/images/icons/notificationFree.svg';
@@ -31,6 +32,7 @@ export {
   NotifyBusy,
   NotifyFree,
   NotifyRemove,
+  Cancel,
   Alert,
   AlertYellow,
   Locker,
