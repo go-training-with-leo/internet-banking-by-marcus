@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import authentication from 'global/redux/auth/request';
 import { signIn } from 'global/redux/auth/thunk';
+import Table from 'components/Table';
 
 const TestLogin = () => {
   const captchaRef = useRef(null);
@@ -50,6 +51,7 @@ const TestLogin = () => {
         <button type='submit'>Login</button>
       </form>
       <button onClick={handleForgotPassword}>Reset Email</button>
+      <Table />
     </div>
   );
 };

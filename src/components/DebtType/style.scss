@@ -1,0 +1,21 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+@import "assets/scss/extends.scss";
+
+.debt-type {
+  @include setWidthHeight(124px, 31px);
+  @include setFlex(row, center, center, null, null);
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: $pure-white;
+
+  &.debt {
+    background-color: #27AE60;
+  }
+  
+  &.loan {
+    background-color: $red-orange;
+  }
+}
