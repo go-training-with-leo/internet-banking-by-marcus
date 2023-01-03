@@ -7,6 +7,7 @@ import { ReactComponent as Clock } from 'assets/images/icons/time.svg';
 import { ReactComponent as Cash } from 'assets/images/icons/cash.svg';
 import { ReactComponent as Cancel } from 'assets/images/icons/cancel.svg';
 import { ReactComponent as User } from 'assets/images/icons/user.svg';
+import { ReactComponent as ArrowDown } from 'assets/images/icons/arrowDown.svg';
 import { ReactComponent as Check } from 'assets/images/icons/check.svg';
 import { ReactComponent as Reverse } from 'assets/images/icons/reverse.svg';
 import { ReactComponent as NotifyBusy } from 'assets/images/icons/notificationBusy.svg';
@@ -28,6 +29,8 @@ import { ReactComponent as Napas } from 'assets/images/icons/napas.svg';
 import Eye from 'assets/images/icons/eye.png';
 import EyeCross from 'assets/images/icons/eyeCross.png';
 
+import { ReactComponent as ACB } from 'assets/images/icons/acb.svg';
+
 export {
   PlusIcon,
   DeleteIcon,
@@ -41,6 +44,8 @@ export {
   NotifyBusy,
   NotifyFree,
   NotifyRemove,
+  ACB,
+  ArrowDown,
   Cancel,
   Check,
   Reverse,

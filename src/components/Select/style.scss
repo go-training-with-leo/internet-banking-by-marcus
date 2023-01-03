@@ -1,0 +1,36 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.select {
+  @include setWidthHeight(100%, 62px);
+  padding: 8px 0;
+  @include setFlex(row, space-between, center, null, null);
+  position: relative;
+
+  background-color: $black-dark;
+  color: $pure-white;
+  &-input {
+    width: 100%;
+  }
+
+  .select-input-container {
+    width: 100%;
+    & > .label {
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 14px;
+      color: $medium-gray;
+      padding: 0 12px;
+    }
+
+    .react-select-input__input-container {
+      color: white;
+    }
+  }
+}
+
+.option {
+  padding: 12px 12px;
+  @include setFlex(row, null, center, 52px, null);
+  cursor: pointer;
+}
