@@ -1,0 +1,28 @@
+@import 'assets/scss/variables.scss';
+@import "assets/scss/mixins.scss";
+@import 'assets/scss/extends.scss';
+
+.button {
+
+    @extend %button;
+    background-color: $black-medium;
+    color: $pure-white;
+
+    &.danger {
+        background-color: $red-orange;
+    }
+
+    &.loading {
+        background-color: $medium-gray;
+    }
+
+    &.ghost {
+        background-color: transparent;
+        color: $red-orange;
+        font-weight: 700;
+    }
+
+    &.greyColor {
+        color: $medium-gray;
+    }
+}

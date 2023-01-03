@@ -1,0 +1,26 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+@import "assets/scss/extends.scss";
+
+.wrapper {
+  @include setWidthHeight(435px, 100%);
+  background-image: $gray-gradient;
+  padding: 60px 54px;
+  color: $pure-white;
+  border-radius: 25px;
+  font-family: $font-family;
+
+  &-header {
+    @include setFlex(row, start, center, null, null);
+    padding-bottom: 27px;
+    & > .title {
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 34px;
+    }
+  }
+
+  &-body {
+    padding-top: 27px;
+  }
+}

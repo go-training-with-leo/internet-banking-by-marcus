@@ -5,14 +5,28 @@ import { ReactComponent as Contact } from 'assets/images/icons/contact.svg';
 import { ReactComponent as Transfer } from 'assets/images/icons/transfer.svg';
 import { ReactComponent as Clock } from 'assets/images/icons/time.svg';
 import { ReactComponent as Cash } from 'assets/images/icons/cash.svg';
-import { ReactComponent as User } from 'assets/images/icons/user.svg';
 import { ReactComponent as Cancel } from 'assets/images/icons/cancel.svg';
+import { ReactComponent as User } from 'assets/images/icons/user.svg';
 import { ReactComponent as Check } from 'assets/images/icons/check.svg';
 import { ReactComponent as Reverse } from 'assets/images/icons/reverse.svg';
 import { ReactComponent as NotifyBusy } from 'assets/images/icons/notificationBusy.svg';
 import { ReactComponent as NotifyFree } from 'assets/images/icons/notificationFree.svg';
 import { ReactComponent as NotifyRemove } from 'assets/images/icons/notificationRemove.svg';
+import { ReactComponent as Alert } from 'assets/images/icons/alert.svg';
+import { ReactComponent as AlertYellow } from 'assets/images/icons/alertYellow.svg';
+import { ReactComponent as Locker } from 'assets/images/icons/locker.svg';
 import { ReactComponent as EightLogo } from 'assets/images/icons/eightBank.svg';
+import { ReactComponent as MasterCard } from 'assets/images/icons/masterCard.svg';
+import { ReactComponent as Next } from 'assets/images/icons/next.svg';
+import { ReactComponent as Back } from 'assets/images/icons/back.svg';
+import { ReactComponent as Ellipse } from 'assets/images/icons/ellipse.svg';
+
+import { ReactComponent as Loading } from 'assets/images/icons/loadingV2.svg';
+import { ReactComponent as Visa } from 'assets/images/icons/visa.svg';
+import { ReactComponent as Napas } from 'assets/images/icons/napas.svg';
+
+import Eye from 'assets/images/icons/eye.png';
+import EyeCross from 'assets/images/icons/eyeCross.png';
 
 export {
   PlusIcon,
@@ -30,4 +44,16 @@ export {
   Cancel,
   Check,
   Reverse,
+  MasterCard,
+  Visa,
+  Napas,
+  Loading,
+  Next,
+  Back,
+  Ellipse,
+  Alert,
+  AlertYellow,
+  Locker,
+  Eye,
+  EyeCross,
 };
