@@ -12,6 +12,7 @@ import { ReactComponent as NotifyRemove } from 'assets/images/icons/notification
 import { ReactComponent as Alert } from 'assets/images/icons/alert.svg';
 import { ReactComponent as AlertYellow } from 'assets/images/icons/alertYellow.svg';
 import { ReactComponent as Locker } from 'assets/images/icons/locker.svg';
+import { ReactComponent as Loading } from 'assets/images/icons/loading.svg';
 import { ReactComponent as EightLogo } from 'assets/images/icons/eightBank.svg';
 
 import Eye from 'assets/images/icons/eye.png';
@@ -35,4 +36,5 @@ export {
   Locker,
   Eye,
   EyeCross,
+  Loading,
 };

@@ -1,0 +1,18 @@
+@import "assets/scss/mixins.scss";
+
+$sizes: (
+  "medium": 30px,
+  "small": 20px,
+  "large": 40px,
+);
+
+.loader {
+  animation: 1.3s spinLoader linear infinite;
+
+  @each $name, $size in $sizes {
+    &.#{$name} {
+      width: $size;
+      height: $size;
+    }
+  }
+}
