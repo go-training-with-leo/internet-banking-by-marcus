@@ -13,8 +13,15 @@ import { ReactComponent as NotifyRemove } from 'assets/images/icons/notification
 import { ReactComponent as Alert } from 'assets/images/icons/alert.svg';
 import { ReactComponent as AlertYellow } from 'assets/images/icons/alertYellow.svg';
 import { ReactComponent as Locker } from 'assets/images/icons/locker.svg';
-import { ReactComponent as Loading } from 'assets/images/icons/loading.svg';
 import { ReactComponent as EightLogo } from 'assets/images/icons/eightBank.svg';
+import { ReactComponent as MasterCard } from 'assets/images/icons/masterCard.svg';
+import { ReactComponent as Next } from 'assets/images/icons/next.svg';
+import { ReactComponent as Back } from 'assets/images/icons/back.svg';
+import { ReactComponent as Ellipse } from 'assets/images/icons/ellipse.svg';
+
+import { ReactComponent as Loading } from 'assets/images/icons/loadingV2.svg';
+import { ReactComponent as Visa } from 'assets/images/icons/visa.svg';
+import { ReactComponent as Napas } from 'assets/images/icons/napas.svg';
 
 import Eye from 'assets/images/icons/eye.png';
 import EyeCross from 'assets/images/icons/eyeCross.png';
@@ -32,11 +39,17 @@ export {
   NotifyBusy,
   NotifyFree,
   NotifyRemove,
+  MasterCard,
+  Visa,
+  Napas,
+  Loading,
+  Next,
+  Back,
+  Ellipse,
   Cancel,
   Alert,
   AlertYellow,
   Locker,
   Eye,
   EyeCross,
-  Loading,
 };

@@ -1,5 +1,14 @@
 @import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
 
+@keyframes spinLoader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 $sizes: (
   "medium": 30px,
   "small": 20px,
@@ -13,6 +22,7 @@ $sizes: (
     &.#{$name} {
       width: $size;
       height: $size;
+      color: $red-orange;
     }
   }
 }

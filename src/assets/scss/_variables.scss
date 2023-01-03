@@ -3,21 +3,24 @@ $SM: 768px;
 $MD: 1024px;
 $XL: 1170px;
 
-$red-orange : #EF230C;
-$medium-gray: #7C7F87;
-$pure-white: #FFFFFF;
-$black-medium: #26292E;
-$black-dark: #111111; 
-$yellow: #FFD351; 
+$red-orange: #ef230c;
+$medium-gray: #7c7f87;
+$pure-white: #ffffff;
+$black-medium: #26292e;
+$black-dark: #111111;
+$yellow: #ffd351;
 
+$menu-gradient: linear-gradient(90deg, #ef230c 0%, #ffdc00 100%);
+$card-gradient-red: linear-gradient(121.93deg, #111111 21.13%, #ef230c 70.45%);
+$card-gradient-blue: linear-gradient(121.93deg, #111111 21.13%, #2c41ff 70.45%);
+$card-gradient-yellow: linear-gradient(121.93deg, #111111 21.13%, #ffa522 70.45%);
+$banner-gradient: linear-gradient(90deg, #111111 0%, #ef230c 19.79%, #ffdc00 100%);
+$mastercard-gradient: linear-gradient(121.93deg, #111111 21.13%, #ef230c 70.45%);
+$visa-gradient: linear-gradient(121.93deg, #111111 21.13%, #2c41ff 70.45%);
+$napas-gradient: linear-gradient(121.93deg, #111111 21.13%, #ffa522 70.45%);
 $gray-gradient: linear-gradient(180deg, #26292E 0%, #16181C 100%);
-$menu-gradient: linear-gradient(90deg, #EF230C 0%, #FFDC00 100%);
-$card-gradient-red: linear-gradient(121.93deg, #111111 21.13%, #EF230C 70.45%);
-$card-gradient-blue: linear-gradient(121.93deg, #111111 21.13%, #2C41FF 70.45%);
-$card-gradient-yellow:  linear-gradient(121.93deg, #111111 21.13%, #FFA522 70.45%);
-$banner-gradient: linear-gradient(90deg, #111111 0%, #EF230C 19.79%, #FFDC00 100%);
  
 
-$font-family: 'Open Sans', sans-serif;
+$font-family: "Open Sans", sans-serif;
 
 $sizes: 10px, 12px, 25px;

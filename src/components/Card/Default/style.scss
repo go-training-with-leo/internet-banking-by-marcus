@@ -1,0 +1,79 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+$bg-colors: (
+  "napas-card": $napas-gradient,
+  "visa-card": $visa-gradient,
+  "master-card": $mastercard-gradient,
+);
+
+.card-container {
+  @include setWidthHeight(242px, 135px);
+  padding: 30px 28px;
+  background-color: $medium-gray;
+  border-radius: 20px;
+  position: relative;
+
+  cursor: pointer;
+
+  @each $name, $bg-color in $bg-colors {
+    &.#{$name} {
+      background-image: $bg-color;
+    }
+  }
+
+  &.loading {
+    background: $pure-white;
+    color: $red-orange;
+  }
+
+  & > .card {
+    width: 100%;
+    height: 100%;
+    font-family: $font-family;
+
+    @include setFlex(column, space-between, null, null, null);
+
+    z-index: 1;
+
+    & > .card-money {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 27px;
+      color: $pure-white;
+    }
+
+    & > .card-info {
+      @include setFlex(row, space-between, end, null, null);
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 20px;
+      color: $medium-gray;
+
+      & > .info {
+        @include setFlex(column, null, start, 2px, null);
+        font-size: 15px;
+        & > .info-expire {
+          font-size: 12px;
+        }
+      }
+    }
+
+    &.loading {
+      @include setFlex(row, center, center, null, null);
+    }
+    &:after {
+      content: "";
+      @include setWidthHeight(260px, 16px);
+      position: absolute;
+      display: block;
+      top: -11px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      background: #c4c4c4;
+      border-radius: 20px 20px 0px 0px;
+      z-index: -1;
+    }
+  }
+}
