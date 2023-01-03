@@ -10,7 +10,14 @@ import { ReactComponent as User } from 'assets/images/icons/user.svg';
 import { ReactComponent as NotifyBusy } from 'assets/images/icons/notificationBusy.svg';
 import { ReactComponent as NotifyFree } from 'assets/images/icons/notificationFree.svg';
 import { ReactComponent as NotifyRemove } from 'assets/images/icons/notificationRemove.svg';
+import { ReactComponent as Alert } from 'assets/images/icons/alert.svg';
+import { ReactComponent as AlertYellow } from 'assets/images/icons/alertYellow.svg';
+import { ReactComponent as Locker } from 'assets/images/icons/locker.svg';
+import { ReactComponent as Loading } from 'assets/images/icons/loading.svg';
 import { ReactComponent as EightLogo } from 'assets/images/icons/eightBank.svg';
+
+import Eye from 'assets/images/icons/eye.png';
+import EyeCross from 'assets/images/icons/eyeCross.png';
 
 export {
   PlusIcon,
@@ -26,4 +33,10 @@ export {
   NotifyFree,
   NotifyRemove,
   Cancel,
+  Alert,
+  AlertYellow,
+  Locker,
+  Eye,
+  EyeCross,
+  Loading,
 };
