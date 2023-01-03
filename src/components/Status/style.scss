@@ -1,0 +1,23 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+@import "assets/scss/extends.scss";
+
+$status-colors: (
+  "unpaid": #ffd351,
+  "canceled": $red-orange,
+  "paid": #27ae60,
+  "refund": #ffd351,
+  "success": #27ae60,
+  "failed": $red-orange,
+);
+
+.status {
+  @include setFlex(row, null, center, 15px, null);
+  font-weight: 600;
+  font-size: 15px;
+  @each $name, $color in $status-colors {
+    &.#{$name} {
+      color: $color;
+    }
+  }
+}

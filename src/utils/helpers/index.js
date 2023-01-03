@@ -14,4 +14,30 @@ const getLoginToken = () => localStorage.get(StorageKey.authAccessToken);
 const removeLoginToken = () =>
   localStorage.removeItem(StorageKey.authAccessToken);
 
-export { saveLoginToken, getLoginToken, removeLoginToken, saveLocalStorage };
+const capitalFirstLetter = (text) => {
+  return text && text[0].toUpperCase() + text.slice(1).toLowerCase();
+};
+
+const isNumber = (number) => {
+  return /\d/.test(number);
+};
+
+const preProcessMoney = (number) => {
+  return isNumber(number)
+    ? Number(number)
+      .toLocaleString('en-US', { style: 'currency', currency: 'VND' })
+      .slice(1)
+      .split(',')
+      .join(' ')
+    : 'Invalid type';
+};
+
+export {
+  saveLoginToken,
+  getLoginToken,
+  removeLoginToken,
+  saveLocalStorage,
+  capitalFirstLetter,
+  isNumber,
+  preProcessMoney,
+};

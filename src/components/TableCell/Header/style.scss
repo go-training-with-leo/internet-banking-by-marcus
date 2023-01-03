@@ -1,0 +1,10 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.table-header-cell {
+  div {
+    @include setFlex(row, null, center, 20px, null);
+  }
+  text-align: left;
+  padding: 23px 0;
+}

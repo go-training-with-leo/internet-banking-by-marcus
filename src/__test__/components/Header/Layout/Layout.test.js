@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Header from 'components/Header';
+import Header from 'components/Header/Layout';
 
 test('Test props', () => {
   const tree = render(

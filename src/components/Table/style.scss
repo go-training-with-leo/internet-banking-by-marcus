@@ -1,0 +1,34 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+@import "assets/scss/extends.scss";
+
+.table {
+  width: 100%;
+  height: 100%;
+  font-family: $font-family;
+  border-collapse: collapse;
+  &-header {
+    border-bottom: $black-dark 1px solid;
+   
+    &-cell {
+      text-align: left;
+      padding: 23px 0;
+    }
+  }
+
+  &-body {
+    &-row {
+      td {
+        padding: 30px 5px;
+        min-width: 50px;
+
+      }
+      & > .order {
+        width: 5px;
+      }
+    }
+  }
+  svg {
+    cursor: pointer;
+  }
+}

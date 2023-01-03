@@ -1,0 +1,25 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.small-card {
+  @include setWidthHeight(94px, 48px);
+  padding: 16px;
+  @include setFlex(column, space-between, end, null, null);
+  border-radius: 15px;
+  
+  background-color: $medium-gray;
+  color: $pure-white;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+
+  cursor: pointer;
+
+  & > .label {
+    font-size: 12px;
+  }
+
+  &.active {
+     border: $red-orange 3px solid;
+  }
+}
