@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { NotifyBusy, NotifyRemove, NotifyFree } from 'assets/images';
 
-import 'components/Header/style.scss';
+import './style.scss';
 
 const Header = ({ notifyBusy, notifyFree, notifyRemove, title, children }) => {
   return (

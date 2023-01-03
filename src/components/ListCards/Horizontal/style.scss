@@ -1,0 +1,39 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+$btns: "back", "next";
+
+.horizontal {
+  
+  @include setWidthHeight(500px, null);
+  @include setFlex(row, space-between, center, null, null);
+  
+  .empty {
+    margin: 0 auto;
+    font-weight: 400;
+    font-size: 20px;
+    font-family: $font-family;
+    color: $pure-white;
+  }
+
+  @each $btn in $btns {
+    .btn-#{$btn} {
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 50%;
+      transition: all 0.4s linear;
+      user-select: none;
+      &:hover {
+        background-color: rgba(124, 127, 135, 0.5);
+      }
+    }
+  }
+
+  .list-container {
+    width: 83%;
+    overflow-x: hidden;
+    display: -webkit-box;
+    gap: 15px;
+    scroll-behavior: smooth;
+  }
+}

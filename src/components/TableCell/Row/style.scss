@@ -1,0 +1,11 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.body-table-cell {
+  div {
+    @include setFlex(row, null, center, 50px, null);
+    svg {
+      user-select: none;
+    }
+  }
+}
