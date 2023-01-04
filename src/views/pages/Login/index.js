@@ -1,12 +1,16 @@
 import React, { memo, useEffect, useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import authentication from 'global/redux/auth/request';
 import { signIn } from 'global/redux/auth/thunk';
-import Table from 'components/Table';
+import Wrapper from 'components/Wrapper';
+import { EightGif, EightLogo } from 'assets/images';
+
+import './style.scss';
+import Input from 'components/Input';
+import { useForm } from 'react-hook-form';
+import Button from 'components/Button/Default';
 
 const Login = () => {
   const captchaRef = useRef(null);
@@ -15,24 +19,16 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const { currentUser } = useSelector((state) => state.auth);
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const { register, handleSubmit } = useForm();
+
+  const { currentUser, isLoading } = useSelector((state) => state.auth);
+  const onSubmit = (account) => {
     const captchaToken = captchaRef.current.getValue();
     if (captchaToken.length) {
-      const {
-        email: { value: email },
-        password: { value: password },
-      } = e.target;
+      const { email, password } = account;
 
       dispatch(signIn({ email, password }));
-
-      toast.success('LogIn !');
-    } else toast.error('Check captcha !');
-  };
-
-  const handleForgotPassword = () => {
-    authentication.forgotPassword('marcus.nguyen.goldenowl@gmail.com');
+    }
   };
 
   useEffect(() => {
@@ -40,24 +36,48 @@ const Login = () => {
   }, [currentUser, navigate]);
 
   return (
-    <div className='page'>
-      <form className='form' onSubmit={handleSubmit}>
-        <input type='text' name='email' />
-        <input type='password' name='password' />
-        <ReCAPTCHA
-          ref={captchaRef}
-          sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-        />
-        <button type='submit'>Login</button>
-      </form>
-      <button onClick={handleForgotPassword}>Reset Email</button>
-      <Table />
+    <div className='login-page'>
+      <div className='login-logo'>
+        <img src={EightGif} alt='Gif logo' width={146} />
+        <EightLogo width={200} height={45} />
+        <span>an internet banking service by Team Eight</span>
+      </div>
+      <div className='login-form'>
+        <Wrapper title='Sign in'>
+          <form className='form' onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              register={register}
+              type='email'
+              name='email'
+              label='Your account'
+              withIcon
+              placeholder='Enter your email'
+            />
+            <Input
+              register={register}
+              type='password'
+              name='password'
+              label='Your password'
+              withIcon
+              placeholder='Enter your password'
+            />
+            <span className='forgot'>
+              <Link to='/account'>Forgot password?</Link>
+            </span>
+            <ReCAPTCHA
+              ref={captchaRef}
+              sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+            />
+            <div className='submit'>
+              <Button loading={isLoading} danger type='submit'>
+                Log in
+              </Button>
+            </div>
+          </form>
+        </Wrapper>
+      </div>
     </div>
   );
-};
-Login.whyDidYouRender = {
-  logOnDifferentValues: true,
-  customName: 'Login',
 };
 
 export default memo(Login);
