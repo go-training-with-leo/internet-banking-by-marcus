@@ -8,7 +8,7 @@ import authentication from 'global/redux/auth/request';
 import { signIn } from 'global/redux/auth/thunk';
 import Table from 'components/Table';
 
-const TestLogin = () => {
+const Login = () => {
   const captchaRef = useRef(null);
 
   const dispatch = useDispatch();
@@ -55,9 +55,9 @@ const TestLogin = () => {
     </div>
   );
 };
-TestLogin.whyDidYouRender = {
+Login.whyDidYouRender = {
   logOnDifferentValues: true,
-  customName: 'Menu',
+  customName: 'Login',
 };
 
-export default memo(TestLogin);
+export default memo(Login);

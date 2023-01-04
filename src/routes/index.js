@@ -1,22 +1,23 @@
 import React from 'react';
 
-const TestDashboard = React.lazy(() => import('views/TestDashboard'));
-const Login = React.lazy(() => import('views/pages/TestLogin'));
+const Dashboard = React.lazy(() => import('views/Dashboard'));
+
+const Login = React.lazy(() => import('views/pages/Login'));
 const PageNotFound = React.lazy(() => import('views/pages/PageNotFound'));
 
 const routes = [
   {
-    id: 1,
+    id: 'page-dashboard',
     path: '/',
-    component: TestDashboard,
+    component: Dashboard,
   },
   {
-    id: 2,
+    id: 'page-login',
     path: '/login',
     component: Login,
   },
   {
-    id: 3,
+    id: 'another-pages',
     path: '*',
     component: PageNotFound,
   },
