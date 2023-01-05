@@ -2,7 +2,7 @@
 @import "assets/scss/variables.scss";
 
 .input {
-  @include setWidthHeight(100%, 54px);
+  @include setWidthHeight(calc(100% - 32px), 54px);
   @include setFlex(row, null, center, 17px, null);
   padding: 8px 16px;
   color: $medium-gray;

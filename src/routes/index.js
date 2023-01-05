@@ -3,7 +3,7 @@ import React from 'react';
 const Dashboard = React.lazy(() => import('views/Dashboard'));
 
 const Login = React.lazy(() => import('views/pages/Login'));
-const Forgot = React.lazy(() => import('views/pages/Forgot'));
+const Forgot = React.lazy(() => import('views/pages/ForgotPassword'));
 const PageNotFound = React.lazy(() => import('views/pages/PageNotFound'));
 
 const routes = [
@@ -19,7 +19,7 @@ const routes = [
   },
   {
     id: 'page-resetpass',
-    path: '/account',
+    path: '/accounts/password/new',
     component: Forgot,
   },
   {

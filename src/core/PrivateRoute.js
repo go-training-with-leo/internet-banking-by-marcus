@@ -11,8 +11,8 @@ const PrivateRoute = ({ children }) => {
   useEffect(() => {
     if (!currentUser) {
       switch (location.pathname) {
-      case '/account':
-        navigate('/account');
+      case '/accounts/password/new':
+        navigate('/accounts/password/new');
         break;
       default:
         navigate('/login');
