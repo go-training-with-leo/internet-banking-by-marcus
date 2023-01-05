@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import 'components/SideBarItem/style.scss';
+import './style.scss';
 
 const SideBarItem = ({ isActive, children, onClick }) => {
   return (

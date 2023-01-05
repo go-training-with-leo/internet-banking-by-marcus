@@ -13,7 +13,7 @@ Object {
         <svg
           class="loader medium"
         >
-          loading.svg
+          loadingV2.svg
         </svg>
       </button>
     </div>
@@ -27,7 +27,7 @@ Object {
       <svg
         class="loader medium"
       >
-        loading.svg
+        loadingV2.svg
       </svg>
     </button>
   </div>,

@@ -1,8 +1,8 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
+import { fireEvent, render } from '@testing-library/react';
 
-import TextArea from 'components/Input/TextArea';
+import TextArea from 'components/TextArea';
 
 describe('Text Area', () => {
   describe('Test with input & props', () => {

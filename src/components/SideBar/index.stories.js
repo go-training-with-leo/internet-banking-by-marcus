@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SideBarItem from 'components/SideBarItem';
+import SideBarItem from 'components/SideBar/Item';
 import {
   CreditCard,
   Contact,
