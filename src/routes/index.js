@@ -1,9 +1,9 @@
-import React from 'react';
+import { lazy } from 'react';
 
-const Dashboard = React.lazy(() => import('views/Dashboard'));
-const Login = React.lazy(() => import('views/pages/Login'));
-const Forgot = React.lazy(() => import('views/pages/ForgotPassword'));
-const NotFound = React.lazy(() => import('views/pages/NotFound'));
+const Dashboard = lazy(() => import('views/Dashboard'));
+const Login = lazy(() => import('views/pages/Login'));
+const Forgot = lazy(() => import('views/pages/ForgotPassword'));
+const NotFound = lazy(() => import('views/pages/NotFound'));
 
 const routes = [
   {
