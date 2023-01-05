@@ -27,10 +27,10 @@ const parseMoneyVnd = (value) => {
 };
 
 export {
-  saveLoginToken,
-  getLoginToken,
-  removeLoginToken,
   capitalFirstLetter,
+  getLoginToken,
   isNumber,
   parseMoneyVnd,
+  removeLoginToken,
+  saveLoginToken,
 };

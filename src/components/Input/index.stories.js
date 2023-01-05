@@ -87,4 +87,4 @@ const Disabled = () => {
   );
 };
 
-export { Email, Password, Error, ErrorNoIcon, ErrorPasswordIcon, Disabled };
+export { Disabled, Email, Error, ErrorNoIcon, ErrorPasswordIcon, Password };

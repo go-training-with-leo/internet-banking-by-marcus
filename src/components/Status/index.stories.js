@@ -14,4 +14,4 @@ const Paid = () => <Status paid />;
 const UnPaid = () => <Status unpaid />;
 const Canceled = () => <Status canceled />;
 
-export { Failed, Success, Refund, Paid, UnPaid, Canceled };
+export { Canceled, Failed, Paid, Refund, Success, UnPaid };
