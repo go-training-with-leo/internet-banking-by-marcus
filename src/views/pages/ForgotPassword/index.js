@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import api from 'services/api';
 import Button from 'components/Button/Default';
 import Input from 'components/Input';
 import Modal from 'components/Modal';
 import Wrapper from 'components/Wrapper';
 
 import { capitalFirstLetter } from 'utils/helpers';
+import {
+  resetPasswordAccount,
+  sendCode,
+  verifyCode,
+} from 'global/redux/auth/thunk';
 import { validEmail, validOTP, validPassword } from './validation';
 
 import './style.scss';
 
 const Forgot = () => {
-  const [form, setForm] = useState({ step: 1, title: 'Forgot password ?' });
-  const [isLoading, setIsLoading] = useState(false);
+  const [step, setStep] = useState(1);
+  const { isLoading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     register: registerEmail,
@@ -41,52 +47,39 @@ const Forgot = () => {
   } = useForm({ resolver: yupResolver(validPassword) });
 
   const onSubmit = async (formData) => {
-    switch (form.step) {
+    switch (step) {
     case 1: {
-      setIsLoading(true);
-
-      const res = await api.post('/get', {
-        email: formData.email,
-      });
-
-      setIsLoading(false);
-      if (res.data.message === 'Success') {
-        setForm({ ...form, step: form.step + 1 });
-      } else {
-        setErrorEmail('email', {
-          type: 'custom',
-          message: 'Email not found',
-        });
-      }
-
+      dispatch(
+        sendCode({
+          ...formData,
+          setStep: setStep,
+          setError: setErrorEmail,
+        })
+      );
       break;
     }
     case 2: {
       const formEmail = getValuesEmail();
-      setIsLoading(true);
-
-      const res = await api.post('/verify', {
-        email: formEmail.email,
-        otp: formData.otp,
-      });
-      setIsLoading(false);
-      if (res.data.message === 'You have been successfully registered') {
-        setForm({ title: 'Create new password', step: form.step + 1 });
-      } else {
-        setErrorOTP('otp', { type: 'custom', message: 'OTP Incorrect' });
-      }
+      dispatch(
+        verifyCode({
+          ...formData,
+          email: formEmail.email,
+          setStep: setStep,
+          setError: setErrorOTP,
+        })
+      );
       break;
     }
     case 3: {
       const formEmail = getValuesEmail();
-      setIsLoading(true);
 
-      await api.post('/reset-password', {
-        email: formEmail.email,
-        password: formData.new_password,
-      });
-      setIsLoading(false);
-      setForm({ title: 'Create new password', step: form.step + 1 });
+      dispatch(
+        resetPasswordAccount({
+          ...formData,
+          email: formEmail.email,
+          setStep: setStep,
+        })
+      );
       break;
     }
     default:
@@ -95,19 +88,21 @@ const Forgot = () => {
   };
 
   const buttonTitle =
-    form.step === 2
+    step === 2
       ? 'Verify'
-      : form.step === 3
+      : step === 3
         ? 'Confirm password changes'
         : 'Reset password';
+
+  const titleForm = step === 3 ? 'Create new password' : 'Forgot password';
 
   const handleSuccess = () => {
     navigate('/login');
   };
 
   return (
-    <Wrapper title={form.title}>
-      {form.step === 1 ? (
+    <Wrapper title={titleForm}>
+      {step === 1 ? (
         <form className='form' onSubmit={handleSubmitEmail(onSubmit)}>
           <p className='description'>
             Enter the email address associated with your account
@@ -135,7 +130,7 @@ const Forgot = () => {
             </Button>
           </div>
         </form>
-      ) : form.step === 2 ? (
+      ) : step === 2 ? (
         <form className='form' onSubmit={handleSubmitOTP(onSubmit)}>
           <p className='description'>
             A OTP code has been sent to your email <br />
@@ -204,7 +199,7 @@ const Forgot = () => {
               </Button>
             </div>
           </form>
-          {form.step === 4 && (
+          {step === 4 && (
             <Modal title='SUCCESS!'>
               <div className='modal-content'>
                 <p>

@@ -10,7 +10,7 @@ import Input from 'components/Input';
 import Wrapper from 'components/Wrapper';
 
 import { capitalFirstLetter } from 'utils/helpers';
-import { signIn } from 'global/redux/auth/thunk';
+import { logIn } from 'global/redux/auth/thunk';
 import { signInValidate } from './validation';
 
 import './style.scss';
@@ -34,7 +34,7 @@ const Login = () => {
     if (captchaToken.length) {
       const { email, password } = account;
 
-      dispatch(signIn({ email, password }));
+      dispatch(logIn({ email, password }));
     }
   };
 
