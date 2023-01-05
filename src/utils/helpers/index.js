@@ -17,7 +17,7 @@ const isNumber = (number) => {
   return /\d/.test(number);
 };
 
-const preProcessMoney = (number) => {
+const parseMoneyVnd = (number) => {
   return isNumber(number)
     ? Number(number)
       .toLocaleString('en-US', { style: 'currency', currency: 'VND' })
@@ -28,10 +28,10 @@ const preProcessMoney = (number) => {
 };
 
 export {
-  saveAuthTokenToLocalStorage,
-  getAuthTokenToLocalStorage,
-  removeAuthTokenToLocalStorage,
   capitalFirstLetter,
+  getAuthTokenToLocalStorage,
   isNumber,
-  preProcessMoney,
+  parseMoneyVnd,
+  removeAuthTokenToLocalStorage,
+  saveAuthTokenToLocalStorage,
 };
