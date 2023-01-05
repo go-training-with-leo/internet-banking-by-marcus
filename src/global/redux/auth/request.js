@@ -1,8 +1,4 @@
-import {
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-  signOut,
-} from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 import { auth } from 'services/firebase';
 
@@ -11,11 +7,6 @@ const authentication = {
     const res = await signInWithEmailAndPassword(auth, email, password);
     return res.user;
   },
-  forgotPassword: async (email) => {
-    const res = await sendPasswordResetEmail(auth, email);
-    console.warn(res);
-  },
-
   signOut: () => {
     signOut(auth);
   },

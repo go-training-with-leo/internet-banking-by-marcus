@@ -1,10 +1,9 @@
 import React from 'react';
 
 const Dashboard = React.lazy(() => import('views/Dashboard'));
-
 const Login = React.lazy(() => import('views/pages/Login'));
 const Forgot = React.lazy(() => import('views/pages/ForgotPassword'));
-const PageNotFound = React.lazy(() => import('views/pages/PageNotFound'));
+const NotFound = React.lazy(() => import('views/pages/NotFound'));
 
 const routes = [
   {
@@ -25,7 +24,7 @@ const routes = [
   {
     id: 'another-pages',
     path: '*',
-    component: PageNotFound,
+    component: NotFound,
   },
 ];
 

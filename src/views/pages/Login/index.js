@@ -3,12 +3,12 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 
 import { signIn } from 'global/redux/auth/thunk';
 import Wrapper from 'components/Wrapper';
 
 import Input from 'components/Input';
-import { useForm } from 'react-hook-form';
 import Button from 'components/Button/Default';
 import { capitalFirstLetter } from 'utils/helpers';
 import { signInValidate } from './validation';

@@ -5,11 +5,18 @@ import authentication from 'global/redux/auth/request';
 const signIn = createAsyncThunk('auth/signin', async (variables) => {
   const { email, password } = variables;
 
-  const data = await authentication.signIn(email, password);
+  try {
+    const data = await authentication.signIn(email, password);
 
-  return {
-    data,
-  };
+    return {
+      status: true,
+      data,
+    };
+  } catch (error) {
+    return {
+      status: false,
+    };
+  }
 });
 
 export { signIn };

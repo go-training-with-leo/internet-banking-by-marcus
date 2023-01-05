@@ -41,7 +41,6 @@ const Forgot = () => {
   } = useForm({ resolver: yupResolver(validPassword) });
 
   const onSubmit = async (formData) => {
-    console.warn(formData);
     switch (form.step) {
     case 1: {
       setIsLoading(true);
@@ -50,7 +49,6 @@ const Forgot = () => {
         email: formData.email,
       });
 
-      console.warn(res);
       setIsLoading(false);
       if (res.data.message === 'Success') {
         setForm({ ...form, step: form.step + 1 });

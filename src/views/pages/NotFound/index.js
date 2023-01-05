@@ -1,7 +1,7 @@
 import React from 'react';
 
-const PageNotFound = () => {
+const NotFound = () => {
   return <div className='page-container'>PageNotFound</div>;
 };
 
-export default PageNotFound;
+export default NotFound;

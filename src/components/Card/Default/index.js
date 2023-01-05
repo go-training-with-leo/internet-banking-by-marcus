@@ -2,11 +2,12 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import './style.scss';
 import { EightLogo, MasterCard, Napas, Visa } from 'assets/images';
 import classNames from 'classnames';
-import { preProcessMoney } from 'utils/helpers';
+import { parseMoneyVnd } from 'utils/helpers';
 import Loader from 'components/Loader';
+
+import './style.scss';
 
 const Card = ({
   idCard,
@@ -38,7 +39,7 @@ const Card = ({
         ) : (
           <>
             <EightLogo />
-            <span className='card-money'>{preProcessMoney(children)} VND</span>
+            <span className='card-money'>{parseMoneyVnd(children)} VND</span>
             <div className='card-info'>
               <div className='info'>
                 <span className='info-id'>{idCard}</span>
