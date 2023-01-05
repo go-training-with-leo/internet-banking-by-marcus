@@ -1,5 +1,5 @@
-import Home from 'views/TestDashboard';
-import Login from 'views/pages/TestLogin';
-import PageNotFound from 'views/pages/PageNotFound';
+import Dashboard from 'views/Dashboard';
+import Login from 'views/pages/Login';
+import NotFound from 'views/pages/NotFound';
 
-export { Home, Login, PageNotFound };
+export { Login, NotFound, Dashboard };
