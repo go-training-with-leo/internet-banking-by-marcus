@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Wrapper from 'components/Wrapper';
 import Button from 'components/Button/Default';
@@ -10,24 +10,9 @@ import Modal from 'components/Modal';
 
 import { capitalFirstLetter } from 'utils/helpers';
 import api from 'services/api';
+import { validEmail, validOTP, validPassword } from './validation';
 
 import './style.scss';
-import { Link, useNavigate } from 'react-router-dom';
-
-const validEmail = yup.object().shape({
-  email: yup.string().email().required('Require field'),
-});
-
-const validOTP = yup.object().shape({
-  otp: yup.string().min(5).required('Require field'),
-});
-
-const validPassword = yup.object().shape({
-  new_password: yup.string().min(8).max(16).required('Require field'),
-  renew_password: yup
-    .string()
-    .oneOf([yup.ref('new_password'), null], 'Passwords must match'),
-});
 
 const Forgot = () => {
   const [form, setForm] = useState({ step: 1, title: 'Forgot password ?' });
@@ -38,6 +23,7 @@ const Forgot = () => {
     register: registerEmail,
     handleSubmit: handleSubmitEmail,
     getValues: getValuesEmail,
+    setError: setErrorEmail,
     formState: { errors: errorsEmail },
   } = useForm({ resolver: yupResolver(validEmail) });
 
@@ -60,12 +46,21 @@ const Forgot = () => {
     case 1: {
       setIsLoading(true);
 
-      await api.post('/get', {
+      const res = await api.post('/get', {
         email: formData.email,
       });
 
+      console.warn(res);
       setIsLoading(false);
-      setForm({ ...form, step: form.step + 1 });
+      if (res.data.message === 'Success') {
+        setForm({ ...form, step: form.step + 1 });
+      } else {
+        setErrorEmail('email', {
+          type: 'custom',
+          message: 'Email not found',
+        });
+      }
+
       break;
     }
     case 2: {
@@ -76,14 +71,12 @@ const Forgot = () => {
         email: formEmail.email,
         otp: formData.otp,
       });
-
+      setIsLoading(false);
       if (res.data.message === 'You have been successfully registered') {
         setForm({ title: 'Create new password', step: form.step + 1 });
       } else {
         setErrorOTP('otp', { type: 'custom', message: 'OTP Incorrect' });
       }
-
-      setIsLoading(false);
       break;
     }
     case 3: {
@@ -160,6 +153,7 @@ const Forgot = () => {
             placeholder='Enter the OTP code'
             register={registerOTP}
             name='otp'
+            disabled={isLoading}
             key='otp'
             error={errorsOTP.otp && true}
           />
@@ -187,6 +181,7 @@ const Forgot = () => {
               }
               placeholder='Enter new password'
               register={registerPassword}
+              disabled={isLoading}
               name='new_password'
               key='new-password'
               error={errorsPassword.new_password && true}
@@ -200,6 +195,7 @@ const Forgot = () => {
               }
               placeholder='Re-enter new password'
               register={registerPassword}
+              disabled={isLoading}
               name='renew_password'
               key='renew-password'
               error={errorsPassword.renew_password?.message && true}
