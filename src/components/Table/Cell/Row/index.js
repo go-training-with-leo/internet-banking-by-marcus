@@ -1,9 +1,10 @@
-import React from 'react';
 import DebtType from 'components/DebtType';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import './style.scss';
 import Status from 'components/Status';
+
+import './style.scss';
 
 const RowCell = ({ title, children }) => {
   return (

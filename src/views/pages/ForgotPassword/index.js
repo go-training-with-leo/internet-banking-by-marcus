@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Link, useNavigate } from 'react-router-dom';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-import Wrapper from 'components/Wrapper';
+import api from 'services/api';
 import Button from 'components/Button/Default';
 import Input from 'components/Input';
 import Modal from 'components/Modal';
+import Wrapper from 'components/Wrapper';
 
 import { capitalFirstLetter } from 'utils/helpers';
-import api from 'services/api';
 import { validEmail, validOTP, validPassword } from './validation';
 
 import './style.scss';

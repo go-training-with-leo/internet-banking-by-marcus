@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import SideBarItem from 'components/SideBarItem';
+import SideBarItem from 'components/SideBar/Item';
 
 test('Test default props', () => {
   const tree = render(<SideBarItem>Text</SideBarItem>);

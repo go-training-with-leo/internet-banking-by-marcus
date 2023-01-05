@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { EightLogo } from 'assets/images';
 
-import 'components/SideBar/style.scss';
+import './style.scss';
 
 const SideBar = ({ children, bottomItem }) => {
   return (

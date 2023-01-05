@@ -1,11 +1,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
+import HeaderTable from 'components/Table/Header';
+import HeaderCell from 'components/Table/Cell/Header';
 import Table from 'components/Table';
-import HeaderTable from 'components/Header/Table';
+import RowCell from 'components/Table/Cell/Row';
+
 import { DeleteIcon, PlusIcon } from 'assets/images';
-import RowCell from 'components/TableCell/Row';
-import HeaderCell from 'components/TableCell/Header';
 
 describe('Test Table', () => {
   const dataTable = [

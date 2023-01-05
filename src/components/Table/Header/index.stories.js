@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { PlusIcon } from 'assets/images';
-import TableCell from 'components/TableCell/Header';
+import TableCell from 'components/Table/Cell/Header';
 import Header from '.';
 
 export default {

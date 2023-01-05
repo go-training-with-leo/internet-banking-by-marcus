@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
 import PropType from 'prop-types';
+import React, { memo } from 'react';
 
 import { EightGif, EightLogo } from 'assets/images';
 
