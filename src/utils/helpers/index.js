@@ -1,11 +1,12 @@
 import { StorageKey } from 'utils/constants';
 
-const saveLoginToken = (accessToken) =>
+const saveAuthTokenToLocalStorage = (accessToken) =>
   localStorage.setItem(StorageKey.authAccessToken, accessToken);
 
-const getLoginToken = () => localStorage.get(StorageKey.authAccessToken);
+const getAuthTokenToLocalStorage = () =>
+  localStorage.get(StorageKey.authAccessToken);
 
-const removeLoginToken = () =>
+const removeAuthTokenToLocalStorage = () =>
   localStorage.removeItem(StorageKey.authAccessToken);
 
 const capitalFirstLetter = (text) => {
@@ -28,9 +29,9 @@ const parseMoneyVnd = (value) => {
 
 export {
   capitalFirstLetter,
-  getLoginToken,
+  getAuthTokenToLocalStorage,
   isNumber,
   parseMoneyVnd,
-  removeLoginToken,
-  saveLoginToken,
+  removeAuthTokenToLocalStorage,
+  saveAuthTokenToLocalStorage,
 };

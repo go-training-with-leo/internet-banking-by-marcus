@@ -1,8 +1,8 @@
-import DebtType from 'components/DebtType';
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import Status from 'components/Status';
+import DebtType from 'components/DebtType';
 
 import './style.scss';
 

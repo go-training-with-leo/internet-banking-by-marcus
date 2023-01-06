@@ -1,8 +1,7 @@
 import React from 'react';
 
-import SideBarItem from 'components/SideBar/Item';
-
 import { PlusIcon } from 'assets/images';
+import SideBarItem from '.';
 
 export default {
   title: 'Menu Item',
