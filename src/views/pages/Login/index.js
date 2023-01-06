@@ -1,38 +1,41 @@
 import React, { memo, useEffect, useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-import authentication from 'global/redux/auth/request';
-import { signIn } from 'global/redux/auth/thunk';
-import Table from 'components/Table';
+import Button from 'components/Button/Default';
+import Input from 'components/Input';
+import Wrapper from 'components/Wrapper';
 
-const TestLogin = () => {
+import { capitalFirstLetter } from 'utils/helpers';
+import { logIn } from 'global/redux/auth/thunk';
+import { signInValidate } from './validation';
+
+import './style.scss';
+
+const Login = () => {
   const captchaRef = useRef(null);
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const { currentUser } = useSelector((state) => state.auth);
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(signInValidate) });
+
+  const { currentUser, isLoading } = useSelector((state) => state.auth);
+  const onSubmit = (account) => {
     const captchaToken = captchaRef.current.getValue();
     if (captchaToken.length) {
-      const {
-        email: { value: email },
-        password: { value: password },
-      } = e.target;
+      const { email, password } = account;
 
-      dispatch(signIn({ email, password }));
-
-      toast.success('LogIn !');
-    } else toast.error('Check captcha !');
-  };
-
-  const handleForgotPassword = () => {
-    authentication.forgotPassword('marcus.nguyen.goldenowl@gmail.com');
+      dispatch(logIn({ email, password }));
+    }
   };
 
   useEffect(() => {
@@ -40,24 +43,47 @@ const TestLogin = () => {
   }, [currentUser, navigate]);
 
   return (
-    <div className='page'>
-      <form className='form' onSubmit={handleSubmit}>
-        <input type='text' name='email' />
-        <input type='password' name='password' />
+    <Wrapper title='Sign in'>
+      <form className='form' onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          register={register}
+          type='email'
+          name='email'
+          label={
+            errors.email?.message
+              ? capitalFirstLetter(errors.email?.message)
+              : 'Your account'
+          }
+          withIcon
+          error={errors.email && true}
+          placeholder='Enter your email'
+        />
+        <Input
+          register={register}
+          type='password'
+          name='password'
+          label={
+            errors.password?.message
+              ? capitalFirstLetter(errors.password?.message)
+              : 'Your password'
+          }
+          withIcon
+          error={errors.password && true}
+          placeholder='Enter your password'
+        />
+        <span className='forgot'>
+          <Link to='/accounts/password/new'>Forgot password?</Link>
+        </span>
         <ReCAPTCHA
           ref={captchaRef}
           sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
         />
-        <button type='submit'>Login</button>
+        <Button loading={isLoading} danger type='submit'>
+          Log in
+        </Button>
       </form>
-      <button onClick={handleForgotPassword}>Reset Email</button>
-      <Table />
-    </div>
+    </Wrapper>
   );
 };
-TestLogin.whyDidYouRender = {
-  logOnDifferentValues: true,
-  customName: 'Menu',
-};
 
-export default memo(TestLogin);
+export default memo(Login);

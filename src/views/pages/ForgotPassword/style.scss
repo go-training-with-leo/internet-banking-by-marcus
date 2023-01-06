@@ -1,0 +1,34 @@
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+
+.form {
+  @include setFlex(column, null, center, 30px, null);
+  
+  .description {
+    align-self: flex-start;
+    line-height: 24px;
+    font-size: 14px;
+  }
+
+  .forgot {
+    align-self: flex-end;
+    a {
+      text-decoration: none;
+      color: $pure-white;
+      cursor: pointer;
+    }
+  }
+
+  .submit {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+.modal-content {
+  @include setFlex(column, null, start, 50px, null);
+
+  p {
+    line-height: 24px;
+  }
+}

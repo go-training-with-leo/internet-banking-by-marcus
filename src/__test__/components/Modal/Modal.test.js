@@ -49,7 +49,6 @@ describe('Modal', () => {
       fireEvent.click(cancelButton);
     });
 
-    console.warn(modal.className);
     expect(modal).toBeInTheDocument();
 
     expect(tree).toMatchSnapshot();

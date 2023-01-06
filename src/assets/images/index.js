@@ -32,6 +32,8 @@ import EyeCross from 'assets/images/icons/eyeCross.png';
 
 import { ReactComponent as ACB } from 'assets/images/icons/acb.svg';
 
+import EightGif from './eight.gif';
+
 export {
   ACB,
   Alert,
@@ -46,6 +48,7 @@ export {
   CreditCard,
   CreditCardDone,
   DeleteIcon,
+  EightGif,
   EightLogo,
   Ellipse,
   Eye,

@@ -10,6 +10,8 @@
   border-radius: 25px;
   font-family: $font-family;
 
+  transition: all 1s linear;
+  
   &-header {
     @include setFlex(row, start, center, null, null);
     padding-bottom: 27px;

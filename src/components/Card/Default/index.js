@@ -2,11 +2,12 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import './style.scss';
 import { EightLogo, MasterCard, Napas, Visa } from 'assets/images';
 import classNames from 'classnames';
 import { parseMoneyVnd } from 'utils/helpers';
 import Loader from 'components/Loader';
+
+import './style.scss';
 
 const Card = ({
   idCard,

@@ -17,9 +17,9 @@ const isNumber = (number) => {
   return /\d/.test(number);
 };
 
-const parseMoneyVnd = (number) => {
-  return isNumber(number)
-    ? Number(number)
+const parseMoneyVnd = (value) => {
+  return isNumber(value)
+    ? Number(value)
       .toLocaleString('en-US', { style: 'currency', currency: 'VND' })
       .slice(1)
       .split(',')

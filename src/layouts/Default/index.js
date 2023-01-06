@@ -1,20 +1,29 @@
 import React, { memo } from 'react';
+import { useSelector } from 'react-redux';
 
-import SideBar from 'components/SideBar';
+import AuthLayout from 'layouts/AuthLayout';
 import Header from 'components/Header/Layout';
+import SideBar from 'components/SideBar';
 
 import './style.scss';
 
 const Default = ({ children }) => {
+  const { currentUser } = useSelector((state) => state.auth);
   return (
-    <div className='page-layout'>
-      <SideBar />
-      <div className='page-layout__right'>
-        <Header title='Contacts' notifyFree>
-          <button>Button</button>
-        </Header>
-        {children}
-      </div>
+    <div>
+      {currentUser ? (
+        <div className='page-layout'>
+          <SideBar />
+          <div className='page-layout__right'>
+            <Header title='Contacts' notifyFree>
+              <button>Button</button>
+            </Header>
+            {children}
+          </div>
+        </div>
+      ) : (
+        <AuthLayout>{children}</AuthLayout>
+      )}
     </div>
   );
 };

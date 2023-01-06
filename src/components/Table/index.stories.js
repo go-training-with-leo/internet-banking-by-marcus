@@ -1,9 +1,9 @@
 import React from 'react';
 
-import RowCell from 'components/Table/Cell/Row';
-import HeaderTable from 'components/Header/Table';
 import { DeleteIcon, PlusIcon } from 'assets/images';
 import HeaderCell from 'components/Table/Cell/Header';
+import RowCell from 'components/Table/Cell/Row';
+import HeaderTable from 'components/Table/Header';
 import Table from '.';
 
 export default {

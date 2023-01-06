@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import 'components/Button/Default/style.scss';
 import Loader from 'components/Loader';
+
+import 'components/Button/Default/style.scss';
 
 const Default = ({ type, ghost, danger, children, onClick, loading }) => {
   return (
