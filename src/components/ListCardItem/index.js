@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { Ellipse } from 'assets/images';
 import SmallCard from 'components/Card/Small';
-import { preProcessMoney } from 'utils/helpers';
+import { parseMoneyVnd } from 'utils/helpers';
 
 import './style.scss';
 
@@ -13,7 +13,7 @@ const ListCardItem = ({ isActive, label, cardId, value }) => {
     <div className='list-card-item'>
       <Ellipse className={classNames({ hide: !isActive })} />
       <SmallCard label={label}>{cardId}</SmallCard>
-      <span className='value'>{preProcessMoney(value)} VND</span>
+      <span className='value'>{parseMoneyVnd(value)} VND</span>
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 
-import Header from 'components/Header/Layout';
 import SideBar from 'components/SideBar';
+import Header from 'components/Header/Layout';
 
-import 'layouts/Default/style.scss';
+import './style.scss';
 
 const Default = ({ children }) => {
   return (

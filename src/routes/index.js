@@ -1,14 +1,14 @@
-import React from 'react';
+import { lazy } from 'react';
 
-const TestDashboard = React.lazy(() => import('views/TestDashboard'));
-const Login = React.lazy(() => import('views/pages/TestLogin'));
-const PageNotFound = React.lazy(() => import('views/pages/PageNotFound'));
+const Dashboard = lazy(() => import('views/Dashboard'));
+const NotFound = lazy(() => import('views/pages/NotFound'));
+const Login = lazy(() => import('views/pages/Login'));
 
 const routes = [
   {
     id: 1,
     path: '/',
-    component: TestDashboard,
+    component: Dashboard,
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const routes = [
   {
     id: 3,
     path: '*',
-    component: PageNotFound,
+    component: NotFound,
   },
 ];
 

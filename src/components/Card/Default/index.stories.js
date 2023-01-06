@@ -35,4 +35,4 @@ const NapasCard = () => {
   );
 };
 
-export { LoadingCard, MasterCard, VisaCard, NapasCard };
+export { LoadingCard, MasterCard, NapasCard, VisaCard };
