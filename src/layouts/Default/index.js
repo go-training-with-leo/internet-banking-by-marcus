@@ -1,13 +1,13 @@
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 
-import AuthLayout from 'layouts/AuthLayout';
+import AuthLayout from 'layouts/Auth';
 import Header from 'components/Header/Layout';
 import SideBar from 'components/SideBar';
 
 import './style.scss';
 
-const Default = ({ children }) => {
+const DefaultLayout = ({ children }) => {
   const { currentUser } = useSelector((state) => state.auth);
   return (
     <div>
@@ -28,9 +28,9 @@ const Default = ({ children }) => {
   );
 };
 
-Default.whyDidYouRender = {
+DefaultLayout.whyDidYouRender = {
   logOnDifferentValues: true,
   customName: 'Menu',
 };
 
-export default memo(Default);
+export default memo(DefaultLayout);

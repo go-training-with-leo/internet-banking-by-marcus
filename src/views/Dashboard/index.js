@@ -1,11 +1,11 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-import { signOutUser } from 'global/redux/auth/request';
+import { signOut } from 'global/redux/auth/request';
 
 const Dashboard = () => {
   const handleClick = async () => {
-    signOutUser();
+    signOut();
     toast.success('Test success toast !');
   };
 

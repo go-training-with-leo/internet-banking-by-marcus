@@ -2,27 +2,27 @@ import { lazy } from 'react';
 
 const Dashboard = lazy(() => import('views/Dashboard'));
 const Login = lazy(() => import('views/pages/Login'));
-const Forgot = lazy(() => import('views/pages/ForgotPassword'));
+const ForgotPassword = lazy(() => import('views/pages/ForgotPassword'));
 const NotFound = lazy(() => import('views/pages/NotFound'));
 
 const routes = [
   {
-    id: 'page-dashboard',
+    id: 'dashboard',
     path: '/',
     component: Dashboard,
   },
   {
-    id: 'page-login',
+    id: 'login',
     path: '/login',
     component: Login,
   },
   {
-    id: 'page-resetpass',
+    id: 'resetPassword',
     path: '/accounts/password/new',
-    component: Forgot,
+    component: ForgotPassword,
   },
   {
-    id: 'another-pages',
+    id: 'another',
     path: '*',
     component: NotFound,
   },

@@ -5,7 +5,7 @@ import Header from 'components/Header/Layout';
 
 test('Test props', () => {
   const tree = render(
-    <Header title='Title' notifyBusy>
+    <Header title='Title' type='busy'>
       <button>Button</button>
     </Header>
   );
@@ -20,7 +20,7 @@ test('Test props', () => {
 
 test('Test notifyBusy props order', () => {
   const tree = render(
-    <Header title='Title' notifyBusy notifyRemove notifyFree>
+    <Header title='Title' type='busy'>
       <button>Button</button>
     </Header>
   );
@@ -34,7 +34,7 @@ test('Test notifyBusy props order', () => {
 
 test('Test notifyRemove props order', () => {
   const tree = render(
-    <Header title='Title' notifyRemove notifyFree>
+    <Header title='Title' type='remove'>
       <button>Button</button>
     </Header>
   );
@@ -47,7 +47,7 @@ test('Test notifyRemove props order', () => {
 });
 test('Test notifyFree props order', () => {
   const tree = render(
-    <Header title='Title' notifyFree>
+    <Header title='Title' type='free'>
       <button>Button</button>
     </Header>
   );

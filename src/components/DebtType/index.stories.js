@@ -7,7 +7,7 @@ export default {
   component: DebtType,
 };
 
-const Debt = () => <DebtType debt />;
-const Loan = () => <DebtType loan />;
+const Debt = () => <DebtType type='debt' />;
+const Loan = () => <DebtType type='loan' />;
 
 export { Debt, Loan };

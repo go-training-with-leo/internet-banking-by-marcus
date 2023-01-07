@@ -9,7 +9,7 @@ import Button from 'components/Button/Default';
 import Input from 'components/Input';
 import Wrapper from 'components/Wrapper';
 
-import { capitalFirstLetter } from 'utils/helpers';
+import { capitalizeFirstLetter } from 'utils/helpers';
 import { logIn } from 'global/redux/auth/thunk';
 import { signInValidate } from './validation';
 
@@ -17,9 +17,7 @@ import './style.scss';
 
 const Login = () => {
   const captchaRef = useRef(null);
-
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const {
@@ -27,13 +25,12 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(signInValidate) });
-
   const { currentUser, isLoading } = useSelector((state) => state.auth);
+
   const onSubmit = (account) => {
     const captchaToken = captchaRef.current.getValue();
     if (captchaToken.length) {
       const { email, password } = account;
-
       dispatch(logIn({ email, password }));
     }
   };
@@ -51,7 +48,7 @@ const Login = () => {
           name='email'
           label={
             errors.email?.message
-              ? capitalFirstLetter(errors.email?.message)
+              ? capitalizeFirstLetter(errors.email?.message)
               : 'Your account'
           }
           withIcon
@@ -64,7 +61,7 @@ const Login = () => {
           name='password'
           label={
             errors.password?.message
-              ? capitalFirstLetter(errors.password?.message)
+              ? capitalizeFirstLetter(errors.password?.message)
               : 'Your password'
           }
           withIcon

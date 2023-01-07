@@ -5,38 +5,32 @@ import { NotifyBusy, NotifyRemove, NotifyFree } from 'assets/images';
 
 import './style.scss';
 
-const Header = ({ notifyBusy, notifyFree, notifyRemove, title, children }) => {
+const notifycation = {
+  busy: <NotifyBusy className='notif-busy' width={40} height={40} />,
+  remove: <NotifyRemove className='notif-remove' width={40} height={40} />,
+  free: <NotifyFree className='notif-free' width={40} height={40} />,
+};
+
+const Header = ({ type, title, children }) => {
   return (
     <div className='header'>
       <div className='header-left'>
         <span>{title}</span>
         {children}
       </div>
-      {notifyBusy ? (
-        <NotifyBusy className='notif-busy' width={40} height={40} />
-      ) : notifyRemove ? (
-        <NotifyRemove className='notif-remove' width={40} height={40} />
-      ) : (
-        notifyFree && (
-          <NotifyFree className='notif-free' width={40} height={40} />
-        )
-      )}
+      {notifycation[type]}
     </div>
   );
 };
 
 Header.defaultProps = {
-  notifyBusy: false,
-  notifyFree: false,
-  notifyRemove: false,
+  type: '',
   title: undefined,
   children: undefined,
 };
 
 Header.propsTypes = {
-  notifyBusy: PropTypes.bool,
-  notifyFree: PropTypes.bool,
-  notifyRemove: PropTypes.bool,
+  type: PropTypes.oneOf(['', 'free', 'busy', 'remove']),
   title: PropTypes.string,
   children: PropTypes.node,
 };

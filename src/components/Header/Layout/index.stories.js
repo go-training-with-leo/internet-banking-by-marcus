@@ -8,7 +8,7 @@ export default {
 };
 
 const Default = () => (
-  <Header notifyRemove title='Title'>
+  <Header type='free' title='Title'>
     <button>Add account</button>
   </Header>
 );

@@ -9,7 +9,7 @@ import Input from 'components/Input';
 import Modal from 'components/Modal';
 import Wrapper from 'components/Wrapper';
 
-import { capitalFirstLetter } from 'utils/helpers';
+import { capitalizeFirstLetter } from 'utils/helpers';
 import {
   resetPasswordAccount,
   sendCode,
@@ -19,11 +19,18 @@ import { validEmail, validOTP, validPassword } from './validation';
 
 import './style.scss';
 
-const Forgot = () => {
-  const [step, setStep] = useState(1);
-  const { isLoading } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
+const STEP_ONE = 1;
+const STEP_TWO = 2;
+const STEP_THREE = 3;
+const STEP_FOUR = 4;
+
+const ForgotPassword = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [step, setStep] = useState(1);
+
+  const { isLoading } = useSelector((state) => state.auth);
 
   const {
     register: registerEmail,
@@ -49,37 +56,59 @@ const Forgot = () => {
   const onSubmit = async (formData) => {
     switch (step) {
     case 1: {
-      dispatch(
+      const {
+        payload: { status, message },
+      } = await dispatch(
         sendCode({
           ...formData,
-          setStep: setStep,
-          setError: setErrorEmail,
         })
       );
+
+      if (status) {
+        setStep((prev) => prev + 1);
+      } else {
+        setErrorEmail('email', {
+          type: 'custom',
+          message,
+        });
+      }
       break;
     }
     case 2: {
-      const formEmail = getValuesEmail();
-      dispatch(
+      const { email } = getValuesEmail();
+      const {
+        payload: { status, message },
+      } = await dispatch(
         verifyCode({
           ...formData,
-          email: formEmail.email,
-          setStep: setStep,
-          setError: setErrorOTP,
+          email,
         })
       );
+
+      if (status) {
+        setStep((prev) => prev + 1);
+      } else {
+        setErrorOTP('otp', {
+          type: 'custom',
+          message,
+        });
+      }
       break;
     }
     case 3: {
       const formEmail = getValuesEmail();
 
-      dispatch(
+      const {
+        payload: { status },
+      } = dispatch(
         resetPasswordAccount({
           ...formData,
           email: formEmail.email,
-          setStep: setStep,
         })
       );
+      if (status) {
+        setStep((prev) => prev + 1);
+      }
       break;
     }
     default:
@@ -88,13 +117,14 @@ const Forgot = () => {
   };
 
   const buttonTitle =
-    step === 2
+    step === STEP_TWO
       ? 'Verify'
-      : step === 3
+      : step === STEP_THREE
         ? 'Confirm password changes'
         : 'Reset password';
 
-  const titleForm = step === 3 ? 'Create new password' : 'Forgot password';
+  const titleForm =
+    step === STEP_THREE ? 'Create new password' : 'Forgot password';
 
   const handleSuccess = () => {
     navigate('/login');
@@ -102,7 +132,7 @@ const Forgot = () => {
 
   return (
     <Wrapper title={titleForm}>
-      {step === 1 ? (
+      {step === STEP_ONE ? (
         <form className='form' onSubmit={handleSubmitEmail(onSubmit)}>
           <p className='description'>
             Enter the email address associated with your account
@@ -112,7 +142,7 @@ const Forgot = () => {
             disabled={isLoading}
             label={
               errorsEmail.email
-                ? capitalFirstLetter(errorsEmail.email?.message)
+                ? capitalizeFirstLetter(errorsEmail.email?.message)
                 : 'Your account'
             }
             placeholder='Enter your email address'
@@ -130,7 +160,7 @@ const Forgot = () => {
             </Button>
           </div>
         </form>
-      ) : step === 2 ? (
+      ) : step === STEP_TWO ? (
         <form className='form' onSubmit={handleSubmitOTP(onSubmit)}>
           <p className='description'>
             A OTP code has been sent to your email <br />
@@ -140,7 +170,7 @@ const Forgot = () => {
             type='text'
             label={
               errorsOTP.otp?.message
-                ? capitalFirstLetter(errorsOTP.otp?.message)
+                ? capitalizeFirstLetter(errorsOTP.otp?.message)
                 : 'OTP:'
             }
             placeholder='Enter the OTP code'
@@ -168,30 +198,30 @@ const Forgot = () => {
             <Input
               type='password'
               label={
-                errorsPassword.new_password
-                  ? capitalFirstLetter(errorsPassword.new_password?.message)
+                errorsPassword.newPassword
+                  ? capitalizeFirstLetter(errorsPassword.newPassword?.message)
                   : 'New password:'
               }
               placeholder='Enter new password'
               register={registerPassword}
               disabled={isLoading}
-              name='new_password'
-              key='new-password'
-              error={errorsPassword.new_password && true}
+              name='newPassword'
+              key='newPassword'
+              error={errorsPassword.newPassword && true}
             />
             <Input
               type='password'
               label={
-                errorsPassword.renew_password
-                  ? capitalFirstLetter(errorsPassword.renew_password?.message)
+                errorsPassword.renewPassword
+                  ? capitalizeFirstLetter(errorsPassword.renewPassword?.message)
                   : 'Confirm password'
               }
               placeholder='Re-enter new password'
               register={registerPassword}
               disabled={isLoading}
-              name='renew_password'
-              key='renew-password'
-              error={errorsPassword.renew_password?.message && true}
+              name='renewPassword'
+              key='renewPassword'
+              error={errorsPassword.renewPassword?.message && true}
             />
             <div className='submit'>
               <Button loading={isLoading} type='submit' danger>
@@ -199,7 +229,7 @@ const Forgot = () => {
               </Button>
             </div>
           </form>
-          {step === 4 && (
+          {step === STEP_FOUR && (
             <Modal title='SUCCESS!'>
               <div className='modal-content'>
                 <p>
@@ -218,4 +248,4 @@ const Forgot = () => {
   );
 };
 
-export default Forgot;
+export default ForgotPassword;

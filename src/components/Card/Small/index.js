@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { capitalFirstLetter, isNumber } from 'utils/helpers';
+import { capitalizeFirstLetter, isNumber } from 'utils/helpers';
 
 import './style.scss';
 
@@ -14,7 +14,7 @@ const SmallCard = ({ isActive, label, children, onClick }) => {
       onClick={onClick}
     >
       {isNumber(children) ? children : 'Invalid type'}
-      <span className='label'>{capitalFirstLetter(label)}</span>
+      <span className='label'>{capitalizeFirstLetter(label)}</span>
     </div>
   );
 };
