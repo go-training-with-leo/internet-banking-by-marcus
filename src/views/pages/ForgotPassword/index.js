@@ -30,7 +30,9 @@ const ForgotPassword = () => {
 
   const [step, setStep] = useState(1);
 
-  const { isLoading } = useSelector((state) => state.auth);
+  const { isLoading: loading } = useSelector((state) => state.auth);
+
+  console.warn(loading);
 
   const {
     register: registerEmail,
@@ -139,7 +141,7 @@ const ForgotPassword = () => {
           </p>
           <Input
             type='email'
-            disabled={isLoading}
+            disabled={loading}
             label={
               errorsEmail.email
                 ? capitalizeFirstLetter(errorsEmail.email?.message)
@@ -155,7 +157,7 @@ const ForgotPassword = () => {
             <Link to='/login'>I remembered my password?</Link>
           </span>
           <div className='submit'>
-            <Button loading={isLoading} type='submit' danger>
+            <Button loading={loading} type='submit' danger>
               {buttonTitle}
             </Button>
           </div>
@@ -176,7 +178,7 @@ const ForgotPassword = () => {
             placeholder='Enter the OTP code'
             register={registerOTP}
             name='otp'
-            disabled={isLoading}
+            disabled={loading}
             key='otp'
             error={errorsOTP.otp && true}
           />
@@ -184,7 +186,7 @@ const ForgotPassword = () => {
             <Link to='/login'>I remembered my password?</Link>
           </span>
           <div className='submit'>
-            <Button loading={isLoading} type='submit' danger>
+            <Button loading={loading} type='submit' danger>
               {buttonTitle}
             </Button>
           </div>
@@ -204,7 +206,7 @@ const ForgotPassword = () => {
               }
               placeholder='Enter new password'
               register={registerPassword}
-              disabled={isLoading}
+              disabled={loading}
               name='newPassword'
               key='newPassword'
               error={errorsPassword.newPassword && true}
@@ -218,13 +220,13 @@ const ForgotPassword = () => {
               }
               placeholder='Re-enter new password'
               register={registerPassword}
-              disabled={isLoading}
+              disabled={loading}
               name='renewPassword'
               key='renewPassword'
               error={errorsPassword.renewPassword?.message && true}
             />
             <div className='submit'>
-              <Button loading={isLoading} type='submit' danger>
+              <Button loading={loading} type='submit' danger>
                 {buttonTitle}
               </Button>
             </div>
