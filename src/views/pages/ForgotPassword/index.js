@@ -32,8 +32,6 @@ const ForgotPassword = () => {
 
   const { isLoading: loading } = useSelector((state) => state.auth);
 
-  console.warn(loading);
-
   const {
     register: registerEmail,
     handleSubmit: handleSubmitEmail,
