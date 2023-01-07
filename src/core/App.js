@@ -36,7 +36,9 @@ function AppRoute() {
               path={route?.path}
               element={
                 <PrivateRoute>
-                  <route.component />
+                  <Layout>
+                    <route.component />
+                  </Layout>
                 </PrivateRoute>
               }
             />
@@ -58,9 +60,7 @@ function App() {
           theme='light'
           hideProgressBar
         />
-        <Layout>
-          <AppRoute />
-        </Layout>
+        <AppRoute />
       </PersistGate>
     </Provider>
   );

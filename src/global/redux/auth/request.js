@@ -31,7 +31,8 @@ const verifyOtp = async (email, otp) => {
 };
 
 const resetPassword = async (email, password) => {
-  await api.post('/resetPassword', { email, password });
+  const res = await api.post('/reset-password', { email, password });
+  return res;
 };
 
 export { resetPassword, sendOtp, signIn, signOut, verifyOtp };

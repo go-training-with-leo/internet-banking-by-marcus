@@ -65,7 +65,14 @@ const ForgotPassword = () => {
       );
 
       if (status) {
-        setStep((prev) => prev + 1);
+        if (message === 'Success') {
+          setStep((prev) => prev + 1);
+        } else {
+          setErrorEmail('email', {
+            type: 'custom',
+            message,
+          });
+        }
       } else {
         setErrorEmail('email', {
           type: 'custom',
@@ -86,7 +93,14 @@ const ForgotPassword = () => {
       );
 
       if (status) {
-        setStep((prev) => prev + 1);
+        if (message === 'You have been successfully registered') {
+          setStep((prev) => prev + 1);
+        } else {
+          setErrorOTP('otp', {
+            type: 'custom',
+            message,
+          });
+        }
       } else {
         setErrorOTP('otp', {
           type: 'custom',
@@ -100,12 +114,13 @@ const ForgotPassword = () => {
 
       const {
         payload: { status },
-      } = dispatch(
+      } = await dispatch(
         resetPasswordAccount({
           ...formData,
           email: formEmail.email,
         })
       );
+      console.warn(status);
       if (status) {
         setStep((prev) => prev + 1);
       }

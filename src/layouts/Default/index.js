@@ -1,29 +1,26 @@
 import React, { memo } from 'react';
-import { useSelector } from 'react-redux';
 
-import AuthLayout from 'layouts/Auth';
+import IconButton from 'components/Button/Icon';
 import Header from 'components/Header/Layout';
 import SideBar from 'components/SideBar';
 
 import './style.scss';
+import { PlusIcon } from 'assets/images';
 
 const DefaultLayout = ({ children }) => {
-  const { currentUser } = useSelector((state) => state.auth);
   return (
     <div>
-      {currentUser ? (
-        <div className='page-layout'>
-          <SideBar />
-          <div className='page-layout__right'>
-            <Header title='Contacts' notifyFree>
-              <button>Button</button>
-            </Header>
-            {children}
-          </div>
+      <div className='page-layout'>
+        <SideBar />
+        <div className='page-layout__right'>
+          <Header title='Contacts' notifyFree>
+            <IconButton>
+              Button <PlusIcon fill='red' />
+            </IconButton>
+          </Header>
+          {children}
         </div>
-      ) : (
-        <AuthLayout>{children}</AuthLayout>
-      )}
+      </div>
     </div>
   );
 };

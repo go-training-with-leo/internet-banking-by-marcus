@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import './style.scss';
 import Loader from 'components/Loader';
 
-const Icon = ({
+const IconButton = ({
   type,
   ghost,
   danger,
@@ -31,7 +31,7 @@ const Icon = ({
   );
 };
 
-Icon.defaultProps = {
+IconButton.defaultProps = {
   type: 'button',
   ghost: false,
   danger: false,
@@ -41,14 +41,14 @@ Icon.defaultProps = {
   loading: false,
 };
 
-Icon.propTypes = {
+IconButton.propTypes = {
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   ghost: PropTypes.bool,
   danger: PropTypes.bool,
   greyColor: PropTypes.bool,
-  children: PropTypes.string,
+  children: PropTypes.node,
   onClick: PropTypes.func,
   loading: PropTypes.bool,
 };
 
-export default Icon;
+export default IconButton;

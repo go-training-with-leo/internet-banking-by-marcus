@@ -10,9 +10,11 @@ const logIn = createAsyncThunk('auth/signIn', async (data) => {
       status: true,
       data: userInfo,
     };
-  } catch (error) {
+  } catch ({ message }) {
+    console.warn(message);
     return {
       status: false,
+      message,
     };
   }
 });
@@ -20,14 +22,9 @@ const logIn = createAsyncThunk('auth/signIn', async (data) => {
 const sendCode = createAsyncThunk('auth/sendOtp', async (data) => {
   try {
     const message = await sendOtp(data.email);
-    if (message === 'Success') {
-      return {
-        status: true,
-      };
-    }
     return {
-      status: false,
-      message: 'Email not found',
+      status: true,
+      message,
     };
   } catch ({ message }) {
     return {
@@ -42,15 +39,9 @@ const verifyCode = createAsyncThunk('auth/verifyOtp', async (data) => {
     const { email, otp } = data;
 
     const message = await verifyOtp(email, otp);
-    if (message === 'You have been successfully registered') {
-      return {
-        status: true,
-      };
-    }
-    // setError('otp', { type: 'custom', message: 'OTP Incorrect' });
     return {
-      status: false,
-      message: 'OTP Incorrect',
+      status: true,
+      message,
     };
   } catch ({ message }) {
     return {
@@ -66,11 +57,13 @@ const resetPasswordAccount = createAsyncThunk(
     try {
       const { email, newPassword } = data;
 
-      await resetPassword(email, newPassword);
+      const res = await resetPassword(email, newPassword);
+      console.warn(res);
       return {
         status: true,
       };
     } catch (error) {
+      console.warn(error);
       return {
         status: false,
       };

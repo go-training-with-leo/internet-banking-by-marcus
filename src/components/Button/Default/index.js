@@ -6,7 +6,7 @@ import Loader from 'components/Loader';
 
 import 'components/Button/Default/style.scss';
 
-const Default = ({ type, ghost, danger, children, onClick, loading }) => {
+const DefaultButton = ({ type, ghost, danger, children, onClick, loading }) => {
   return (
     <button
       className={classNames('button', {
@@ -23,7 +23,7 @@ const Default = ({ type, ghost, danger, children, onClick, loading }) => {
   );
 };
 
-Default.defaultProps = {
+DefaultButton.defaultProps = {
   type: 'button',
   ghost: false,
   danger: false,
@@ -32,7 +32,7 @@ Default.defaultProps = {
   loading: false,
 };
 
-Default.propTypes = {
+DefaultButton.propTypes = {
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   ghost: PropTypes.bool,
   danger: PropTypes.bool,
@@ -41,4 +41,4 @@ Default.propTypes = {
   loading: PropTypes.bool,
 };
 
-export default Default;
+export default DefaultButton;
