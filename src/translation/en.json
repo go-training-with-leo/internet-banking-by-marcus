@@ -6,6 +6,15 @@
     }
   },
   "Pages": {
+    "Login": {
+      "loginTitle": "Sign in",
+      "accountLabel": "Your account",
+      "accountPlaceHolder": "Enter your email",
+      "passwordLabel": "Your password",
+      "passwordPlaceHolder": "Enter your password",
+      "forgotPassword": "Forgot password?",
+      "login": "Log in"
+    },
     "ForgotPassword": {
       "createNewPassword": "Create new password",
       "forgotPassword": "Forgot password",

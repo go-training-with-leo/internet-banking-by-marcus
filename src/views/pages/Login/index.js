@@ -9,8 +9,9 @@ import Button from 'components/Button/Default';
 import Input from 'components/Input';
 import Wrapper from 'components/Wrapper';
 
-import { capitalizeFirstLetter } from 'utils/helpers';
 import { logIn } from 'global/redux/auth/thunk';
+import { useTranslation } from 'react-i18next';
+import { capitalizeFirstLetter } from 'utils/helpers';
 import { signInValidate } from './validation';
 
 import './style.scss';
@@ -20,6 +21,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Login' });
   const {
     register,
     handleSubmit,
@@ -40,7 +42,7 @@ const Login = () => {
   }, [currentUser, navigate]);
 
   return (
-    <Wrapper title='Sign in'>
+    <Wrapper title={t('loginTitle')}>
       <form className='form' onSubmit={handleSubmit(onSubmit)}>
         <Input
           register={register}
@@ -49,11 +51,11 @@ const Login = () => {
           label={
             errors.email?.message
               ? capitalizeFirstLetter(errors.email?.message)
-              : 'Your account'
+              : t('accountLabel')
           }
           withIcon
           error={errors.email && true}
-          placeholder='Enter your email'
+          placeholder={t('accountPlaceHolder')}
         />
         <Input
           register={register}
@@ -62,21 +64,21 @@ const Login = () => {
           label={
             errors.password?.message
               ? capitalizeFirstLetter(errors.password?.message)
-              : 'Your password'
+              : t('passwordLabel')
           }
           withIcon
           error={errors.password && true}
-          placeholder='Enter your password'
+          placeholder={t('passwordPlaceHolder')}
         />
         <span className='forgot'>
-          <Link to='/forgot'>Forgot password?</Link>
+          <Link to='/forgot'>{t('forgotPassword')}</Link>
         </span>
         <ReCAPTCHA
           ref={captchaRef}
           sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
         />
         <Button loading={isLoading} danger type='submit'>
-          Log in
+          {t('login')}
         </Button>
       </form>
     </Wrapper>

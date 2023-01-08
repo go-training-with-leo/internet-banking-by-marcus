@@ -6,6 +6,15 @@
     }
   },
   "Pages": {
+    "Login": {
+      "loginTitle": "Đăng nhập",
+      "accountLabel": "Tài khoản",
+      "accountPlaceHolder": "Email",
+      "passwordLabel": "Mật khẩu",
+      "passwordPlaceHolder": "Nhập mật khẩu",
+      "forgotPassword": "Quên mật khẩu?",
+      "login": "Đăng nhập"
+    },
     "ForgotPassword": {
       "createNewPassword": "Tạo mật khẩu mới",
       "forgotPassword": "Quên mật khẩu",
