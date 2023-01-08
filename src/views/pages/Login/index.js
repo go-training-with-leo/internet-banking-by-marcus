@@ -69,7 +69,7 @@ const Login = () => {
           placeholder='Enter your password'
         />
         <span className='forgot'>
-          <Link to='/accounts/password/new'>Forgot password?</Link>
+          <Link to='/forgot'>Forgot password?</Link>
         </span>
         <ReCAPTCHA
           ref={captchaRef}

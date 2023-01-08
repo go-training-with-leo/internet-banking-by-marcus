@@ -11,7 +11,6 @@ const logIn = createAsyncThunk('auth/signIn', async (data) => {
       data: userInfo,
     };
   } catch ({ message }) {
-    console.warn(message);
     return {
       status: false,
       message,
@@ -21,10 +20,13 @@ const logIn = createAsyncThunk('auth/signIn', async (data) => {
 
 const sendCode = createAsyncThunk('auth/sendOtp', async (data) => {
   try {
-    const message = await sendOtp(data.email);
+    const { email } = data;
+
+    const message = await sendOtp(email);
     return {
       status: true,
       message,
+      email,
     };
   } catch ({ message }) {
     return {
@@ -57,13 +59,11 @@ const resetPasswordAccount = createAsyncThunk(
     try {
       const { email, newPassword } = data;
 
-      const res = await resetPassword(email, newPassword);
-      console.warn(res);
+      await resetPassword(email, newPassword);
       return {
         status: true,
       };
     } catch (error) {
-      console.warn(error);
       return {
         status: false,
       };

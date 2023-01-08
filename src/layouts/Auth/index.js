@@ -1,11 +1,11 @@
-import PropType from 'prop-types';
 import React, { memo } from 'react';
 
 import { EightGif, EightLogo } from 'assets/images';
+import { Outlet } from 'react-router-dom';
 
 import './style.scss';
 
-const AuthLayout = ({ children }) => {
+const AuthLayout = () => {
   return (
     <div className='auth-page'>
       <div className='auth-logo'>
@@ -13,13 +13,11 @@ const AuthLayout = ({ children }) => {
         <EightLogo width={200} height={45} />
         <span>an internet banking service by Team Eight</span>
       </div>
-      <div className='auth-form'>{children}</div>
+      <div className='auth-form'>
+        <Outlet />
+      </div>
     </div>
   );
-};
-
-AuthLayout.propTypes = {
-  children: PropType.node.isRequired,
 };
 
 export default memo(AuthLayout);

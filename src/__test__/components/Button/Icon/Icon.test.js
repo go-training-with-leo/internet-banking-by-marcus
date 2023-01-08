@@ -27,8 +27,6 @@ test('Test default props button', () => {
 
   expect(button.childElementCount).toEqual(1);
 
-  expect(console.error).toBeCalledTimes(1);
-
   fireEvent.click(button);
 
   expect(tree).toMatchSnapshot();

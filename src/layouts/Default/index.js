@@ -6,8 +6,9 @@ import SideBar from 'components/SideBar';
 
 import './style.scss';
 import { PlusIcon } from 'assets/images';
+import { Outlet } from 'react-router-dom';
 
-const DefaultLayout = ({ children }) => {
+const DefaultLayout = () => {
   return (
     <div>
       <div className='page-layout'>
@@ -18,7 +19,7 @@ const DefaultLayout = ({ children }) => {
               Button <PlusIcon fill='red' />
             </IconButton>
           </Header>
-          {children}
+          <Outlet />
         </div>
       </div>
     </div>
