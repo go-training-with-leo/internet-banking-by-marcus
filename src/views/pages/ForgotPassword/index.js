@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { selectAuth } from 'core/selectors';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +18,7 @@ const STEP_THREE = 3;
 const ForgotPassword = () => {
   const navigate = useNavigate();
 
-  const { currentUser } = useSelector((state) => state.auth);
+  const { currentUser } = useSelector(selectAuth);
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.ForgotPassword',
   });

@@ -9,8 +9,10 @@ import Button from 'components/Button/Default';
 import Input from 'components/Input';
 import Wrapper from 'components/Wrapper';
 
-import { logIn } from 'global/redux/auth/thunk';
+import Env from 'config/Env';
+import { selectAuth } from 'core/selectors';
 import { useTranslation } from 'react-i18next';
+import { logIn } from 'global/redux/auth/thunk';
 import { capitalizeFirstLetter } from 'utils/helpers';
 import { signInValidate } from './validation';
 
@@ -27,7 +29,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(signInValidate) });
-  const { currentUser, isLoading } = useSelector((state) => state.auth);
+  const { currentUser, isLoading } = useSelector(selectAuth);
 
   const onSubmit = (account) => {
     const captchaToken = captchaRef.current.getValue();
@@ -73,10 +75,7 @@ const Login = () => {
         <span className='forgot'>
           <Link to='/forgot'>{t('forgotPassword')}</Link>
         </span>
-        <ReCAPTCHA
-          ref={captchaRef}
-          sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-        />
+        <ReCAPTCHA ref={captchaRef} sitekey={Env.CAPTCHA_SITE_KEY} />
         <Button loading={isLoading} danger type='submit'>
           {t('login')}
         </Button>
