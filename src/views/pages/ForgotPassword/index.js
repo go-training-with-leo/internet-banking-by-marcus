@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import Wrapper from 'components/Wrapper';
 import StepOne from './StepOne';
@@ -14,6 +15,9 @@ const STEP_TWO = 2;
 const STEP_THREE = 3;
 
 const ForgotPassword = () => {
+  const navigate = useNavigate();
+
+  const { currentUser } = useSelector((state) => state.auth);
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.ForgotPassword',
   });
@@ -23,6 +27,10 @@ const ForgotPassword = () => {
 
   const titleForm =
     step === STEP_THREE ? t('createNewPassword') : t('forgotPassword');
+
+  useEffect(() => {
+    if (currentUser) navigate('/');
+  }, []);
 
   return (
     <Wrapper title={titleForm}>

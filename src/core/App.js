@@ -37,8 +37,22 @@ function AppRoute() {
       <Suspense fallback={<span>Loading...</span>}>
         <Routes>
           <Route element={<AuthLayout />}>
-            <Route path='/login' element={<Login />} />
-            <Route path='/forgot' element={<ForgotPassword />} />
+            <Route
+              path='/login'
+              element={
+                <PrivateRoute>
+                  <Login />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path='/forgot'
+              element={
+                <PrivateRoute>
+                  <ForgotPassword />
+                </PrivateRoute>
+              }
+            />
           </Route>
           <Route element={<Default />}>
             {routes.map((route) => (
