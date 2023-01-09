@@ -18,12 +18,14 @@ const StepOne = () => {
   const { t } = useTranslation('translation', {
     keyPrefix: 'Pages.ForgotPassword',
   });
+
   const {
     register,
     handleSubmit,
     setError,
     formState: { errors },
   } = useForm({ resolver: yupResolver(validEmail) });
+
   const { isLoading: loading } = useSelector((state) => state.auth);
 
   const onSubmit = async (formData) => {

@@ -11,6 +11,8 @@ import { useTranslation } from 'react-i18next';
 import { capitalizeFirstLetter } from 'utils/helpers';
 import validOTP from './validation';
 
+import './style.scss';
+
 const StepTwo = () => {
   const dispatch = useDispatch();
 

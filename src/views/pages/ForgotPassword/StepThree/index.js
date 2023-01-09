@@ -14,6 +14,8 @@ import { useForm } from 'react-hook-form';
 import { capitalizeFirstLetter } from 'utils/helpers';
 import validPassword from './validation';
 
+import './style.scss';
+
 const SUCCESS = 4;
 
 const StepThree = () => {

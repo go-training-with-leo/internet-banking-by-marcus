@@ -3,10 +3,12 @@ import React, { memo } from 'react';
 import IconButton from 'components/Button/Icon';
 import Header from 'components/Header/Layout';
 import SideBar from 'components/SideBar';
+import routes from 'routes';
+
+import { PlusIcon } from 'assets/images';
+import { Route, Routes } from 'react-router-dom';
 
 import './style.scss';
-import { PlusIcon } from 'assets/images';
-import { Outlet } from 'react-router-dom';
 
 const DefaultLayout = () => {
   return (
@@ -19,7 +21,11 @@ const DefaultLayout = () => {
               Button <PlusIcon fill='red' />
             </IconButton>
           </Header>
-          <Outlet />
+          <Routes>
+            {routes.map((route) => (
+              <Route key={route.id} path={route.path} element={route.element} />
+            ))}
+          </Routes>
         </div>
       </div>
     </div>

@@ -5,9 +5,7 @@ import { Provider, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import routes from 'routes';
-import AuthLayout from 'layouts/Auth';
-import Default from 'layouts/Default';
+import DefaultLayout from 'layouts/Default';
 import { auth } from 'services/firebase';
 import { store, persistor } from 'core/store';
 import { setUser } from 'global/redux/auth/slice';
@@ -36,33 +34,16 @@ function AppRoute() {
     <Router>
       <Suspense fallback={<span>Loading...</span>}>
         <Routes>
-          <Route element={<AuthLayout />}>
-            <Route
-              path='/login'
-              element={
-                <PrivateRoute>
-                  <Login />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path='/forgot'
-              element={
-                <PrivateRoute>
-                  <ForgotPassword />
-                </PrivateRoute>
-              }
-            />
-          </Route>
-          <Route element={<Default />}>
-            {routes.map((route) => (
-              <Route
-                key={route?.id}
-                path={route?.path}
-                element={<PrivateRoute>{route?.element}</PrivateRoute>}
-              />
-            ))}
-          </Route>
+          <Route path='/login' element={<Login />} />
+          <Route path='/forgot' element={<ForgotPassword />} />
+          <Route
+            path='/dashboard/*'
+            element={
+              <PrivateRoute>
+                <DefaultLayout />
+              </PrivateRoute>
+            }
+          />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Suspense>
