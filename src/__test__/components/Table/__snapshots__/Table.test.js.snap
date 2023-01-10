@@ -100,22 +100,7 @@ Object {
             <td
               class="body-table-cell"
             >
-              <div>
-                <div
-                  class="status unpaid"
-                >
-                  <svg
-                    fill="yellow"
-                    height="20"
-                    width="20"
-                  >
-                    time.svg
-                  </svg>
-                  <span>
-                    Unpaid
-                  </span>
-                </div>
-              </div>
+              <div />
             </td>
             <td
               class="body-table-cell"
@@ -252,17 +237,17 @@ Object {
             >
               <div>
                 <div
-                  class="status paid unpaid"
+                  class="status unpaid canceled"
                 >
                   <svg
-                    fill="green"
+                    fill="red"
                     height="20"
                     width="20"
                   >
-                    check.svg
+                    cancel.svg
                   </svg>
                   <span>
-                    Paid
+                    Canceled
                   </span>
                 </div>
               </div>
@@ -686,22 +671,7 @@ Object {
           <td
             class="body-table-cell"
           >
-            <div>
-              <div
-                class="status unpaid"
-              >
-                <svg
-                  fill="yellow"
-                  height="20"
-                  width="20"
-                >
-                  time.svg
-                </svg>
-                <span>
-                  Unpaid
-                </span>
-              </div>
-            </div>
+            <div />
           </td>
           <td
             class="body-table-cell"
@@ -838,17 +808,17 @@ Object {
           >
             <div>
               <div
-                class="status paid unpaid"
+                class="status unpaid canceled"
               >
                 <svg
-                  fill="green"
+                  fill="red"
                   height="20"
                   width="20"
                 >
-                  check.svg
+                  cancel.svg
                 </svg>
                 <span>
-                  Paid
+                  Canceled
                 </span>
               </div>
             </div>

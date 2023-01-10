@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { DeleteIcon, PlusIcon } from 'assets/images';
-import HeaderCell from 'components/Table/Cell/Header';
-import RowCell from 'components/Table/Cell/Row';
+import HeaderCell from 'components/Table/HeaderCell';
+import RowCell from 'components/Table/RowCell';
 import HeaderTable from 'components/Table/Header';
 import Table from '.';
 

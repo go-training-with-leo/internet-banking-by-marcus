@@ -2,9 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import HeaderTable from 'components/Table/Header';
-import HeaderCell from 'components/Table/Cell/Header';
+import HeaderCell from 'components/Table/HeaderCell';
 import Table from 'components/Table';
-import RowCell from 'components/Table/Cell/Row';
+import RowCell from 'components/Table/RowCell';
 
 import { DeleteIcon, PlusIcon } from 'assets/images';
 
