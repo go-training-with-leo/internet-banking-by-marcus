@@ -28,7 +28,6 @@ const signIn = async (email, password) => {
 const signOut = () => {
   signOutUser(auth);
   removeLocalStorage('role');
-  removeLocalStorage('isLogin');
 };
 
 const sendOTP = async (email) => {
