@@ -11,8 +11,8 @@ const ToastType = {
 
 const mainPagesRole = {
   ADMIN: '/employees',
+  EMPLOYEE: '/cards',
   CUSTOMER: '/customer/accounts',
-  EMPLOYEE: '/employee/accounts',
 };
 
 export { StorageKey, ToastType, mainPagesRole };
