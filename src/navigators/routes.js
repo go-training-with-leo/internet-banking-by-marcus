@@ -20,7 +20,7 @@ const routes = [
   },
   {
     id: 'accountCustomer',
-    path: 'account',
+    path: '/account',
     element: <CustomerAccount />,
     roles: ['CUSTOMER'],
   },
