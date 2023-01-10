@@ -20,11 +20,13 @@ const sideBarItems = {
       id: 'employees',
       label: 'Employees',
       icon: <CreditCard width={20} height={20} />,
+      navigateTo: '/employees',
     },
     {
       id: 'transactions',
       label: 'Transactions',
       icon: <Contact width={20} height={20} />,
+      navigateTo: '/transactions',
     },
   ],
   EMPLOYEE: [
@@ -32,11 +34,13 @@ const sideBarItems = {
       id: 'employeeAccounts',
       label: 'Accounts',
       icon: <CreditCard width={20} height={20} />,
+      navigateTo: '/accounts',
     },
     {
       id: 'employeeHistory',
       label: 'History',
       icon: <Contact width={20} height={20} />,
+      navigateTo: '/employee/history',
     },
   ],
   CUSTOMER: [
@@ -44,26 +48,31 @@ const sideBarItems = {
       id: 'cards',
       label: 'Cards',
       icon: <CreditCard width={20} height={20} />,
+      navigateTo: '/cards',
     },
     {
       id: 'contacts',
       label: 'Contacts',
       icon: <Contact width={20} height={20} />,
+      navigateTo: '/contacts',
     },
     {
       id: 'transfer',
       label: 'Transfer',
       icon: <Transfer width={20} height={20} />,
+      navigateTo: '/transfer',
     },
     {
-      id: 'debt',
-      label: 'Debt',
+      id: 'debts',
+      label: 'Debts',
       icon: <Cash width={20} height={20} />,
+      navigateTo: '/debts',
     },
     {
       id: 'customerHistory',
       label: 'History',
       icon: <Clock width={20} height={20} />,
+      navigateTo: 'customer/history',
     },
   ],
 };
@@ -85,6 +94,7 @@ const bottomSideBarItem = {
     id: 'account',
     label: 'Account',
     icon: <User />,
+    navigateTo: '/account',
   },
 };
 

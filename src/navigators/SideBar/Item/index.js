@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -26,8 +26,8 @@ SideBarItem.defaultProps = {
 
 SideBarItem.propTypes = {
   isActive: PropTypes.bool,
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   onClick: PropTypes.func,
 };
 
-export default SideBarItem;
+export default memo(SideBarItem);

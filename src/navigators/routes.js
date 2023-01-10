@@ -68,7 +68,7 @@ const routes = [
   },
   {
     id: 'transactions',
-    path: '/transaction',
+    path: '/transactions',
     element: <Transactions />,
     roles: ['ADMIN'],
   },

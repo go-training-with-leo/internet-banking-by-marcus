@@ -1,14 +1,14 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 
 import IconButton from 'components/Button/Icon';
 import Header from 'navigators/Header';
 import SideBar from 'navigators/SideBar';
 
 import { PlusIcon } from 'assets/images';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { signOut } from 'global/redux/auth/request';
 
-import useMergeState from 'components/hooks/useMergeState';
+// import useMergeState from 'components/hooks/useMergeState'
 import SideBarItem from 'navigators/SideBar/Item';
 import { getLocalStorage } from 'utils/helpers';
 import {
@@ -21,35 +21,35 @@ import './style.scss';
 const DefaultLayout = () => {
   const userRole = getLocalStorage('role');
 
-  const [sideBarItems, setSideBarItems] = useMergeState({
-    items: [],
-    bottomItem: {},
-  });
-
-  useEffect(() => {
-    setSideBarItems({
-      items: sideBarByRole[userRole],
-      bottomItem: bottomSideBarItem[userRole],
-    });
-  }, []);
+  const sideBarItems = {
+    items: sideBarByRole[userRole],
+    bottomItem: bottomSideBarItem[userRole],
+  };
 
   return (
     <div>
       <div className='page-layout'>
         <SideBar
           bottomItem={
-            <SideBarItem onClick={sideBarItems.bottomItem.onClick}>
-              {sideBarItems.bottomItem.icon}
-              {sideBarItems.bottomItem.label}
-            </SideBarItem>
+            <Link
+              reloadDocument={false}
+              to={sideBarItems.bottomItem?.navigateTo}
+            >
+              <SideBarItem onClick={sideBarItems.bottomItem?.onClick}>
+                {sideBarItems.bottomItem.icon}
+                {sideBarItems.bottomItem.label}
+              </SideBarItem>
+            </Link>
           }
         >
-          {sideBarItems.items.map(({ id, icon, label }) => {
+          {sideBarItems.items.map(({ id, icon, label, navigateTo }) => {
             return (
-              <SideBarItem key={id}>
-                {icon}
-                {label}
-              </SideBarItem>
+              <Link reloadDocument={false} to={navigateTo} key={id}>
+                <SideBarItem>
+                  {icon}
+                  {label}
+                </SideBarItem>
+              </Link>
             );
           })}
         </SideBar>

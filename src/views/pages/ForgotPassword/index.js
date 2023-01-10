@@ -33,7 +33,6 @@ const ForgotPassword = () => {
   useEffect(() => {
     if (currentUser) {
       const role = getLocalStorage('role');
-      console.warn(role);
       navigate(getMainPage(role));
     }
   }, [currentUser, navigate]);
