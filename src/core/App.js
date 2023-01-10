@@ -35,6 +35,7 @@ function AppRoute() {
     <Router>
       <Suspense fallback={<span>Loading...</span>}>
         <Routes>
+          <Route path='/' element={<Login />} />
           <Route path='/login' element={<Login />} />
           <Route path='/forgot' element={<ForgotPassword />} />
           <Route

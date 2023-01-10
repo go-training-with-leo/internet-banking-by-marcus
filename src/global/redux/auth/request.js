@@ -17,7 +17,6 @@ const signIn = async (email, password) => {
     field: 'email',
     value: email,
   });
-  modifyLocalStorage('isLogin', 'true');
   modifyLocalStorage('role', role);
 
   const accountData = {
