@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { getLocalStorage } from 'utils/helpers';
 import { useSelector } from 'react-redux';

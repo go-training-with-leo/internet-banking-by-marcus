@@ -10,11 +10,12 @@ import { auth } from 'services/firebase';
 import { store, persistor } from 'core/store';
 import { setUser } from 'global/redux/auth/slice';
 
-import 'global/libs';
-import 'services/i18n';
 import routes from 'navigators/routes';
 import PrivateRoute from './PrivateRoute';
 import RoleRoute from './RoleRoute';
+
+import 'services/i18n';
+import 'global/libs';
 
 const ForgotPassword = lazy(() => import('views/pages/ForgotPassword'));
 const Login = lazy(() => import('views/pages/Login'));

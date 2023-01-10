@@ -1,12 +1,12 @@
 import React, { lazy } from 'react';
 
-const CustomerAccount = lazy(() => import('views/Accounts/Customer'));
-const EmployeeAccount = lazy(() => import('views/Accounts/Employee'));
 const Cards = lazy(() => import('views/Cards'));
 const Contacts = lazy(() => import('views/Contacts'));
+const CustomerAccount = lazy(() => import('views/Accounts/Customer'));
+const CustomerHistory = lazy(() => import('views/History/Customer'));
 const Debts = lazy(() => import('views/Debts'));
 const Employees = lazy(() => import('views/Employees'));
-const CustomerHistory = lazy(() => import('views/History/Customer'));
+const EmployeeAccount = lazy(() => import('views/Accounts/Employee'));
 const EmployeeHistory = lazy(() => import('views/History/Employee'));
 const Transactions = lazy(() => import('views/Transactions'));
 const Transfer = lazy(() => import('views/Transfer'));
@@ -55,7 +55,7 @@ const routes = [
     roles: ['EMPLOYEE'],
   },
   {
-    id: 'history-employee',
+    id: 'historyEmployee',
     path: '/employee/history',
     element: <EmployeeHistory />,
     roles: ['EMPLOYEE'],

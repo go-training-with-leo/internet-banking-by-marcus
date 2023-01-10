@@ -4,13 +4,11 @@ import IconButton from 'components/Button/Icon';
 import Header from 'navigators/Header';
 import SideBar from 'navigators/SideBar';
 
-import { PlusIcon } from 'assets/images';
-import { Link, Outlet } from 'react-router-dom';
-import { signOut } from 'global/redux/auth/request';
-
-// import useMergeState from 'components/hooks/useMergeState'
 import SideBarItem from 'navigators/SideBar/Item';
+import { PlusIcon } from 'assets/images';
+import { signOut } from 'global/redux/auth/request';
 import { getLocalStorage } from 'utils/helpers';
+import { Link, Outlet } from 'react-router-dom';
 import {
   sideBarItems as sideBarByRole,
   bottomSideBarItem,

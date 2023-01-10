@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import Select, { components } from 'react-select';
 
-import colourStyles from './SelectStyle';
+import colourStyles from './selectStyle';
 
 import './style.scss';
 
