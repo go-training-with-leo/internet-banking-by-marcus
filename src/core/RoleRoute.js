@@ -7,8 +7,8 @@ import { selectAuth } from './selectors';
 
 const homePages = {
   ADMIN: '/employees',
-  EMPLOYEE: '/employee/accounts',
-  CUSTOMER: '/cards',
+  EMPLOYEE: '/cards',
+  CUSTOMER: '/customer/accounts',
 };
 
 const RoleRoute = ({ roles, children }) => {

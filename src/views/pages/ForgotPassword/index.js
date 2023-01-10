@@ -6,7 +6,8 @@ import { useTranslation } from 'react-i18next';
 
 import AuthLayout from 'layouts/Auth';
 import Wrapper from 'components/Wrapper';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { getLocalStorage, getMainPage } from 'utils/helpers';
+import { useNavigate } from 'react-router-dom';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import StepThree from './StepThree';
@@ -16,7 +17,6 @@ const STEP_TWO = 2;
 const STEP_THREE = 3;
 
 const ForgotPassword = () => {
-  const location = useLocation();
   const navigate = useNavigate();
 
   const { currentUser } = useSelector(selectAuth);
@@ -32,9 +32,11 @@ const ForgotPassword = () => {
 
   useEffect(() => {
     if (currentUser) {
-      navigate(location?.state?.from || '/');
+      const role = getLocalStorage('role');
+      console.warn(role);
+      navigate(getMainPage(role));
     }
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   return (
     <AuthLayout>

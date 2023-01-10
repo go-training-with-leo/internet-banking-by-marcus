@@ -13,14 +13,14 @@ const Transfer = lazy(() => import('views/Transfer'));
 
 const routes = [
   {
-    id: 'history-customer',
-    path: '/customer-history',
+    id: 'historyCustomer',
+    path: '/customer/history',
     element: <CustomerHistory />,
     roles: ['CUSTOMER'],
   },
   {
-    id: 'accounts-customer',
-    path: '/customer-accounts',
+    id: 'accountsCustomer',
+    path: '/customer/accounts',
     element: <CustomerAccount />,
     roles: ['CUSTOMER'],
   },
@@ -49,14 +49,14 @@ const routes = [
     roles: ['CUSTOMER'],
   },
   {
-    id: 'accounts-employee',
-    path: '/employee-accounts',
+    id: 'accountsEmployee',
+    path: '/employee/accounts',
     element: <EmployeeAccount />,
     roles: ['EMPLOYEE'],
   },
   {
     id: 'history-employee',
-    path: '/employee-history',
+    path: '/employee/history',
     element: <EmployeeHistory />,
     roles: ['EMPLOYEE'],
   },

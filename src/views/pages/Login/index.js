@@ -2,7 +2,7 @@ import React, { memo, useEffect, useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import AuthLayout from 'layouts/Auth';
@@ -14,16 +14,20 @@ import Env from 'config/Env';
 import { selectAuth } from 'core/selectors';
 import { useTranslation } from 'react-i18next';
 import { logIn } from 'global/redux/auth/thunk';
-import { capitalizeFirstLetter } from 'utils/helpers';
+import {
+  capitalizeFirstLetter,
+  getLocalStorage,
+  getMainPage,
+} from 'utils/helpers';
 import { signInValidate } from './validation';
 
 import './style.scss';
 
 const Login = () => {
   const captchaRef = useRef(null);
-  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const role = getLocalStorage('role');
 
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Login' });
 
@@ -44,10 +48,11 @@ const Login = () => {
   };
 
   useEffect(() => {
+    console.warn(getMainPage(role));
     if (currentUser) {
-      navigate(location?.state?.from || '/');
+      navigate(getMainPage(role));
     }
-  }, [currentUser]);
+  }, [currentUser, navigate, role]);
 
   return (
     <AuthLayout>

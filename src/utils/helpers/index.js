@@ -7,7 +7,7 @@ import {
   where,
 } from 'firebase/firestore';
 import { db } from 'services/firebase';
-import { StorageKey } from 'utils/constants';
+import { mainPagesRole, StorageKey } from 'utils/constants';
 
 const modifyLocalStorage = (key, value) => localStorage.setItem(key, value);
 
@@ -63,11 +63,16 @@ const queryDocs = async ({ path, field, value }) => {
   return respone.length === 1 ? respone[0] : respone;
 };
 
+const getMainPage = (role) => {
+  return mainPagesRole[role] || null;
+};
+
 export {
   capitalizeFirstLetter,
   getAuthTokenFromLocalStorage,
   getDocFireStore,
   getLocalStorage,
+  getMainPage,
   isNumber,
   modifyLocalStorage,
   parseMoneyVnd,

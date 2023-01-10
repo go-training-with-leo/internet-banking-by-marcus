@@ -14,7 +14,7 @@ const PrivateRoute = ({ children }) => {
     if (!currentUser) {
       switch (location.pathname) {
       case '/forgot':
-        navigate('/forgot');
+        navigate('/forgot', { state: { from: location.pathname } });
         break;
       default:
         navigate('/login');
