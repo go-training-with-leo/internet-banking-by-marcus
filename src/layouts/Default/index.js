@@ -5,10 +5,10 @@ import Header from 'navigators/Header';
 import SideBar from 'navigators/SideBar';
 
 import SideBarItem from 'navigators/SideBar/Item';
+import routes from 'navigators/routes';
 import { PlusIcon } from 'assets/images';
-import { signOut } from 'global/redux/auth/request';
 import { getLocalStorage } from 'utils/helpers';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import {
   sideBarItems as sideBarByRole,
   bottomSideBarItem,
@@ -19,10 +19,15 @@ import './style.scss';
 const DefaultLayout = () => {
   const userRole = getLocalStorage('role');
 
+  const { pathname } = useLocation();
   const sideBarItems = {
     items: sideBarByRole[userRole],
     bottomItem: bottomSideBarItem[userRole],
   };
+
+  const { title: titleHeader } = routes.find(
+    (route) => route.path === pathname
+  );
 
   return (
     <div>
@@ -31,11 +36,14 @@ const DefaultLayout = () => {
           bottomItem={
             <Link
               reloadDocument={false}
-              to={sideBarItems.bottomItem?.navigateTo}
+              to={sideBarItems?.bottomItem?.navigateTo}
             >
-              <SideBarItem onClick={sideBarItems.bottomItem?.onClick}>
-                {sideBarItems.bottomItem.icon}
-                {sideBarItems.bottomItem.label}
+              <SideBarItem
+                onClick={sideBarItems?.bottomItem?.onClick}
+                isActive={pathname === sideBarItems?.bottomItem?.navigateTo}
+              >
+                {sideBarItems?.bottomItem?.icon}
+                {sideBarItems?.bottomItem?.label}
               </SideBarItem>
             </Link>
           }
@@ -43,7 +51,7 @@ const DefaultLayout = () => {
           {sideBarItems.items.map(({ id, icon, label, navigateTo }) => {
             return (
               <Link reloadDocument={false} to={navigateTo} key={id}>
-                <SideBarItem>
+                <SideBarItem isActive={pathname === navigateTo}>
                   {icon}
                   {label}
                 </SideBarItem>
@@ -52,9 +60,9 @@ const DefaultLayout = () => {
           })}
         </SideBar>
         <div className='page-layout__right'>
-          <Header title='Contacts' notifyFree>
-            <IconButton onClick={() => signOut()}>
-              Button <PlusIcon fill='red' />
+          <Header title={titleHeader}>
+            <IconButton>
+              New account <PlusIcon fill='red' />
             </IconButton>
           </Header>
           <Outlet />
