@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import SideBar from 'components/SideBar';
-import SideBarItem from 'components/SideBar/Item';
+import SideBar from 'navigators/SideBar';
+import SideBarItem from 'navigators/SideBar/Item';
 import { PlusIcon } from 'assets/images';
 
 test('Test props children', () => {

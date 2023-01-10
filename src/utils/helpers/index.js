@@ -15,7 +15,7 @@ const getLocalStorage = (key) => localStorage.getItem(key);
 
 const removeLocalStorage = (key) => localStorage.removeItem(key);
 
-const saveAuthTokenFromLocalStorage = (accessToken) =>
+const saveAuthTokenToLocalStorage = (accessToken) =>
   localStorage.setItem(StorageKey.authAccessToken, accessToken);
 
 const getAuthTokenFromLocalStorage = () =>
@@ -25,7 +25,7 @@ const removeAuthTokenFromLocalStorage = () =>
   localStorage.removeItem(StorageKey.authAccessToken);
 
 const capitalizeFirstLetter = (text) => {
-  return text && text[0].toUpperCase() + text.slice(1).toLowerCase();
+  return text && `${text[0].toUpperCase()}${text.slice(1).toLowerCase()}`;
 };
 
 const isNumber = (number) => {
@@ -79,5 +79,5 @@ export {
   queryDocs,
   removeAuthTokenFromLocalStorage,
   removeLocalStorage,
-  saveAuthTokenFromLocalStorage,
+  saveAuthTokenToLocalStorage,
 };

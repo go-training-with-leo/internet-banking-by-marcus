@@ -1,15 +1,14 @@
 import React, { memo } from 'react';
 
 import IconButton from 'components/Button/Icon';
-import Header from 'components/Header/Layout';
-import SideBar from 'components/SideBar';
-import routes from 'routes';
+import Header from 'navigators/Header';
+import SideBar from 'navigators/SideBar';
 
 import RoleRoute from 'core/RoleRoute';
+import routes from 'navigators/routes';
 import { PlusIcon } from 'assets/images';
 import { Route, Routes } from 'react-router-dom';
 import { signOut } from 'global/redux/auth/request';
-// import { getLocalStorage } from 'utils/helpers';
 
 import './style.scss';
 
