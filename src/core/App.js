@@ -12,7 +12,9 @@ import { setUser } from 'global/redux/auth/slice';
 
 import 'global/libs';
 import 'services/i18n';
+import routes from 'navigators/routes';
 import PrivateRoute from './PrivateRoute';
+import RoleRoute from './RoleRoute';
 
 const ForgotPassword = lazy(() => import('views/pages/ForgotPassword'));
 const Login = lazy(() => import('views/pages/Login'));
@@ -36,13 +38,22 @@ function AppRoute() {
           <Route path='/login' element={<Login />} />
           <Route path='/forgot' element={<ForgotPassword />} />
           <Route
-            path='/*'
             element={
               <PrivateRoute>
                 <DefaultLayout />
               </PrivateRoute>
             }
-          />
+          >
+            {routes.map((route) => (
+              <Route
+                key={route.id}
+                path={route.path}
+                element={
+                  <RoleRoute roles={route.roles}>{route.element}</RoleRoute>
+                }
+              />
+            ))}
+          </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Suspense>
