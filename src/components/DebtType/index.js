@@ -4,22 +4,21 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const DebtType = ({ debt, loan }) => {
+const labels = {
+  loan: 'LOAN',
+  debt: 'DEBT',
+};
+
+const DebtType = ({ type }) => {
   return (
-    <div className={classNames('debt-type', { debt: debt, loan: loan })}>
-      {loan ? 'LOAN' : debt && 'DEBT'}
+    <div className={classNames('debt-type', { [type]: type })}>
+      {labels[type]}
     </div>
   );
 };
 
-DebtType.defaultProps = {
-  debt: false,
-  loan: false,
-};
-
 DebtType.propTypes = {
-  debt: PropTypes.bool,
-  loan: PropTypes.bool,
+  type: PropTypes.oneOf(['loan', 'debt']).isRequired,
 };
 
 export default DebtType;

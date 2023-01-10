@@ -1,36 +1,36 @@
 import React, { memo } from 'react';
-import { useSelector } from 'react-redux';
 
-import AuthLayout from 'layouts/AuthLayout';
-import Header from 'components/Header/Layout';
-import SideBar from 'components/SideBar';
+import IconButton from 'components/Button/Icon';
+import Header from 'navigators/Header';
+import SideBar from 'navigators/SideBar';
+
+import { PlusIcon } from 'assets/images';
+import { Outlet } from 'react-router-dom';
+import { signOut } from 'global/redux/auth/request';
 
 import './style.scss';
 
-const Default = ({ children }) => {
-  const { currentUser } = useSelector((state) => state.auth);
+const DefaultLayout = () => {
   return (
     <div>
-      {currentUser ? (
-        <div className='page-layout'>
-          <SideBar />
-          <div className='page-layout__right'>
-            <Header title='Contacts' notifyFree>
-              <button>Button</button>
-            </Header>
-            {children}
-          </div>
+      <div className='page-layout'>
+        <SideBar />
+        <div className='page-layout__right'>
+          <Header title='Contacts' notifyFree>
+            <IconButton onClick={() => signOut()}>
+              Button <PlusIcon fill='red' />
+            </IconButton>
+          </Header>
+          <Outlet />
         </div>
-      ) : (
-        <AuthLayout>{children}</AuthLayout>
-      )}
+      </div>
     </div>
   );
 };
 
-Default.whyDidYouRender = {
+DefaultLayout.whyDidYouRender = {
   logOnDifferentValues: true,
   customName: 'Menu',
 };
 
-export default memo(Default);
+export default memo(DefaultLayout);

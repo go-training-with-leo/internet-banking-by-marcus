@@ -1,0 +1,17 @@
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+
+.form {
+  @include setFlex(column, null, center, 30px, null);
+  
+  .description {
+    align-self: flex-start;
+    line-height: 24px;
+    font-size: 14px;
+  }
+
+  .submit {
+    width: 100%;
+    margin: 10px 0;
+  }
+}

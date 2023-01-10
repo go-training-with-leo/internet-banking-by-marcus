@@ -7,6 +7,7 @@ const auth = createSlice({
 
   initialState: {
     currentUser: {},
+    formData: { step: 1 },
     isLoading: false,
     isFetched: false,
   },
@@ -14,6 +15,9 @@ const auth = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.currentUser = action.payload;
+    },
+    resetFormData: (state) => {
+      state.formData = { step: 1 };
     },
   },
 
@@ -34,8 +38,14 @@ const auth = createSlice({
     [sendCode.rejected]: (state) => {
       state.isLoading = false;
     },
-    [sendCode.fulfilled]: (state) => {
+    [sendCode.fulfilled]: (state, action) => {
+      const { email, message } = action.payload;
       state.isLoading = false;
+      state.formData = {
+        ...state.formData,
+        email,
+        step: message === 'Success' ? 2 : state.formData.step,
+      };
     },
     [verifyCode.pending]: (state) => {
       state.isLoading = true;
@@ -43,8 +53,16 @@ const auth = createSlice({
     [verifyCode.rejected]: (state) => {
       state.isLoading = false;
     },
-    [verifyCode.fulfilled]: (state) => {
+    [verifyCode.fulfilled]: (state, action) => {
+      const { message } = action.payload;
       state.isLoading = false;
+      state.formData = {
+        ...state.formData,
+        step:
+          message === 'You have been successfully registered'
+            ? 3
+            : state.formData.step,
+      };
     },
     [resetPasswordAccount.pending]: (state) => {
       state.isLoading = true;
@@ -52,12 +70,17 @@ const auth = createSlice({
     [resetPasswordAccount.rejected]: (state) => {
       state.isLoading = false;
     },
-    [resetPasswordAccount.fulfilled]: (state) => {
+    [resetPasswordAccount.fulfilled]: (state, action) => {
+      const { status } = action.payload;
       state.isLoading = false;
+      state.formData = {
+        ...state.formData,
+        step: status ? 4 : state.formData.step,
+      };
     },
   },
 });
 
-export const { setUser } = auth.actions;
+export const { setUser, resetFormData } = auth.actions;
 
 export default auth.reducer;

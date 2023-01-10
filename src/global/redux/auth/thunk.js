@@ -2,75 +2,67 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { resetPassword, sendOtp, signIn, verifyOtp } from './request';
 
-const logIn = createAsyncThunk('auth/signin', async (data) => {
-  const { email, password } = data;
+const logIn = createAsyncThunk('auth/signIn', async (data) => {
   try {
-    const res = await signIn(email, password);
+    const { email, password } = data;
+    const { user, role } = await signIn(email, password);
     return {
       status: true,
-      data: res.data,
+      data: user,
+      role,
     };
-  } catch (error) {
+  } catch ({ message }) {
     return {
       status: false,
+      message,
     };
   }
 });
 
-const sendCode = createAsyncThunk('auth/send-otp', async (data) => {
+const sendCode = createAsyncThunk('auth/sendOtp', async (data) => {
   try {
-    const res = await sendOtp(data.email);
-    if (res.data.message === 'Success') {
-      data.setStep((prev) => prev + 1);
-    } else {
-      data.setError('email', {
-        type: 'custom',
-        message: 'Email not found',
-      });
-    }
+    const { email } = data;
+
+    const message = await sendOtp(email);
     return {
       status: true,
-      data: res.data,
+      message,
+      email,
     };
-  } catch (error) {
+  } catch ({ message }) {
     return {
       status: false,
+      message,
     };
   }
 });
 
-const verifyCode = createAsyncThunk('auth/verify-otp', async (data) => {
+const verifyCode = createAsyncThunk('auth/verifyOtp', async (data) => {
   try {
-    const { email, otp, setStep, setError } = data;
+    const { email, otp } = data;
 
-    const res = await verifyOtp(email, otp);
-    if (res.data.message === 'You have been successfully registered') {
-      setStep((prev) => prev + 1);
-    } else {
-      setError('otp', { type: 'custom', message: 'OTP Incorrect' });
-    }
+    const message = await verifyOtp(email, otp);
     return {
       status: true,
-      data: res.data,
+      message,
     };
-  } catch (error) {
+  } catch ({ message }) {
     return {
       status: false,
+      message,
     };
   }
 });
 
 const resetPasswordAccount = createAsyncThunk(
-  'auth/reset-password',
+  'auth/resetPassword',
   async (data) => {
     try {
-      const { email, new_password, setStep } = data;
+      const { email, newPassword } = data;
 
-      const res = await resetPassword(email, new_password);
-      setStep((prev) => prev + 1);
+      await resetPassword(email, newPassword);
       return {
         status: true,
-        data: res.data,
       };
     } catch (error) {
       return {

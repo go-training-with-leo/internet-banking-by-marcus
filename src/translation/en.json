@@ -1,0 +1,42 @@
+{
+  "Components": {
+    "DebtType": {
+      "loan": "LOAN",
+      "debt": "DEBT"
+    }
+  },
+  "Pages": {
+    "Login": {
+      "loginTitle": "Sign in",
+      "accountLabel": "Your account",
+      "accountPlaceHolder": "Enter your email",
+      "passwordLabel": "Your password",
+      "passwordPlaceHolder": "Enter your password",
+      "forgotPassword": "Forgot password?",
+      "login": "Log in"
+    },
+    "ForgotPassword": {
+      "createNewPassword": "Create new password",
+      "forgotPassword": "Forgot password",
+      "rememberMyPassword": "I remembered my password?",
+      "resetPassword": "Reset password",
+      "enterEmailWithAccount": "Enter the email address associated with your account",
+      "enterEmail": "Enter your email address",
+      "yourAccount": "Your account",
+      "verify": "Verify",
+      "notifyOTPWasSent": "A OTP code has been sent to your email",
+      "pleaseCheckOTP": " Please check your inbox and follow the instructions",
+      "fillOTP": "Enter the OTP code",
+      "descriptNewPassword": "Enter the new password for your account",
+      "newPasswordLabel": "New password",
+      "confirmNewPasswordLabel": "Confirm password",
+      "enterNewPassword": "Enter new password",
+      "confirmNewPassword": "Re-enter new password",
+      "confirmPasswordChange": "Confirm password changes",
+      "success": "SUCCESS",
+      "descriptSuccess": "You have successfully resetted your password.",
+      "introduceSuccess": "You can use your new sign-in infomation to log in",
+      "confirm": "OK"
+    }
+  }
+}

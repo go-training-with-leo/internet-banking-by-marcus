@@ -1,16 +1,31 @@
-import { StorageKey } from 'utils/constants';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore';
+import { db } from 'services/firebase';
+import { mainPagesRole, StorageKey } from 'utils/constants';
+
+const modifyLocalStorage = (key, value) => localStorage.setItem(key, value);
+
+const getLocalStorage = (key) => localStorage.getItem(key);
+
+const removeLocalStorage = (key) => localStorage.removeItem(key);
 
 const saveAuthTokenToLocalStorage = (accessToken) =>
   localStorage.setItem(StorageKey.authAccessToken, accessToken);
 
-const getAuthTokenToLocalStorage = () =>
+const getAuthTokenFromLocalStorage = () =>
   localStorage.get(StorageKey.authAccessToken);
 
-const removeAuthTokenToLocalStorage = () =>
+const removeAuthTokenFromLocalStorage = () =>
   localStorage.removeItem(StorageKey.authAccessToken);
 
-const capitalFirstLetter = (text) => {
-  return text && text[0].toUpperCase() + text.slice(1).toLowerCase();
+const capitalizeFirstLetter = (text) => {
+  return text && `${text[0].toUpperCase()}${text.slice(1).toLowerCase()}`;
 };
 
 const isNumber = (number) => {
@@ -27,11 +42,42 @@ const parseMoneyVnd = (value) => {
     : 'Invalid type';
 };
 
+const getDocFireStore = async ({ path, id }) => {
+  const docRef = doc(db, path, id);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data();
+  }
+  return null;
+};
+
+const queryDocs = async ({ path, field, value }) => {
+  const queryFireStore = query(collection(db, path), where(field, '==', value));
+
+  const querySnapshot = await getDocs(queryFireStore);
+
+  const respone = querySnapshot.docs.map((document) => {
+    return document.data();
+  });
+  return respone.length === 1 ? respone[0] : respone;
+};
+
+const getMainPage = (role) => {
+  return mainPagesRole[role] || null;
+};
+
 export {
-  capitalFirstLetter,
-  getAuthTokenToLocalStorage,
+  capitalizeFirstLetter,
+  getAuthTokenFromLocalStorage,
+  getDocFireStore,
+  getLocalStorage,
+  getMainPage,
   isNumber,
+  modifyLocalStorage,
   parseMoneyVnd,
-  removeAuthTokenToLocalStorage,
+  queryDocs,
+  removeAuthTokenFromLocalStorage,
+  removeLocalStorage,
   saveAuthTokenToLocalStorage,
 };

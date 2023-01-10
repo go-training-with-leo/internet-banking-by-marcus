@@ -1,0 +1,42 @@
+{
+  "Components": {
+    "DebtType": {
+      "loan": "VAY",
+      "debt": "NỢ" 
+    }
+  },
+  "Pages": {
+    "Login": {
+      "loginTitle": "Đăng nhập",
+      "accountLabel": "Tài khoản",
+      "accountPlaceHolder": "Email",
+      "passwordLabel": "Mật khẩu",
+      "passwordPlaceHolder": "Nhập mật khẩu",
+      "forgotPassword": "Quên mật khẩu?",
+      "login": "Đăng nhập"
+    },
+    "ForgotPassword": {
+      "createNewPassword": "Tạo mật khẩu mới",
+      "forgotPassword": "Quên mật khẩu",
+      "rememberMyPassword": "Tôi nhớ mật khẩu của tôi?",
+      "resetPassword": "Lấy lại mật khẩu",
+      "enterEmailWithAccount": "Nhập địa chỉ Email liên kết với tài khoản",
+      "enterEmail": "Nhập địa chỉ email",
+      "yourAccount": "Tài khoản",
+      "verify": "Xác thực",
+      "notifyOTPWasSent": "Mã OTP đã được gửi đến email của bạn",
+      "pleaseCheckOTP": "Vui lòng kiểm tra email và làm theo hướng dẫn",
+      "fillOTP": "Nhập mã OTP",
+      "descriptNewPassword": "Nhập mật khẩu mới cho tài khoản của bạn",
+      "newPasswordLabel": "Mật khẩu mới",
+      "confirmNewPasswordLabel": "Xác nhận mật khẩu",
+      "enterNewPassword": "Nhập mật khẩu mới",
+      "confirmNewPassword": "Nhập lại mật khẩu mới",
+      "confirmPasswordChange": "Xác nhận thay đổi",
+      "success": "THÀNH CÔNG",
+      "descriptSuccess": "Bạn đã lấy lại mật khẩu thành công.",
+      "introduceSuccess": "Bạn có thể dùng mật khẩu này để đăng nhập",
+      "confirm": "Đăng nhập"
+    }
+  }
+}

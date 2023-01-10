@@ -9,4 +9,10 @@ const ToastType = {
   SUCCESS: 'success',
 };
 
-export { StorageKey, ToastType };
+const mainPagesRole = {
+  ADMIN: '/employees',
+  EMPLOYEE: '/accounts',
+  CUSTOMER: '/cards',
+};
+
+export { StorageKey, ToastType, mainPagesRole };
