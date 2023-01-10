@@ -20,7 +20,7 @@ const routes = [
   },
   {
     id: 'accountsCustomer',
-    path: '/customer/accounts',
+    path: '/account',
     element: <CustomerAccount />,
     roles: ['CUSTOMER'],
   },
@@ -50,12 +50,12 @@ const routes = [
   },
   {
     id: 'accountsEmployee',
-    path: '/employee/accounts',
+    path: '/accounts',
     element: <EmployeeAccount />,
     roles: ['EMPLOYEE'],
   },
   {
-    id: 'history-employee',
+    id: 'historyEmployee',
     path: '/employee/history',
     element: <EmployeeHistory />,
     roles: ['EMPLOYEE'],
@@ -68,7 +68,7 @@ const routes = [
   },
   {
     id: 'transactions',
-    path: '/transaction',
+    path: '/transactions',
     element: <Transactions />,
     roles: ['ADMIN'],
   },
