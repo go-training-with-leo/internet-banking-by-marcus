@@ -19,8 +19,8 @@ const routes = [
     roles: ['CUSTOMER'],
   },
   {
-    id: 'account-customer',
-    path: '/customer-account',
+    id: 'accounts-customer',
+    path: '/customer-accounts',
     element: <CustomerAccount />,
     roles: ['CUSTOMER'],
   },
@@ -49,8 +49,8 @@ const routes = [
     roles: ['CUSTOMER'],
   },
   {
-    id: 'account-employee',
-    path: '/employee-account',
+    id: 'accounts-employee',
+    path: '/employee-accounts',
     element: <EmployeeAccount />,
     roles: ['EMPLOYEE'],
   },

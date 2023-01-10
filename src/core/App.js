@@ -10,10 +10,9 @@ import { auth } from 'services/firebase';
 import { store, persistor } from 'core/store';
 import { setUser } from 'global/redux/auth/slice';
 
-import PrivateRoute from './PrivateRoute';
-
 import 'global/libs';
 import 'services/i18n';
+import PrivateRoute from './PrivateRoute';
 
 const ForgotPassword = lazy(() => import('views/pages/ForgotPassword'));
 const Login = lazy(() => import('views/pages/Login'));
@@ -37,7 +36,7 @@ function AppRoute() {
           <Route path='/login' element={<Login />} />
           <Route path='/forgot' element={<ForgotPassword />} />
           <Route
-            path='/dashboard/*'
+            path='/*'
             element={
               <PrivateRoute>
                 <DefaultLayout />

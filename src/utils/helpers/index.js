@@ -1,6 +1,21 @@
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore';
+import { db } from 'services/firebase';
 import { StorageKey } from 'utils/constants';
 
-const saveAuthTokenToLocalStorage = (accessToken) =>
+const modifyLocalStorage = (key, value) => localStorage.setItem(key, value);
+
+const getLocalStorage = (key) => localStorage.getItem(key);
+
+const removeLocalStorage = (key) => localStorage.removeItem(key);
+
+const saveAuthTokenFromLocalStorage = (accessToken) =>
   localStorage.setItem(StorageKey.authAccessToken, accessToken);
 
 const getAuthTokenFromLocalStorage = () =>
@@ -27,11 +42,37 @@ const parseMoneyVnd = (value) => {
     : 'Invalid type';
 };
 
+const getDocFireStore = async ({ path, id }) => {
+  const docRef = doc(db, path, id);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data();
+  }
+  return null;
+};
+
+const queryDocs = async ({ path, field, value }) => {
+  const queryFireStore = query(collection(db, path), where(field, '==', value));
+
+  const querySnapshot = await getDocs(queryFireStore);
+
+  const respone = querySnapshot.docs.map((document) => {
+    return document.data();
+  });
+  return respone.length === 1 ? respone[0] : respone;
+};
+
 export {
   capitalizeFirstLetter,
   getAuthTokenFromLocalStorage,
+  getDocFireStore,
+  getLocalStorage,
   isNumber,
+  modifyLocalStorage,
   parseMoneyVnd,
+  queryDocs,
   removeAuthTokenFromLocalStorage,
-  saveAuthTokenToLocalStorage,
+  removeLocalStorage,
+  saveAuthTokenFromLocalStorage,
 };

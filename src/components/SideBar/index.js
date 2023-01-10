@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import { EightLogo } from 'assets/images';
@@ -27,4 +27,4 @@ SideBar.propTypes = {
   bottomItem: PropTypes.node,
 };
 
-export default SideBar;
+export default memo(SideBar);

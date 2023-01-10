@@ -4,14 +4,32 @@ import {
   signInWithEmailAndPassword,
   signOut as signOutUser,
 } from 'firebase/auth';
+import {
+  modifyLocalStorage,
+  queryDocs,
+  removeLocalStorage,
+} from 'utils/helpers';
 
 const signIn = async (email, password) => {
   const { user } = await signInWithEmailAndPassword(auth, email, password);
-  return user;
+  const { role } = await queryDocs({
+    path: 'accounts',
+    field: 'email',
+    value: email,
+  });
+  modifyLocalStorage('isLogin', 'true');
+  modifyLocalStorage('role', role);
+
+  const accountData = {
+    user,
+  };
+  return accountData;
 };
 
 const signOut = () => {
   signOutUser(auth);
+  removeLocalStorage('role');
+  removeLocalStorage('isLogin');
 };
 
 const sendOtp = async (email) => {

@@ -5,10 +5,11 @@ import { resetPassword, sendOtp, signIn, verifyOtp } from './request';
 const logIn = createAsyncThunk('auth/signIn', async (data) => {
   try {
     const { email, password } = data;
-    const userInfo = await signIn(email, password);
+    const { user, role } = await signIn(email, password);
     return {
       status: true,
-      data: userInfo,
+      data: user,
+      role,
     };
   } catch ({ message }) {
     return {

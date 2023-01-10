@@ -45,9 +45,9 @@ const Login = () => {
 
   useEffect(() => {
     if (currentUser) {
-      navigate(location?.state?.from || '/dashboard/cards');
+      navigate(location?.state?.from || '/');
     }
-  }, [currentUser, navigate]);
+  }, [currentUser]);
 
   return (
     <AuthLayout>

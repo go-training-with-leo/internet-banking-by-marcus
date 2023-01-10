@@ -32,7 +32,7 @@ const ForgotPassword = () => {
 
   useEffect(() => {
     if (currentUser) {
-      navigate(location?.state?.from || '/dashboard/cards');
+      navigate(location?.state?.from || '/');
     }
   }, [currentUser]);
 
