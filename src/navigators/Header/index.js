@@ -30,7 +30,7 @@ Header.defaultProps = {
 };
 
 Header.propsTypes = {
-  type: PropTypes.oneOf(['', 'free', 'busy', 'remove']),
+  type: PropTypes.oneOf(['free', 'busy', 'remove']),
   title: PropTypes.string,
   children: PropTypes.node,
 };

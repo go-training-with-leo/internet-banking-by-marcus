@@ -1,12 +1,9 @@
-import React, { memo } from 'react';
+import React, { cloneElement, isValidElement, memo } from 'react';
 
-import IconButton from 'components/Button/Icon';
 import Header from 'navigators/Header';
 import SideBar from 'navigators/SideBar';
 
 import SideBarItem from 'navigators/SideBar/Item';
-import routes from 'navigators/routes';
-import { PlusIcon } from 'assets/images';
 import { getLocalStorage } from 'utils/helpers';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import {
@@ -15,19 +12,26 @@ import {
 } from './sideBarItems';
 
 import './style.scss';
+import headerItems from './headerItems';
 
 const DefaultLayout = () => {
-  const userRole = getLocalStorage('role');
+  const userRole = getLocalStorage('role') || 'NO_ROLE';
 
   const { pathname } = useLocation();
+
   const sideBarItems = {
     items: sideBarByRole[userRole],
     bottomItem: bottomSideBarItem[userRole],
   };
 
-  const { title: titleHeader } = routes.find(
-    (route) => route.path === pathname
-  );
+  console.warn(userRole);
+
+  const { titleHeader, button: btnHeader } =
+    headerItems[userRole].find(({ path }) => path === pathname) || {};
+
+  const handleClick = () => {
+    console.warn('click');
+  };
 
   return (
     <div>
@@ -48,7 +52,7 @@ const DefaultLayout = () => {
             </Link>
           }
         >
-          {sideBarItems.items.map(({ id, icon, label, navigateTo }) => {
+          {sideBarItems?.items?.map(({ id, icon, label, navigateTo }) => {
             return (
               <Link reloadDocument={false} to={navigateTo} key={id}>
                 <SideBarItem isActive={pathname === navigateTo}>
@@ -61,9 +65,8 @@ const DefaultLayout = () => {
         </SideBar>
         <div className='page-layout__right'>
           <Header title={titleHeader}>
-            <IconButton>
-              New account <PlusIcon fill='red' />
-            </IconButton>
+            {isValidElement(btnHeader) &&
+              cloneElement(btnHeader, { onClick: handleClick })}
           </Header>
           <Outlet />
         </div>
@@ -74,7 +77,7 @@ const DefaultLayout = () => {
 
 DefaultLayout.whyDidYouRender = {
   logOnDifferentValues: true,
-  customName: 'Menu',
+  customName: 'Layout',
 };
 
 export default memo(DefaultLayout);
