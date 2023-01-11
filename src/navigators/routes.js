@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 
-const CustomerAccount = lazy(() => import('views/Accounts/Customer'));
-const EmployeeAccount = lazy(() => import('views/Accounts/Employee'));
+const Account = lazy(() => import('views/Account'));
+const Accounts = lazy(() => import('views/Accounts'));
 const Cards = lazy(() => import('views/Cards'));
 const Contacts = lazy(() => import('views/Contacts'));
 const Debts = lazy(() => import('views/Debts'));
@@ -21,7 +21,7 @@ const routes = [
   {
     id: 'accountsCustomer',
     path: '/account',
-    element: <CustomerAccount />,
+    element: <Account />,
     roles: ['CUSTOMER'],
   },
   {
@@ -51,7 +51,7 @@ const routes = [
   {
     id: 'accountsEmployee',
     path: '/accounts',
-    element: <EmployeeAccount />,
+    element: <Accounts />,
     roles: ['EMPLOYEE'],
   },
   {
