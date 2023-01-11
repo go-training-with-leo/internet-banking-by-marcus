@@ -1,108 +1,16 @@
-import { DeleteIcon, PlusIcon, Search } from 'assets/images';
-import IconButton from 'components/Button/Icon';
-import Input from 'components/Input';
-import Table from 'components/Table';
-import HeaderTable from 'components/Table/Header';
-import HeaderCell from 'components/Table/HeaderCell';
-import RowCell from 'components/Table/RowCell';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import './style.scss';
+import Input from 'components/Input';
+import Table from 'components/Table';
+import IconButton from 'components/Button/Icon';
+import HeaderTable from 'components/Table/Header';
+import HeaderCell from 'components/Table/HeaderCell';
+import RowCell from 'components/Table/RowCell';
+import { CashAdd, Info, Search } from 'assets/images';
+import tempData from './tempData';
 
-const dataTable = [
-  {
-    id: 'CM1',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-  {
-    id: 'CM2',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-  {
-    id: 'CM3',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-  {
-    id: 'CM4',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-  {
-    id: 'CM5',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-  {
-    id: 'CM6',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-  {
-    id: 'CM7',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-  {
-    id: 'CM8',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-  {
-    id: 'CM9',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-  {
-    id: 'CM10',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-  {
-    id: 'CM11',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-  {
-    id: 'CM12',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-  {
-    id: 'CM13',
-    account: 'Wasif',
-    phone: 21,
-    email: 'wasif@email.com',
-    actions: 'unpaid',
-  },
-];
+import './style.scss';
 
 const Employees = () => {
   const { register, getValues } = useForm();
@@ -139,14 +47,14 @@ const Employees = () => {
         <Table
           widths={[25, 25, 25, 25]}
           headerTable={headerTable}
-          dataTable={dataTable}
+          dataTable={tempData}
         >
           <RowCell title='account' />
           <RowCell title='phone' />
           <RowCell title='age' />
           <RowCell title='actions'>
-            <PlusIcon width={20} height={20} />
-            <DeleteIcon width={20} height={20} />
+            <CashAdd width={20} height={20} fill='red' />
+            <Info width={20} height={20} fill='red' />
           </RowCell>
         </Table>
       </div>

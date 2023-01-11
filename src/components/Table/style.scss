@@ -39,6 +39,10 @@
     }
   }
   svg {
+    transition: all 0.2s linear;
     cursor: pointer;
+    &:hover {
+      transform: scale(1.3);
+    }
   }
 }
