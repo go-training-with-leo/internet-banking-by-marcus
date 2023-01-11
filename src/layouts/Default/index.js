@@ -24,8 +24,6 @@ const DefaultLayout = () => {
     bottomItem: bottomSideBarItem[userRole],
   };
 
-  console.warn(userRole);
-
   const { titleHeader, button: btnHeader } =
     headerItems[userRole].find(({ path }) => path === pathname) || {};
 
