@@ -61,6 +61,7 @@ const sideBarItems = {
       label: 'Transfer',
       icon: <Transfer width={20} height={20} />,
       navigateTo: '/transfer',
+      isStatic: true,
     },
     {
       id: 'debts',

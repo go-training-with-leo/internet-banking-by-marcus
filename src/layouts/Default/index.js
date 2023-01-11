@@ -52,19 +52,24 @@ const DefaultLayout = () => {
             </Link>
           }
         >
-          {sideBarItems?.items?.map(({ id, icon, label, navigateTo }) => {
-            return (
-              <Link reloadDocument={false} to={navigateTo} key={id}>
-                <SideBarItem isActive={pathname === navigateTo}>
-                  {icon}
-                  {label}
-                </SideBarItem>
-              </Link>
-            );
-          })}
+          {sideBarItems?.items?.map(
+            ({ id, icon, label, navigateTo, isStatic }) => {
+              return (
+                <Link reloadDocument={false} to={navigateTo} key={id}>
+                  <SideBarItem
+                    isActive={pathname === navigateTo}
+                    isStatic={isStatic}
+                  >
+                    {icon}
+                    {label}
+                  </SideBarItem>
+                </Link>
+              );
+            }
+          )}
         </SideBar>
         <div className='page-layout__right'>
-          <Header title={titleHeader}>
+          <Header title={titleHeader} type={userRole === 'CUSTOMER' && 'free'}>
             {isValidElement(btnHeader) &&
               cloneElement(btnHeader, { onClick: handleClick })}
           </Header>
