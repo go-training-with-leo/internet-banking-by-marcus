@@ -48,7 +48,6 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.warn(getMainPage(role));
     if (currentUser) {
       navigate(getMainPage(role));
     }

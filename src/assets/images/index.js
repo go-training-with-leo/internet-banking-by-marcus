@@ -22,6 +22,7 @@ import { ReactComponent as MasterCard } from 'assets/images/icons/masterCard.svg
 import { ReactComponent as Next } from 'assets/images/icons/next.svg';
 import { ReactComponent as Back } from 'assets/images/icons/back.svg';
 import { ReactComponent as Ellipse } from 'assets/images/icons/ellipse.svg';
+import { ReactComponent as Search } from 'assets/images/icons/search.svg';
 
 import { ReactComponent as Loading } from 'assets/images/icons/loadingV2.svg';
 import { ReactComponent as Visa } from 'assets/images/icons/visa.svg';
@@ -63,6 +64,7 @@ export {
   NotifyRemove,
   PlusIcon,
   Reverse,
+  Search,
   Transfer,
   User,
   Visa,

@@ -7,9 +7,13 @@
   height: 100%;
   font-family: $font-family;
   border-collapse: collapse;
+  color: $pure-white;
   &-header {
-    border-bottom: $black-dark 1px solid;
-   
+    border-bottom: #000 3px solid;
+    background-color: $black-dark;
+    position: sticky;
+    top: 0;
+    z-index: 2;
     &-cell {
       text-align: left;
       padding: 23px 0;
@@ -26,6 +30,12 @@
       & > .order {
         width: 5px;
       }
+    }
+  }
+  $unit: '%';
+  @for $width from 0 through 100 {
+    .col-#{$width} {
+      width: $width#{$unit};
     }
   }
   svg {

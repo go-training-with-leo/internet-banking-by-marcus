@@ -21,7 +21,9 @@ const DefaultLayout = () => {
               Button <PlusIcon fill='red' />
             </IconButton>
           </Header>
-          <Outlet />
+          <div className='page-layout__right__body'>
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>

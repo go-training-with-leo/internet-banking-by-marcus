@@ -1,0 +1,24 @@
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+
+.employees-view {
+  width: 100%;
+  @include setFlex(column, null, null, 40px, null);
+  .search-bar {
+    width: 50%;
+    @include setFlex(row, null, center, 25px, null);
+    
+    &__input {
+      width: 80%;
+    }
+    &__btn {
+      width: 58px;
+    }
+  }
+
+  .employees-table {
+    width: 100%;
+    height: 50vh;
+    overflow-y: auto;
+  }
+}

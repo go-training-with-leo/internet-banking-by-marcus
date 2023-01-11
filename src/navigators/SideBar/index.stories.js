@@ -1,6 +1,5 @@
 import React from 'react';
 
-import SideBarItem from 'components/SideBar/Item';
 import {
   CreditCard,
   Contact,
@@ -9,6 +8,7 @@ import {
   Clock,
   User,
 } from 'assets/images';
+import SideBarItem from './Item';
 import SideBar from '.';
 
 export default {
