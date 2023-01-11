@@ -12,6 +12,7 @@ import { ReactComponent as User } from 'assets/images/icons/user.svg';
 import { ReactComponent as ArrowDown } from 'assets/images/icons/arrowDown.svg';
 import { ReactComponent as Check } from 'assets/images/icons/check.svg';
 import { ReactComponent as Reverse } from 'assets/images/icons/reverse.svg';
+import { ReactComponent as Filter } from 'assets/images/icons/filter.svg';
 import { ReactComponent as NotifyBusy } from 'assets/images/icons/notificationBusy.svg';
 import { ReactComponent as Info } from 'assets/images/icons/info.svg';
 import { ReactComponent as NotifyFree } from 'assets/images/icons/notificationFree.svg';
@@ -57,6 +58,7 @@ export {
   Ellipse,
   Eye,
   EyeCross,
+  Filter,
   Info,
   Loading,
   Locker,
