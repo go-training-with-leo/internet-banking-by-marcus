@@ -1,8 +1,9 @@
-@import 'assets/scss/mixins.scss';
-@import 'assets/scss/variables.scss';
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
 
 .header {
   @include setWidthHeight(100%, 15vh);
+
   @include setFlex(row, space-between, center, null, null);
 
   color: $pure-white;
@@ -16,5 +17,9 @@
 
   svg {
     cursor: pointer;
+  }
+  
+  .hide {
+    display: none;
   }
 }

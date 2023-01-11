@@ -19,7 +19,7 @@ const Employees = () => {
     <HeaderTable>
       <HeaderCell key='account'>Account</HeaderCell>
       <HeaderCell key='phone'>Phone</HeaderCell>
-      <HeaderCell key='age'>Email</HeaderCell>
+      <HeaderCell key='email'>Email</HeaderCell>
       <HeaderCell key='actions'>Actions</HeaderCell>
     </HeaderTable>
   );
@@ -49,7 +49,7 @@ const Employees = () => {
         >
           <RowCell title='account' />
           <RowCell title='phone' />
-          <RowCell title='age' />
+          <RowCell title='email' />
           <RowCell title='actions'>
             <CashAdd width={20} height={20} fill='red' />
             <Info width={20} height={20} fill='red' />

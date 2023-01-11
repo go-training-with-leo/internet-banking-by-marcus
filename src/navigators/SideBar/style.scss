@@ -6,10 +6,13 @@
   width: fit-content;
   min-width: 223px;
   height: 100vh;
-
-  @include setFlex(column, space-between, null, null, null);
+  display: none;
 
   background-color: $black-medium;
+
+  @include Responsive(SM) {
+    @include setFlex(column, space-between, null, null, null);
+  }
 
   &__top {
     @include setFlex(column, null, null, 44px, null);
