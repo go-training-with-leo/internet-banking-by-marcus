@@ -13,9 +13,7 @@ import tempData from './tempData';
 import './style.scss';
 
 const Employees = () => {
-  const { register, getValues } = useForm();
-
-  console.warn(getValues('email'));
+  const { register } = useForm();
 
   const headerTable = (
     <HeaderTable>
