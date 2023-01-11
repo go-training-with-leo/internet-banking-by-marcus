@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import Input from 'components/Input';
 import Table from 'components/Table';
@@ -13,6 +14,8 @@ import tempData from './tempData';
 import './style.scss';
 
 const EmployeeHistory = () => {
+  const navigate = useNavigate();
+
   const { register } = useForm();
 
   const headerTable = (
@@ -46,6 +49,7 @@ const EmployeeHistory = () => {
           widths={[25, 25, 25, 25]}
           headerTable={headerTable}
           dataTable={tempData}
+          onRowClick={(rowId) => navigate(`/employee/history/${rowId}`)}
         >
           <RowCell title='account' />
           <RowCell title='phone' />
