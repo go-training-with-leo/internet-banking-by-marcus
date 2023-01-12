@@ -4,7 +4,11 @@
 .list-card-item {
   @include setWidthHeight(474px, null);
   @include setFlex(row, null, center, 24px, null);
-
+  
+  @include Responsive(MD) {
+    width: 350px;
+  }
+  cursor: pointer;
   & > .hide {
     visibility: hidden;
   }
@@ -12,7 +16,7 @@
   & > .value {
     font-family: $font-family;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 17px;
     line-height: 27px;
     margin-left: 20px;
     color: $pure-white;
