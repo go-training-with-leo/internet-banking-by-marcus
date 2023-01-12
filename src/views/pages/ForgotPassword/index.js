@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import AuthLayout from 'layouts/Auth';
 import Wrapper from 'components/Wrapper';
-import { getLocalStorage, getMainPage } from 'utils/helpers';
+import { getLocalStorage, getMainPageByRole } from 'utils/helpers';
 import { useNavigate } from 'react-router-dom';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
@@ -33,8 +33,7 @@ const ForgotPassword = () => {
   useEffect(() => {
     if (currentUser) {
       const role = getLocalStorage('role');
-      console.warn(role);
-      navigate(getMainPage(role));
+      navigate(getMainPageByRole(role));
     }
   }, [currentUser, navigate]);
 

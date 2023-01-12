@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect, useRef, useState } from 'react';
 
 import SmallCard from 'components/Card/Small';
 import { Back, Next } from 'assets/images';

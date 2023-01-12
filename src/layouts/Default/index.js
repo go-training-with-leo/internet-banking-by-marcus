@@ -1,25 +1,75 @@
-import React, { memo } from 'react';
+import React, { cloneElement, isValidElement, memo } from 'react';
 
-import IconButton from 'components/Button/Icon';
 import Header from 'navigators/Header';
 import SideBar from 'navigators/SideBar';
 
-import { PlusIcon } from 'assets/images';
-import { Outlet } from 'react-router-dom';
-import { signOut } from 'global/redux/auth/request';
+import SideBarItem from 'navigators/SideBar/Item';
+import { getLocalStorage } from 'utils/helpers';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+import {
+  sideBarItems as sideBarByRole,
+  bottomSideBarItem,
+} from './sideBarItems';
 
 import './style.scss';
+import headerItems from './headerItems';
 
 const DefaultLayout = () => {
+  const userRole = getLocalStorage('role') || 'NO_ROLE';
+
+  const { pathname } = useLocation();
+
+  const sideBarItems = {
+    items: sideBarByRole[userRole],
+    bottomItem: bottomSideBarItem[userRole],
+  };
+
+  const { titleHeader, button: btnHeader } =
+    headerItems[userRole].find(({ path }) => path === pathname) || {};
+
+  const handleClick = () => {
+    console.warn('click');
+  };
+
   return (
     <div>
       <div className='page-layout'>
-        <SideBar />
+        <SideBar
+          bottomItem={
+            <Link
+              reloadDocument={false}
+              to={sideBarItems?.bottomItem?.navigateTo}
+            >
+              <SideBarItem
+                onClick={sideBarItems?.bottomItem?.onClick}
+                isActive={pathname === sideBarItems?.bottomItem?.navigateTo}
+              >
+                {sideBarItems?.bottomItem?.icon}
+                {sideBarItems?.bottomItem?.label}
+              </SideBarItem>
+            </Link>
+          }
+        >
+          {sideBarItems?.items?.map(
+            ({ id, icon, label, navigateTo, isStatic }) => {
+              return (
+                <Link reloadDocument={false} to={navigateTo} key={id}>
+                  <SideBarItem
+                    isActive={pathname === navigateTo}
+                    isStatic={isStatic}
+                  >
+                    {icon}
+                    {label}
+                  </SideBarItem>
+                </Link>
+              );
+            }
+          )}
+        </SideBar>
         <div className='page-layout__right'>
-          <Header title='Contacts' notifyFree>
-            <IconButton onClick={() => signOut()}>
-              Button <PlusIcon fill='red' />
-            </IconButton>
+          <Header title={titleHeader} type={userRole === 'CUSTOMER' && 'free'}>
+            {isValidElement(btnHeader) &&
+              cloneElement(btnHeader, { onClick: handleClick })}
           </Header>
           <Outlet />
         </div>
@@ -30,7 +80,7 @@ const DefaultLayout = () => {
 
 DefaultLayout.whyDidYouRender = {
   logOnDifferentValues: true,
-  customName: 'Menu',
+  customName: 'Layout',
 };
 
 export default memo(DefaultLayout);

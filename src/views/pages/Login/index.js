@@ -17,7 +17,7 @@ import { logIn } from 'global/redux/auth/thunk';
 import {
   capitalizeFirstLetter,
   getLocalStorage,
-  getMainPage,
+  getMainPageByRole,
 } from 'utils/helpers';
 import { signInValidate } from './validation';
 
@@ -48,9 +48,8 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.warn(getMainPage(role));
     if (currentUser) {
-      navigate(getMainPage(role));
+      navigate(getMainPageByRole(role));
     }
   }, [currentUser, navigate, role]);
 

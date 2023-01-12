@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import { NotifyBusy, NotifyRemove, NotifyFree } from 'assets/images';
 
@@ -30,7 +30,7 @@ Header.defaultProps = {
 };
 
 Header.propsTypes = {
-  type: PropTypes.oneOf(['', 'free', 'busy', 'remove']),
+  type: PropTypes.oneOf(['free', 'busy', 'remove']),
   title: PropTypes.string,
   children: PropTypes.node,
 };
