@@ -2,7 +2,7 @@
 @import "assets/scss/variables.scss";
 
 .list-card-item {
-  @include setWidthHeight(474px, null);
+  @include setWidthHeight(fit-content, null);
   @include setFlex(row, null, center, 24px, null);
   
   @include Responsive(MD) {
@@ -14,11 +14,16 @@
   }
 
   & > .value {
+    display: none;
     font-family: $font-family;
     font-weight: 400;
     font-size: 17px;
     line-height: 27px;
     margin-left: 20px;
     color: $pure-white;
+
+    @include Responsive(XS) {
+      display: inline;
+    }
   }
 }
