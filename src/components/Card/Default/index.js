@@ -1,11 +1,10 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
-
-import { EightLogo, MasterCard, Napas, Visa } from 'assets/images';
 import classNames from 'classnames';
-import { parseMoneyVnd } from 'utils/helpers';
+
 import Loader from 'components/Loader';
+import { EightLogo, MasterCard, Napas, Visa } from 'assets/images';
+import { parseMoneyVnd } from 'utils/helpers';
 
 import './style.scss';
 
