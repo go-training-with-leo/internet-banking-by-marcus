@@ -28,10 +28,9 @@ const signIn = async (email, password) => {
 const signOut = () => {
   signOutUser(auth);
   removeLocalStorage('role');
-  removeLocalStorage('isLogin');
 };
 
-const sendOtp = async (email) => {
+const sendOTP = async (email) => {
   const {
     data: { message },
   } = await api.post('/get', {
@@ -52,4 +51,4 @@ const resetPassword = async (email, password) => {
   return res;
 };
 
-export { resetPassword, sendOtp, signIn, signOut, verifyOtp };
+export { resetPassword, sendOTP, signIn, signOut, verifyOtp };

@@ -13,6 +13,10 @@
 
   &-left {
     @include setFlex(row, null, center, 60px, null);
+    
+    span {
+      min-width: 105px;
+    }
   }
 
   svg {

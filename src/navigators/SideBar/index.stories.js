@@ -18,28 +18,28 @@ export default {
 
 const listItem = [
   {
-    id: 'logo-1',
+    id: 'cards',
     label: 'Cards',
     icon: <CreditCard width={20} height={20} />,
     isActive: true,
   },
   {
-    id: 'logo-2',
+    id: 'contacts',
     label: 'Contacts',
     icon: <Contact width={20} height={20} />,
   },
   {
-    id: 'logo-3',
+    id: 'transfer',
     label: 'Transfer',
     icon: <Transfer width={20} height={20} />,
   },
   {
-    id: 'logo-4',
+    id: 'debt',
     label: 'Debt',
     icon: <Cash width={20} height={20} />,
   },
   {
-    id: 'logo-5',
+    id: 'history',
     label: 'History',
     icon: <Clock width={20} height={20} />,
   },
