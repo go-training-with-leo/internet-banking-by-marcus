@@ -3,6 +3,7 @@ import React from 'react';
 import Table from 'components/Table';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
+import Modal from 'components/Modal';
 import RowCell from 'components/Table/RowCell';
 import { DeleteIcon, Edit } from 'assets/images';
 import tempData from './tempData';
@@ -46,6 +47,9 @@ const Contacts = () => {
           </RowCell>
         </Table>
       </div>
+      <Modal cancel title='Edit contact' clickOutSide>
+        <div>fs</div>
+      </Modal>
     </div>
   );
 };
