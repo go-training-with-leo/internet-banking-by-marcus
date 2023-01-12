@@ -15,6 +15,7 @@ import DeleteModal from './DeleteModal';
 const Contacts = () => {
   const [isShownEdit, toggleEdit] = useToggle();
   const [isShownDelete, toggleDelete] = useToggle();
+
   const headerTable = (
     <HeaderTable>
       <HeaderCell key='name'>Name</HeaderCell>
