@@ -1,9 +1,10 @@
-import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import React from 'react';
+
+import { Cancel, Check, Clock, Reverse } from 'assets/images';
 
 import './style.scss';
-import { Cancel, Check, Clock, Reverse } from 'assets/images';
 
 const Status = ({ failed, success, refund, paid, unpaid, canceled }) => {
   return (

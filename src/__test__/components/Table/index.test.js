@@ -57,14 +57,14 @@ describe('Test Table', () => {
   it('Test Props', () => {
     const headerTable = (
       <HeaderTable>
-        <HeaderCell key='id'>Id</HeaderCell>
-        <HeaderCell key='name'>Name</HeaderCell>
-        <HeaderCell key='age'>Age</HeaderCell>
-        <HeaderCell key='email'>
+        <HeaderCell>Id</HeaderCell>
+        <HeaderCell>Name</HeaderCell>
+        <HeaderCell>Age</HeaderCell>
+        <HeaderCell>
           Email <PlusIcon />
         </HeaderCell>
-        <HeaderCell key='status'>Status</HeaderCell>
-        <HeaderCell key='actions'>Actions</HeaderCell>
+        <HeaderCell>Status</HeaderCell>
+        <HeaderCell>Actions</HeaderCell>
       </HeaderTable>
     );
     const tree = render(

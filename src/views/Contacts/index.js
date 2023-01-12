@@ -18,10 +18,10 @@ const Contacts = () => {
 
   const headerTable = (
     <HeaderTable>
-      <HeaderCell key='name'>Name</HeaderCell>
-      <HeaderCell key='cardNumber'>Card number</HeaderCell>
-      <HeaderCell key='bank'>Bank</HeaderCell>
-      <HeaderCell key='actions'>Actions</HeaderCell>
+      <HeaderCell>Name</HeaderCell>
+      <HeaderCell>Card number</HeaderCell>
+      <HeaderCell>Bank</HeaderCell>
+      <HeaderCell>Actions</HeaderCell>
     </HeaderTable>
   );
 

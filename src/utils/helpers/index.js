@@ -63,7 +63,7 @@ const queryDocs = async ({ path, field, value }) => {
   return respone.length === 1 ? respone[0] : respone;
 };
 
-const getMainPage = (role) => {
+const getMainPageByRole = (role) => {
   return mainPagesRole[role] || null;
 };
 
@@ -72,7 +72,7 @@ export {
   getAuthTokenFromLocalStorage,
   getDocFireStore,
   getLocalStorage,
-  getMainPage,
+  getMainPageByRole,
   isNumber,
   modifyLocalStorage,
   parseMoneyVnd,

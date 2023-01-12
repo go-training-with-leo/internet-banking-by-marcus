@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { resetPassword, sendOtp, signIn, verifyOtp } from './request';
+import { resetPassword, sendOTP, signIn, verifyOtp } from './request';
 
 const logIn = createAsyncThunk('auth/signIn', async (data) => {
   try {
@@ -19,11 +19,11 @@ const logIn = createAsyncThunk('auth/signIn', async (data) => {
   }
 });
 
-const sendCode = createAsyncThunk('auth/sendOtp', async (data) => {
+const sendCode = createAsyncThunk('auth/sendOTP', async (data) => {
   try {
     const { email } = data;
 
-    const message = await sendOtp(email);
+    const message = await sendOTP(email);
     return {
       status: true,
       message,

@@ -17,10 +17,10 @@ const Employees = () => {
 
   const headerTable = (
     <HeaderTable>
-      <HeaderCell key='account'>Account</HeaderCell>
-      <HeaderCell key='phone'>Phone</HeaderCell>
-      <HeaderCell key='email'>Email</HeaderCell>
-      <HeaderCell key='actions'>Actions</HeaderCell>
+      <HeaderCell>Account</HeaderCell>
+      <HeaderCell>Phone</HeaderCell>
+      <HeaderCell>Email</HeaderCell>
+      <HeaderCell>Actions</HeaderCell>
     </HeaderTable>
   );
 
@@ -43,12 +43,12 @@ const Employees = () => {
       </div>
       <div className='employees-table'>
         <Table widths={[25, 25, 25, 25]} headerTable={headerTable}>
-          {tempData.map((row, index) => (
-            <TableRow key={row?.id}>
+          {tempData.map(({ id, account, phone, email }, index) => (
+            <TableRow key={id}>
               <RowCell>{index + 1}</RowCell>
-              <RowCell>{row?.account}</RowCell>
-              <RowCell>{row?.phone}</RowCell>
-              <RowCell>{row?.email}</RowCell>
+              <RowCell>{account}</RowCell>
+              <RowCell>{phone}</RowCell>
+              <RowCell>{email}</RowCell>
               <RowCell>
                 <CashAdd width={30} height={30} fill='red' />
                 <Info width={30} height={30} fill='red' />
