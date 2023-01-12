@@ -1,10 +1,11 @@
 import { ReactComponent as PlusIcon } from 'assets/images/icons/plus.svg';
-import { ReactComponent as DeleteIcon } from 'assets/images/icons/delete.svg';
 import { ReactComponent as CreditCard } from 'assets/images/icons/creditCard.svg';
-import { ReactComponent as CreditCardDone } from 'assets/images/icons/creditCardDone.svg';
 import { ReactComponent as Contact } from 'assets/images/icons/contact.svg';
-import { ReactComponent as Transfer } from 'assets/images/icons/transfer.svg';
+import { ReactComponent as CreditCardDone } from 'assets/images/icons/creditCardDone.svg';
 import { ReactComponent as Clock } from 'assets/images/icons/time.svg';
+import { ReactComponent as DeleteIcon } from 'assets/images/icons/delete.svg';
+import { ReactComponent as Edit } from 'assets/images/icons/edit.svg';
+import { ReactComponent as Transfer } from 'assets/images/icons/transfer.svg';
 import { ReactComponent as Cash } from 'assets/images/icons/cash.svg';
 import { ReactComponent as CashAdd } from 'assets/images/icons/cashAdd.svg';
 import { ReactComponent as Cancel } from 'assets/images/icons/cancel.svg';
@@ -52,6 +53,7 @@ export {
   CreditCard,
   CreditCardDone,
   DeleteIcon,
+  Edit,
   EightGif,
   EightLogo,
   Ellipse,
