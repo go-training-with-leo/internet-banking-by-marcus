@@ -3,14 +3,18 @@ import React from 'react';
 import Table from 'components/Table';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
-import Modal from 'components/Modal';
 import RowCell from 'components/Table/RowCell';
+import useToggle from 'components/hooks/useToggle';
 import { DeleteIcon, Edit } from 'assets/images';
+import EditModal from './EditModal';
 import tempData from './tempData';
 
 import './style.scss';
+import DeleteModal from './DeleteModal';
 
 const Contacts = () => {
+  const [isShownEdit, toggleEdit] = useToggle();
+  const [isShownDelete, toggleDelete] = useToggle();
   const headerTable = (
     <HeaderTable>
       <HeaderCell key='name'>Name</HeaderCell>
@@ -32,24 +36,18 @@ const Contacts = () => {
           <RowCell title='cardNumber' />
           <RowCell title='bank' />
           <RowCell title='actions'>
-            <Edit
-              width={20}
-              height={20}
-              fill='red'
-              onClick={(row) => console.warn(row)}
-            />
+            <Edit width={20} height={20} fill='red' onClick={toggleEdit} />
             <DeleteIcon
               width={20}
               height={20}
               fill='red'
-              onClick={(row) => console.warn('Delete', row)}
+              onClick={toggleDelete}
             />
           </RowCell>
         </Table>
       </div>
-      <Modal cancel title='Edit contact' clickOutSide>
-        <div>fs</div>
-      </Modal>
+      {isShownEdit && <EditModal setToggle={toggleEdit} />}
+      {isShownDelete && <DeleteModal setToggle={toggleDelete} />}
     </div>
   );
 };

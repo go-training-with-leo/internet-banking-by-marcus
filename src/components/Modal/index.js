@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -6,19 +6,13 @@ import { Cancel } from 'assets/images';
 
 import './style.scss';
 
-const Modal = ({ title, cancel, isClose, children, clickOutSide }) => {
-  const [toggle, setToggle] = useState(isClose);
-
-  const handleToggle = () => {
-    setToggle(true);
-  };
-
+const Modal = ({ title, cancel, setToggle, children, clickOutSide }) => {
   return (
     <div
-      className={classNames('modal-container', { closeModal: toggle })}
+      className={classNames('modal-container')}
       role='dialog'
       onClick={() => {
-        if (clickOutSide) setToggle(true);
+        if (clickOutSide) setToggle(false);
       }}
     >
       <div
@@ -35,7 +29,7 @@ const Modal = ({ title, cancel, isClose, children, clickOutSide }) => {
               className='cancel'
               role='button'
               tabIndex='0'
-              onClick={handleToggle}
+              onClick={() => setToggle(false)}
             >
               <Cancel width={20} height={20} />
               <span>CANCEL</span>
@@ -50,14 +44,14 @@ const Modal = ({ title, cancel, isClose, children, clickOutSide }) => {
 
 Modal.defaultProps = {
   cancel: false,
-  isClose: false,
+  setToggle: () => {},
   children: undefined,
   clickOutSide: false,
 };
 
 Modal.propTypes = {
   cancel: PropTypes.bool,
-  isClose: PropTypes.bool,
+  setToggle: PropTypes.func,
   children: PropTypes.node,
   clickOutSide: PropTypes.bool,
 };

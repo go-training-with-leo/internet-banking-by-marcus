@@ -12,7 +12,6 @@ const Table = ({ dataTable, children, headerTable, widths, onRowClick }) => {
     let foundedActions = children?.find((child) => {
       return child?.props?.title === 'actions';
     });
-
     foundedActions = cloneElement(foundedActions, {
       children: foundedActions.props.children.map((action) => {
         return cloneElement(action, {
