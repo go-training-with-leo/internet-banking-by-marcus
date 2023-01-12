@@ -3,7 +3,7 @@
 
 .body-table-cell {
   div {
-    @include setFlex(row, null, center, 50px, null);
+    @include setFlex(row, null, center, 40px, null);
     svg {
       user-select: none;
     }

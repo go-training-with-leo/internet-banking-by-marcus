@@ -19,12 +19,12 @@ const statusIcons = {
   canceled: <Status canceled />,
 };
 
-const RowCell = ({ title, children }) => {
+const RowCell = ({ title, children, width }) => {
   return (
-    <td className='body-table-cell'>
+    <td colSpan={width} className='body-table-cell'>
       <div>
         {title === 'debtType'
-          ? debtType[debt]
+          ? debtType[children]
           : title === 'status'
             ? statusIcons[children]
             : children}
@@ -34,11 +34,13 @@ const RowCell = ({ title, children }) => {
 };
 
 RowCell.defaultProps = {
+  width: undefined,
   title: undefined,
   children: undefined,
 };
 
 RowCell.propTypes = {
+  width: PropTypes.number,
   title: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,

@@ -71,7 +71,9 @@ const DefaultLayout = () => {
             {isValidElement(btnHeader) &&
               cloneElement(btnHeader, { onClick: handleClick })}
           </Header>
-          <Outlet />
+          <div className='page-layout__right__body'>
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>

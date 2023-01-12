@@ -19,7 +19,7 @@ const Select = () => {
       name='select'
       label='Label'
       options={options}
-      onChange={() => console.warn('onChange trigger')}
+      onChange={(val) => console.warn('onChange: ', val)}
     />
   );
 };
