@@ -1,8 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+
+import { capitalizeFirstLetter } from 'utils/helpers';
 
 import './style.scss';
-import { capitalizeFirstLetter } from 'utils/helpers';
 
 const Stepper = ({ step, title, children }) => {
   return (

@@ -1,9 +1,9 @@
-import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import React from 'react';
 
-import { Ellipse } from 'assets/images';
 import SmallCard from 'components/Card/Small';
+import { Ellipse } from 'assets/images';
 import { parseMoneyVnd } from 'utils/helpers';
 
 import './style.scss';

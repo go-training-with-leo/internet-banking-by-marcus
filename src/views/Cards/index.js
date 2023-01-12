@@ -1,13 +1,7 @@
-import { signOut } from 'global/redux/auth/request';
 import React from 'react';
 
 const Cards = () => {
-  return (
-    <div>
-      Customer Cards
-      <button onClick={() => signOut()}>Card</button>
-    </div>
-  );
+  return <div>Customer Cards</div>;
 };
 
 export default Cards;
