@@ -28,7 +28,7 @@ const DefaultLayout = () => {
     headerItems[userRole].find(({ path }) => path === pathname) || {};
 
   const handleClick = () => {
-    console.warn('click');
+    console.warn('testClick');
   };
 
   return (

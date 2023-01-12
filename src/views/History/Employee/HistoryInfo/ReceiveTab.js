@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Table from 'components/Table';
+import Table, { TableRow } from 'components/Table';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import RowCell from 'components/Table/RowCell';
@@ -10,10 +10,10 @@ import tempReceiveData from './tempReceiveData';
 const ReceiveTab = () => {
   const headerTable = (
     <HeaderTable>
-      <HeaderCell key='senderAccount'>Sender account</HeaderCell>
-      <HeaderCell key='amount'>Amount</HeaderCell>
-      <HeaderCell key='bank'>Bank</HeaderCell>
-      <HeaderCell key='date'>
+      <HeaderCell>Sender account</HeaderCell>
+      <HeaderCell>Amount</HeaderCell>
+      <HeaderCell>Bank</HeaderCell>
+      <HeaderCell>
         Date <ArrowDown />
       </HeaderCell>
     </HeaderTable>
@@ -24,10 +24,17 @@ const ReceiveTab = () => {
       headerTable={headerTable}
       dataTable={tempReceiveData}
     >
-      <RowCell title='senderAccount' />
-      <RowCell title='amount' />
-      <RowCell title='bank' />
-      <RowCell title='date' />
+      {tempReceiveData.map(
+        ({ id, senderAccount, amount, bank, date }, index) => (
+          <TableRow key={id}>
+            <RowCell>{index + 1}</RowCell>
+            <RowCell title='senderAccount'>{senderAccount}</RowCell>
+            <RowCell title='amount'>{amount}</RowCell>
+            <RowCell title='bank'>{bank}</RowCell>
+            <RowCell title='date'>{date}</RowCell>
+          </TableRow>
+        )
+      )}
     </Table>
   );
 };

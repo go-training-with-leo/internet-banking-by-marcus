@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import Input from 'components/Input';
-import Table from 'components/Table';
+import Table, { TableRow } from 'components/Table';
 import IconButton from 'components/Button/Icon';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
@@ -17,10 +17,10 @@ const Accounts = () => {
 
   const headerTable = (
     <HeaderTable>
-      <HeaderCell key='account'>Account</HeaderCell>
-      <HeaderCell key='phone'>Phone</HeaderCell>
-      <HeaderCell key='email'>Email</HeaderCell>
-      <HeaderCell key='actions'>Actions</HeaderCell>
+      <HeaderCell>Account</HeaderCell>
+      <HeaderCell>Phone</HeaderCell>
+      <HeaderCell>Email</HeaderCell>
+      <HeaderCell>Actions</HeaderCell>
     </HeaderTable>
   );
 
@@ -47,13 +47,18 @@ const Accounts = () => {
           headerTable={headerTable}
           dataTable={tempData}
         >
-          <RowCell title='account' />
-          <RowCell title='phone' />
-          <RowCell title='email' />
-          <RowCell title='actions'>
-            <CashAdd width={20} height={20} fill='red' />
-            <Info width={20} height={20} fill='red' />
-          </RowCell>
+          {tempData.map(({ id, account, phone, email }, index) => (
+            <TableRow key={id}>
+              <RowCell>{index + 1}</RowCell>
+              <RowCell title='account'>{account}</RowCell>
+              <RowCell title='phone'>{phone}</RowCell>
+              <RowCell title='email'>{email}</RowCell>
+              <RowCell title='actions'>
+                <CashAdd width={30} height={30} fill='red' />
+                <Info width={30} height={30} fill='red' />
+              </RowCell>
+            </TableRow>
+          ))}
         </Table>
       </div>
     </div>

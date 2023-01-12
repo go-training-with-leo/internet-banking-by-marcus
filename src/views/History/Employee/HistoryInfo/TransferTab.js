@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Table from 'components/Table';
+import Table, { TableRow } from 'components/Table';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import RowCell from 'components/Table/RowCell';
@@ -10,28 +10,31 @@ import tempTransferData from './tempTransferData';
 const TransferTab = () => {
   const headerTable = (
     <HeaderTable>
-      <HeaderCell key='receiveAccount'>Receive account</HeaderCell>
-      <HeaderCell key='amount'>Amount</HeaderCell>
-      <HeaderCell key='bank'>Bank</HeaderCell>
-      <HeaderCell key='status'>
+      <HeaderCell>Receive account</HeaderCell>
+      <HeaderCell>Amount</HeaderCell>
+      <HeaderCell>Bank</HeaderCell>
+      <HeaderCell>
         Status <Filter fill='white' />
       </HeaderCell>
-      <HeaderCell key='date'>
+      <HeaderCell>
         Date <ArrowDown />
       </HeaderCell>
     </HeaderTable>
   );
   return (
-    <Table
-      widths={[20, 15, 15, 20, 30]}
-      headerTable={headerTable}
-      dataTable={tempTransferData}
-    >
-      <RowCell title='receiveAccount' />
-      <RowCell title='amount' />
-      <RowCell title='bank' />
-      <RowCell title='status' />
-      <RowCell title='date' />
+    <Table widths={[20, 15, 15, 20, 30]} headerTable={headerTable}>
+      {tempTransferData.map(
+        ({ id, receiveAccount, amount, bank, status, date }, index) => (
+          <TableRow key={id}>
+            <RowCell>{index + 1}</RowCell>
+            <RowCell title='receiveAccount'>{receiveAccount}</RowCell>
+            <RowCell title='amount'>{amount}</RowCell>
+            <RowCell title='bank'>{bank}</RowCell>
+            <RowCell title='status'>{status}</RowCell>
+            <RowCell title='date'>{date}</RowCell>
+          </TableRow>
+        )
+      )}
     </Table>
   );
 };

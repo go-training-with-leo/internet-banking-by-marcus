@@ -1,0 +1,21 @@
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+
+.delete-modal {
+  @include setFlex(column, null, null, 40px, null);
+  .confirm-text {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: $pure-white;
+    margin-top: 10px;
+  }
+  .btns-group {
+    margin-top: 20px;
+    @include setFlex(row, space-between, null, null, null);
+
+    .btn {
+      width: 48%;
+    }
+  }
+}

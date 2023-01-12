@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import Input from 'components/Input';
-import Table from 'components/Table';
+import Table, { TableRow } from 'components/Table';
 import IconButton from 'components/Button/Icon';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
@@ -20,9 +20,9 @@ const EmployeeHistory = () => {
 
   const headerTable = (
     <HeaderTable>
-      <HeaderCell key='account'>Account</HeaderCell>
-      <HeaderCell key='phone'>Phone</HeaderCell>
-      <HeaderCell key='email'>Email</HeaderCell>
+      <HeaderCell>Account</HeaderCell>
+      <HeaderCell>Phone</HeaderCell>
+      <HeaderCell>Email</HeaderCell>
     </HeaderTable>
   );
 
@@ -45,15 +45,18 @@ const EmployeeHistory = () => {
       </div>
       <span>Account:</span>
       <div className='empl-history-table'>
-        <Table
-          widths={[25, 25, 25, 25]}
-          headerTable={headerTable}
-          dataTable={tempData}
-          onRowClick={(rowId) => navigate(`/employee/history/${rowId}`)}
-        >
-          <RowCell title='account' />
-          <RowCell title='phone' />
-          <RowCell title='email' />
+        <Table widths={[25, 25, 25, 25]} headerTable={headerTable}>
+          {tempData.map(({ id, account, phone, email }, index) => (
+            <TableRow
+              key={id}
+              onClick={() => navigate(`/employee/history/${id}`)}
+            >
+              <RowCell>{index + 1}</RowCell>
+              <RowCell title='account'>{account}</RowCell>
+              <RowCell title='phone'>{phone}</RowCell>
+              <RowCell title='email'>{email}</RowCell>
+            </TableRow>
+          ))}
         </Table>
       </div>
     </div>
