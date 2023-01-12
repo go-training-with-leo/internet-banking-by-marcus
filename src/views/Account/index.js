@@ -1,6 +1,6 @@
-import DefaultButton from 'components/Button/Default';
 import React from 'react';
 
+import DefaultButton from 'components/Button/Default';
 import { signOut } from 'global/redux/auth/request';
 
 const Account = () => {

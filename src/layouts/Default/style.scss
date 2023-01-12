@@ -12,6 +12,11 @@
          margin: 0 auto;
          overflow-y: auto;
          height: 85vh;
+         -ms-overflow-style: none;
+         scrollbar-width: none;
+         &::-webkit-scrollbar {
+            display: none;
+         }
       }
    }
 }

@@ -7,8 +7,8 @@ import Status from 'components/Status';
 import './style.scss';
 
 const debtType = {
-  debt: <DebtType debt />,
-  loan: <DebtType loan />,
+  debt: <DebtType type='debt' />,
+  loan: <DebtType type='loan' />,
 };
 
 const statusIcons = {
@@ -23,11 +23,9 @@ const RowCell = ({ title, children, width }) => {
   return (
     <td colSpan={width} className='body-table-cell'>
       <div>
-        {title === 'debtType'
-          ? debtType[children]
-          : title === 'status'
-            ? statusIcons[children]
-            : children}
+        {title === 'debtType' && debtType[children]}
+        {title === 'status' && statusIcons[children]}
+        {title !== 'debtType' && title !== 'status' && children}
       </div>
     </td>
   );

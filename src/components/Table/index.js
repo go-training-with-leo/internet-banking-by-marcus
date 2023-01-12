@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import './style.scss';
 
-const Table = ({ dataTable, children, headerTable, widths }) => {
+const Table = ({ dataTable, children, headerTable, widths, onRowClick }) => {
   const titles = dataTable !== undefined ? Object.keys(dataTable[0]) : null;
 
   const renderActions = () => {
@@ -17,7 +17,11 @@ const Table = ({ dataTable, children, headerTable, widths }) => {
 
   const renderData = dataTable?.map((row, index) => {
     return (
-      <tr className='table-body-row' key={row?.id}>
+      <tr
+        className='table-body-row'
+        key={row?.id}
+        onClick={() => onRowClick(row?.id)}
+      >
         <td className='order'>{index + 1}</td>
         {titles?.map((title) => {
           const foundedChild = children?.find((child) => {
@@ -62,6 +66,7 @@ Table.defaultProps = {
   headerTable: undefined,
   children: undefined,
   widths: [],
+  onRowClick: undefined,
 };
 
 Table.propTypes = {
@@ -69,6 +74,7 @@ Table.propTypes = {
   headerTable: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
   widths: PropTypes.array,
+  onRowClick: PropTypes.func,
 };
 
 export default Table;
