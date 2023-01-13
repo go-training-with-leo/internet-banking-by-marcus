@@ -36,15 +36,15 @@ const StepOne = ({ setToggle }) => {
         </form>
 
         <div className='saving-card-container'>
-          <div className='input-saving-card'>
-            <Input
-              name='cardNumber'
-              label='Card number'
-              placeholder='Enter card number for filtering'
-            />
-          </div>
           {radio === 'savingCard' && (
             <>
+              <div className='input-saving-card'>
+                <Input
+                  name='cardNumber'
+                  label='Card number'
+                  placeholder='Enter card number for filtering'
+                />
+              </div>
               <span className='title'>Pick one from your card list</span>
               <div className='list-cards-container'>
                 <ListCardItem
