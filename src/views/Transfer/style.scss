@@ -1,0 +1,46 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.transfer-view {
+  @include setWidthHeight(100%, 85vh);
+  position: relative;
+
+  &-tab {
+    height: 50%;
+
+    @include setFlex(column, space-around, center, center, null);
+
+    @include Responsive(SM) {
+      flex-direction: row;
+      align-items: center;
+    }
+    &.internal {
+      background-image: linear-gradient(90deg, #111111 0%, #ef230c 19.79%, #ffdc00 100%);
+    }
+
+    .transfer-img {
+      
+      max-width: 400px;
+      @include Responsive(SM) {
+        width: 350px;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .transfer-button {
+      width: 200px;
+      @include Responsive(XS) {
+        width: 400px;
+      }
+      @include Responsive(SM) {
+        width: 200px; 
+      }
+      @include Responsive(MD) {
+        width: 300px;
+      }
+    }
+  }
+}

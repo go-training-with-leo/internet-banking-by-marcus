@@ -1,8 +1,9 @@
-@import "assets/scss/variables.scss";
 @import "assets/scss/mixins.scss";
+@import "assets/scss/extends.scss";
+@import "assets/scss/variables.scss";
 
 .cards-view {
-  width: 100%;
+  @extend %view;
   height: 100%;
   @include setFlex(column, null, null, 100px, null);
 
