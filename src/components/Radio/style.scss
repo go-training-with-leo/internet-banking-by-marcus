@@ -1,0 +1,74 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.radio-container {
+  @include setFlex(row, null, center, 15px, null);
+  color: $pure-white;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+
+  &.hide {
+    display: none;
+  }
+
+  .radio {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0px;
+    border: 0px;
+    margin: 0px;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+    padding: 9px;
+    border-radius: 50%;
+    color: rgba(0, 0, 0, 0.6);
+    .radio-input {
+      cursor: inherit;
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      z-index: 1;
+      background-color: $red-orange;
+      color: red;
+    }
+
+    .pseudo-input {
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      color: $red-orange;
+      background-color: $black-dark;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+      pointer-events: none;
+      &.dot {
+        &::before {
+          display: block;
+          width: 28px;
+          pointer-events: none;
+          margin-top: -4px;
+          transform: translateX(-4px);
+          color: #ef230c;
+          height: 28px;
+          background-image: radial-gradient(#f40909, #f00 28%, transparent 32%);
+          content: "";
+        }
+      }
+    }
+  }
+}

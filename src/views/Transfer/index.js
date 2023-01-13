@@ -1,11 +1,15 @@
 import React from 'react';
 
 import DefaultButton from 'components/Button/Default';
+import useToggle from 'components/hooks/useToggle';
 import { InternalTransfer, InterBankTransfer } from 'assets/images';
+import StepTwo from './StepTwo';
 
 import './style.scss';
 
 const Transfer = () => {
+  const [showModal, setShowModal] = useToggle();
+
   return (
     <div className='transfer-view'>
       <div className='transfer-view-tab internal'>
@@ -13,7 +17,9 @@ const Transfer = () => {
           <img src={InternalTransfer} alt='internal transfer' />
         </div>
         <div className='transfer-button'>
-          <DefaultButton danger>EIGHT.Bank internal transfer</DefaultButton>
+          <DefaultButton danger onClick={setShowModal}>
+            EIGHT.Bank internal transfer
+          </DefaultButton>
         </div>
       </div>
       <div className='transfer-view-tab interbank'>
@@ -24,6 +30,7 @@ const Transfer = () => {
           <DefaultButton>Interbank transfer</DefaultButton>
         </div>
       </div>
+      {showModal && <StepTwo setToggle={setShowModal} />}
     </div>
   );
 };
