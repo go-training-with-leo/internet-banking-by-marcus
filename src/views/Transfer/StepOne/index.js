@@ -14,11 +14,11 @@ const StepOne = ({ setToggle, next }) => {
   const [radio, setRadio] = useState('paymentCard');
   return (
     <Modal setToggle={setToggle} title='Internal transfer' cancel clickOutSide>
-      <div className='step-one'>
+      <form className='step-one'>
         <Stepper title='Card' step='1'>
           Please pick a card to process this payment
         </Stepper>
-        <form className='radio-group'>
+        <div className='radio-group'>
           <Radio
             name='usingCard'
             onChange={(e) => setRadio(e.target.value)}
@@ -33,7 +33,7 @@ const StepOne = ({ setToggle, next }) => {
             onChange={(e) => setRadio(e.target.value)}
             label='Use your saving cards'
           />
-        </form>
+        </div>
 
         <div className='saving-card-container'>
           {radio === 'savingCard' && (
@@ -76,7 +76,7 @@ const StepOne = ({ setToggle, next }) => {
             </DefaultButton>
           </div>
         </div>
-      </div>
+      </form>
     </Modal>
   );
 };

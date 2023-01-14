@@ -3,7 +3,7 @@
 
 .text-area {
 
-  @include setWidthHeight(100%, 100%);
+  @include setWidthHeight(null, 100%);
   padding: 8px 16px;
   @include setFlex(column, null, null, 8px, null);
   background-color: $black-medium;

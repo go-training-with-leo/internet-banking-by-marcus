@@ -7,6 +7,7 @@ import { InternalTransfer, InterBankTransfer } from 'assets/images';
 import StepTwo from './StepTwo';
 import './style.scss';
 import StepOne from './StepOne';
+import StepThree from './StepThree';
 
 const STEP_ONE = 1;
 const STEP_TWO = 2;
@@ -53,6 +54,13 @@ const Transfer = () => {
           setToggle={setShowModal}
           back={() => setStep(STEP_ONE)}
           next={() => setStep(STEP_THREE)}
+        />
+      )}
+      {step === STEP_THREE && showModal && (
+        <StepThree
+          setToggle={setShowModal}
+          back={() => setStep(STEP_TWO)}
+          next={() => setStep(4)}
         />
       )}
     </div>

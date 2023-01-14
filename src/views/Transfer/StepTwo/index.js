@@ -24,11 +24,11 @@ const StepTwo = ({ setToggle, back, next }) => {
 
   return (
     <Modal setToggle={setToggle} title='Internal transfer' cancel clickOutSide>
-      <div className='step-two'>
+      <form className='step-two'>
         <Stepper title='Contact' step='2'>
           Provide the information of the receiver
         </Stepper>
-        <form className='radio-group'>
+        <div className='radio-group'>
           <Radio
             name='contact'
             onChange={(e) => setRadio(e.target.value)}
@@ -43,7 +43,7 @@ const StepTwo = ({ setToggle, back, next }) => {
             onChange={(e) => setRadio(e.target.value)}
             label='From a new contact'
           />
-        </form>
+        </div>
         <div className='step-two-container'>{tabs[radio]}</div>
         <div className='btn-group'>
           <div className='step-two-btn'>
@@ -55,7 +55,7 @@ const StepTwo = ({ setToggle, back, next }) => {
             </DefaultButton>
           </div>
         </div>
-      </div>
+      </form>
     </Modal>
   );
 };
