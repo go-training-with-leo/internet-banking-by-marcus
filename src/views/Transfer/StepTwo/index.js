@@ -19,7 +19,7 @@ const tabs = {
   newContact: <NewContact />,
 };
 
-const StepTwo = ({ setToggle }) => {
+const StepTwo = ({ setToggle, back, next }) => {
   const [radio, setRadio] = useState(EXIST_CONTACT);
 
   return (
@@ -47,10 +47,12 @@ const StepTwo = ({ setToggle }) => {
         <div className='step-two-container'>{tabs[radio]}</div>
         <div className='btn-group'>
           <div className='step-two-btn'>
-            <DefaultButton onClick={setToggle}>Back</DefaultButton>
+            <DefaultButton onClick={back}>Back</DefaultButton>
           </div>
           <div className='step-two-btn'>
-            <DefaultButton danger>Next</DefaultButton>
+            <DefaultButton danger onClick={next}>
+              Next
+            </DefaultButton>
           </div>
         </div>
       </div>
@@ -60,10 +62,14 @@ const StepTwo = ({ setToggle }) => {
 
 StepTwo.defaultProps = {
   setToggle: () => {},
+  back: () => {},
+  next: () => {},
 };
 
 StepTwo.propTypes = {
   setToggle: PropTypes.func,
+  back: PropTypes.func,
+  next: PropTypes.func,
 };
 
 export default StepTwo;

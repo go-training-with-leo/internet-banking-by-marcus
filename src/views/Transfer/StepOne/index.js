@@ -10,7 +10,7 @@ import Stepper from 'components/Stepper';
 
 import './style.scss';
 
-const StepOne = ({ setToggle }) => {
+const StepOne = ({ setToggle, next }) => {
   const [radio, setRadio] = useState('paymentCard');
   return (
     <Modal setToggle={setToggle} title='Internal transfer' cancel clickOutSide>
@@ -71,7 +71,9 @@ const StepOne = ({ setToggle }) => {
             <DefaultButton onClick={setToggle}>Cancel</DefaultButton>
           </div>
           <div className='step-one-btn'>
-            <DefaultButton danger>Next</DefaultButton>
+            <DefaultButton danger onClick={next}>
+              Next
+            </DefaultButton>
           </div>
         </div>
       </div>
@@ -81,10 +83,12 @@ const StepOne = ({ setToggle }) => {
 
 StepOne.defaultProps = {
   setToggle: () => {},
+  next: () => {},
 };
 
 StepOne.propTypes = {
   setToggle: PropTypes.func,
+  next: PropTypes.func,
 };
 
 export default StepOne;
