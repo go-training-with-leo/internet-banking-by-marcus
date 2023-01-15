@@ -1,0 +1,19 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.step-four {
+  @include setFlex(column, null, null, 30px, null);
+  font-size: 14px;
+  p{
+    line-height: 24px;
+  }
+
+  .btn-group {
+    margin-top: 20px;
+    @include setFlex(row, space-between, null, 20px, null);
+
+    .step-four-btn {
+      width: 50%;
+    }
+  }
+}

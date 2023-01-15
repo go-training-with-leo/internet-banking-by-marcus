@@ -8,12 +8,13 @@ import StepTwo from './StepTwo';
 import './style.scss';
 import StepOne from './StepOne';
 import StepThree from './StepThree';
+import StepFour from './StepFour';
 
 const STEP_ONE = 1;
 const STEP_TWO = 2;
 const STEP_THREE = 3;
-// const STEP_FOUR = 4;
-// const STEP_FIVE = 5;
+const STEP_FOUR = 4;
+const STEP_FIVE = 5;
 // const FINAL_STEP = 6;
 
 const Transfer = () => {
@@ -60,7 +61,14 @@ const Transfer = () => {
         <StepThree
           setToggle={setShowModal}
           back={() => setStep(STEP_TWO)}
-          next={() => setStep(4)}
+          next={() => setStep(STEP_FOUR)}
+        />
+      )}
+      {step === STEP_FOUR && showModal && (
+        <StepFour
+          setToggle={setShowModal}
+          back={() => setStep(STEP_THREE)}
+          next={() => setStep(STEP_FIVE)}
         />
       )}
     </div>
