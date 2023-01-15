@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Table, { TableRow } from 'components/Table';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import RowCell from 'components/Table/RowCell';
+import Table, { TableRow } from 'components/Table';
 import { DeleteIcon, Filter, Info } from 'assets/images';
-import youData from './youData';
+import otherData from './otherData';
 
 const headerTable = (
   <HeaderTable>
@@ -18,10 +18,10 @@ const headerTable = (
   </HeaderTable>
 );
 
-const YouTable = () => {
+const OtherTable = () => {
   return (
     <Table widths={[30, 25, 20, 25]} headerTable={headerTable}>
-      {youData.map(({ id, debtAccount, amount, status }, index) => (
+      {otherData.map(({ id, debtAccount, amount, status }, index) => (
         <TableRow key={id}>
           <RowCell>{index + 1}</RowCell>
           <RowCell>{debtAccount}</RowCell>
@@ -37,4 +37,4 @@ const YouTable = () => {
   );
 };
 
-export default YouTable;
+export default OtherTable;

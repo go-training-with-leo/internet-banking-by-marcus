@@ -14,6 +14,7 @@
     span {
       padding-right: 15px;
       padding-bottom: 8px;
+      border-bottom: transparent 2px solid;
       transition: all 0.3s 0.1s linear;
 
       &.active {

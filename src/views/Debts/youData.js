@@ -1,4 +1,4 @@
-const tempData = [
+const youData = [
   {
     id: 'CM1',
     debtAccount: 'Justin Doe',
@@ -37,4 +37,4 @@ const tempData = [
   },
 ];
 
-export default tempData;
+export default youData;

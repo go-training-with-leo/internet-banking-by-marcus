@@ -1,4 +1,4 @@
-const yourDebts = [
+const otherData = [
   {
     id: 'CM1',
     debtAccount: 'Justin Doe',
@@ -9,7 +9,7 @@ const yourDebts = [
     id: 'CM2',
     debtAccount: 'Justin Doe',
     amount: '500 000 VND',
-    status: 'failed',
+    status: 'success',
   },
   {
     id: 'CM3',
@@ -27,7 +27,7 @@ const yourDebts = [
     id: 'CM5',
     debtAccount: 'Justin Doe',
     amount: '500 000 VND',
-    status: 'unpaid',
+    status: 'failed',
   },
   {
     id: 'CM6',
@@ -37,4 +37,4 @@ const yourDebts = [
   },
 ];
 
-export default yourDebts;
+export default otherData;

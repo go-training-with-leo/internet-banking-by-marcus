@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import YouTable from './YouTable';
 
 import './style.scss';
+import OtherTable from './OtherTable';
 
 const CREATE_BY_YOU = 'CREATE_BY_YOU';
 const RECV_FROM_OTHERS = 'RECV_FROM_OTHERS';
@@ -33,6 +34,7 @@ const Debts = () => {
       </div>
       <div className='debt-tables'>
         {activeTab === CREATE_BY_YOU && <YouTable />}
+        {activeTab === RECV_FROM_OTHERS && <OtherTable />}
       </div>
     </div>
   );
