@@ -1,11 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
+import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import TextArea from 'components/TextArea';
 
 import './style.scss';
-import DefaultButton from 'components/Button/Default';
 
 const DeleteModal = ({ setToggle }) => {
   return (
