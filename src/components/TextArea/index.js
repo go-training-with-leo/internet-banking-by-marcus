@@ -13,7 +13,7 @@ const TextArea = ({ register, name, label }) => {
 };
 
 TextArea.defaultProps = {
-  register: null,
+  register: () => {},
   label: undefined,
 };
 

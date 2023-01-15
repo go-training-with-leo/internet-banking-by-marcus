@@ -63,7 +63,9 @@ const DetailModal = ({ setToggle }) => {
             posuere blandit felis sit amet laoreet. Proin in posuere ante.
           </p>
         </div>
-        <DefaultButton danger>OK</DefaultButton>
+        <DefaultButton onClick={setToggle} danger>
+          OK
+        </DefaultButton>
       </div>
     </Modal>
   );

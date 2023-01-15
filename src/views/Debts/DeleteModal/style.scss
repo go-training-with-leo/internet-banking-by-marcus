@@ -1,0 +1,22 @@
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+
+.delete-modal {
+  @include setFlex(column, null, null, 30px, null);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+
+  .delete-textarea {
+    height: 100px;
+  }
+
+  .delete-btn-group {
+    padding-top: 20px;
+    @include setFlex(row, space-between, null, 20px, null);
+
+    .btn {  
+      width: 50%;
+    }
+  }
+}

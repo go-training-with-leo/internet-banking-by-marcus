@@ -7,11 +7,13 @@ import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import { CreditCardGradient, DeleteIcon, Filter, Info } from 'assets/images';
 import useToggle from 'components/hooks/useToggle';
+import DeleteModal from './DeleteModal';
 import otherData from './otherData';
 import youData from './youData';
+import DetailModal from './DetailModal';
+import PaymentModal from './PaymentModal';
 
 import './style.scss';
-import DetailModal from './DetailModal';
 
 const CREATE_BY_YOU = 'CREATE_BY_YOU';
 const RECV_FROM_OTHERS = 'RECV_FROM_OTHERS';
@@ -33,6 +35,8 @@ const headerTable = (
 );
 
 const Debts = () => {
+  const [deleteModal, setDeleteModal] = useToggle();
+  const [paymentModal, setPaymentModal] = useToggle();
   const [infoModal, setInfoModal] = useToggle();
   const [activeTab, setActiveTab] = useState(CREATE_BY_YOU);
   const [dataTable, setDataTable] = useState(dataTables[activeTab]);
@@ -75,6 +79,7 @@ const Debts = () => {
                     className='credit-svg'
                     width={30}
                     height={30}
+                    onClick={setPaymentModal}
                     fill='linear-gradient(90deg, #EF230C 2.5%, #FFD351 100%)'
                   />
                 )}
@@ -84,13 +89,20 @@ const Debts = () => {
                   fill='red'
                   onClick={setInfoModal}
                 />
-                <DeleteIcon width={30} height={30} fill='red' />
+                <DeleteIcon
+                  width={30}
+                  height={30}
+                  fill='red'
+                  onClick={setDeleteModal}
+                />
               </RowCell>
             </TableRow>
           ))}
         </Table>
       </div>
+      {paymentModal && <PaymentModal setToggle={setPaymentModal} />}
       {infoModal && <DetailModal setToggle={setInfoModal} />}
+      {deleteModal && <DeleteModal setToggle={setDeleteModal} />}
     </div>
   );
 };
