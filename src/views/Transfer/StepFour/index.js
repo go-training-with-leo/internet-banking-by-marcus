@@ -10,7 +10,7 @@ import './style.scss';
 
 const StepFour = ({ setToggle, back, next }) => {
   return (
-    <Modal setToggle={setToggle}>
+    <Modal cancel clickOutSide setToggle={setToggle}>
       <form className='step-four'>
         <Stepper title='Verify ' step='4'>
           Verify your payment using OTP code

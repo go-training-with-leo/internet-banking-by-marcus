@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 import DefaultButton from 'components/Button/Default';
 import useToggle from 'components/hooks/useToggle';
 import { InternalTransfer, InterBankTransfer } from 'assets/images';
-// import StepOne from './StepOne';
-import StepTwo from './StepTwo';
-import './style.scss';
-import StepOne from './StepOne';
-import StepThree from './StepThree';
 import StepFour from './StepFour';
+import StepFive from './StepFive';
+import StepThree from './StepThree';
+import StepTwo from './StepTwo';
+import StepOne from './StepOne';
+
+import './style.scss';
 
 const STEP_ONE = 1;
 const STEP_TWO = 2;
@@ -69,6 +70,13 @@ const Transfer = () => {
           setToggle={setShowModal}
           back={() => setStep(STEP_THREE)}
           next={() => setStep(STEP_FIVE)}
+        />
+      )}
+      {step === STEP_FIVE && showModal && (
+        <StepFive
+          setToggle={setShowModal}
+          back={() => setStep(STEP_FOUR)}
+          next={() => setStep(6)}
         />
       )}
     </div>
