@@ -1,0 +1,7 @@
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables.scss';
+
+.success-modal {
+  @include setFlex(column, null, null, 40px, null);
+  font-size: 14px;
+}

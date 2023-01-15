@@ -10,13 +10,14 @@ import StepTwo from './StepTwo';
 import StepOne from './StepOne';
 
 import './style.scss';
+import SuccessModal from './SuccessModal';
 
 const STEP_ONE = 1;
 const STEP_TWO = 2;
 const STEP_THREE = 3;
 const STEP_FOUR = 4;
 const STEP_FIVE = 5;
-// const FINAL_STEP = 6;
+const SUCCESS = 6;
 
 const Transfer = () => {
   const [showModal, setShowModal] = useToggle();
@@ -76,8 +77,11 @@ const Transfer = () => {
         <StepFive
           setToggle={setShowModal}
           back={() => setStep(STEP_FOUR)}
-          next={() => setStep(6)}
+          next={() => setStep(SUCCESS)}
         />
+      )}
+      {step === SUCCESS && showModal && (
+        <SuccessModal setToggle={setShowModal} />
       )}
     </div>
   );
