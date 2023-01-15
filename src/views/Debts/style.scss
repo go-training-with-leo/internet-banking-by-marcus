@@ -1,0 +1,21 @@
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+
+.debt-view {
+  width: 100%;
+  @include setFlex(column, null, null, 40px, null);
+  color: $pure-white;
+
+  &-tabs {
+    @include setFlex(row, null, center, 130px, null);
+    color: $pure-white;
+    cursor: pointer;
+    span {
+      padding-right: 20px;
+
+      &.active {
+        border-bottom: $pure-white 2px solid;
+      }
+    }
+  }
+}
