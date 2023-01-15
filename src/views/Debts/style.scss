@@ -5,13 +5,16 @@
   width: 100%;
   @include setFlex(column, null, null, 40px, null);
   color: $pure-white;
+  transition: all 0.3s linear;
 
   &-tabs {
     @include setFlex(row, null, center, 130px, null);
     color: $pure-white;
     cursor: pointer;
     span {
-      padding-right: 20px;
+      padding-right: 15px;
+      padding-bottom: 8px;
+      transition: all 0.3s 0.1s linear;
 
       &.active {
         border-bottom: $pure-white 2px solid;
