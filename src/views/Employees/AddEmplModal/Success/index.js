@@ -1,8 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+
+import DefaultButton from 'components/Button/Default';
 
 import './style.scss';
 
-const Success = () => {
+const Success = ({ setToggle }) => {
   return (
     <form className='empl-modal'>
       <span>
@@ -31,8 +34,19 @@ const Success = () => {
           <span>+84 381234567</span>
         </div>
       </div>
+      <DefaultButton danger onClick={setToggle}>
+        OK
+      </DefaultButton>
     </form>
   );
+};
+
+Success.defaultProps = {
+  setToggle: () => {},
+};
+
+Success.propTypes = {
+  setToggle: PropTypes.func,
 };
 
 export default Success;
