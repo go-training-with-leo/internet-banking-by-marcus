@@ -3,7 +3,7 @@
 @import "assets/scss/extends.scss";
 
 .stepper {
-  @include setWidthHeight(100%, 80px);
+  @include setWidthHeight(null, 80px);
   @include setFlex(row, null, center, null, cull);
   padding: 0 25px;
   background-color: $red-orange;

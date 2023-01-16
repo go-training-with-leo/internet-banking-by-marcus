@@ -18,7 +18,6 @@ const Table = ({ children, headerTable, widths }) => {
   return (
     <table className='table'>
       <colgroup>
-        <col span={1} className='col-10' />
         {widths.map((width) => {
           return (
             <col

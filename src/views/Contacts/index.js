@@ -18,6 +18,7 @@ const Contacts = () => {
 
   const headerTable = (
     <HeaderTable>
+      <HeaderCell> </HeaderCell>
       <HeaderCell>Name</HeaderCell>
       <HeaderCell>Card number</HeaderCell>
       <HeaderCell>Bank</HeaderCell>
@@ -28,7 +29,7 @@ const Contacts = () => {
   return (
     <div className='contacts-view'>
       <div className='contacts-table'>
-        <Table widths={[25, 25, 25, 25]} headerTable={headerTable}>
+        <Table widths={[10, 25, 25, 25, 10]} headerTable={headerTable}>
           {tempData.map((row, index) => {
             return (
               <TableRow key={row?.id}>

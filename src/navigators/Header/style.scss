@@ -1,8 +1,10 @@
 @import "assets/scss/mixins.scss";
 @import "assets/scss/variables.scss";
+@import "assets/scss/extends.scss";
 
 .header {
-  @include setWidthHeight(100%, 15vh);
+  height: 15vh;
+  @extend %view;
 
   @include setFlex(row, space-between, center, null, null);
 

@@ -4,12 +4,7 @@ import React from 'react';
 import './style.scss';
 
 const HeaderTable = ({ children }) => {
-  return (
-    <tr className='table-header'>
-      <th>&nbsp;</th>
-      {children}
-    </tr>
-  );
+  return <tr className='table-header'>{children}</tr>;
 };
 
 HeaderTable.defaultProps = {

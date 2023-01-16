@@ -1,0 +1,26 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+.step-three {
+  width: 100%;
+  @include setFlex(column, null, null, 30px, null);
+
+
+  .step-three-container {
+    @include setFlex(column, null, null, 30px, null);
+    .step-three-textarea {
+      height: 146px;
+    }
+
+    .radio-group {
+      @include setFlex(row, null, null, 20px, null);
+    }
+  }
+
+  .btn-group {
+    margin-top: 20px;
+    @include setFlex(row, null, center, 20px, null);
+    .step-three-btn {
+      width: 50%;
+    }
+  }
+}

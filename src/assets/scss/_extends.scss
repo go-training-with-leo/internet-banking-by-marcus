@@ -18,6 +18,15 @@
     }
 }
 
+%view {
+  width: 100%;
+  @include Responsive(SM) 
+  {
+    width: calc(100% - 120px);
+    padding: 0 60px; 
+
+ }
+}
 @each $size in sizes {
   %text-normal-#{$size} {
     font-family: $font-family;

@@ -1,0 +1,31 @@
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables.scss';
+
+.contact-container {
+  @include setFlex(column, null, null, 30px, null);
+
+  .search-contact {
+    @include setFlex(row, space-between, center, null, null);
+
+    .contact-input {
+      width: 80%;
+    }
+    .contact-btn {
+      @include setWidthHeight(52px, 52px);
+      @include setFlex(row, center, center, null, null);
+    }
+  }
+  .contact-tab {
+    width: calc(100%) - 34px;
+    padding: 35px 17px;
+    @include setFlex(column, null, null, 32px, null);
+    background-color: $black-dark;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+
+    .tab-line {
+      @include setFlex(row, null, center, 60px, null);
+    }
+  }
+}

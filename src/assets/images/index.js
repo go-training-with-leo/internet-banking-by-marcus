@@ -40,6 +40,8 @@ import EyeCross from 'assets/images/icons/eyeCross.png';
 import { ReactComponent as ACB } from 'assets/images/icons/acb.svg';
 
 import EightGif from './eight.gif';
+import InterBankTransfer from './interbankTransfer.png';
+import InternalTransfer from './internalTransfer.png';
 
 export {
   ACB,
@@ -66,6 +68,8 @@ export {
   EyeCross,
   Filter,
   Info,
+  InterBankTransfer,
+  InternalTransfer,
   Loading,
   Locker,
   MasterCard,

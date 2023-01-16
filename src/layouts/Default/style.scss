@@ -7,14 +7,17 @@
    display: flex;
    justify-content: center;
 
-   @include Responsive(XS){
-      justify-content:start;
-   }
-
    &__right {
-      width: calc(100% - 120px);
+      width: calc(100% - 20px);
       position: relative;
-      padding: 0 60px;
+
+      @include Responsive(XS) {
+         width: calc(100% - 50px);
+      }
+      @include Responsive(SM) {
+      width: calc(100% - 120px);
+         
+      }
 
       &__body {
          margin: 0 auto;

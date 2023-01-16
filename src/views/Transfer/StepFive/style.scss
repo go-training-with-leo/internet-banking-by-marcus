@@ -1,0 +1,34 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.step-five {
+  @include setFlex(column, null, null, 30px, null);
+  font-size: 14px;
+  p{
+    line-height: 24px;
+  }
+  
+  .step-five-tab-info {
+    width: calc(100% - 32px);
+    padding: 16px;
+    @include setFlex(column, null, null, 16px, null);
+    background-color: $black-dark;
+
+    &__line {
+      @include setFlex(row, null, center, 20px, null);
+      
+      .title {
+        min-width: 90px;
+      }
+
+    }
+  }
+  .btn-group {
+    margin-top: 20px;
+    @include setFlex(row, space-between, null, 20px, null);
+
+    .step-five-btn {
+      width: 50%;
+    }
+  }
+}

@@ -1,8 +1,9 @@
-@import "assets/scss/variables.scss";
+@import "assets/scss/extends.scss";
 @import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
 
 .contacts-view {
-  width: 100%;
+  @extend %view;
   @include setFlex(column, null, null, 40px, null);
   .search-bar {
     width: 100%;

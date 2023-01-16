@@ -1,0 +1,35 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+.step-one {
+  width: 100%;
+  @include setFlex(column, null, null, 30px, null);
+
+  .radio-group {
+    @include setFlex(row, null, null, 30px, null);
+  }
+
+  .saving-card-container {
+    @include setFlex(column, null, null, 30px, null);
+    .input-saving-card {
+      width: 100%;
+    }
+    .title {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+    }
+    .list-cards-container {
+      height: 200px;
+      @include setFlex(column, null, center, 30px, null);
+      overflow: auto;
+    }
+  }
+
+  .btn-group {
+    margin-top: 20px;
+    @include setFlex(row, null, center, 20px, null);
+    .step-one-btn {
+      width: 50%;
+    }
+  }
+}
