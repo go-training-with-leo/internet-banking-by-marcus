@@ -2,15 +2,29 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import DefaultButton from 'components/Button/Default';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectAccount } from 'core/selectors';
 
 import './style.scss';
+import { resetAccount } from 'global/redux/account/slice';
 
 const Success = ({ setToggle }) => {
+  const dispatch = useDispatch();
+
   const {
-    newAccount: { email, accountName, phoneNumber },
+    newAccount: {
+      email,
+      accountName,
+      phoneNumber,
+      password,
+      isLoading: loading,
+    },
   } = useSelector(selectAccount);
+
+  const handleFinish = () => {
+    dispatch(resetAccount());
+    setToggle();
+  };
 
   return (
     <form className='empl-modal'>
@@ -26,7 +40,7 @@ const Success = ({ setToggle }) => {
         </div>
         <div className='tab-info-row'>
           <span className='title'>Password:</span>
-          <span>A2A?\QhLKT_dTj</span>
+          <span>{password}</span>
         </div>
       </div>
       <span>Personal information</span>
@@ -40,7 +54,7 @@ const Success = ({ setToggle }) => {
           <span>{phoneNumber}</span>
         </div>
       </div>
-      <DefaultButton danger onClick={setToggle}>
+      <DefaultButton loading={loading} danger onClick={handleFinish}>
         OK
       </DefaultButton>
     </form>
