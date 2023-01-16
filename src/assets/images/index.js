@@ -2,6 +2,7 @@ import { ReactComponent as PlusIcon } from 'assets/images/icons/plus.svg';
 import { ReactComponent as CreditCard } from 'assets/images/icons/creditCard.svg';
 import { ReactComponent as Contact } from 'assets/images/icons/contact.svg';
 import { ReactComponent as CreditCardDone } from 'assets/images/icons/creditCardDone.svg';
+import { ReactComponent as CreditCardGradient } from 'assets/images/icons/creditCardGradient.svg';
 import { ReactComponent as Transfer } from 'assets/images/icons/transfer.svg';
 import { ReactComponent as Exit } from 'assets/images/icons/exit.svg';
 import { ReactComponent as Clock } from 'assets/images/icons/time.svg';
@@ -54,6 +55,7 @@ export {
   Contact,
   CreditCard,
   CreditCardDone,
+  CreditCardGradient,
   DeleteIcon,
   Edit,
   EightGif,

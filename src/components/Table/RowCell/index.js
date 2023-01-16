@@ -16,6 +16,7 @@ const statusIcons = {
   success: <Status success />,
   refund: <Status refund />,
   paid: <Status paid />,
+  unpaid: <Status unpaid />,
   canceled: <Status canceled />,
 };
 

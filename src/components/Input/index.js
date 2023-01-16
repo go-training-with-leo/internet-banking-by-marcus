@@ -84,7 +84,7 @@ const Input = ({
 };
 
 Input.defaultProps = {
-  register: null,
+  register: () => {},
   type: 'text',
   placeholder: undefined,
   error: false,
