@@ -32,10 +32,6 @@ const DefaultLayout = () => {
   const { titleHeader, button: btnHeader } =
     headerItems[userRole].find(({ path }) => path === pathname) || {};
 
-  // const handleClick = () => {
-  //   console.warn('testClick');
-  // };
-
   return (
     <div>
       <div className='page-layout'>

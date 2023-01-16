@@ -24,7 +24,7 @@ const addNewEmployee = createAsyncThunk('account/addNewEmpl', async (data) => {
     const { email, accountName, phoneNumber } = data;
 
     const accountInfo = await addNewEmpl({ email, accountName, phoneNumber });
-    console.warn(accountInfo);
+
     return {
       status: true,
       ...accountInfo,
