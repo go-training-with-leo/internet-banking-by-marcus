@@ -4,6 +4,7 @@
 
 .customer-history-view {
   @extend %view;
+  @include setFlex(column, null, null, 40px, null);
 
   &-tabs {
     @include setFlex(row, null, center, 130px, null);
@@ -19,5 +20,12 @@
         border-bottom: $pure-white 2px solid;
       }
     }
+  }
+
+  &-tables {
+      width: 100%;
+      height: 70vh;
+      overflow-y: auto;
+      transition: all 0.3s linear;
   }
 }

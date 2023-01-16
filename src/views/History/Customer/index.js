@@ -2,10 +2,19 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import './style.scss';
+import ReceiveTable from './RecvTable';
+import TransferTable from './TransferTable';
+import DebtTable from './DebtTable';
 
 const RECEIVE_TAB = 'RECEIVE_TAB';
 const TRANSFER_TAB = 'TRANSFER_TAB';
 const DEBT_REPAY_TAB = 'DEBT_REPAY_TAB';
+
+const tables = {
+  RECEIVE_TAB: <ReceiveTable />,
+  TRANSFER_TAB: <TransferTable />,
+  DEBT_REPAY_TAB: <DebtTable />,
+};
 
 const CustomerHistory = () => {
   const [activeTab, setActiveTab] = useState(RECEIVE_TAB);
@@ -38,6 +47,7 @@ const CustomerHistory = () => {
           Debt repaying
         </span>
       </div>
+      <div className='customer-history-view-tables'>{tables[activeTab]}</div>
     </div>
   );
 };
