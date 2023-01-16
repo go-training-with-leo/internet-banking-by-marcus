@@ -2,10 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import DefaultButton from 'components/Button/Default';
+import { useSelector } from 'react-redux';
+import { selectAccount } from 'core/selectors';
 
 import './style.scss';
 
 const Success = ({ setToggle }) => {
+  const {
+    newAccount: { email, accountName, phoneNumber },
+  } = useSelector(selectAccount);
+
   return (
     <form className='empl-modal'>
       <span>
@@ -16,7 +22,7 @@ const Success = ({ setToggle }) => {
       <div className='tab-info'>
         <div className='tab-info-row'>
           <span className='title'>Email:</span>
-          <span>email@gmail.com</span>
+          <span>{email}</span>
         </div>
         <div className='tab-info-row'>
           <span className='title'>Password:</span>
@@ -27,11 +33,11 @@ const Success = ({ setToggle }) => {
       <div className='tab-info'>
         <div className='tab-info-row'>
           <span className='title'>Name:</span>
-          <span>email@gmail.com</span>
+          <span>{accountName}</span>
         </div>
         <div className='tab-info-row'>
           <span className='title'>Phone:</span>
-          <span>+84 381234567</span>
+          <span>{phoneNumber}</span>
         </div>
       </div>
       <DefaultButton danger onClick={setToggle}>
