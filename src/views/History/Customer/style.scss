@@ -1,0 +1,23 @@
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/variables.scss';
+@import 'assets/scss/extends.scss';
+
+.customer-history-view {
+  @extend %view;
+
+  &-tabs {
+    @include setFlex(row, null, center, 130px, null);
+    color: $pure-white;
+    cursor: pointer;
+    span {
+      padding-right: 15px;
+      padding-bottom: 8px;
+      border-bottom: transparent 2px solid;
+      transition: all 0.3s 0.1s linear;
+
+      &.active {
+        border-bottom: $pure-white 2px solid;
+      }
+    }
+  }
+}
