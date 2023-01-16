@@ -1,6 +1,8 @@
+import React from 'react';
+
 import DefaultButton from 'components/Button/Default';
 import useToggle from 'components/hooks/useToggle';
-import React from 'react';
+import { signOut } from 'global/redux/auth/request';
 import ChangePasswordModal from './ChangePwdModal';
 
 import './style.scss';
@@ -28,7 +30,9 @@ const Account = () => {
         </DefaultButton>
       </div>
       <div className='account-view-btn'>
-        <DefaultButton danger>Log out</DefaultButton>
+        <DefaultButton danger onClick={() => signOut()}>
+          Log out
+        </DefaultButton>
       </div>
       {changePwdModal && <ChangePasswordModal setToggle={setChangePwdModal} />}
     </div>

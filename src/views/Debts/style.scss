@@ -1,8 +1,9 @@
 @import "assets/scss/variables.scss";
 @import "assets/scss/mixins.scss";
+@import "assets/scss/extends.scss";
 
 .debt-view {
-  width: 100%;
+  @extend %view;
   @include setFlex(column, null, null, 40px, null);
   color: $pure-white;
   transition: all 0.3s linear;
