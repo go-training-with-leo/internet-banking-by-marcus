@@ -8,7 +8,7 @@ import './style.scss';
 const StepOne = () => {
   return (
     <form className='empl-modal'>
-      <Stepper title='Sign-in information' step={1}>
+      <Stepper title='Sign-in information' step='1'>
         Provide the sign-in information
       </Stepper>
       <Input
