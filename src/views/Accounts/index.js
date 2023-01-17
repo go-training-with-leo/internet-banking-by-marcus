@@ -15,10 +15,12 @@ import { getCustomerAccounts } from 'global/redux/account/thunk';
 import './style.scss';
 import { useForm } from 'react-hook-form';
 import AccountInfoModal from './AccountInfoModal';
+import RechargeModal from './RechargeModal';
 
 const Accounts = () => {
   const dispatch = useDispatch();
 
+  const [showRecharge, setShowRecharge] = useToggle();
   const [showDetail, setShowDetail] = useToggle();
   const [actionData, setActionData] = useState();
   const [accountInfo, setAccountInfo] = useState([]);
@@ -45,9 +47,10 @@ const Accounts = () => {
     setAccountInfo(filteredAccounts);
   };
 
-  const handleShowDetail = (accountDetail) => {
+  const handleShowDetail = ({ type, accountDetail }) => {
     setActionData(accountDetail);
-    setShowDetail();
+    if (type === 'RECHARGE') setShowRecharge();
+    else if (type === 'DETAIL') setShowDetail();
   };
 
   useEffect(() => {
@@ -90,11 +93,26 @@ const Accounts = () => {
               <RowCell title='phoneNumber'>{customer.phoneNumber}</RowCell>
               <RowCell title='email'>{customer.email}</RowCell>
               <RowCell title='actions'>
-                <CashAdd width={30} height={30} fill='red' />
+                <CashAdd
+                  width={30}
+                  height={30}
+                  fill='red'
+                  onClick={() =>
+                    handleShowDetail({
+                      type: 'RECHARGE',
+                      accountDetail: customer,
+                    })
+                  }
+                />
                 <Info
                   width={30}
                   height={30}
-                  onClick={() => handleShowDetail(customer)}
+                  onClick={() =>
+                    handleShowDetail({
+                      type: 'DETAIL',
+                      accountDetail: customer,
+                    })
+                  }
                   fill='red'
                 />
               </RowCell>
@@ -107,6 +125,9 @@ const Accounts = () => {
           setToggle={setShowDetail}
           accountDetail={actionData}
         />
+      )}
+      {showRecharge && (
+        <RechargeModal setToggle={setShowRecharge} accountDetail={actionData} />
       )}
     </div>
   );
