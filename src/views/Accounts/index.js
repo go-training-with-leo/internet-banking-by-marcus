@@ -12,6 +12,7 @@ import { CashAdd, Info, Search } from 'assets/images';
 import { getCustomerAccounts } from 'global/redux/account/thunk';
 
 import './style.scss';
+import { useForm } from 'react-hook-form';
 
 const Accounts = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ const Accounts = () => {
   const [accountInfo, setAccountInfo] = useState([]);
 
   const { accounts } = useSelector(selectAccount);
+  const { register, getValues, watch } = useForm();
+
+  const watchInput = watch('email');
 
   const headerTable = (
     <HeaderTable>
@@ -29,6 +33,14 @@ const Accounts = () => {
     </HeaderTable>
   );
 
+  const handleFilter = () => {
+    const inputValue = getValues('email');
+    const filteredAccounts = accounts.filter((account) => {
+      return account?.email.toLowerCase().includes(inputValue);
+    });
+    setAccountInfo(filteredAccounts);
+  };
+
   useEffect(() => {
     dispatch(getCustomerAccounts());
   }, []);
@@ -37,18 +49,25 @@ const Accounts = () => {
     setAccountInfo(accounts);
   }, [accounts]);
 
+  useEffect(() => {
+    if (watchInput === '') {
+      setAccountInfo(accounts);
+    }
+  }, [watchInput]);
+
   return (
     <div className='accounts-view'>
       <div className='search-bar'>
         <div className='search-bar__input'>
           <Input
+            register={register}
             name='email'
             label='Email / Card number'
             placeholder='Enter email or card number'
           />
         </div>
         <div className='search-bar__btn'>
-          <IconButton danger>
+          <IconButton danger onClick={handleFilter}>
             <Search width={20} height={20} fill='white' />
           </IconButton>
         </div>
