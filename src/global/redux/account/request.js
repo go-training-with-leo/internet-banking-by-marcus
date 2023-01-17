@@ -64,4 +64,21 @@ const getCustAccounts = async () => {
   return accountInfo;
 };
 
-export { addNewCust, addNewEmpl, checkEmailExist, getCustAccounts };
+const rechargeMoney = async ({ id, balance }) => {
+  const {
+    data: { message },
+  } = await api.post('/recharge-money', {
+    id,
+    balance,
+  });
+
+  return message;
+};
+
+export {
+  addNewCust,
+  addNewEmpl,
+  checkEmailExist,
+  getCustAccounts,
+  rechargeMoney,
+};

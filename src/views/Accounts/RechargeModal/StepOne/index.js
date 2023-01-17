@@ -1,14 +1,22 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import DefaultButton from 'components/Button/Default';
 import Input from 'components/Input';
-
-import './style.scss';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { rechargeMoney } from 'global/redux/account/thunk';
+import { selectAccount } from 'core/selectors';
+import { divideSpaceIdCard, parseMoneyVnd } from 'utils/helpers';
 import validBalance from './validation';
 
-const StepOne = ({ next }) => {
+import './style.scss';
+
+const StepOne = ({ accountDetail, next }) => {
+  const dispatch = useDispatch();
+
+  const { isLoading: loading } = useSelector(selectAccount);
+
   const {
     register,
     handleSubmit,
@@ -16,19 +24,36 @@ const StepOne = ({ next }) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(validBalance) });
 
-  const onSubmit = (formData) => {
-    console.warn(formData);
-    next();
+  const onSubmit = async (formData) => {
+    const { id } = accountDetail;
+    const {
+      payload: { status },
+    } = await dispatch(rechargeMoney({ id, ...formData }));
+
+    if (status) next();
   };
 
   return (
     <form className='recharge-modal' onSubmit={handleSubmit(onSubmit)}>
+      <div className='recharge-line'>
+        <span className='title'>Name:</span>
+        <span>{accountDetail?.accountName}</span>
+      </div>
+      <div className='recharge-line'>
+        <span className='title'>Card number:</span>
+        <span>{divideSpaceIdCard(accountDetail?.cardNumber)}</span>
+      </div>
+      <div className='recharge-line'>
+        <span className='title'>Balance:</span>
+        <span>{parseMoneyVnd(accountDetail?.balance)} VND</span>
+      </div>
       <Input
         register={register}
         name='balance'
-        label='Balance:'
-        placeholder='Enter your balance'
-        error={errors.balance?.message || true}
+        disabled={loading}
+        label='Total amount:'
+        placeholder='Enter the amount of money'
+        error={errors.balance?.message && true}
       />
       <span>Or select an amount of money below:</span>
       <div className='balances-list'>
@@ -61,7 +86,7 @@ const StepOne = ({ next }) => {
           10 000 000
         </span>
       </div>
-      <DefaultButton type='submit' danger>
+      <DefaultButton loading={loading} type='submit' danger>
         Next
       </DefaultButton>
     </form>

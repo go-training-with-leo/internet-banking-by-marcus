@@ -6,6 +6,13 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
+  .recharge-line {
+    @include setFlex(row, null, null, 14px, null);
+    .title {
+      width: 100px;
+    }
+  }
+
   .balances-list {
     @include setFlex(row, space-between, center, null, null);
     .balance {

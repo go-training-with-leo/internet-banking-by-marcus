@@ -4,6 +4,7 @@ import {
   addNewEmployee,
   existEmail,
   getCustomerAccounts,
+  rechargeMoney,
 } from './thunk';
 
 const account = createSlice({
@@ -62,6 +63,16 @@ const account = createSlice({
     [getCustomerAccounts.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.accounts = action.payload.customerAccounts;
+    },
+
+    [rechargeMoney.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [rechargeMoney.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [rechargeMoney.fulfilled]: (state) => {
+      state.isLoading = false;
     },
   },
 });
