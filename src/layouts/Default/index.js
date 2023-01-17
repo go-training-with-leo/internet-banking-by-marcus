@@ -5,14 +5,14 @@ import SideBar from 'navigators/SideBar';
 
 import SideBarItem from 'navigators/SideBar/Item';
 import useToggle from 'components/hooks/useToggle';
+import AddCustomerModal from 'views/Accounts/AddCustomerModal';
+import AddEmplModal from 'views/Employees/AddEmplModal';
 import { getLocalStorage } from 'utils/helpers';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import AddEmplModal from 'views/Employees/AddEmplModal';
 import {
   sideBarItems as sideBarByRole,
   bottomSideBarItem,
 } from './sideBarItems';
-
 import headerItems from './headerItems';
 
 import './style.scss';
@@ -74,7 +74,12 @@ const DefaultLayout = () => {
           </Header>
           <div className='page-layout__right__body'>
             <Outlet />
-            {showModal && <AddEmplModal setToggle={setShowModal} />}
+            {showModal && pathname === '/employees' && (
+              <AddEmplModal setToggle={setShowModal} />
+            )}
+            {showModal && pathname === '/accounts' && (
+              <AddCustomerModal setToggle={setShowModal} />
+            )}
           </div>
         </div>
       </div>

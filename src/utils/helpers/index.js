@@ -6,6 +6,8 @@ import {
   query,
   where,
 } from 'firebase/firestore';
+import moment from 'moment';
+
 import { db } from 'services/firebase';
 import { mainPagesRole, StorageKey } from 'utils/constants';
 
@@ -42,6 +44,10 @@ const parseMoneyVnd = (value) => {
     : 'Invalid type';
 };
 
+const divideSpaceIdCard = (idCard) => {
+  return idCard.replace(/(\d{4}(?!\s))/g, '$1 ');
+};
+
 const getDocFireStore = async ({ path, id }) => {
   const docRef = doc(db, path, id);
   const docSnap = await getDoc(docRef);
@@ -63,12 +69,18 @@ const queryDocs = async ({ path, field, value }) => {
   return respone.length === 1 ? respone[0] : respone;
 };
 
+const convertTimestamp = (timestamp) => {
+  return moment(timestamp).format('hh:mm DD/MM/YYYY');
+};
+
 const getMainPageByRole = (role) => {
   return mainPagesRole[role] || null;
 };
 
 export {
   capitalizeFirstLetter,
+  convertTimestamp,
+  divideSpaceIdCard,
   getAuthTokenFromLocalStorage,
   getDocFireStore,
   getLocalStorage,

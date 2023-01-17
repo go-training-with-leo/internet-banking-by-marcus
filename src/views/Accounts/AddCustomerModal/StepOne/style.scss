@@ -1,0 +1,14 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.cust-modal {
+  @include setFlex(column, null, null, 30px, null);
+
+  .add-cust-btn {
+    @include setFlex(row, null, center, 20px, null);
+
+    .cust-btn {
+      width: 50%;
+    }
+  }
+}

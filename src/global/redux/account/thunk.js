@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { addNewEmpl, checkEmailExist } from './request';
+import { addNewEmpl, addNewCust, checkEmailExist } from './request';
 
 const existEmail = createAsyncThunk('account/existEmail', async (data) => {
   try {
@@ -19,21 +19,53 @@ const existEmail = createAsyncThunk('account/existEmail', async (data) => {
   }
 });
 
-const addNewEmployee = createAsyncThunk('account/addNewEmpl', async (data) => {
-  try {
-    const { email, accountName, phoneNumber } = data;
+const addNewEmployee = createAsyncThunk(
+  'account/addNewEmployee',
+  async (data) => {
+    try {
+      const { email, accountName, phoneNumber } = data;
 
-    const accountInfo = await addNewEmpl({ email, accountName, phoneNumber });
+      const accountInfo = await addNewEmpl({
+        email,
+        accountName,
+        phoneNumber,
+      });
 
-    return {
-      status: true,
-      ...accountInfo,
-    };
-  } catch (error) {
-    return {
-      status: false,
-    };
+      return {
+        status: true,
+        ...accountInfo,
+      };
+    } catch (error) {
+      return {
+        status: false,
+      };
+    }
   }
-});
+);
 
-export { addNewEmployee, existEmail };
+const addNewCustomer = createAsyncThunk(
+  'account/addNewCustomer',
+  async (data) => {
+    try {
+      const { email, accountName, phoneNumber, balance } = data;
+
+      const accountInfo = await addNewCust({
+        email,
+        accountName,
+        phoneNumber,
+        balance,
+      });
+
+      return {
+        status: true,
+        ...accountInfo,
+      };
+    } catch (error) {
+      return {
+        status: false,
+      };
+    }
+  }
+);
+
+export { addNewCustomer, addNewEmployee, existEmail };
