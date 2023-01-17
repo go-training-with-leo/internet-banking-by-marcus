@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import Modal from 'components/Modal';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
+import StepThree from './StepThree';
 import Success from './Success';
 
 import './style.scss';
-import StepThree from './StepThree';
 
 const STEP_ONE = 'PROVIDE_EMAIL';
 const STEP_TWO = 'PROVIDE_INFO';
