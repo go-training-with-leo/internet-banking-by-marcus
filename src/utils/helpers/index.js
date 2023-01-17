@@ -69,8 +69,15 @@ const queryDocs = async ({ path, field, value }) => {
   return respone.length === 1 ? respone[0] : respone;
 };
 
+const getAllDocsInColl = async (collect) => {
+  const querySnapshot = await getDocs(collection(db, collect));
+
+  const allDocs = querySnapshot.docs.map((document) => document.data());
+  return allDocs;
+};
+
 const convertTimestamp = (timestamp) => {
-  return moment(timestamp).format('hh:mm DD/MM/YYYY');
+  return moment(timestamp).format('HH:mm DD/MM/YYYY');
 };
 
 const getMainPageByRole = (role) => {
@@ -81,6 +88,7 @@ export {
   capitalizeFirstLetter,
   convertTimestamp,
   divideSpaceIdCard,
+  getAllDocsInColl,
   getAuthTokenFromLocalStorage,
   getDocFireStore,
   getLocalStorage,

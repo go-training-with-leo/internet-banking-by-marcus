@@ -1,5 +1,5 @@
 import api from 'services/api';
-import { convertTimestamp, queryDocs } from 'utils/helpers';
+import { convertTimestamp, getAllDocsInColl, queryDocs } from 'utils/helpers';
 
 const checkEmailExist = async (email) => {
   const {
@@ -55,8 +55,13 @@ const getCustAccounts = async () => {
     field: 'role',
     value: 'CUSTOMER',
   });
+  const payingCards = await getAllDocsInColl('payingCards');
+  const accountInfo = custAccounts.map((customer) => ({
+    ...customer,
+    ...payingCards.find((payingCard) => payingCard.id === customer.id),
+  }));
 
-  return custAccounts;
+  return accountInfo;
 };
 
 export { addNewCust, addNewEmpl, checkEmailExist, getCustAccounts };

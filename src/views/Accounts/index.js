@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Input from 'components/Input';
 import Table, { TableRow } from 'components/Table';
+import useToggle from 'components/hooks/useToggle';
 import IconButton from 'components/Button/Icon';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
@@ -13,10 +14,13 @@ import { getCustomerAccounts } from 'global/redux/account/thunk';
 
 import './style.scss';
 import { useForm } from 'react-hook-form';
+import AccountInfoModal from './AccountInfoModal';
 
 const Accounts = () => {
   const dispatch = useDispatch();
 
+  const [showDetail, setShowDetail] = useToggle();
+  const [actionData, setActionData] = useState();
   const [accountInfo, setAccountInfo] = useState([]);
 
   const { accounts } = useSelector(selectAccount);
@@ -39,6 +43,11 @@ const Accounts = () => {
       return account?.email.toLowerCase().includes(inputValue);
     });
     setAccountInfo(filteredAccounts);
+  };
+
+  const handleShowDetail = (accountDetail) => {
+    setActionData(accountDetail);
+    setShowDetail();
   };
 
   useEffect(() => {
@@ -74,20 +83,31 @@ const Accounts = () => {
       </div>
       <div className='accounts-table'>
         <Table widths={[25, 25, 25, 25]} headerTable={headerTable}>
-          {accountInfo.map(({ id, accountName, phoneNumber, email }, index) => (
-            <TableRow key={id}>
+          {accountInfo.map((customer, index) => (
+            <TableRow key={customer.id}>
               <RowCell>{index + 1}</RowCell>
-              <RowCell title='accountName'>{accountName}</RowCell>
-              <RowCell title='phoneNumber'>{phoneNumber}</RowCell>
-              <RowCell title='email'>{email}</RowCell>
+              <RowCell title='accountName'>{customer.accountName}</RowCell>
+              <RowCell title='phoneNumber'>{customer.phoneNumber}</RowCell>
+              <RowCell title='email'>{customer.email}</RowCell>
               <RowCell title='actions'>
                 <CashAdd width={30} height={30} fill='red' />
-                <Info width={30} height={30} fill='red' />
+                <Info
+                  width={30}
+                  height={30}
+                  onClick={() => handleShowDetail(customer)}
+                  fill='red'
+                />
               </RowCell>
             </TableRow>
           ))}
         </Table>
       </div>
+      {showDetail && (
+        <AccountInfoModal
+          setToggle={setShowDetail}
+          accountDetail={actionData}
+        />
+      )}
     </div>
   );
 };
