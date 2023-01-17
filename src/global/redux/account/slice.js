@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addNewCustomer, addNewEmployee, existEmail } from './thunk';
+import {
+  addNewCustomer,
+  addNewEmployee,
+  existEmail,
+  getCustomerAccounts,
+} from './thunk';
 
 const account = createSlice({
   name: 'account',
@@ -47,6 +52,16 @@ const account = createSlice({
     [addNewCustomer.fulfilled]: (state, action) => {
       state.newAccount = { ...state.newAccount, ...action.payload };
       state.isLoading = false;
+    },
+    [getCustomerAccounts.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getCustomerAccounts.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [getCustomerAccounts.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.accounts = action.payload.customerAccounts;
     },
   },
 });

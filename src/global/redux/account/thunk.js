@@ -1,5 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { addNewEmpl, addNewCust, checkEmailExist } from './request';
+import {
+  addNewEmpl,
+  addNewCust,
+  checkEmailExist,
+  getCustAccounts,
+} from './request';
 
 const existEmail = createAsyncThunk('account/existEmail', async (data) => {
   try {
@@ -68,4 +73,22 @@ const addNewCustomer = createAsyncThunk(
   }
 );
 
-export { addNewCustomer, addNewEmployee, existEmail };
+const getCustomerAccounts = createAsyncThunk(
+  'account/getCustomers',
+  async () => {
+    try {
+      const customerAccounts = await getCustAccounts();
+
+      return {
+        status: true,
+        customerAccounts,
+      };
+    } catch (error) {
+      return {
+        status: false,
+      };
+    }
+  }
+);
+
+export { addNewCustomer, addNewEmployee, existEmail, getCustomerAccounts };

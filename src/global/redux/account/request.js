@@ -1,5 +1,5 @@
 import api from 'services/api';
-import { convertTimestamp } from 'utils/helpers';
+import { convertTimestamp, queryDocs } from 'utils/helpers';
 
 const checkEmailExist = async (email) => {
   const {
@@ -49,4 +49,14 @@ const addNewCust = async ({ email, accountName, phoneNumber, balance }) => {
   return accountInfo;
 };
 
-export { addNewCust, addNewEmpl, checkEmailExist };
+const getCustAccounts = async () => {
+  const custAccounts = await queryDocs({
+    path: 'accounts',
+    field: 'role',
+    value: 'CUSTOMER',
+  });
+
+  return custAccounts;
+};
+
+export { addNewCust, addNewEmpl, checkEmailExist, getCustAccounts };
