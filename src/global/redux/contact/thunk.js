@@ -8,12 +8,13 @@ import {
 
 const addContact = createAsyncThunk('contact/addContact', async (data) => {
   try {
-    const { email, cardNumber, contactName } = data;
+    const { email, cardNumber, contactName, bank } = data;
 
     const { message, newContact } = await addContactReq({
       email,
       cardNumber,
       contactName,
+      bank,
     });
     return {
       status: true,

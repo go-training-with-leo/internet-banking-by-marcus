@@ -32,7 +32,9 @@ const contact = createSlice({
       state.isLoading = false;
     },
     [getContacts.fulfilled]: (state, action) => {
-      state.contacts = [...action.payload.contactList];
+      if (action.payload.contactList) {
+        state.contacts = [...action.payload.contactList];
+      }
       state.isLoading = false;
     },
 

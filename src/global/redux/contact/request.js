@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { deleteDocFireStore, queryDocs } from 'utils/helpers';
 
-const addContact = async ({ email, cardNumber, contactName }) => {
+const addContact = async ({ email, cardNumber, contactName, bank }) => {
+  console.warn(bank);
   const {
     data: { message, newContact },
   } = await axios.post('http://localhost:3000/new-contact', {
     email,
     cardNumber,
     contactName,
+    bank,
   });
 
   return { message, newContact };

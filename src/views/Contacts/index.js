@@ -53,7 +53,7 @@ const Contacts = () => {
                 <RowCell>{index + 1}</RowCell>
                 <RowCell>{row?.contactName}</RowCell>
                 <RowCell>{row?.cardNumber}</RowCell>
-                <RowCell>EIGHT.Bank</RowCell>
+                <RowCell>{row?.bank}</RowCell>
                 <RowCell>
                   <Edit
                     fill='red'

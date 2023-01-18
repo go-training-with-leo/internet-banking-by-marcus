@@ -15,8 +15,7 @@ import validContact from './validation';
 import './style.scss';
 
 const options = [
-  { id: 'OT1', label: 'EIGHT.Bank', value: 1, icon: ACB },
-  { id: 'OT2', label: 'EIGHT.Bank', value: 2, icon: ACB },
+  { id: 'OT1', label: 'EIGHT.Bank', value: 'EIGHT.Bank', icon: ACB },
 ];
 
 const AddContactModal = ({ setToggle }) => {
@@ -61,6 +60,7 @@ const AddContactModal = ({ setToggle }) => {
         <Controller
           control={control}
           name='bank'
+          defaultValue={options[0].value}
           render={({ field: { onChange, value } }) => (
             <Selection
               options={options}
