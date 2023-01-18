@@ -76,7 +76,7 @@ const AddContactModal = ({ setToggle }) => {
           register={register}
           name='cardNumber'
           label={errors.cardNumber ? errors.cardNumber?.message : 'Card number'}
-          placeholder='Card number'
+          placeholder='Enter the contact’s card number'
           error={errors.cardNumber && true}
         />
         <Input
@@ -87,11 +87,11 @@ const AddContactModal = ({ setToggle }) => {
             errors.contactName?.message ? errors.contactName?.message : 'Name'
           }
           error={errors.contactName?.message && true}
-          placeholder='Your name'
+          placeholder='Enter the contact’s name'
         />
         <div className='btn-modal'>
           <DefaultButton loading={loading} danger type='submit'>
-            Save changes
+            Create
           </DefaultButton>
         </div>
       </form>
