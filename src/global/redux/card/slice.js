@@ -1,32 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getPayingCard } from './thunk';
+import { getCards } from './thunk';
 
 const card = createSlice({
   name: 'card',
   initialState: {
-    cards: [],
     payingCard: {},
+    savingCards: [],
     isLoading: false,
     isFetched: false,
   },
   reducers: {
-    setPayingCard: (state, action) => {
-      state.payingCard = action.payload;
+    resetCards: (state) => {
+      state.payingCard = {};
+      state.savingCards = [];
     },
   },
   extraReducers: {
-    [getPayingCard.pending]: (state) => {
+    [getCards.pending]: (state) => {
       state.isLoading = true;
     },
-    [getPayingCard.rejected]: (state) => {
+    [getCards.rejected]: (state) => {
       state.isLoading = false;
     },
-    [getPayingCard.fulfilled]: (state, action) => {
+    [getCards.fulfilled]: (state, action) => {
+      state.payingCard = action.payload.payingCard;
+      state.savingCards = [...action.payload.savingCards];
       state.isLoading = false;
-      state.payingCard = action.payload.payingCardInfo;
     },
   },
 });
 
-export const { setPayingCard } = card.actions;
+export const { resetCards } = card.actions;
 export default card.reducer;

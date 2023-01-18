@@ -1,13 +1,18 @@
 import { queryDocs } from 'utils/helpers';
 
-const getPayingCard = async (uid) => {
+const getCards = async (uid) => {
   const payingCardInfo = await queryDocs({
     path: 'payingCards',
     field: 'email',
     value: uid,
   });
+  const savingCardsInfo = await queryDocs({
+    path: 'savingCards',
+    field: 'email',
+    value: uid,
+  });
 
-  return payingCardInfo;
+  return { payingCard: payingCardInfo, savingCards: savingCardsInfo };
 };
 
-export { getPayingCard };
+export { getCards };

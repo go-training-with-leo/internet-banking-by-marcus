@@ -8,9 +8,9 @@ import { parseMoneyVnd } from 'utils/helpers';
 
 import './style.scss';
 
-const ListCardItem = ({ isActive, label, cardId, value }) => {
+const ListCardItem = ({ isActive, label, cardId, value, onClick }) => {
   return (
-    <div className='list-card-item'>
+    <div className='list-card-item' onClick={onClick} role='listitem'>
       <Ellipse className={classNames({ hide: !isActive })} />
       <SmallCard label={label}>{cardId}</SmallCard>
       <span className='value'>{parseMoneyVnd(value)} VND</span>
@@ -20,6 +20,7 @@ const ListCardItem = ({ isActive, label, cardId, value }) => {
 
 ListCardItem.defaultProps = {
   isActive: false,
+  onClick: () => {},
 };
 
 ListCardItem.propTypes = {
@@ -27,6 +28,7 @@ ListCardItem.propTypes = {
   label: PropTypes.string.isRequired,
   cardId: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onClick: PropTypes.func,
 };
 
 export default ListCardItem;
