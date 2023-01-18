@@ -1,18 +1,18 @@
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import Input from 'components/Input';
 import Selection from 'components/Select';
 import { ACB } from 'assets/images';
-
-import './style.scss';
-import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'global/redux/contact/thunk';
 import { selectAuth, selectContact } from 'core/selectors';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validContact from './validation';
+
+import './style.scss';
 
 const options = [
   { id: 'OT1', label: 'EIGHT.Bank', value: 1, icon: ACB },
