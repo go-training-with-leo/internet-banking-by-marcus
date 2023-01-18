@@ -12,11 +12,14 @@ import {
 
 const signIn = async (email, password) => {
   const { user } = await signInWithEmailAndPassword(auth, email, password);
-  const { role } = await queryDocs({
+  const getRole = await queryDocs({
     path: 'accounts',
     field: 'email',
     value: email,
   });
+
+  const { role } = getRole[0];
+
   modifyLocalStorage('role', role);
 
   const accountData = {

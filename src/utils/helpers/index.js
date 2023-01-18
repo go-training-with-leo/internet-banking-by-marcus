@@ -60,7 +60,7 @@ const queryDocs = async ({ path, field, value }) => {
   const respone = querySnapshot.docs.map((document) => {
     return document.data();
   });
-  return respone.length === 1 ? respone[0] : respone;
+  return respone;
 };
 
 const getMainPageByRole = (role) => {

@@ -46,7 +46,7 @@ const AddContactModal = ({ setToggle }) => {
           message,
         });
       } else {
-        setError('contactName', {
+        setError('cardNumber', {
           type: 'custom',
           message,
         });
