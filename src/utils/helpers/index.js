@@ -1,5 +1,6 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -52,6 +53,10 @@ const getDocFireStore = async ({ path, id }) => {
   return null;
 };
 
+const deleteDocFireStore = async ({ collect, id }) => {
+  await deleteDoc(doc(db, collect, id));
+};
+
 const queryDocs = async ({ path, field, value }) => {
   const queryFireStore = query(collection(db, path), where(field, '==', value));
 
@@ -69,6 +74,7 @@ const getMainPageByRole = (role) => {
 
 export {
   capitalizeFirstLetter,
+  deleteDocFireStore,
   getAuthTokenFromLocalStorage,
   getDocFireStore,
   getLocalStorage,

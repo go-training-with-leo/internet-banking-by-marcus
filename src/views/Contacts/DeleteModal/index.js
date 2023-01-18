@@ -4,8 +4,25 @@ import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 
 import './style.scss';
+import { deleteContact } from 'global/redux/contact/thunk';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectContact } from 'core/selectors';
 
-const DeleteModal = ({ setToggle }) => {
+const DeleteModal = ({ setToggle, contactData }) => {
+  const dispatch = useDispatch();
+
+  const { isLoading: loading } = useSelector(selectContact);
+
+  const handleConfirm = async () => {
+    const {
+      payload: { status },
+    } = await dispatch(deleteContact({ id: contactData.id }));
+
+    if (status) {
+      setToggle();
+    }
+  };
+
   return (
     <Modal setToggle={setToggle} title='Alert!' clickOutSide cancel>
       <div className='delete-modal'>
@@ -14,7 +31,9 @@ const DeleteModal = ({ setToggle }) => {
         </span>
         <div className='btns-group'>
           <div className='btn'>
-            <DefaultButton danger>Confirm</DefaultButton>
+            <DefaultButton loading={loading} onClick={handleConfirm} danger>
+              Confirm
+            </DefaultButton>
           </div>
           <div className='btn'>
             <DefaultButton onClick={setToggle}>Cancel</DefaultButton>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Table, { TableRow } from 'components/Table';
@@ -19,6 +19,7 @@ const Contacts = () => {
 
   const [isShownEdit, toggleEdit] = useToggle();
   const [isShownDelete, toggleDelete] = useToggle();
+  const [chooseContact, setChooseContact] = useState();
 
   const { currentUser } = useSelector(selectAuth);
   const { contacts } = useSelector(selectContact);
@@ -32,6 +33,11 @@ const Contacts = () => {
       <HeaderCell>Actions</HeaderCell>
     </HeaderTable>
   );
+
+  const handleDelete = (contact) => {
+    setChooseContact(contact);
+    toggleDelete();
+  };
 
   useEffect(() => {
     dispatch(getContacts({ email: currentUser?.email }));
@@ -59,7 +65,7 @@ const Contacts = () => {
                     fill='red'
                     width={20}
                     height={20}
-                    onClick={toggleDelete}
+                    onClick={() => handleDelete(row)}
                   />
                 </RowCell>
               </TableRow>
@@ -68,7 +74,9 @@ const Contacts = () => {
         </Table>
       </div>
       {isShownEdit && <EditModal setToggle={toggleEdit} />}
-      {isShownDelete && <DeleteModal setToggle={toggleDelete} />}
+      {isShownDelete && (
+        <DeleteModal contactData={chooseContact} setToggle={toggleDelete} />
+      )}
     </div>
   );
 };

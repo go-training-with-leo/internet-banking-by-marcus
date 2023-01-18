@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { queryDocs } from 'utils/helpers';
+import { deleteDocFireStore, queryDocs } from 'utils/helpers';
 
 const addContact = async ({ email, cardNumber, contactName }) => {
   const {
@@ -23,4 +23,8 @@ const getContacts = async (email) => {
   return contactList;
 };
 
-export { addContact, getContacts };
+const deleteContact = async (id) => {
+  await deleteDocFireStore({ collect: 'contacts', id });
+};
+
+export { addContact, deleteContact, getContacts };

@@ -3,6 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   addContact as addContactReq,
   getContacts as getContactsReq,
+  deleteContact as deleteContactReq,
 } from './request';
 
 const addContact = createAsyncThunk('contact/addContact', async (data) => {
@@ -45,4 +46,23 @@ const getContacts = createAsyncThunk(
   }
 );
 
-export { addContact, getContacts };
+const deleteContact = createAsyncThunk(
+  'contact/deleteContact',
+  async (data) => {
+    try {
+      const { id } = data;
+
+      await deleteContactReq(id);
+      return {
+        status: true,
+        id,
+      };
+    } catch (error) {
+      return {
+        status: false,
+      };
+    }
+  }
+);
+
+export { addContact, deleteContact, getContacts };
