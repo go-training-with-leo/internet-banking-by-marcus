@@ -1,14 +1,13 @@
-import axios from 'axios';
+import api from 'services/api';
 
 const addContact = async ({ email, cardNumber, contactName }) => {
-  const { data: message } = await axios.post(
-    'http://localhost:3000/add-contact',
-    {
-      email,
-      cardNumber,
-      contactName,
-    }
-  );
+  const {
+    data: { message },
+  } = await api.post('/new-contact', {
+    email,
+    cardNumber,
+    contactName,
+  });
 
   return message;
 };

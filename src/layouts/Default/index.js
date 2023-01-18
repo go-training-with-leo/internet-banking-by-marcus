@@ -3,7 +3,9 @@ import React, { cloneElement, isValidElement, memo } from 'react';
 import Header from 'navigators/Header';
 import SideBar from 'navigators/SideBar';
 
+import AddContactModal from 'views/Contacts/AddContactModal';
 import SideBarItem from 'navigators/SideBar/Item';
+import useToggle from 'components/hooks/useToggle';
 import { getLocalStorage } from 'utils/helpers';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import {
@@ -17,6 +19,8 @@ import headerItems from './headerItems';
 const DefaultLayout = () => {
   const userRole = getLocalStorage('role') || 'NO_ROLE';
 
+  const [showModal, setShowModal] = useToggle();
+
   const { pathname } = useLocation();
 
   const sideBarItems = {
@@ -26,10 +30,6 @@ const DefaultLayout = () => {
 
   const { titleHeader, button: btnHeader } =
     headerItems[userRole].find(({ path }) => path === pathname) || {};
-
-  const handleClick = () => {
-    console.warn('testClick');
-  };
 
   return (
     <div>
@@ -69,10 +69,13 @@ const DefaultLayout = () => {
         <div className='page-layout__right'>
           <Header title={titleHeader} type={userRole === 'CUSTOMER' && 'free'}>
             {isValidElement(btnHeader) &&
-              cloneElement(btnHeader, { onClick: handleClick })}
+              cloneElement(btnHeader, { onClick: setShowModal })}
           </Header>
           <div className='page-layout__right__body'>
             <Outlet />
+            {showModal && pathname === '/contacts' && (
+              <AddContactModal setToggle={setShowModal} />
+            )}
           </div>
         </div>
       </div>

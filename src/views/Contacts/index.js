@@ -6,11 +6,11 @@ import HeaderCell from 'components/Table/HeaderCell';
 import useToggle from 'components/hooks/useToggle';
 import RowCell from 'components/Table/RowCell';
 import { Edit, Info } from 'assets/images';
+import DeleteModal from './DeleteModal';
 import EditModal from './EditModal';
 import tempData from './tempData';
 
 import './style.scss';
-import DeleteModal from './DeleteModal';
 
 const Contacts = () => {
   const [isShownEdit, toggleEdit] = useToggle();

@@ -10,7 +10,9 @@ import { ACB } from 'assets/images';
 import './style.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'global/redux/contact/thunk';
-import { selectAuth } from 'core/selectors';
+import { selectAuth, selectContact } from 'core/selectors';
+import { yupResolver } from '@hookform/resolvers/yup';
+import validContact from './validation';
 
 const options = [
   { id: 'OT1', label: 'EIGHT.Bank', value: 1, icon: ACB },
@@ -20,17 +22,35 @@ const options = [
 const AddContactModal = ({ setToggle }) => {
   const dispatch = useDispatch();
 
+  const { isLoading: loading } = useSelector(selectContact);
   const { currentUser } = useSelector(selectAuth);
-  const { register, handleSubmit, control } = useForm();
+  const {
+    register,
+    handleSubmit,
+    control,
+    setError,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(validContact) });
 
   const onSubmit = async (formData) => {
-    console.warn(formData);
     const {
-      payload: { status },
+      payload: { status, message },
     } = await dispatch(addContact({ email: currentUser.email, ...formData }));
 
     if (status) {
-      setToggle();
+      if (message === 'Success') {
+        setToggle();
+      } else if (message === 'Not found') {
+        setError('cardNumber', {
+          type: 'custom',
+          message,
+        });
+      } else {
+        setError('contactName', {
+          type: 'custom',
+          message,
+        });
+      }
     }
   };
 
@@ -52,19 +72,25 @@ const AddContactModal = ({ setToggle }) => {
           )}
         />
         <Input
+          disabled={loading}
           register={register}
           name='cardNumber'
-          label='Card number'
+          label={errors.cardNumber ? errors.cardNumber?.message : 'Card number'}
           placeholder='Card number'
+          error={errors.cardNumber && true}
         />
         <Input
+          disabled={loading}
           register={register}
           name='contactName'
-          label='Name'
+          label={
+            errors.contactName?.message ? errors.contactName?.message : 'Name'
+          }
+          error={errors.contactName?.message && true}
           placeholder='Your name'
         />
         <div className='btn-modal'>
-          <DefaultButton danger type='submit'>
+          <DefaultButton loading={loading} danger type='submit'>
             Save changes
           </DefaultButton>
         </div>
