@@ -6,7 +6,15 @@ import Loader from 'components/Loader';
 
 import 'components/Button/Default/style.scss';
 
-const DefaultButton = ({ type, ghost, danger, children, onClick, loading }) => {
+const DefaultButton = ({
+  type,
+  ghost,
+  danger,
+  children,
+  onClick,
+  loading,
+  disabled,
+}) => {
   return (
     <button
       className={classNames('button', {
@@ -16,7 +24,7 @@ const DefaultButton = ({ type, ghost, danger, children, onClick, loading }) => {
       })}
       onClick={onClick}
       type={type}
-      disabled={loading && true}
+      disabled={loading || disabled}
     >
       {loading ? <Loader /> : children}
     </button>
@@ -30,6 +38,7 @@ DefaultButton.defaultProps = {
   children: undefined,
   onClick: undefined,
   loading: false,
+  disabled: false,
 };
 
 DefaultButton.propTypes = {
@@ -39,6 +48,7 @@ DefaultButton.propTypes = {
   children: PropTypes.string,
   onClick: PropTypes.func,
   loading: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 export default DefaultButton;

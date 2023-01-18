@@ -1,19 +1,34 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Input from 'components/Input';
 import Table, { TableRow } from 'components/Table';
+import useToggle from 'components/hooks/useToggle';
 import IconButton from 'components/Button/Icon';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import RowCell from 'components/Table/RowCell';
+import { selectAccount } from 'core/selectors';
 import { CashAdd, Info, Search } from 'assets/images';
-import tempData from './tempData';
+import { getCustomerAccounts } from 'global/redux/account/thunk';
 
 import './style.scss';
+import { useForm } from 'react-hook-form';
+import AccountInfoModal from './AccountInfoModal';
+import RechargeModal from './RechargeModal';
 
 const Accounts = () => {
-  const { register } = useForm();
+  const dispatch = useDispatch();
+
+  const [showRecharge, setShowRecharge] = useToggle();
+  const [showDetail, setShowDetail] = useToggle();
+  const [actionData, setActionData] = useState();
+  const [accountInfo, setAccountInfo] = useState([]);
+
+  const { accounts } = useSelector(selectAccount);
+  const { register, getValues, watch } = useForm();
+
+  const watchInput = watch('email');
 
   const headerTable = (
     <HeaderTable>
@@ -23,6 +38,34 @@ const Accounts = () => {
       <HeaderCell>Actions</HeaderCell>
     </HeaderTable>
   );
+
+  const handleFilter = () => {
+    const inputValue = getValues('email');
+    const filteredAccounts = accounts.filter((account) => {
+      return account?.email.toLowerCase().includes(inputValue);
+    });
+    setAccountInfo(filteredAccounts);
+  };
+
+  const handleShowDetail = ({ type, accountDetail }) => {
+    setActionData(accountDetail);
+    if (type === 'RECHARGE') setShowRecharge();
+    else if (type === 'DETAIL') setShowDetail();
+  };
+
+  useEffect(() => {
+    dispatch(getCustomerAccounts());
+  }, []);
+
+  useEffect(() => {
+    setAccountInfo(accounts);
+  }, [accounts]);
+
+  useEffect(() => {
+    if (watchInput === '') {
+      setAccountInfo(accounts);
+    }
+  }, [watchInput]);
 
   return (
     <div className='accounts-view'>
@@ -36,31 +79,56 @@ const Accounts = () => {
           />
         </div>
         <div className='search-bar__btn'>
-          <IconButton danger>
+          <IconButton danger onClick={handleFilter}>
             <Search width={20} height={20} fill='white' />
           </IconButton>
         </div>
       </div>
       <div className='accounts-table'>
-        <Table
-          widths={[25, 25, 25, 25]}
-          headerTable={headerTable}
-          dataTable={tempData}
-        >
-          {tempData.map(({ id, account, phone, email }, index) => (
-            <TableRow key={id}>
+        <Table widths={[25, 25, 25, 25]} headerTable={headerTable}>
+          {accountInfo?.map((customer, index) => (
+            <TableRow key={customer.id}>
               <RowCell>{index + 1}</RowCell>
-              <RowCell title='account'>{account}</RowCell>
-              <RowCell title='phone'>{phone}</RowCell>
-              <RowCell title='email'>{email}</RowCell>
+              <RowCell title='accountName'>{customer.accountName}</RowCell>
+              <RowCell title='phoneNumber'>{customer.phoneNumber}</RowCell>
+              <RowCell title='email'>{customer.email}</RowCell>
               <RowCell title='actions'>
-                <CashAdd width={30} height={30} fill='red' />
-                <Info width={30} height={30} fill='red' />
+                <CashAdd
+                  width={30}
+                  height={30}
+                  fill='red'
+                  onClick={() =>
+                    handleShowDetail({
+                      type: 'RECHARGE',
+                      accountDetail: customer,
+                    })
+                  }
+                />
+                <Info
+                  width={30}
+                  height={30}
+                  onClick={() =>
+                    handleShowDetail({
+                      type: 'DETAIL',
+                      accountDetail: customer,
+                    })
+                  }
+                  fill='red'
+                />
               </RowCell>
             </TableRow>
           ))}
         </Table>
       </div>
+      {showDetail && (
+        <AccountInfoModal
+          setToggle={setShowDetail}
+          accountDetail={actionData}
+        />
+      )}
+      {showRecharge && (
+        <RechargeModal setToggle={setShowRecharge} accountDetail={actionData} />
+      )}
     </div>
   );
 };
