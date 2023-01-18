@@ -83,10 +83,7 @@ const AddContactModal = ({ setToggle }) => {
           disabled={loading}
           register={register}
           name='contactName'
-          label={
-            errors.contactName?.message ? errors.contactName?.message : 'Name'
-          }
-          error={errors.contactName?.message && true}
+          label='Name'
           placeholder='Enter the contact’s name'
         />
         <div className='btn-modal'>
