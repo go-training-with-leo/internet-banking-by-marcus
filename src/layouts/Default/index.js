@@ -9,11 +9,11 @@ import AddCustomerModal from 'views/Accounts/AddCustomerModal';
 import AddEmplModal from 'views/Employees/AddEmplModal';
 import { getLocalStorage } from 'utils/helpers';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import headerItems from './headerItems';
 import {
   sideBarItems as sideBarByRole,
   bottomSideBarItem,
 } from './sideBarItems';
-import headerItems from './headerItems';
 
 import './style.scss';
 

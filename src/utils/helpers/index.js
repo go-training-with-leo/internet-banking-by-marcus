@@ -45,7 +45,12 @@ const parseMoneyVnd = (value) => {
 };
 
 const divideSpaceIdCard = (idCard) => {
-  return idCard.replace(/(\d{4}(?!\s))/g, '$1 ');
+  return idCard ? idCard.replace(/(\d{4}(?!\s))/g, '$1 ') : idCard;
+};
+
+const get4LastDigit = (idCard) => {
+  const len = idCard.length;
+  return idCard ? idCard.slice(len - 4) : idCard;
 };
 
 const getDocFireStore = async ({ path, id }) => {
@@ -88,6 +93,7 @@ export {
   capitalizeFirstLetter,
   convertTimestamp,
   divideSpaceIdCard,
+  get4LastDigit,
   getAllDocsInColl,
   getAuthTokenFromLocalStorage,
   getDocFireStore,

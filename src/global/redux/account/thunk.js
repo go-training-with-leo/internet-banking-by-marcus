@@ -85,7 +85,6 @@ const getCustomerAccounts = createAsyncThunk(
         customerAccounts,
       };
     } catch (error) {
-      console.warn(error.message);
       return {
         status: false,
       };
