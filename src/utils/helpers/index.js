@@ -6,6 +6,7 @@ import {
   query,
   where,
 } from 'firebase/firestore';
+import moment from 'moment';
 
 import { db } from 'services/firebase';
 import { mainPagesRole, StorageKey } from 'utils/constants';
@@ -70,7 +71,7 @@ const queryDocs = async ({ path, field, value }) => {
   const respone = querySnapshot.docs.map((document) => {
     return document.data();
   });
-  return respone.length === 1 ? respone[0] : respone;
+  return respone;
 };
 
 const getAllDocsInColl = async (collect) => {
@@ -80,12 +81,17 @@ const getAllDocsInColl = async (collect) => {
   return allDocs;
 };
 
+const convertTimestamp = (timestamp) => {
+  return moment(timestamp).format('HH:mm DD/MM/YYYY');
+};
+
 const getMainPageByRole = (role) => {
   return mainPagesRole[role] || null;
 };
 
 export {
   capitalizeFirstLetter,
+  convertTimestamp,
   divideSpaceIdCard,
   get4LastDigit,
   getAllDocsInColl,

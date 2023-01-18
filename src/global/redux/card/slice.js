@@ -23,9 +23,11 @@ const card = createSlice({
       state.isLoading = false;
     },
     [getCards.fulfilled]: (state, action) => {
-      state.payingCard = action.payload.payingCard;
-      state.savingCards = [...action.payload.savingCards];
-      state.isLoading = false;
+      if (action.payload.payingCard) {
+        state.payingCard = { ...action.payload.payingCard[0] };
+        state.savingCards = [...action.payload.savingCards];
+        state.isLoading = false;
+      }
     },
   },
 });

@@ -1,0 +1,22 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.empl-modal {
+  @include setFlex(column, null, null, 30px, null);
+  font-weight: 400;
+  font-size: 12px;
+  
+  .tab-info {
+    width: calc(100% - 48px);
+    padding: 24px;
+    @include setFlex(column, null, null, 18px, null);
+    background-color: $black-dark;
+
+    &-row {
+      @include setFlex(row, null, center, 50px, null);
+      .title {
+        width: 50px;
+      }
+    }
+  }
+}
