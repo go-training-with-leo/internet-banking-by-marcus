@@ -1,0 +1,16 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.add-empl-btn {
+  margin-top: 40px;
+  width: 100%;
+  @include setFlex(row, null, center, 20px, null);
+
+  .empl-btn {
+    width: 50%;
+
+    &-finish {
+      width: 100%;
+    }
+  }
+}

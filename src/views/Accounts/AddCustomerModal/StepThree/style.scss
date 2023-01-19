@@ -1,0 +1,29 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.cust-modal {
+  @include setFlex(column, null, null, 30px, null);
+
+  .add-cust-btn {
+    @include setFlex(row, null, center, 20px, null);
+
+    .cust-btn {
+      width: 50%;
+    }
+  }
+
+  .balances-list {
+    @include setFlex(row, space-between, center, null, null);
+    .balance {
+      padding: 10px 16px;
+      border-radius: 10px;
+      background-color: $black-dark;
+      cursor: pointer;
+      transition: all 0.2s linear;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

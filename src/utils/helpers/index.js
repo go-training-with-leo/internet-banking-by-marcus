@@ -9,6 +9,8 @@ import {
   updateDoc,
   where,
 } from 'firebase/firestore';
+import moment from 'moment';
+
 import { db } from 'services/firebase';
 import { mainPagesRole, StorageKey } from 'utils/constants';
 
@@ -45,6 +47,15 @@ const parseMoneyVnd = (value) => {
     : 'Invalid type';
 };
 
+const divideSpaceIdCard = (idCard) => {
+  return idCard ? idCard.replace(/(\d{4}(?!\s))/g, '$1 ') : idCard;
+};
+
+const get4LastDigit = (idCard) => {
+  const len = idCard.length;
+  return idCard ? idCard.slice(len - 4) : idCard;
+};
+
 const getDocFireStore = async ({ path, id }) => {
   const docRef = doc(db, path, id);
   const docSnap = await getDoc(docRef);
@@ -78,6 +89,16 @@ const updateDocFireStore = async ({ collect, id, value }) => {
     updateAt: serverTimestamp(),
   });
 };
+const getAllDocsInColl = async (collect) => {
+  const querySnapshot = await getDocs(collection(db, collect));
+
+  const allDocs = querySnapshot.docs.map((document) => document.data());
+  return allDocs;
+};
+
+const convertTimestamp = (timestamp) => {
+  return moment(timestamp).format('HH:mm DD/MM/YYYY');
+};
 
 const getMainPageByRole = (role) => {
   return mainPagesRole[role] || null;
@@ -85,7 +106,11 @@ const getMainPageByRole = (role) => {
 
 export {
   capitalizeFirstLetter,
+  convertTimestamp,
   deleteDocFireStore,
+  divideSpaceIdCard,
+  get4LastDigit,
+  getAllDocsInColl,
   getAuthTokenFromLocalStorage,
   getDocFireStore,
   getLocalStorage,

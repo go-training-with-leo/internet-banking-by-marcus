@@ -1,0 +1,30 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.recharge-modal {
+  @include setFlex(column, null, null, 30px, null);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  .recharge-line {
+    @include setFlex(row, null, null, 14px, null);
+    .title {
+      width: 100px;
+    }
+  }
+
+  .balances-list {
+    @include setFlex(row, space-between, center, null, null);
+    .balance {
+      padding: 10px 16px;
+      border-radius: 10px;
+      background-color: $black-dark;
+      cursor: pointer;
+      transition: all 0.2s linear;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

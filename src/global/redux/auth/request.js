@@ -19,9 +19,7 @@ const signIn = async (email, password) => {
   });
 
   const { role } = getRole[0];
-
   modifyLocalStorage('role', role);
-
   const accountData = {
     user,
   };

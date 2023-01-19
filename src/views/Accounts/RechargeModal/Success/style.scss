@@ -1,0 +1,9 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.recharge-success-modal {
+  @include setFlex(column, null, null, 50px, null);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+}

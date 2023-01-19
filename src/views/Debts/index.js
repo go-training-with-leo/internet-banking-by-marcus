@@ -25,6 +25,7 @@ const dataTables = {
 
 const headerTable = (
   <HeaderTable>
+    <HeaderCell> </HeaderCell>
     <HeaderCell>Debt account</HeaderCell>
     <HeaderCell>Amount</HeaderCell>
     <HeaderCell>
@@ -66,7 +67,7 @@ const Debts = () => {
         </span>
       </div>
       <div className='debt-tables'>
-        <Table widths={[30, 25, 20, 25]} headerTable={headerTable}>
+        <Table widths={[10, 25, 25, 20, 20]} headerTable={headerTable}>
           {dataTable.map(({ id, debtAccount, amount, status }, index) => (
             <TableRow key={id}>
               <RowCell>{index + 1}</RowCell>

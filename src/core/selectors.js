@@ -1,4 +1,6 @@
 const selectAuth = (state) => state.auth;
 const selectContact = (state) => state.contact;
 
-export { selectAuth, selectContact };
+const selectAccount = (state) => state.account;
+
+export { selectAccount, selectAuth, selectContact };

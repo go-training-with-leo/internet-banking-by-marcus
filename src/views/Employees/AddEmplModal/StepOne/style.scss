@@ -1,0 +1,14 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.empl-modal {
+  @include setFlex(column, null, null, 30px, null);
+
+  .add-empl-btn {
+    @include setFlex(row, null, center, 20px, null);
+
+    .empl-btn {
+      width: 50%;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+
+.change-pwd-modal {
+  @include setFlex(column, null, null, 30px, null);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+}

@@ -6,15 +6,17 @@ import SideBar from 'navigators/SideBar';
 import AddContactModal from 'views/Contacts/AddContactModal';
 import SideBarItem from 'navigators/SideBar/Item';
 import useToggle from 'components/hooks/useToggle';
+import AddCustomerModal from 'views/Accounts/AddCustomerModal';
+import AddEmplModal from 'views/Employees/AddEmplModal';
 import { getLocalStorage } from 'utils/helpers';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import headerItems from './headerItems';
 import {
   sideBarItems as sideBarByRole,
   bottomSideBarItem,
 } from './sideBarItems';
 
 import './style.scss';
-import headerItems from './headerItems';
 
 const DefaultLayout = () => {
   const userRole = getLocalStorage('role') || 'NO_ROLE';
@@ -75,6 +77,12 @@ const DefaultLayout = () => {
             <Outlet />
             {showModal && pathname === '/contacts' && (
               <AddContactModal setToggle={setShowModal} />
+            )}
+            {showModal && pathname === '/employees' && (
+              <AddEmplModal setToggle={setShowModal} />
+            )}
+            {showModal && pathname === '/accounts' && (
+              <AddCustomerModal setToggle={setShowModal} />
             )}
           </div>
         </div>
