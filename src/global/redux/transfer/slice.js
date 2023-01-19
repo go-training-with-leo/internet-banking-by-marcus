@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { searchContact } from './thunk';
 
 const transfer = createSlice({
   name: 'transfer',
@@ -13,6 +14,21 @@ const transfer = createSlice({
     },
     resetTransferInfo: (state) => {
       state.transferInfo = {};
+    },
+  },
+  extraReducers: {
+    [searchContact.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [searchContact.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [searchContact.fulfilled]: (state, action) => {
+      state.transferInfo = {
+        ...state.transferInfo,
+        contactId: action.payload?.contact?.id,
+      };
+      state.isLoading = false;
     },
   },
 });

@@ -1,37 +1,57 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import Radio from 'components/Radio';
 import Stepper from 'components/Stepper';
+import { selectContact, selectTransfer } from 'core/selectors';
+import { updateTransferInfo } from 'global/redux/transfer/slice';
 import ContactsTable from './ContactsTable';
 import NewContact from './NewContact';
-import tempData from './tempData';
 
 import './style.scss';
 
 const EXIST_CONTACT = 'existContact';
 const NEW_CONTACT = 'newContact';
 
-const tabs = {
-  existContact: <ContactsTable tableData={tempData} />,
-  newContact: <NewContact />,
-};
-
 const StepTwo = ({ setToggle, back, next }) => {
+  const dispatch = useDispatch();
+
   const [radio, setRadio] = useState(EXIST_CONTACT);
+
+  const { handleSubmit } = useForm();
+  const { contacts } = useSelector(selectContact);
+  const { transferInfo } = useSelector(selectTransfer);
+
+  const tabs = {
+    existContact: <ContactsTable tableData={contacts} />,
+    newContact: <NewContact />,
+  };
+
+  const handleClickRadio = (e) => {
+    setRadio(e.target.value);
+    dispatch(updateTransferInfo({ contactId: '' }));
+  };
+
+  const handleNext = () => {
+    if (transferInfo?.contactId) {
+      next();
+    }
+  };
 
   return (
     <Modal setToggle={setToggle} title='Internal transfer' cancel clickOutSide>
-      <form className='step-two'>
+      <form className='step-two' onSubmit={handleSubmit(handleNext)}>
         <Stepper title='Contact' step='2'>
           Provide the information of the receiver
         </Stepper>
         <div className='radio-group'>
           <Radio
             name='contact'
-            onChange={(e) => setRadio(e.target.value)}
+            onChange={handleClickRadio}
             value={EXIST_CONTACT}
             checked={radio === 'existContact'}
             label='From your existing contacts'
@@ -40,7 +60,7 @@ const StepTwo = ({ setToggle, back, next }) => {
             name='contact'
             value={NEW_CONTACT}
             checked={radio === 'newContact'}
-            onChange={(e) => setRadio(e.target.value)}
+            onChange={handleClickRadio}
             label='From a new contact'
           />
         </div>
@@ -50,7 +70,10 @@ const StepTwo = ({ setToggle, back, next }) => {
             <DefaultButton onClick={back}>Back</DefaultButton>
           </div>
           <div className='step-two-btn'>
-            <DefaultButton danger onClick={next}>
+            <DefaultButton
+              danger={transferInfo?.contactId && true}
+              type='submit'
+            >
               Next
             </DefaultButton>
           </div>

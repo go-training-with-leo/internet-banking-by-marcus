@@ -51,8 +51,6 @@ const StepOne = ({ setToggle, next }) => {
     }
   }, []);
 
-  console.warn(formData);
-
   return (
     <Modal setToggle={setToggle} title='Internal transfer' cancel clickOutSide>
       <form className='step-one' onSubmit={handleSubmit(onSubmit)}>

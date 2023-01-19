@@ -7,6 +7,8 @@ import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 
 import './style.scss';
+import { useDispatch } from 'react-redux';
+import { updateTransferInfo } from 'global/redux/transfer/slice';
 
 const headerTable = (
   <HeaderTable>
@@ -17,14 +19,19 @@ const headerTable = (
 );
 
 const ContactsTable = ({ tableData }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className='step-two-table'>
       <Table widths={[25, 46, 25]} headerTable={headerTable}>
         {tableData.map((row) => (
-          <TableRow key={row.id}>
-            <RowCell title='name'>{row.name}</RowCell>
-            <RowCell title='cardNumber'>{row.cardNumber}</RowCell>
-            <RowCell title='bank'>{row.bank}</RowCell>
+          <TableRow
+            key={row.id}
+            onClick={() => dispatch(updateTransferInfo({ contactId: row.id }))}
+          >
+            <RowCell title='name'>{row?.contactName}</RowCell>
+            <RowCell title='cardNumber'>{row?.cardNumber}</RowCell>
+            <RowCell title='bank'>{row?.bank}</RowCell>
           </TableRow>
         ))}
       </Table>
