@@ -1,12 +1,12 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
+import { deleteContact } from 'global/redux/contact/thunk';
+import { selectContact } from 'core/selectors';
 
 import './style.scss';
-import { deleteContact } from 'global/redux/contact/thunk';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectContact } from 'core/selectors';
 
 const DeleteModal = ({ setToggle, contactData }) => {
   const dispatch = useDispatch();
