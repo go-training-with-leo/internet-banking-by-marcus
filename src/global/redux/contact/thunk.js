@@ -77,7 +77,6 @@ const editContact = createAsyncThunk('contact/editContact', async (data) => {
       contactUpdated: data,
     };
   } catch (error) {
-    console.warn(error);
     return {
       status: false,
     };

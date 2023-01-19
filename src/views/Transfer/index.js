@@ -12,16 +12,51 @@ import StepOne from './StepOne';
 import './style.scss';
 import SuccessModal from './SuccessModal';
 
-const STEP_ONE = 1;
-const STEP_TWO = 2;
-const STEP_THREE = 3;
-const STEP_FOUR = 4;
-const STEP_FIVE = 5;
-const SUCCESS = 6;
+const STEP_ONE = 'STEP_ONE';
+const STEP_TWO = 'STEP_TWO';
+const STEP_THREE = 'STEP_THREE';
+const STEP_FOUR = 'STEP_FOUR';
+const STEP_FIVE = 'STEP_FIVE';
+const SUCCESS = 'SUCCESS';
 
 const Transfer = () => {
   const [showModal, setShowModal] = useToggle();
   const [step, setStep] = useState(STEP_ONE);
+
+  const modals = {
+    STEP_ONE: (
+      <StepOne setToggle={setShowModal} next={() => setStep(STEP_TWO)} />
+    ),
+    STEP_TWO: (
+      <StepTwo
+        setToggle={setShowModal}
+        back={() => setStep(STEP_ONE)}
+        next={() => setStep(STEP_THREE)}
+      />
+    ),
+    STEP_THREE: (
+      <StepThree
+        setToggle={setShowModal}
+        back={() => setStep(STEP_TWO)}
+        next={() => setStep(STEP_FOUR)}
+      />
+    ),
+    STEP_FOUR: (
+      <StepFour
+        setToggle={setShowModal}
+        back={() => setStep(STEP_THREE)}
+        next={() => setStep(STEP_FIVE)}
+      />
+    ),
+    STEP_FIVE: (
+      <StepFive
+        setToggle={setShowModal}
+        back={() => setStep(STEP_FOUR)}
+        next={() => setStep(SUCCESS)}
+      />
+    ),
+    SUCCESS: <SuccessModal setToggle={setShowModal} />,
+  };
 
   return (
     <div className='transfer-view'>
@@ -49,40 +84,7 @@ const Transfer = () => {
           <DefaultButton>Interbank transfer</DefaultButton>
         </div>
       </div>
-      {step === STEP_ONE && showModal && (
-        <StepOne setToggle={setShowModal} next={() => setStep(STEP_TWO)} />
-      )}
-      {step === STEP_TWO && showModal && (
-        <StepTwo
-          setToggle={setShowModal}
-          back={() => setStep(STEP_ONE)}
-          next={() => setStep(STEP_THREE)}
-        />
-      )}
-      {step === STEP_THREE && showModal && (
-        <StepThree
-          setToggle={setShowModal}
-          back={() => setStep(STEP_TWO)}
-          next={() => setStep(STEP_FOUR)}
-        />
-      )}
-      {step === STEP_FOUR && showModal && (
-        <StepFour
-          setToggle={setShowModal}
-          back={() => setStep(STEP_THREE)}
-          next={() => setStep(STEP_FIVE)}
-        />
-      )}
-      {step === STEP_FIVE && showModal && (
-        <StepFive
-          setToggle={setShowModal}
-          back={() => setStep(STEP_FOUR)}
-          next={() => setStep(SUCCESS)}
-        />
-      )}
-      {step === SUCCESS && showModal && (
-        <SuccessModal setToggle={setShowModal} />
-      )}
+      {showModal && modals[step]}
     </div>
   );
 };
