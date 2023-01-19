@@ -5,6 +5,8 @@ import {
   getDoc,
   getDocs,
   query,
+  serverTimestamp,
+  updateDoc,
   where,
 } from 'firebase/firestore';
 import { db } from 'services/firebase';
@@ -68,6 +70,15 @@ const queryDocs = async ({ path, field, value }) => {
   return respone;
 };
 
+const updateDocFireStore = async ({ collect, id, value }) => {
+  const docRef = doc(db, collect, id);
+
+  await updateDoc(docRef, {
+    ...value,
+    updateAt: serverTimestamp(),
+  });
+};
+
 const getMainPageByRole = (role) => {
   return mainPagesRole[role] || null;
 };
@@ -86,4 +97,5 @@ export {
   removeAuthTokenFromLocalStorage,
   removeLocalStorage,
   saveAuthTokenToLocalStorage,
+  updateDocFireStore,
 };

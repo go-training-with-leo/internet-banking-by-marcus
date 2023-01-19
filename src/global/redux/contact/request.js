@@ -1,8 +1,10 @@
-import axios from 'axios';
-import { deleteDocFireStore, queryDocs } from 'utils/helpers';
+import {
+  deleteDocFireStore,
+  queryDocs,
+  updateDocFireStore,
+} from 'utils/helpers';
 
 const addContact = async ({ email, cardNumber, contactName, bank }) => {
-  console.warn(bank);
   const {
     data: { message, newContact },
   } = await axios.post('http://localhost:3000/new-contact', {
@@ -29,4 +31,8 @@ const deleteContact = async (id) => {
   await deleteDocFireStore({ collect: 'contacts', id });
 };
 
-export { addContact, deleteContact, getContacts };
+const editContact = async ({ id, value }) => {
+  await updateDocFireStore({ collect: 'contacts', id, value });
+};
+
+export { addContact, deleteContact, editContact, getContacts };

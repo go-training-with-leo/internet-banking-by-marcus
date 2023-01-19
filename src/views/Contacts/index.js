@@ -34,6 +34,11 @@ const Contacts = () => {
     </HeaderTable>
   );
 
+  const handleEdit = (contact) => {
+    setChooseContact(contact);
+    toggleEdit();
+  };
+
   const handleDelete = (contact) => {
     setChooseContact(contact);
     toggleDelete();
@@ -59,7 +64,7 @@ const Contacts = () => {
                     fill='red'
                     width={20}
                     height={20}
-                    onClick={toggleEdit}
+                    onClick={() => handleEdit(row)}
                   />
                   <DeleteIcon
                     fill='red'
@@ -73,7 +78,9 @@ const Contacts = () => {
           })}
         </Table>
       </div>
-      {isShownEdit && <EditModal setToggle={toggleEdit} />}
+      {isShownEdit && (
+        <EditModal contactData={chooseContact} setToggle={toggleEdit} />
+      )}
       {isShownDelete && (
         <DeleteModal contactData={chooseContact} setToggle={toggleDelete} />
       )}

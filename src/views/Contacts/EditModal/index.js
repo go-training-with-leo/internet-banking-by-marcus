@@ -1,25 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import Input from 'components/Input';
 import Selection from 'components/Select';
+import { editContact } from 'global/redux/contact/thunk';
+import { selectContact } from 'core/selectors';
 import { ACB } from 'assets/images';
 
 import './style.scss';
 
 const options = [
-  { id: 'OT1', label: 'EIGHT.Bank', value: 1, icon: ACB },
-  { id: 'OT2', label: 'EIGHT.Bank', value: 2, icon: ACB },
+  { id: 'OT1', label: 'EIGHT.Bank', value: 'EIGHT.Bank', icon: ACB },
 ];
 
-const EditModal = ({ setToggle }) => {
-  const { register, handleSubmit, control } = useForm();
+const EditModal = ({ setToggle, contactData }) => {
+  const dispatch = useDispatch();
 
-  const onSubmit = (formData) => {
-    console.warn(formData);
+  const { register, handleSubmit, control, setValue } = useForm();
+  const { isLoading: loading } = useSelector(selectContact);
+
+  const onSubmit = async (formData) => {
+    const { bank, contactName } = formData;
+
+    const {
+      payload: { status },
+    } = await dispatch(editContact({ ...contactData, bank, contactName }));
+
+    if (status) {
+      setToggle();
+    }
   };
+
+  useEffect(() => {
+    setValue('bank', contactData?.bank);
+    setValue('cardNumber', contactData?.cardNumber);
+    setValue('contactName', contactData?.contactName);
+  }, []);
 
   return (
     <Modal setToggle={setToggle} title='Edit contact' cancel clickOutSide>
@@ -41,17 +60,19 @@ const EditModal = ({ setToggle }) => {
         <Input
           register={register}
           name='cardNumber'
+          disabled
           label='Card number'
-          placeholder='Card number'
+          placeholder={contactData?.cardNumber}
         />
         <Input
+          disabled={loading}
           register={register}
-          name='name'
+          name='contactName'
           label='Name'
-          placeholder='Your name'
+          placeholder='Contact name'
         />
         <div className='btn-modal'>
-          <DefaultButton danger type='submit'>
+          <DefaultButton loading={loading} danger type='submit'>
             Save changes
           </DefaultButton>
         </div>
