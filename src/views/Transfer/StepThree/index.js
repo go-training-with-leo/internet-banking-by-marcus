@@ -6,29 +6,56 @@ import Stepper from 'components/Stepper';
 import DefaultButton from 'components/Button/Default';
 import Input from 'components/Input';
 import TextArea from 'components/TextArea';
+import Radio from 'components/Radio';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { updateTransferInfo } from 'global/redux/transfer/slice';
+import { yupResolver } from '@hookform/resolvers/yup';
+import validPayment from './validation';
 
 import './style.scss';
-import Radio from 'components/Radio';
 
-const CHARGED_BY_SENDER = 'chargedBySender';
-const CHARGED_BY_RECEIVER = 'chargedByReceiver';
+const CHARGED_BY_SENDER = 'sender';
+const CHARGED_BY_RECEIVER = 'receiver';
 
 const StepThree = ({ setToggle, back, next }) => {
+  const dispatch = useDispatch();
+
   const [radio, setRadio] = useState(CHARGED_BY_SENDER);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(validPayment) });
+
+  const handleNext = (formData) => {
+    dispatch(updateTransferInfo({ ...formData, chargedBy: radio }));
+    next();
+  };
 
   return (
     <Modal setToggle={setToggle} title='Internal transfer' cancel clickOutSide>
-      <form className='step-three'>
+      <form className='step-three' onSubmit={handleSubmit(handleNext)}>
         <Stepper title='Payment ' step='3'>
           Provide the details of the payment
         </Stepper>
         <div className='step-three-container'>
           <Input
-            label='Total amount:'
+            register={register}
+            name='totalAmount'
+            label={
+              errors?.totalAmount
+                ? 'Require field is a number at least 1 000 VND  '
+                : 'Total amount:'
+            }
+            error={errors?.totalAmount && true}
             placeholder='Enter the amount of money'
           />
           <div className='step-three-textarea'>
             <TextArea
+              register={register}
+              name='detail'
               label='Detail:'
               placeholder='Enter some details of the payment'
             />
@@ -55,7 +82,7 @@ const StepThree = ({ setToggle, back, next }) => {
             <DefaultButton onClick={back}>Back</DefaultButton>
           </div>
           <div className='step-three-btn'>
-            <DefaultButton danger onClick={next}>
+            <DefaultButton danger type='submit'>
               Next
             </DefaultButton>
           </div>
