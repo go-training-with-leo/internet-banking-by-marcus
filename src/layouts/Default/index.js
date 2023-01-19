@@ -3,6 +3,7 @@ import React, { cloneElement, isValidElement, memo } from 'react';
 import Header from 'navigators/Header';
 import SideBar from 'navigators/SideBar';
 
+import AddContactModal from 'views/Contacts/AddContactModal';
 import SideBarItem from 'navigators/SideBar/Item';
 import useToggle from 'components/hooks/useToggle';
 import AddCustomerModal from 'views/Accounts/AddCustomerModal';
@@ -74,6 +75,9 @@ const DefaultLayout = () => {
           </Header>
           <div className='page-layout__right__body'>
             <Outlet />
+            {showModal && pathname === '/contacts' && (
+              <AddContactModal setToggle={setShowModal} />
+            )}
             {showModal && pathname === '/employees' && (
               <AddEmplModal setToggle={setShowModal} />
             )}

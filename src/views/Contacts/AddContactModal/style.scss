@@ -1,0 +1,12 @@
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+
+.add-contact-modal {
+  width: 100%;
+  @include setFlex(column, null, null, 24px, null);
+
+  .btn-modal {
+    width: 100%;
+    margin-top: 20px;
+  }
+}

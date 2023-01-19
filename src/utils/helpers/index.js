@@ -1,9 +1,12 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
   query,
+  serverTimestamp,
+  updateDoc,
   where,
 } from 'firebase/firestore';
 import moment from 'moment';
@@ -63,6 +66,10 @@ const getDocFireStore = async ({ path, id }) => {
   return null;
 };
 
+const deleteDocFireStore = async ({ collect, id }) => {
+  await deleteDoc(doc(db, collect, id));
+};
+
 const queryDocs = async ({ path, field, value }) => {
   const queryFireStore = query(collection(db, path), where(field, '==', value));
 
@@ -74,6 +81,14 @@ const queryDocs = async ({ path, field, value }) => {
   return respone;
 };
 
+const updateDocFireStore = async ({ collect, id, value }) => {
+  const docRef = doc(db, collect, id);
+
+  await updateDoc(docRef, {
+    ...value,
+    updateAt: serverTimestamp(),
+  });
+};
 const getAllDocsInColl = async (collect) => {
   const querySnapshot = await getDocs(collection(db, collect));
 
@@ -92,6 +107,7 @@ const getMainPageByRole = (role) => {
 export {
   capitalizeFirstLetter,
   convertTimestamp,
+  deleteDocFireStore,
   divideSpaceIdCard,
   get4LastDigit,
   getAllDocsInColl,
@@ -106,4 +122,5 @@ export {
   removeAuthTokenFromLocalStorage,
   removeLocalStorage,
   saveAuthTokenToLocalStorage,
+  updateDocFireStore,
 };

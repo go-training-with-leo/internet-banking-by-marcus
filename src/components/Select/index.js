@@ -36,6 +36,7 @@ const Selection = ({ options, placeholder, value, onChange }) => {
           placeholder={placeholder}
           value={options.find((c) => c.value === value)}
           onChange={(val) => onChange(val.value)}
+          defaultValue={options[0]}
           components={{
             Option: IconOption,
             IndicatorSeparator: () => null,

@@ -3,12 +3,21 @@ import React from 'react';
 import DefaultButton from 'components/Button/Default';
 import useToggle from 'components/hooks/useToggle';
 import { signOut } from 'global/redux/auth/request';
+import { useDispatch } from 'react-redux';
+import { resetContact } from 'global/redux/contact/slice';
 import ChangePasswordModal from './ChangePwdModal';
 
 import './style.scss';
 
 const Account = () => {
+  const dispatch = useDispatch();
+
   const [changePwdModal, setChangePwdModal] = useToggle();
+
+  const handleSignOut = () => {
+    dispatch(resetContact());
+    signOut();
+  };
 
   return (
     <div className='account-view'>
@@ -30,7 +39,7 @@ const Account = () => {
         </DefaultButton>
       </div>
       <div className='account-view-btn'>
-        <DefaultButton danger onClick={() => signOut()}>
+        <DefaultButton danger onClick={handleSignOut}>
           Log out
         </DefaultButton>
       </div>

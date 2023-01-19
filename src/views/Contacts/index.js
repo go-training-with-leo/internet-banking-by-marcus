@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Table, { TableRow } from 'components/Table';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import useToggle from 'components/hooks/useToggle';
 import RowCell from 'components/Table/RowCell';
-import { Edit, Info } from 'assets/images';
+import { DeleteIcon, Edit } from 'assets/images';
+import { getContacts } from 'global/redux/contact/thunk';
+import { selectAuth, selectContact } from 'core/selectors';
+import DeleteModal from './DeleteModal';
 import EditModal from './EditModal';
-import tempData from './tempData';
 
 import './style.scss';
-import DeleteModal from './DeleteModal';
 
 const Contacts = () => {
+  const dispatch = useDispatch();
+
   const [isShownEdit, toggleEdit] = useToggle();
   const [isShownDelete, toggleDelete] = useToggle();
+  const [chooseContact, setChooseContact] = useState();
+
+  const { currentUser } = useSelector(selectAuth);
+  const { contacts } = useSelector(selectContact);
 
   const headerTable = (
     <HeaderTable>
@@ -26,15 +34,29 @@ const Contacts = () => {
     </HeaderTable>
   );
 
+  const handleEdit = (contact) => {
+    setChooseContact(contact);
+    toggleEdit();
+  };
+
+  const handleDelete = (contact) => {
+    setChooseContact(contact);
+    toggleDelete();
+  };
+
+  useEffect(() => {
+    dispatch(getContacts({ email: currentUser?.email }));
+  }, [currentUser]);
+
   return (
     <div className='contacts-view'>
       <div className='contacts-table'>
         <Table widths={[10, 25, 25, 25, 10]} headerTable={headerTable}>
-          {tempData.map((row, index) => {
+          {contacts.map((row, index) => {
             return (
               <TableRow key={row?.id}>
                 <RowCell>{index + 1}</RowCell>
-                <RowCell>{row?.name}</RowCell>
+                <RowCell>{row?.contactName}</RowCell>
                 <RowCell>{row?.cardNumber}</RowCell>
                 <RowCell>{row?.bank}</RowCell>
                 <RowCell>
@@ -42,13 +64,13 @@ const Contacts = () => {
                     fill='red'
                     width={20}
                     height={20}
-                    onClick={toggleEdit}
+                    onClick={() => handleEdit(row)}
                   />
-                  <Info
+                  <DeleteIcon
                     fill='red'
                     width={20}
                     height={20}
-                    onClick={toggleDelete}
+                    onClick={() => handleDelete(row)}
                   />
                 </RowCell>
               </TableRow>
@@ -56,8 +78,12 @@ const Contacts = () => {
           })}
         </Table>
       </div>
-      {isShownEdit && <EditModal setToggle={toggleEdit} />}
-      {isShownDelete && <DeleteModal setToggle={toggleDelete} />}
+      {isShownEdit && (
+        <EditModal contactData={chooseContact} setToggle={toggleEdit} />
+      )}
+      {isShownDelete && (
+        <DeleteModal contactData={chooseContact} setToggle={toggleDelete} />
+      )}
     </div>
   );
 };

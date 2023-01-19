@@ -7,6 +7,8 @@
   @include setFlex(row, space-between, center, null, null);
   position: relative;
 
+  z-index: 20;
+
   background-color: $black-dark;
   color: $pure-white;
   &-input {

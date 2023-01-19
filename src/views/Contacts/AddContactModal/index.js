@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import Input from 'components/Input';
 import Selection from 'components/Select';
-import { editContact } from 'global/redux/contact/thunk';
-import { selectContact } from 'core/selectors';
 import { ACB } from 'assets/images';
+import { addContact } from 'global/redux/contact/thunk';
+import { selectAuth, selectContact } from 'core/selectors';
+import validContact from './validation';
 
 import './style.scss';
 
@@ -16,37 +18,49 @@ const options = [
   { id: 'OT1', label: 'EIGHT.Bank', value: 'EIGHT.Bank', icon: ACB },
 ];
 
-const EditModal = ({ setToggle, contactData }) => {
+const AddContactModal = ({ setToggle }) => {
   const dispatch = useDispatch();
 
-  const { register, handleSubmit, control, setValue } = useForm();
   const { isLoading: loading } = useSelector(selectContact);
+  const { currentUser } = useSelector(selectAuth);
+  const {
+    register,
+    handleSubmit,
+    control,
+    setError,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(validContact) });
 
   const onSubmit = async (formData) => {
-    const { bank, contactName } = formData;
-
     const {
-      payload: { status },
-    } = await dispatch(editContact({ ...contactData, bank, contactName }));
+      payload: { status, message },
+    } = await dispatch(addContact({ email: currentUser.email, ...formData }));
 
     if (status) {
-      setToggle();
+      if (message === 'Success') {
+        setToggle();
+      } else if (message === 'Not found') {
+        setError('cardNumber', {
+          type: 'custom',
+          message,
+        });
+      } else {
+        setError('cardNumber', {
+          type: 'custom',
+          message,
+        });
+      }
     }
   };
 
-  useEffect(() => {
-    setValue('bank', contactData?.bank);
-    setValue('cardNumber', contactData?.cardNumber);
-    setValue('contactName', contactData?.contactName);
-  }, []);
-
   return (
-    <Modal setToggle={setToggle} title='Edit contact' cancel clickOutSide>
+    <Modal setToggle={setToggle} title='Add new contact' cancel clickOutSide>
       <form className='edit-modal' onSubmit={handleSubmit(onSubmit)}>
         <span>Enter the new infomation for this contact</span>
         <Controller
           control={control}
           name='bank'
+          defaultValue={options[0].value}
           render={({ field: { onChange, value } }) => (
             <Selection
               options={options}
@@ -58,22 +72,23 @@ const EditModal = ({ setToggle, contactData }) => {
           )}
         />
         <Input
+          disabled={loading}
           register={register}
           name='cardNumber'
-          disabled
-          label='Card number'
-          placeholder={contactData?.cardNumber}
+          label={errors.cardNumber ? errors.cardNumber?.message : 'Card number'}
+          placeholder='Enter the contact’s card number'
+          error={errors.cardNumber && true}
         />
         <Input
           disabled={loading}
           register={register}
           name='contactName'
           label='Name'
-          placeholder='Contact name'
+          placeholder='Enter the contact’s name'
         />
         <div className='btn-modal'>
           <DefaultButton loading={loading} danger type='submit'>
-            Save changes
+            Create
           </DefaultButton>
         </div>
       </form>
@@ -81,4 +96,4 @@ const EditModal = ({ setToggle, contactData }) => {
   );
 };
 
-export default EditModal;
+export default AddContactModal;
