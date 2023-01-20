@@ -11,7 +11,7 @@ import Stepper from 'components/Stepper';
 import { updateTransferInfo } from 'global/redux/transfer/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { get4LastDigit } from 'utils/helpers';
-import { selectCard } from 'core/selectors';
+import { selectAuth, selectCard } from 'core/selectors';
 
 import './style.scss';
 import useMergeState from 'components/hooks/useMergeState';
@@ -24,14 +24,32 @@ const StepOne = ({ setToggle, next }) => {
   });
   const [listCards, setListCards] = useState();
 
-  const { savingCards } = useSelector(selectCard);
+  const { currentUser } = useSelector(selectAuth);
+  const { payingCard, savingCards } = useSelector(selectCard);
   const { register, handleSubmit, watch } = useForm();
 
   const watchFilter = watch('cardNumber');
+
   const onSubmit = () => {
+    const updateData = {
+      paymentMethod: formData?.paymentMethod,
+      from: {
+        cardNumber:
+          formData?.paymentMethod === 'savingCard'
+            ? formData?.cardNumber
+            : payingCard?.cardNumber,
+        cardId:
+          formData?.paymentMethod === 'savingCard'
+            ? formData?.savingCardId
+            : payingCard?.id,
+        accountName: currentUser?.displayName,
+        bank: 'EIGHT.Bank',
+      },
+    };
+
     dispatch(
       updateTransferInfo({
-        ...formData,
+        ...updateData,
       })
     );
     next();
@@ -94,7 +112,10 @@ const StepOne = ({ setToggle, next }) => {
                       label={savingCard?.bank}
                       value={savingCard?.balance}
                       onClick={() =>
-                        setFormData({ savingCardId: savingCard?.id })
+                        setFormData({
+                          savingCardId: savingCard?.id,
+                          cardNumber: savingCard?.cardNumber,
+                        })
                       }
                       cardId={get4LastDigit(savingCard?.cardNumber)}
                     />

@@ -8,8 +8,10 @@ import Input from 'components/Input';
 import TextArea from 'components/TextArea';
 import Radio from 'components/Radio';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateTransferInfo } from 'global/redux/transfer/slice';
+import { sendCode } from 'global/redux/transfer/thunk';
+import { selectAuth } from 'core/selectors';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validPayment from './validation';
 
@@ -23,6 +25,7 @@ const StepThree = ({ setToggle, back, next }) => {
 
   const [radio, setRadio] = useState(CHARGED_BY_SENDER);
 
+  const { currentUser } = useSelector(selectAuth);
   const {
     register,
     handleSubmit,
@@ -31,8 +34,11 @@ const StepThree = ({ setToggle, back, next }) => {
 
   const handleNext = (formData) => {
     dispatch(updateTransferInfo({ ...formData, chargedBy: radio }));
+    dispatch(sendCode({ email: currentUser?.email }));
     next();
   };
+
+  console.warn(currentUser?.email);
 
   return (
     <Modal setToggle={setToggle} title='Internal transfer' cancel clickOutSide>

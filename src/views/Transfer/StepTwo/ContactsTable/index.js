@@ -21,14 +21,28 @@ const headerTable = (
 const ContactsTable = ({ tableData }) => {
   const dispatch = useDispatch();
 
+  console.warn(tableData);
+
+  const handleClick = (contact) => {
+    const { id: contactId, contactName, cardNumber, bank } = contact;
+    dispatch(
+      updateTransferInfo({
+        to: {
+          contactId,
+          contactName,
+          cardNumber,
+          bank,
+        },
+      })
+    );
+  };
+
+  console.warn(tableData);
   return (
     <div className='step-two-table'>
       <Table widths={[25, 46, 25]} headerTable={headerTable}>
         {tableData.map((row) => (
-          <TableRow
-            key={row.id}
-            onClick={() => dispatch(updateTransferInfo({ contactId: row.id }))}
-          >
+          <TableRow key={row.id} onClick={() => handleClick(row)}>
             <RowCell title='name'>{row?.contactName}</RowCell>
             <RowCell title='cardNumber'>{row?.cardNumber}</RowCell>
             <RowCell title='bank'>{row?.bank}</RowCell>

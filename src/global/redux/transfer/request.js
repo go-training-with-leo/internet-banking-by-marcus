@@ -1,4 +1,6 @@
-import { queryDocs } from 'utils/helpers';
+import axios from 'axios';
+import api from 'services/api';
+import { getDocFireStore, queryDocs } from 'utils/helpers';
 
 const searchContact = async (cardNumber) => {
   const searchedContact = await queryDocs({
@@ -6,8 +8,38 @@ const searchContact = async (cardNumber) => {
     field: 'cardNumber',
     value: cardNumber,
   });
+  const { id: uid } = searchedContact[0] || null;
 
-  return searchedContact ? searchedContact[0] : null;
+  const { accountName } = await getDocFireStore({ path: 'accounts', id: uid });
+
+  return searchedContact
+    ? { ...searchedContact[0], contactName: accountName }
+    : null;
 };
 
-export { searchContact };
+const sendOTP = async (email) => {
+  const {
+    data: { message },
+  } = await api.post('/get', {
+    email,
+  });
+  return message;
+};
+
+const verifyOTP = async ({ email, otp }) => {
+  const {
+    data: { message },
+  } = await api.post('/verify', { email, otp });
+  return message;
+};
+
+const transfer = async (transferInfo) => {
+  const { data: message } = await axios.post(
+    'http://localhost:3000/transfer',
+    transferInfo
+  );
+
+  return message;
+};
+
+export { searchContact, sendOTP, transfer, verifyOTP };
