@@ -63,11 +63,12 @@ const verifyCode = createAsyncThunk('transfer/verifyOtp', async (data) => {
 const transfer = createAsyncThunk('transfer/chargedMoney', async (data) => {
   try {
     const { transferInfo } = data;
-    const message = await transferReq(transferInfo);
+    const { message, createdAt } = await transferReq(transferInfo);
 
     return {
       status: true,
       message,
+      createdAt,
     };
   } catch (error) {
     return {

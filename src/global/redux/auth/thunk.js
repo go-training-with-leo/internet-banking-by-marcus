@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { resetPassword, sendOTP, signIn, verifyOtp } from './request';
+import { resetPassword, sendOTP, signIn, signOut, verifyOtp } from './request';
 
 const logIn = createAsyncThunk('auth/signIn', async (data) => {
   try {
@@ -15,6 +15,19 @@ const logIn = createAsyncThunk('auth/signIn', async (data) => {
     return {
       status: false,
       message,
+    };
+  }
+});
+
+const logOut = createAsyncThunk('auth/signOut', async () => {
+  try {
+    await signOut();
+    return {
+      status: true,
+    };
+  } catch (error) {
+    return {
+      status: false,
     };
   }
 });
@@ -72,4 +85,4 @@ const resetPasswordAccount = createAsyncThunk(
   }
 );
 
-export { logIn, resetPasswordAccount, sendCode, verifyCode };
+export { logIn, logOut, resetPasswordAccount, sendCode, verifyCode };

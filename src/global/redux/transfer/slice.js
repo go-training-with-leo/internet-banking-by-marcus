@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logOut } from '../auth/thunk';
 import {
   searchContact,
   sendCode,
@@ -69,6 +70,9 @@ const transfer = createSlice({
     },
     [transferThunk.fulfilled]: (state) => {
       state.isLoading = false;
+    },
+    [logOut.fulfilled]: (state) => {
+      state.isFetched = false;
     },
   },
 });

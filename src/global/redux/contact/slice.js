@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logOut } from '../auth/thunk';
 
 import { addContact, deleteContact, editContact, getContacts } from './thunk';
 
@@ -67,6 +68,10 @@ const contact = createSlice({
       );
       state.contacts.splice(contactIndex, 1, action.payload.contactUpdated);
       state.isLoading = false;
+    },
+    [logOut.fulfilled]: (state) => {
+      state.isFetched = false;
+      state.contacts = [];
     },
   },
 });

@@ -1,14 +1,15 @@
+import { useDispatch } from 'react-redux';
 import React, { cloneElement, isValidElement, memo } from 'react';
 
 import Header from 'navigators/Header';
 import SideBar from 'navigators/SideBar';
-
 import AddContactModal from 'views/Contacts/AddContactModal';
 import SideBarItem from 'navigators/SideBar/Item';
 import useToggle from 'components/hooks/useToggle';
 import AddCustomerModal from 'views/Accounts/AddCustomerModal';
 import AddEmplModal from 'views/Employees/AddEmplModal';
 import { getLocalStorage } from 'utils/helpers';
+import { logOut } from 'global/redux/auth/thunk';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import headerItems from './headerItems';
 import {
@@ -19,6 +20,7 @@ import {
 import './style.scss';
 
 const DefaultLayout = () => {
+  const dispatch = useDispatch();
   const userRole = getLocalStorage('role') || 'NO_ROLE';
 
   const [showModal, setShowModal] = useToggle();
@@ -33,6 +35,11 @@ const DefaultLayout = () => {
   const { titleHeader, button: btnHeader } =
     headerItems[userRole].find(({ path }) => path === pathname) || {};
 
+  const handleClick = () => {
+    if (userRole === 'ADMIN' || userRole === 'EMPLOYEE') {
+      dispatch(logOut());
+    }
+  };
   return (
     <div>
       <div className='page-layout'>
@@ -43,7 +50,7 @@ const DefaultLayout = () => {
               to={sideBarItems?.bottomItem?.navigateTo}
             >
               <SideBarItem
-                onClick={sideBarItems?.bottomItem?.onClick}
+                onClick={handleClick}
                 isActive={pathname === sideBarItems?.bottomItem?.navigateTo}
               >
                 {sideBarItems?.bottomItem?.icon}

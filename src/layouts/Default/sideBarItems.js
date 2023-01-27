@@ -8,11 +8,6 @@ import {
   Exit,
   User,
 } from 'assets/images';
-import { signOut } from 'global/redux/auth/request';
-
-const handleLogOut = () => {
-  signOut();
-};
 
 const sideBarItems = {
   ADMIN: [
@@ -83,13 +78,11 @@ const bottomSideBarItem = {
     id: 'logOut',
     label: 'Log Out',
     icon: <Exit />,
-    onClick: handleLogOut,
   },
   EMPLOYEE: {
     id: 'logOut',
     label: 'Log Out',
     icon: <Exit />,
-    onClick: handleLogOut,
   },
   CUSTOMER: {
     id: 'account',

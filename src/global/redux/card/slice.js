@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logOut } from '../auth/thunk';
 import { getCards } from './thunk';
 
 const card = createSlice({
@@ -21,13 +22,18 @@ const card = createSlice({
     },
     [getCards.rejected]: (state) => {
       state.isLoading = false;
+      state.isFetched = false;
     },
     [getCards.fulfilled]: (state, action) => {
       if (action.payload.payingCard) {
         state.payingCard = { ...action.payload.payingCard[0] };
         state.savingCards = [...action.payload.savingCards];
+        state.isFetched = true;
         state.isLoading = false;
       }
+    },
+    [logOut.fulfilled]: (state) => {
+      state.isFetched = false;
     },
   },
 });
