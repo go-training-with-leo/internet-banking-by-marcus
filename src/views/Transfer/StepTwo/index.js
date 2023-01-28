@@ -32,11 +32,11 @@ const StepTwo = ({ setToggle, back, next }) => {
 
   const handleClickRadio = (e) => {
     setRadio(e.target.value);
-    dispatch(updateTransferInfo({ to: { contactId: '' } }));
+    dispatch(updateTransferInfo({ dest: { contactId: '' } }));
   };
 
   const handleNext = () => {
-    if (transferInfo?.to?.contactId) {
+    if (transferInfo?.dest?.contactId) {
       next();
     }
   };
@@ -70,7 +70,7 @@ const StepTwo = ({ setToggle, back, next }) => {
           </div>
           <div className='step-two-btn'>
             <DefaultButton
-              danger={transferInfo?.to?.contactId && true}
+              danger={transferInfo?.dest?.contactId && true}
               type='submit'
             >
               Next

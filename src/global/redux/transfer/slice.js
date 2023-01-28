@@ -32,7 +32,7 @@ const transfer = createSlice({
     [searchContact.fulfilled]: (state, action) => {
       state.transferInfo = {
         ...state.transferInfo,
-        to: {
+        dest: {
           contactId: action.payload?.contact?.id,
           contactName: action.payload?.contact?.contactName,
           bank: 'EIGHT.Bank',
@@ -68,7 +68,12 @@ const transfer = createSlice({
     [transferThunk.rejected]: (state) => {
       state.isLoading = false;
     },
-    [transferThunk.fulfilled]: (state) => {
+    [transferThunk.fulfilled]: (state, action) => {
+      state.transferInfo = {
+        ...state.transferInfo,
+        createdAt: action.payload?.createdAt,
+      };
+
       state.isLoading = false;
     },
     [logOut.fulfilled]: (state) => {

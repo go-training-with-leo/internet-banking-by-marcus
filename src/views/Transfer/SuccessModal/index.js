@@ -5,7 +5,11 @@ import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTransfer } from 'core/selectors';
-import { divideSpaceIdCard, parseMoneyVnd } from 'utils/helpers';
+import {
+  convertTimestamp,
+  divideSpaceIdCard,
+  parseMoneyVnd,
+} from 'utils/helpers';
 import { resetTransferInfo } from 'global/redux/transfer/slice';
 
 import './style.scss';
@@ -25,8 +29,9 @@ const SuccessModal = ({ setToggle }) => {
         <p>
           You have succesfully transfered the amout of{' '}
           {parseMoneyVnd(transferInfo?.totalAmount)} VND to the account{' '}
-          {divideSpaceIdCard(transferInfo?.to?.cardNumber)} /{' '}
-          {transferInfo?.to?.contactName} / EIGHT.Bank at 22/05 13:30:51
+          {divideSpaceIdCard(transferInfo?.dest?.cardNumber)} /{' '}
+          {transferInfo?.dest?.contactName} / EIGHT.Bank at{' '}
+          {convertTimestamp(transferInfo.createdAt?.seconds)}
         </p>
         <DefaultButton danger onClick={handleFinish}>
           OK

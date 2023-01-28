@@ -29,7 +29,7 @@ const ContactsTable = () => {
     const { id: contactId, contactName, cardNumber, bank } = contact;
     dispatch(
       updateTransferInfo({
-        to: {
+        dest: {
           contactId,
           contactName,
           cardNumber,

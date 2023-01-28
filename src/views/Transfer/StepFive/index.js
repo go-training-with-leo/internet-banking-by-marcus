@@ -18,7 +18,7 @@ const StepFive = ({ setToggle, back, next }) => {
   const { handleSubmit } = useForm();
   const { transferInfo } = useSelector(selectTransfer);
   const {
-    transferInfo: { from, to, totalAmount, chargedBy },
+    transferInfo: { from, dest, totalAmount, chargedBy },
     isLoading: loading,
   } = useSelector(selectTransfer);
 
@@ -52,7 +52,7 @@ const StepFive = ({ setToggle, back, next }) => {
           <div className='step-five-tab-info__line'>
             <span className='title'>To:</span>
             <span>
-              {to?.cardNumber} / {to?.contactName} / {to?.bank}
+              {dest?.cardNumber} / {dest?.contactName} / {dest?.bank}
             </span>
           </div>
           <div className='step-five-tab-info__line'>
