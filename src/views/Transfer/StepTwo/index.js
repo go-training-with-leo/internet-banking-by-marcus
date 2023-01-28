@@ -7,7 +7,7 @@ import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import Radio from 'components/Radio';
 import Stepper from 'components/Stepper';
-import { selectContact, selectTransfer } from 'core/selectors';
+import { selectTransfer } from 'core/selectors';
 import { updateTransferInfo } from 'global/redux/transfer/slice';
 import ContactsTable from './ContactsTable';
 import NewContact from './NewContact';
@@ -23,11 +23,10 @@ const StepTwo = ({ setToggle, back, next }) => {
   const [radio, setRadio] = useState(EXIST_CONTACT);
 
   const { handleSubmit } = useForm();
-  const { contacts } = useSelector(selectContact);
   const { transferInfo } = useSelector(selectTransfer);
 
   const tabs = {
-    existContact: <ContactsTable tableData={contacts} />,
+    existContact: <ContactsTable />,
     newContact: <NewContact />,
   };
 

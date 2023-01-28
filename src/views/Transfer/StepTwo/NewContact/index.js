@@ -9,7 +9,7 @@ import { searchContact } from 'global/redux/transfer/thunk';
 
 import './style.scss';
 import { divideSpaceIdCard } from 'utils/helpers';
-import { selectTransfer } from 'core/selectors';
+import { selectCard, selectTransfer } from 'core/selectors';
 
 const NewContact = () => {
   const dispatch = useDispatch();
@@ -17,10 +17,25 @@ const NewContact = () => {
   const [contact, setContact] = useState(null);
 
   const { isLoading: loading } = useSelector(selectTransfer);
-  const { register, getValues } = useForm();
+  const { payingCard } = useSelector(selectCard);
+  const {
+    register,
+    getValues,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useForm();
 
   const handleSearch = async () => {
     const cardNumber = getValues('cardNumber');
+    if (cardNumber === payingCard?.cardNumber) {
+      setError('cardNumber', {
+        type: 'custom',
+        message: 'This is your card number',
+      });
+      return;
+    }
+    clearErrors();
     const {
       payload: { status, contact: searchedContact },
     } = await dispatch(searchContact({ cardNumber }));
@@ -38,7 +53,12 @@ const NewContact = () => {
             name='cardNumber'
             register={register}
             disabled={loading}
-            label='Card number'
+            error={errors?.cardNumber && true}
+            label={
+              errors?.cardNumber?.message
+                ? errors?.cardNumber?.message
+                : 'Card number'
+            }
             placeholder='Enter the contact’s card number'
           />
         </div>

@@ -30,7 +30,14 @@ const StepOne = ({ setToggle, next }) => {
 
   const watchFilter = watch('cardNumber');
 
+  const checkSubmit = () => {
+    return listCards?.length === 0 && formData?.paymentMethod === 'savingCard';
+  };
+
   const onSubmit = () => {
+    if (checkSubmit()) {
+      return;
+    }
     const updateData = {
       paymentMethod: formData?.paymentMethod,
       from: {
@@ -65,7 +72,10 @@ const StepOne = ({ setToggle, next }) => {
   useEffect(() => {
     setListCards(savingCards);
     if (savingCards) {
-      setFormData({ savingCardId: savingCards[0]?.id });
+      setFormData({
+        savingCardId: savingCards[0]?.id,
+        cardNumber: savingCards[0]?.cardNumber,
+      });
     }
   }, []);
 
@@ -111,12 +121,12 @@ const StepOne = ({ setToggle, next }) => {
                       isActive={savingCard?.id === formData?.savingCardId}
                       label={savingCard?.bank}
                       value={savingCard?.balance}
-                      onClick={() =>
+                      onClick={() => {
                         setFormData({
                           savingCardId: savingCard?.id,
                           cardNumber: savingCard?.cardNumber,
-                        })
-                      }
+                        });
+                      }}
                       cardId={get4LastDigit(savingCard?.cardNumber)}
                     />
                   ))
@@ -132,7 +142,7 @@ const StepOne = ({ setToggle, next }) => {
             <DefaultButton onClick={setToggle}>Cancel</DefaultButton>
           </div>
           <div className='step-one-btn'>
-            <DefaultButton danger type='submit'>
+            <DefaultButton danger={!checkSubmit()} type='submit'>
               Next
             </DefaultButton>
           </div>

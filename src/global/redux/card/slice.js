@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from '../auth/thunk';
+import { transfer } from '../transfer/thunk';
 import { getCards } from './thunk';
 
 const card = createSlice({
@@ -34,6 +35,33 @@ const card = createSlice({
     },
     [logOut.fulfilled]: (state) => {
       state.isFetched = false;
+    },
+    [transfer.fulfilled]: (state, action) => {
+      const {
+        transferInfo: {
+          paymentMethod,
+          totalAmount,
+          from: { cardNumber },
+        },
+      } = action.payload;
+
+      if (paymentMethod === 'paymentCard') {
+        state.payingCard = {
+          ...state.payingCard,
+          balance: state.payingCard.balance - totalAmount,
+        };
+      } else if (paymentMethod === 'savingCard') {
+        const cloneSavingCards = [...state.savingCards];
+        const indexSvCard = cloneSavingCards.findIndex(
+          (savingCard) => savingCard.cardNumber === cardNumber
+        );
+        const savingCard = {
+          ...cloneSavingCards[indexSvCard],
+          balance: cloneSavingCards[indexSvCard].balance - totalAmount,
+        };
+        cloneSavingCards.splice(indexSvCard, 1, savingCard);
+        state.savingCards = [...cloneSavingCards];
+      }
     },
   },
 });

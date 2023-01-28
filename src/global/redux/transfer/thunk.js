@@ -68,6 +68,7 @@ const transfer = createAsyncThunk('transfer/chargedMoney', async (data) => {
     return {
       status: true,
       message,
+      transferInfo,
       createdAt,
     };
   } catch (error) {

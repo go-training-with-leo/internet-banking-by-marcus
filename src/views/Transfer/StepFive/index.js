@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import Stepper from 'components/Stepper';
-
-import './style.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTransfer } from 'core/selectors';
 import { parseMoneyVnd } from 'utils/helpers';
 import { useForm } from 'react-hook-form';
 import { transfer } from 'global/redux/transfer/thunk';
+
+import './style.scss';
 
 const StepFive = ({ setToggle, back, next }) => {
   const dispatch = useDispatch();

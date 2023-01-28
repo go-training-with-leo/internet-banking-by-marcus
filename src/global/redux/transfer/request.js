@@ -9,7 +9,10 @@ const searchContact = async (cardNumber) => {
   });
   const { id: uid } = searchedContact[0] || null;
 
-  const { accountName } = await getDocFireStore({ path: 'accounts', id: uid });
+  const { accountName } = await getDocFireStore({
+    path: 'accounts',
+    id: uid,
+  });
 
   return searchedContact
     ? { ...searchedContact[0], contactName: accountName }

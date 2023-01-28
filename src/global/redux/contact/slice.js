@@ -37,6 +37,7 @@ const contact = createSlice({
         state.contacts = [...action.payload.contactList];
       }
       state.isLoading = false;
+      state.isFetched = true;
     },
 
     [deleteContact.pending]: (state) => {

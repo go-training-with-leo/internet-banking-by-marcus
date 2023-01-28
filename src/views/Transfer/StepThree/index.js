@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateTransferInfo } from 'global/redux/transfer/slice';
 import { sendCode } from 'global/redux/transfer/thunk';
-import { selectAuth } from 'core/selectors';
+import { selectAuth, selectCard, selectTransfer } from 'core/selectors';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validPayment from './validation';
 
@@ -25,20 +25,67 @@ const StepThree = ({ setToggle, back, next }) => {
 
   const [radio, setRadio] = useState(CHARGED_BY_SENDER);
 
+  const {
+    transferInfo: { paymentMethod, from },
+  } = useSelector(selectTransfer);
   const { currentUser } = useSelector(selectAuth);
+  const {
+    payingCard: { balance: paymentBalance },
+    savingCards,
+  } = useSelector(selectCard);
   const {
     register,
     handleSubmit,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm({ resolver: yupResolver(validPayment) });
 
+  const checkBalanceByMethod = ({ totalAmount }) => {
+    if (paymentMethod === 'paymentCard') {
+      if (paymentBalance - totalAmount < 0) {
+        setError('totalAmount', {
+          type: 'custom',
+          message: 'Your balance is not enough',
+        });
+        return false;
+      }
+    } else if (paymentMethod === 'savingCard') {
+      const savingBalance = savingCards.find(
+        (x) => x.cardNumber === from?.cardNumber
+      );
+
+      if (savingBalance.balance - totalAmount < 0) {
+        setError('totalAmount', {
+          type: 'custom',
+          message: 'Your balance is not enough',
+        });
+        return false;
+      }
+    }
+
+    return true;
+  };
+
   const handleNext = (formData) => {
+    if (
+      !checkBalanceByMethod({
+        totalAmount: formData.totalAmount,
+      })
+    ) {
+      return;
+    }
+    clearErrors();
     dispatch(updateTransferInfo({ ...formData, chargedBy: radio }));
     dispatch(sendCode({ email: currentUser?.email }));
     next();
   };
 
-  console.warn(currentUser?.email);
+  const handleCheckAmount = (message) => {
+    return message === 'Your balance is not enough'
+      ? 'Your balance is not enough'
+      : 'The amount must be at least 10 000 VND';
+  };
 
   return (
     <Modal setToggle={setToggle} title='Internal transfer' cancel clickOutSide>
@@ -52,7 +99,7 @@ const StepThree = ({ setToggle, back, next }) => {
             name='totalAmount'
             label={
               errors?.totalAmount
-                ? 'Require field is a number at least 1 000 VND  '
+                ? handleCheckAmount(errors?.totalAmount.message)
                 : 'Total amount:'
             }
             error={errors?.totalAmount && true}

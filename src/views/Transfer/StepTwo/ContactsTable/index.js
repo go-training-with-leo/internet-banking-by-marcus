@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Table, { TableRow } from 'components/Table';
 import RowCell from 'components/Table/RowCell';
@@ -7,8 +6,10 @@ import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 
 import './style.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateTransferInfo } from 'global/redux/transfer/slice';
+import { selectAuth, selectContact } from 'core/selectors';
+import { getContacts } from 'global/redux/contact/thunk';
 
 const headerTable = (
   <HeaderTable>
@@ -18,10 +19,11 @@ const headerTable = (
   </HeaderTable>
 );
 
-const ContactsTable = ({ tableData }) => {
+const ContactsTable = () => {
   const dispatch = useDispatch();
 
-  console.warn(tableData);
+  const { currentUser } = useSelector(selectAuth);
+  const { contacts, isFetched } = useSelector(selectContact);
 
   const handleClick = (contact) => {
     const { id: contactId, contactName, cardNumber, bank } = contact;
@@ -37,11 +39,16 @@ const ContactsTable = ({ tableData }) => {
     );
   };
 
-  console.warn(tableData);
+  useEffect(() => {
+    if (!isFetched) {
+      dispatch(getContacts({ email: currentUser?.email }));
+    }
+  }, []);
+
   return (
     <div className='step-two-table'>
       <Table widths={[25, 46, 25]} headerTable={headerTable}>
-        {tableData.map((row) => (
+        {contacts.map((row) => (
           <TableRow key={row.id} onClick={() => handleClick(row)}>
             <RowCell title='name'>{row?.contactName}</RowCell>
             <RowCell title='cardNumber'>{row?.cardNumber}</RowCell>
@@ -51,14 +58,6 @@ const ContactsTable = ({ tableData }) => {
       </Table>
     </div>
   );
-};
-
-ContactsTable.defaultProps = {
-  tableData: [],
-};
-
-ContactsTable.propTypes = {
-  tableData: PropTypes.array,
 };
 
 export default ContactsTable;
