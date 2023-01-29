@@ -19,7 +19,7 @@
       line-height: 16px;
     }
     .list-cards-container {
-      height: 200px;
+      max-height: 200px;
       @include setFlex(column, null, center, 30px, null);
       overflow: auto;
     }

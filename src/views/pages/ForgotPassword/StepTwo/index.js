@@ -41,7 +41,7 @@ const StepTwo = () => {
     );
 
     if (status) {
-      if (message !== 'You have been successfully registered') {
+      if (message !== 'Correct') {
         setError('otp', {
           type: 'custom',
           message,
@@ -74,7 +74,7 @@ const StepTwo = () => {
         name='otp'
         disabled={loading}
         key='otp'
-        error={errors.otp}
+        error={errors?.otp}
       />
       <span className='forgot'>
         <Link to='/login'>{t('rememberMyPassword')}</Link>

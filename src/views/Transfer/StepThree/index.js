@@ -6,29 +6,109 @@ import Stepper from 'components/Stepper';
 import DefaultButton from 'components/Button/Default';
 import Input from 'components/Input';
 import TextArea from 'components/TextArea';
+import Radio from 'components/Radio';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateTransferInfo } from 'global/redux/transfer/slice';
+import { sendCode } from 'global/redux/transfer/thunk';
+import { selectAuth, selectCard, selectTransfer } from 'core/selectors';
+import { yupResolver } from '@hookform/resolvers/yup';
+import validPayment from './validation';
 
 import './style.scss';
-import Radio from 'components/Radio';
 
-const CHARGED_BY_SENDER = 'chargedBySender';
-const CHARGED_BY_RECEIVER = 'chargedByReceiver';
+const CHARGED_BY_SENDER = 'sender';
+const CHARGED_BY_RECEIVER = 'receiver';
 
 const StepThree = ({ setToggle, back, next }) => {
+  const dispatch = useDispatch();
+
   const [radio, setRadio] = useState(CHARGED_BY_SENDER);
+
+  const {
+    transferInfo: { paymentMethod, from },
+  } = useSelector(selectTransfer);
+  const { currentUser } = useSelector(selectAuth);
+  const {
+    payingCard: { balance: paymentBalance },
+    savingCards,
+  } = useSelector(selectCard);
+  const {
+    register,
+    handleSubmit,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(validPayment) });
+
+  const checkBalanceByMethod = ({ totalAmount }) => {
+    if (paymentMethod === 'paymentCard') {
+      if (paymentBalance - totalAmount < 0) {
+        setError('totalAmount', {
+          type: 'custom',
+          message: 'Your balance is not enough',
+        });
+        return false;
+      }
+    } else if (paymentMethod === 'savingCard') {
+      const savingBalance = savingCards.find(
+        (x) => x.cardNumber === from?.cardNumber
+      );
+
+      if (savingBalance.balance - totalAmount < 0) {
+        setError('totalAmount', {
+          type: 'custom',
+          message: 'Your balance is not enough',
+        });
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  const handleNext = (formData) => {
+    if (
+      !checkBalanceByMethod({
+        totalAmount: formData.totalAmount,
+      })
+    ) {
+      return;
+    }
+    clearErrors();
+    dispatch(updateTransferInfo({ ...formData, chargedBy: radio }));
+    dispatch(sendCode({ email: currentUser?.email }));
+    next();
+  };
+
+  const handleCheckAmount = (message) => {
+    return message === 'Your balance is not enough'
+      ? 'Your balance is not enough'
+      : 'The amount must be at least 10 000 VND';
+  };
 
   return (
     <Modal setToggle={setToggle} title='Internal transfer' cancel clickOutSide>
-      <form className='step-three'>
+      <form className='step-three' onSubmit={handleSubmit(handleNext)}>
         <Stepper title='Payment ' step='3'>
           Provide the details of the payment
         </Stepper>
         <div className='step-three-container'>
           <Input
-            label='Total amount:'
+            register={register}
+            name='totalAmount'
+            label={
+              errors?.totalAmount
+                ? handleCheckAmount(errors?.totalAmount.message)
+                : 'Total amount:'
+            }
+            error={errors?.totalAmount && true}
             placeholder='Enter the amount of money'
           />
           <div className='step-three-textarea'>
             <TextArea
+              register={register}
+              name='detail'
               label='Detail:'
               placeholder='Enter some details of the payment'
             />
@@ -55,7 +135,7 @@ const StepThree = ({ setToggle, back, next }) => {
             <DefaultButton onClick={back}>Back</DefaultButton>
           </div>
           <div className='step-three-btn'>
-            <DefaultButton danger onClick={next}>
+            <DefaultButton danger type='submit'>
               Next
             </DefaultButton>
           </div>

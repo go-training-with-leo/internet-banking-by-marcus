@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Card from 'components/Card/Default';
 import ListCardItem from 'components/ListCardItem';
 import Loader from 'components/Loader';
-import { selectAuth } from 'core/selectors';
+import { selectAuth, selectCard } from 'core/selectors';
 import { getCards } from 'global/redux/card/thunk';
 import { divideSpaceIdCard, get4LastDigit } from 'utils/helpers';
 
@@ -21,9 +21,10 @@ const Cards = () => {
     isLoading: loading,
   } = useSelector((state) => state.card);
   const { currentUser } = useSelector(selectAuth);
+  const { isFetched } = useSelector(selectCard);
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser && !isFetched) {
       dispatch(getCards({ email: currentUser.email }));
     }
   }, [currentUser]);

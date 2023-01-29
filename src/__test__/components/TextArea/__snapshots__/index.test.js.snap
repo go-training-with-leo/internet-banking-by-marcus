@@ -15,6 +15,7 @@ Object {
         </label>
         <textarea
           id="text-area-textAreaInput"
+          placeholder=""
         />
       </div>
     </div>
@@ -30,6 +31,7 @@ Object {
       </label>
       <textarea
         id="text-area-textAreaInput"
+        placeholder=""
       />
     </div>
   </div>,
@@ -102,6 +104,7 @@ Object {
         </label>
         <textarea
           id="text-area-textAreaInput"
+          placeholder=""
         />
       </div>
     </div>
@@ -117,6 +120,7 @@ Object {
       </label>
       <textarea
         id="text-area-textAreaInput"
+        placeholder=""
       />
     </div>
   </div>,

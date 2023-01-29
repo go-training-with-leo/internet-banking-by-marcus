@@ -58,10 +58,7 @@ const auth = createSlice({
       state.isLoading = false;
       state.formData = {
         ...state.formData,
-        step:
-          message === 'You have been successfully registered'
-            ? 3
-            : state.formData.step,
+        step: message === 'Correct' ? 3 : state.formData.step,
       };
     },
     [resetPasswordAccount.pending]: (state) => {

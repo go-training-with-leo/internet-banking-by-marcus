@@ -2,9 +2,8 @@ import React from 'react';
 
 import DefaultButton from 'components/Button/Default';
 import useToggle from 'components/hooks/useToggle';
-import { signOut } from 'global/redux/auth/request';
+import { logOut } from 'global/redux/auth/thunk';
 import { useDispatch } from 'react-redux';
-import { resetContact } from 'global/redux/contact/slice';
 import ChangePasswordModal from './ChangePwdModal';
 
 import './style.scss';
@@ -15,8 +14,7 @@ const Account = () => {
   const [changePwdModal, setChangePwdModal] = useToggle();
 
   const handleSignOut = () => {
-    dispatch(resetContact());
-    signOut();
+    dispatch(logOut());
   };
 
   return (

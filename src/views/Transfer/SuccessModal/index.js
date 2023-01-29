@@ -3,19 +3,37 @@ import PropTypes from 'prop-types';
 
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTransfer } from 'core/selectors';
+import {
+  convertTimestamp,
+  divideSpaceIdCard,
+  parseMoneyVnd,
+} from 'utils/helpers';
+import { resetTransferInfo } from 'global/redux/transfer/slice';
 
 import './style.scss';
 
 const SuccessModal = ({ setToggle }) => {
+  const dispatch = useDispatch();
+
+  const { transferInfo } = useSelector(selectTransfer);
+
+  const handleFinish = () => {
+    dispatch(resetTransferInfo());
+    setToggle();
+  };
   return (
     <Modal title='SUCCESS!'>
       <div className='success-modal'>
         <p>
-          You have succesfully transfered the amout of 5 000 000 VND to the
-          account 7583 8394 9840 8492 / Justin Doe / EIGHT.Bank at 22/05
-          13:30:51
+          You have succesfully transfered the amout of{' '}
+          {parseMoneyVnd(transferInfo?.totalAmount)} VND to the account{' '}
+          {divideSpaceIdCard(transferInfo?.dest?.cardNumber)} /{' '}
+          {transferInfo?.dest?.contactName} / EIGHT.Bank at{' '}
+          {convertTimestamp(transferInfo.createdAt?.seconds)}
         </p>
-        <DefaultButton danger onClick={setToggle}>
+        <DefaultButton danger onClick={handleFinish}>
           OK
         </DefaultButton>
       </div>

@@ -4,13 +4,36 @@ import PropTypes from 'prop-types';
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import Stepper from 'components/Stepper';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTransfer } from 'core/selectors';
+import { parseMoneyVnd } from 'utils/helpers';
+import { useForm } from 'react-hook-form';
+import { transfer } from 'global/redux/transfer/thunk';
 
 import './style.scss';
 
 const StepFive = ({ setToggle, back, next }) => {
+  const dispatch = useDispatch();
+
+  const { handleSubmit } = useForm();
+  const { transferInfo } = useSelector(selectTransfer);
+  const {
+    transferInfo: { from, dest, totalAmount, chargedBy },
+    isLoading: loading,
+  } = useSelector(selectTransfer);
+
+  const onCharged = async () => {
+    const {
+      payload: { status },
+    } = await dispatch(transfer({ transferInfo }));
+    if (status) {
+      next();
+    }
+  };
+
   return (
     <Modal cancel clickOutSide setToggle={setToggle}>
-      <form className='step-five'>
+      <form className='step-five' onSubmit={handleSubmit(onCharged)}>
         <Stepper title='Finish' step='5'>
           Check your payment details again and finish the process
         </Stepper>
@@ -22,27 +45,33 @@ const StepFive = ({ setToggle, back, next }) => {
         <div className='step-five-tab-info'>
           <div className='step-five-tab-info__line'>
             <span className='title'>From:</span>
-            <span>1234 8909 9801 8901 / Albus Dumbledore / EIGHT.Bank</span>
+            <span>
+              {from?.cardNumber} / {from?.accountName} / {from?.bank}
+            </span>
           </div>
           <div className='step-five-tab-info__line'>
             <span className='title'>To:</span>
-            <span>7583 8394 9840 8492 / Justin Doe / EIGHT.Bank</span>
+            <span>
+              {dest?.cardNumber} / {dest?.contactName} / {dest?.bank}
+            </span>
           </div>
           <div className='step-five-tab-info__line'>
             <span className='title'>Amount:</span>
-            <span>5 000 000 VND</span>
+            <span>{parseMoneyVnd(totalAmount)} VND</span>
           </div>
           <div className='step-five-tab-info__line'>
-            <span className='title'>Payment fee::</span>
-            <span>Charged by receiver</span>
+            <span className='title'>Payment fee:</span>
+            <span>Charged by {chargedBy}</span>
           </div>
         </div>
         <div className='btn-group'>
           <div className='step-five-btn'>
-            <DefaultButton onClick={back}>Back</DefaultButton>
+            <DefaultButton disabled={loading} onClick={back}>
+              Back
+            </DefaultButton>
           </div>
           <div className='step-five-btn'>
-            <DefaultButton onClick={next} danger>
+            <DefaultButton loading={loading} type='submit' danger>
               Next
             </DefaultButton>
           </div>

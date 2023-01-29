@@ -22,7 +22,7 @@ const Contacts = () => {
   const [chooseContact, setChooseContact] = useState();
 
   const { currentUser } = useSelector(selectAuth);
-  const { contacts } = useSelector(selectContact);
+  const { contacts, isFetched } = useSelector(selectContact);
 
   const headerTable = (
     <HeaderTable>
@@ -45,7 +45,9 @@ const Contacts = () => {
   };
 
   useEffect(() => {
-    dispatch(getContacts({ email: currentUser?.email }));
+    if (currentUser && !isFetched) {
+      dispatch(getContacts({ email: currentUser?.email }));
+    }
   }, [currentUser]);
 
   return (
