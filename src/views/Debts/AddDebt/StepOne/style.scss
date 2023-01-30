@@ -1,0 +1,22 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+.step-one {
+  width: 100%;
+  @include setFlex(column, null, null, 30px, null);
+
+  .radio-group {
+    @include setFlex(row, null, null, 30px, null);
+  }
+
+  .step-two-container {
+    @include setFlex(column, null, null, 30px, null);
+  }
+
+  .btn-group {
+    margin-top: 20px;
+    @include setFlex(row, null, center, 20px, null);
+    .step-two-btn {
+      width: 50%;
+    }
+  }
+}

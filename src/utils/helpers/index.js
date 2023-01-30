@@ -4,6 +4,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  orderBy,
   query,
   serverTimestamp,
   updateDoc,
@@ -81,6 +82,21 @@ const queryDocs = async ({ path, field, value }) => {
   return respone;
 };
 
+const queryOrderDocs = async ({ path, field, value, orderField }) => {
+  const queryFireStore = query(
+    collection(db, path),
+    where(field, '==', value),
+    orderBy(orderField, 'desc')
+  );
+
+  const querySnapshot = await getDocs(queryFireStore);
+
+  const respone = querySnapshot.docs.map((document) => {
+    return document.data();
+  });
+  return respone;
+};
+
 const updateDocFireStore = async ({ collect, id, value }) => {
   const docRef = doc(db, collect, id);
 
@@ -119,6 +135,7 @@ export {
   modifyLocalStorage,
   parseMoneyVnd,
   queryDocs,
+  queryOrderDocs,
   removeAuthTokenFromLocalStorage,
   removeLocalStorage,
   saveAuthTokenToLocalStorage,

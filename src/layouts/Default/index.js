@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import React, { cloneElement, isValidElement, memo } from 'react';
 
+import AddDebt from 'views/Debts/AddDebt';
 import Header from 'navigators/Header';
 import SideBar from 'navigators/SideBar';
 import AddContactModal from 'views/Contacts/AddContactModal';
@@ -90,6 +91,9 @@ const DefaultLayout = () => {
             )}
             {showModal && pathname === '/accounts' && (
               <AddCustomerModal setToggle={setShowModal} />
+            )}
+            {showModal && pathname === '/debts' && (
+              <AddDebt setToggle={setShowModal} />
             )}
           </div>
         </div>
