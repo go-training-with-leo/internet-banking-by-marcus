@@ -40,6 +40,7 @@ const Debts = () => {
   const [infoModal, setInfoModal] = useToggle();
   const [activeTab, setActiveTab] = useState(CREATE_BY_YOU);
   const [dataTable, setDataTable] = useState([]);
+  const [chooseRow, setChooseRow] = useState({});
 
   const { payingCard } = useSelector(selectCard);
   const { creDebts, recDebts, isCreDebtsFetched, isRecDebtsFetched } =
@@ -48,6 +49,28 @@ const Debts = () => {
   const dataTables = {
     CREATE_BY_YOU: creDebts,
     RECV_FROM_OTHERS: recDebts,
+  };
+
+  const handleClickAction = ({ type, row }) => {
+    switch (type) {
+    case 'detail': {
+      setChooseRow(row);
+      setInfoModal();
+      break;
+    }
+    case 'delete': {
+      setChooseRow(row);
+      setDeleteModal();
+      break;
+    }
+    case 'payment': {
+      setChooseRow(row);
+      setPaymentModal();
+      break;
+    }
+    default:
+      break;
+    }
   };
 
   useEffect(() => {
@@ -97,7 +120,9 @@ const Debts = () => {
                     className='credit-svg'
                     width={30}
                     height={30}
-                    onClick={setPaymentModal}
+                    onClick={() =>
+                      handleClickAction({ type: 'payment', row: debt })
+                    }
                     fill='linear-gradient(90deg, #EF230C 2.5%, #FFD351 100%)'
                   />
                 )}
@@ -105,13 +130,17 @@ const Debts = () => {
                   width={30}
                   height={30}
                   fill='red'
-                  onClick={setInfoModal}
+                  onClick={() =>
+                    handleClickAction({ type: 'detail', row: debt })
+                  }
                 />
                 <DeleteIcon
                   width={30}
                   height={30}
                   fill='red'
-                  onClick={setDeleteModal}
+                  onClick={() =>
+                    handleClickAction({ type: 'delete', row: debt })
+                  }
                 />
               </RowCell>
             </TableRow>
@@ -119,7 +148,9 @@ const Debts = () => {
         </Table>
       </div>
       {paymentModal && <PaymentModal setToggle={setPaymentModal} />}
-      {infoModal && <DetailModal setToggle={setInfoModal} />}
+      {infoModal && (
+        <DetailModal detailData={chooseRow} setToggle={setInfoModal} />
+      )}
       {deleteModal && <DeleteModal setToggle={setDeleteModal} />}
     </div>
   );
