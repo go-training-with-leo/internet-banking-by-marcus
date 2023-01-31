@@ -64,6 +64,15 @@ const getCustAccounts = async () => {
   return accountInfo;
 };
 
+const getCustAccount = async (email) => {
+  const custAccount = await queryDocs({
+    path: 'accounts',
+    field: 'email',
+    value: email,
+  });
+  return custAccount.length > 0 ? custAccount[0] : null;
+};
+
 const rechargeMoney = async ({ id, balance }) => {
   const {
     data: { message },
@@ -79,6 +88,7 @@ export {
   addNewCust,
   addNewEmpl,
   checkEmailExist,
+  getCustAccount,
   getCustAccounts,
   rechargeMoney,
 };

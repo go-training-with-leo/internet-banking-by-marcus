@@ -4,6 +4,7 @@ import {
   addNewCust,
   checkEmailExist,
   getCustAccounts,
+  getCustAccount as getCustAccountReq,
   rechargeMoney as rechargeMoneyReq,
 } from './request';
 
@@ -92,6 +93,21 @@ const getCustomerAccounts = createAsyncThunk(
   }
 );
 
+const getCustAccount = createAsyncThunk('account/getCustomer', async (data) => {
+  try {
+    const { email } = data;
+    const account = await getCustAccountReq(email);
+    return {
+      status: true,
+      account,
+    };
+  } catch (error) {
+    return {
+      status: false,
+    };
+  }
+});
+
 const rechargeMoney = createAsyncThunk(
   'account/rechargeMoney',
   async (data) => {
@@ -116,6 +132,7 @@ export {
   addNewCustomer,
   addNewEmployee,
   existEmail,
+  getCustAccount,
   getCustomerAccounts,
   rechargeMoney,
 };
