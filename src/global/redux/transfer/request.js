@@ -1,4 +1,3 @@
-import axios from 'axios';
 import api from 'services/api';
 import { getDocFireStore, queryDocs } from 'utils/helpers';
 
@@ -39,7 +38,7 @@ const verifyOTP = async ({ email, otp }) => {
 const transfer = async (transferInfo) => {
   const {
     data: { message, createdAt },
-  } = await axios.post('http://localhost:3000/transfer', transferInfo);
+  } = await api.post('/transfer', transferInfo);
 
   return { message, createdAt };
 };

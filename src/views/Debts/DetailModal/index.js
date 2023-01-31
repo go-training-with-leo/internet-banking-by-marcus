@@ -18,7 +18,6 @@ const statusIcons = {
 
 const DetailModal = ({ detailData, setToggle }) => {
   const { from, dest, totalAmount, desc, reason, status } = detailData;
-  console.warn(detailData);
 
   return (
     <Modal setToggle={setToggle} title='Debt details' cancel clickOutSide>

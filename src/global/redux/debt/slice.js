@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from '../auth/thunk';
-import { addDebt, getCreDebts, getRecDebts, searchContact } from './thunk';
+import {
+  addDebt,
+  deleteDebt,
+  getCreDebts,
+  getRecDebts,
+  searchContact,
+} from './thunk';
 
 const debt = createSlice({
   name: 'debt',
@@ -77,6 +83,39 @@ const debt = createSlice({
       state.recDebts = recDebts;
       state.isLoading = false;
       state.isRecDebtsFetched = true;
+    },
+    [deleteDebt.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [deleteDebt.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [deleteDebt.fulfilled]: (state, action) => {
+      const { responseDebt } = action.payload;
+
+      const indexInCreDebt = state.creDebts.findIndex((creDebt) => {
+        return creDebt.id === responseDebt?.id;
+      });
+      const indexInRecDebt = state.recDebts.findIndex(
+        (recDebt) => recDebt.id === responseDebt?.id
+      );
+      console.warn('indexInCreDebt:', indexInCreDebt);
+      console.warn('indexInRecDebt', indexInRecDebt);
+
+      if (indexInCreDebt !== -1) {
+        state.creDebts[indexInCreDebt] = {
+          ...state.creDebts[indexInCreDebt],
+          status: responseDebt?.status,
+          reason: responseDebt?.reason,
+        };
+      } else if (indexInRecDebt !== -1) {
+        state.recDebts[indexInRecDebt] = {
+          ...state.recDebts[indexInRecDebt],
+          status: responseDebt?.status,
+          reason: responseDebt?.reason,
+        };
+      }
+      state.isLoading = false;
     },
     [logOut.fulfilled]: (state) => {
       state.creDebts = [];

@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import {
   addDebt as addDebtReq,
+  deleteDebt as deleteDebtReq,
   getCreDebts as getCreDebtsReq,
   getRecDebts as getRecDebtsReq,
   searchContact as searchContactReq,
@@ -70,4 +71,23 @@ const getRecDebts = createAsyncThunk('debt/getRecDebts', async (data) => {
   }
 });
 
-export { addDebt, getCreDebts, getRecDebts, searchContact };
+const deleteDebt = createAsyncThunk('debt/deleteDebt', async (data) => {
+  try {
+    const { id, reason } = data;
+    const { status: statusDebt } = await deleteDebtReq({ id, reason });
+    return {
+      status: true,
+      responseDebt: {
+        id,
+        status: statusDebt,
+        reason,
+      },
+    };
+  } catch (error) {
+    return {
+      status: false,
+    };
+  }
+});
+
+export { addDebt, deleteDebt, getCreDebts, getRecDebts, searchContact };

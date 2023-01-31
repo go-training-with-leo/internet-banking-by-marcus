@@ -10,7 +10,13 @@ import useToggle from 'components/hooks/useToggle';
 import Table, { TableRow } from 'components/Table';
 import { getCreDebts, getRecDebts } from 'global/redux/debt/thunk';
 import { parseMoneyVnd } from 'utils/helpers';
-import { CreditCardGradient, DeleteIcon, Filter, Info } from 'assets/images';
+import {
+  CreditCard,
+  CreditCardDone,
+  CreditCardGradient,
+  Filter,
+  Info,
+} from 'assets/images';
 import DeleteModal from './DeleteModal';
 import DetailModal from './DetailModal';
 import PaymentModal from './PaymentModal';
@@ -115,17 +121,25 @@ const Debts = () => {
               <RowCell>{parseMoneyVnd(debt?.totalAmount)} VND</RowCell>
               <RowCell title='status'>{debt?.status}</RowCell>
               <RowCell>
-                {activeTab === RECV_FROM_OTHERS && (
-                  <CreditCardGradient
-                    className='credit-svg'
-                    width={30}
-                    height={30}
-                    onClick={() =>
-                      handleClickAction({ type: 'payment', row: debt })
-                    }
-                    fill='linear-gradient(90deg, #EF230C 2.5%, #FFD351 100%)'
-                  />
-                )}
+                {activeTab === RECV_FROM_OTHERS &&
+                  (debt?.status === 'unpaid' ? (
+                    <CreditCardGradient
+                      className='credit-svg'
+                      width={30}
+                      height={30}
+                      onClick={() =>
+                        handleClickAction({ type: 'payment', row: debt })
+                      }
+                      fill='linear-gradient(90deg, #EF230C 2.5%, #FFD351 100%)'
+                    />
+                  ) : (
+                    <CreditCard
+                      className='disabled-icon'
+                      width={30}
+                      height={30}
+                      fill='#26292E'
+                    />
+                  ))}
                 <Info
                   width={30}
                   height={30}
@@ -134,14 +148,16 @@ const Debts = () => {
                     handleClickAction({ type: 'detail', row: debt })
                   }
                 />
-                <DeleteIcon
-                  width={30}
-                  height={30}
-                  fill='red'
-                  onClick={() =>
-                    handleClickAction({ type: 'delete', row: debt })
-                  }
-                />
+                {activeTab === RECV_FROM_OTHERS && (
+                  <CreditCardDone
+                    width={30}
+                    height={30}
+                    fill='red'
+                    onClick={() =>
+                      handleClickAction({ type: 'delete', row: debt })
+                    }
+                  />
+                )}
               </RowCell>
             </TableRow>
           ))}
@@ -151,7 +167,9 @@ const Debts = () => {
       {infoModal && (
         <DetailModal detailData={chooseRow} setToggle={setInfoModal} />
       )}
-      {deleteModal && <DeleteModal setToggle={setDeleteModal} />}
+      {deleteModal && (
+        <DeleteModal debtData={chooseRow} setToggle={setDeleteModal} />
+      )}
     </div>
   );
 };

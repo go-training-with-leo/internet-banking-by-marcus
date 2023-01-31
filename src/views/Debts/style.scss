@@ -23,4 +23,13 @@
       }
     }
   }
+
+  .debt-tables {
+    .disabled-icon {
+      &:hover {
+        transform: scale(1.0);
+        cursor: auto;
+      }
+    }
+  }
 }

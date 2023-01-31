@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { getDocFireStore, queryDocs } from 'utils/helpers';
+import api from 'services/api';
+import { getDocFireStore, queryDocs, updateDocFireStore } from 'utils/helpers';
 
 const searchContact = async (cardNumber) => {
   const searchedContact = await queryDocs({
@@ -22,7 +22,7 @@ const searchContact = async (cardNumber) => {
 const addDebt = async (debtInfo) => {
   const {
     data: { message, debt },
-  } = await axios.post('http://localhost:3000/add-debt', debtInfo);
+  } = await api.post('/add-debt', debtInfo);
 
   return { message, debt };
 };
@@ -47,4 +47,15 @@ const getRecDebts = async (cardNumber) => {
   return recDebts;
 };
 
-export { addDebt, getCreDebts, getRecDebts, searchContact };
+const deleteDebt = async ({ id, reason }) => {
+  await updateDocFireStore({
+    collect: 'debts',
+    id,
+    value: { reason, status: 'success' },
+  });
+  return {
+    status: 'success',
+  };
+};
+
+export { addDebt, deleteDebt, getCreDebts, getRecDebts, searchContact };
