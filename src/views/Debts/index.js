@@ -140,6 +140,31 @@ const Debts = () => {
                       fill='#26292E'
                     />
                   ))}
+
+                {activeTab === RECV_FROM_OTHERS && (
+                  <CreditCardDone
+                    width={30}
+                    height={30}
+                    className={classNames({
+                      'disabled-icon':
+                        debt?.status === 'pending' ||
+                        debt?.status === 'success',
+                    })}
+                    fill={
+                      debt?.status === 'pending' || debt?.status === 'success'
+                        ? '#26292E'
+                        : 'red'
+                    }
+                    onClick={() => {
+                      if (
+                        debt?.status !== 'pending' &&
+                        debt?.status !== 'success'
+                      ) {
+                        handleClickAction({ type: 'delete', row: debt });
+                      }
+                    }}
+                  />
+                )}
                 <Info
                   width={30}
                   height={30}
@@ -148,22 +173,14 @@ const Debts = () => {
                     handleClickAction({ type: 'detail', row: debt })
                   }
                 />
-                {activeTab === RECV_FROM_OTHERS && (
-                  <CreditCardDone
-                    width={30}
-                    height={30}
-                    fill='red'
-                    onClick={() =>
-                      handleClickAction({ type: 'delete', row: debt })
-                    }
-                  />
-                )}
               </RowCell>
             </TableRow>
           ))}
         </Table>
       </div>
-      {paymentModal && <PaymentModal setToggle={setPaymentModal} />}
+      {paymentModal && (
+        <PaymentModal debtDetail={chooseRow} setToggle={setPaymentModal} />
+      )}
       {infoModal && (
         <DetailModal detailData={chooseRow} setToggle={setInfoModal} />
       )}

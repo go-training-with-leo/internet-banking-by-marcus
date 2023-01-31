@@ -58,4 +58,37 @@ const deleteDebt = async ({ id, reason }) => {
   };
 };
 
-export { addDebt, deleteDebt, getCreDebts, getRecDebts, searchContact };
+const sendOTP = async (email) => {
+  const {
+    data: { message },
+  } = await api.post('/get', {
+    email,
+  });
+  return message;
+};
+
+const verifyOTP = async ({ email, otp }) => {
+  const {
+    data: { message },
+  } = await api.post('/verify', { email, otp });
+  return message;
+};
+
+const paymentDebt = async (debtInfo) => {
+  const {
+    data: { debt },
+  } = await api.post('/payment-debt', { ...debtInfo });
+
+  return debt;
+};
+
+export {
+  addDebt,
+  deleteDebt,
+  getCreDebts,
+  getRecDebts,
+  paymentDebt,
+  searchContact,
+  sendOTP,
+  verifyOTP,
+};

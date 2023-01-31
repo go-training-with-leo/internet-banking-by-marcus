@@ -5,7 +5,10 @@ import {
   deleteDebt as deleteDebtReq,
   getCreDebts as getCreDebtsReq,
   getRecDebts as getRecDebtsReq,
+  paymentDebt as paymentDebtReq,
   searchContact as searchContactReq,
+  sendOTP,
+  verifyOTP,
 } from './request';
 
 const searchContact = createAsyncThunk('debt/searchContact', async (data) => {
@@ -90,4 +93,62 @@ const deleteDebt = createAsyncThunk('debt/deleteDebt', async (data) => {
   }
 });
 
-export { addDebt, deleteDebt, getCreDebts, getRecDebts, searchContact };
+const sendCode = createAsyncThunk('debt/sendOTP', async (data) => {
+  try {
+    const { email } = data;
+
+    const message = await sendOTP(email);
+    return {
+      status: true,
+      message,
+    };
+  } catch ({ message }) {
+    return {
+      status: false,
+      message,
+    };
+  }
+});
+
+const verifyCode = createAsyncThunk('debt/verifyOtp', async (data) => {
+  try {
+    const { email, otp } = data;
+
+    const message = await verifyOTP({ email, otp });
+    return {
+      status: true,
+      message,
+    };
+  } catch ({ message }) {
+    return {
+      status: false,
+      message,
+    };
+  }
+});
+
+const paymentDebt = createAsyncThunk('debt/paymentDebt', async (data) => {
+  try {
+    const { debtDetail } = data;
+    const debt = await paymentDebtReq(debtDetail);
+    return {
+      status: true,
+      debt,
+    };
+  } catch (error) {
+    return {
+      status: false,
+    };
+  }
+});
+
+export {
+  addDebt,
+  deleteDebt,
+  getCreDebts,
+  getRecDebts,
+  paymentDebt,
+  searchContact,
+  sendCode,
+  verifyCode,
+};

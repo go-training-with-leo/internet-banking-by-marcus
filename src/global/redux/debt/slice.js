@@ -5,7 +5,10 @@ import {
   deleteDebt,
   getCreDebts,
   getRecDebts,
+  paymentDebt,
   searchContact,
+  sendCode,
+  verifyCode,
 } from './thunk';
 
 const debt = createSlice({
@@ -99,8 +102,6 @@ const debt = createSlice({
       const indexInRecDebt = state.recDebts.findIndex(
         (recDebt) => recDebt.id === responseDebt?.id
       );
-      console.warn('indexInCreDebt:', indexInCreDebt);
-      console.warn('indexInRecDebt', indexInRecDebt);
 
       if (indexInCreDebt !== -1) {
         state.creDebts[indexInCreDebt] = {
@@ -115,6 +116,41 @@ const debt = createSlice({
           reason: responseDebt?.reason,
         };
       }
+      state.isLoading = false;
+    },
+    [sendCode.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [sendCode.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [sendCode.fulfilled]: (state) => {
+      state.isLoading = false;
+    },
+    [verifyCode.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [verifyCode.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [verifyCode.fulfilled]: (state) => {
+      state.isLoading = false;
+    },
+    [paymentDebt.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [paymentDebt.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [paymentDebt.fulfilled]: (state, action) => {
+      const { id } = action.payload.debt;
+      const indexDebt = state.recDebts?.findIndex(
+        (recDebt) => recDebt.id === id
+      );
+      state.recDebts[indexDebt] = {
+        ...state.recDebts[indexDebt],
+        ...action.payload.debt,
+      };
       state.isLoading = false;
     },
     [logOut.fulfilled]: (state) => {

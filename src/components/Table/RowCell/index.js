@@ -13,6 +13,7 @@ const debtType = {
 
 const statusIcons = {
   failed: <Status failed />,
+  pending: <Status pending />,
   success: <Status success />,
   refund: <Status refund />,
   paid: <Status paid />,

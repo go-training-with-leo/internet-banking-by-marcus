@@ -6,11 +6,20 @@ import { Cancel, Check, Clock, Reverse } from 'assets/images';
 
 import './style.scss';
 
-const Status = ({ failed, success, refund, paid, unpaid, canceled }) => {
+const Status = ({
+  failed,
+  success,
+  refund,
+  paid,
+  unpaid,
+  canceled,
+  pending,
+}) => {
   return (
     <div
       className={classNames('status', {
         failed: failed,
+        pending: pending,
         success: success,
         refund: refund,
         paid: paid,
@@ -22,6 +31,11 @@ const Status = ({ failed, success, refund, paid, unpaid, canceled }) => {
         <>
           <Cancel width={20} height={20} fill='red' />
           <span>Failed</span>
+        </>
+      ) : pending ? (
+        <>
+          <Clock width={20} height={20} fill='yellow' />
+          <span>Pending</span>
         </>
       ) : success ? (
         <>
@@ -61,6 +75,7 @@ Status.defaultProps = {
   refund: false,
   paid: false,
   unpaid: true,
+  pending: false,
   canceled: false,
 };
 
@@ -70,6 +85,7 @@ Status.propTypes = {
   refund: PropTypes.bool,
   paid: PropTypes.bool,
   unpaid: PropTypes.bool,
+  pending: PropTypes.bool,
   canceled: PropTypes.bool,
 };
 export default Status;
