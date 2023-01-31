@@ -1,0 +1,30 @@
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+
+.payment-modal {
+  @include setFlex(column, null, null, 30px, null);
+  font-size: 14px;
+  line-height: 18px;
+  .detail-row {
+
+    .title {
+      width: 80px;
+    }
+
+    @include setFlex(row, null, null, 20px, null);
+
+    p {
+      margin: 0;
+      max-height: 100px;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  .payment-btn-group {
+    @include setFlex(row, space-between, center, 20px, null);
+  }
+}

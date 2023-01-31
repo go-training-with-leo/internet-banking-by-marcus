@@ -97,7 +97,7 @@ const StepOne = ({ setToggle, next }) => {
             name='usingCard'
             value='savingCard'
             checked={formData.paymentMethod === 'savingCard'}
-            onChange={(e) => setFormData({ paymentMethod: e.target.value })}
+            // onChange={(e) => setFormData({ paymentMethod: e.target.value })}
             label='Use your saving cards'
           />
         </div>

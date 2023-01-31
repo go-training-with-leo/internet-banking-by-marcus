@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from '../auth/thunk';
+import { addDebt, paymentDebt } from '../debt/thunk';
 import { transfer } from '../transfer/thunk';
 import { getCards } from './thunk';
 
@@ -62,6 +63,18 @@ const card = createSlice({
         cloneSavingCards.splice(indexSvCard, 1, savingCard);
         state.savingCards = [...cloneSavingCards];
       }
+    },
+    [addDebt.fulfilled]: (state, action) => {
+      state.payingCard = {
+        ...state.payingCard,
+        balance: state.payingCard.balance - action.payload.debt.totalAmount,
+      };
+    },
+    [paymentDebt.fulfilled]: (state, action) => {
+      state.payingCard = {
+        ...state.payingCard,
+        balance: state.payingCard.balance - action.payload.debt.totalAmount,
+      };
     },
   },
 });
