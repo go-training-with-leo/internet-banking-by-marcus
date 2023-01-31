@@ -7,6 +7,7 @@ import {
   getCustAccount,
   getCustomerAccounts,
   rechargeMoney,
+  updatePassword,
 } from './thunk';
 
 const account = createSlice({
@@ -88,6 +89,15 @@ const account = createSlice({
       state.currentAccount = { ...action.payload.account };
       state.isLoading = false;
       state.isFetched = true;
+    },
+    [updatePassword.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [updatePassword.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [updatePassword.fulfilled]: (state) => {
+      state.isLoading = false;
     },
     [logOut.fulfilled]: (state) => {
       state.accounts = [];

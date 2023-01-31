@@ -1,4 +1,10 @@
+import {
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  updatePassword,
+} from 'firebase/auth';
 import api from 'services/api';
+import { auth } from 'services/firebase';
 import { convertTimestamp, getAllDocsInColl, queryDocs } from 'utils/helpers';
 
 const checkEmailExist = async (email) => {
@@ -84,6 +90,14 @@ const rechargeMoney = async ({ id, balance }) => {
   return message;
 };
 
+const updatePwd = async ({ currentPassword, newPassword }) => {
+  const user = auth.currentUser;
+
+  const cred = EmailAuthProvider.credential(user?.email, currentPassword);
+  await reauthenticateWithCredential(user, cred);
+  await updatePassword(auth.currentUser, newPassword);
+};
+
 export {
   addNewCust,
   addNewEmpl,
@@ -91,4 +105,5 @@ export {
   getCustAccount,
   getCustAccounts,
   rechargeMoney,
+  updatePwd,
 };
