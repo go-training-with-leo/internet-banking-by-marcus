@@ -116,6 +116,13 @@ const convertTimestamp = (timestamp) => {
   return moment(timestamp).format('HH:mm DD/MM/YYYY');
 };
 
+const formatPhoneVN = (phoneNumber) => {
+  if (!phoneNumber) {
+    return null;
+  }
+  return `+84${phoneNumber.slice(1, phoneNumber.length)}`;
+};
+
 const getMainPageByRole = (role) => {
   return mainPagesRole[role] || null;
 };
@@ -125,6 +132,7 @@ export {
   convertTimestamp,
   deleteDocFireStore,
   divideSpaceIdCard,
+  formatPhoneVN,
   get4LastDigit,
   getAllDocsInColl,
   getAuthTokenFromLocalStorage,

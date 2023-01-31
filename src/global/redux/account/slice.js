@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logOut } from '../auth/thunk';
 import {
   addNewCustomer,
   addNewEmployee,
   existEmail,
+  getCustAccount,
   getCustomerAccounts,
   rechargeMoney,
+  updatePassword,
 } from './thunk';
 
 const account = createSlice({
@@ -12,6 +15,7 @@ const account = createSlice({
   initialState: {
     accounts: [],
     newAccount: {},
+    currentAccount: {},
     isLoading: false,
     isFetched: false,
   },
@@ -74,6 +78,32 @@ const account = createSlice({
     },
     [rechargeMoney.fulfilled]: (state) => {
       state.isLoading = false;
+    },
+    [getCustAccount.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getCustAccount.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [getCustAccount.fulfilled]: (state, action) => {
+      state.currentAccount = { ...action.payload.account };
+      state.isLoading = false;
+      state.isFetched = true;
+    },
+    [updatePassword.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [updatePassword.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [updatePassword.fulfilled]: (state) => {
+      state.isLoading = false;
+    },
+    [logOut.fulfilled]: (state) => {
+      state.accounts = [];
+      state.currentAccount = {};
+      state.isLoading = false;
+      state.isFetched = false;
     },
   },
 });
