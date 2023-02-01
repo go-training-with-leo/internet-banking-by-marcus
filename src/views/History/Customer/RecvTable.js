@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Table, { TableRow } from 'components/Table';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import RowCell from 'components/Table/RowCell';
 import { ArrowDown } from 'assets/images';
-import recvData from './recvData';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCard, selectHistory } from 'core/selectors';
+import { getRecHistories } from 'global/redux/history/thunk';
+import { convertTimestamp, parseMoneyVnd } from 'utils/helpers';
 
 const headerTable = (
   <HeaderTable>
@@ -18,16 +21,29 @@ const headerTable = (
     </HeaderCell>
   </HeaderTable>
 );
+
 const ReceiveTable = () => {
+  const dispatch = useDispatch();
+
+  const { payingCard } = useSelector(selectCard);
+  const { recvHistories, isRecHistoryFetched: isFetched } =
+    useSelector(selectHistory);
+
+  useEffect(() => {
+    if (!isFetched) {
+      dispatch(getRecHistories({ cardNumber: payingCard?.cardNumber }));
+    }
+  }, [isFetched]);
+
   return (
     <Table widths={[10, 25, 25, 20, 20]} headerTable={headerTable}>
-      {recvData.map(({ id, senderAccount, amount, bank, date }, index) => (
-        <TableRow key={id}>
+      {recvHistories?.map(({ from, totalAmount, createdAt }, index) => (
+        <TableRow key={createdAt}>
           <RowCell>{index + 1}</RowCell>
-          <RowCell>{senderAccount}</RowCell>
-          <RowCell>{amount}</RowCell>
-          <RowCell>{bank}</RowCell>
-          <RowCell>{date}</RowCell>
+          <RowCell>{from?.accountName}</RowCell>
+          <RowCell>{parseMoneyVnd(totalAmount)} VND</RowCell>
+          <RowCell>{from?.bank}</RowCell>
+          <RowCell>{convertTimestamp(createdAt.seconds * 1000)}</RowCell>
         </TableRow>
       ))}
     </Table>

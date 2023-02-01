@@ -3,8 +3,11 @@ import Table, { TableRow } from 'components/Table';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import RowCell from 'components/Table/RowCell';
-import React from 'react';
-import debtData from './debtData';
+import { selectCard, selectHistory } from 'core/selectors';
+import { getDebtHistories } from 'global/redux/history/thunk';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { convertTimestamp, parseMoneyVnd } from 'utils/helpers';
 
 const headerTable = (
   <HeaderTable>
@@ -17,22 +20,42 @@ const headerTable = (
     <HeaderCell>
       Status <Filter width={20} height={20} fill='white' />
     </HeaderCell>
+    <HeaderCell>
+      Date <ArrowDown />
+    </HeaderCell>
   </HeaderTable>
 );
 
 const DebtTable = () => {
+  const dispatch = useDispatch();
+
+  const { payingCard } = useSelector(selectCard);
+  const { debtHistories, isDebtHistoryFetched: isFetched } =
+    useSelector(selectHistory);
+
+  useEffect(() => {
+    if (!isFetched) {
+      dispatch(getDebtHistories({ cardNumber: payingCard?.cardNumber }));
+    }
+  }, [isFetched]);
   return (
     <Table widths={[10, 20, 20, 15, 15, 20]} headerTable={headerTable}>
-      {debtData.map(({ id, lender, amount, type, status, date }, index) => (
-        <TableRow key={id}>
-          <RowCell>{index + 1}</RowCell>
-          <RowCell>{lender}</RowCell>
-          <RowCell>{amount}</RowCell>
-          <RowCell title='debtType'>{type}</RowCell>
-          <RowCell title='status'>{status}</RowCell>
-          <RowCell>{date}</RowCell>
-        </TableRow>
-      ))}
+      {debtHistories?.map(
+        ({ id, from, totalAmount, role, status, createdAt }, index) => (
+          <TableRow key={id}>
+            <RowCell>{index + 1}</RowCell>
+            <RowCell>{from?.accountName}</RowCell>
+            <RowCell>{parseMoneyVnd(totalAmount)} VND</RowCell>
+            <RowCell title='debtType'>{role}</RowCell>
+            <RowCell title='status'>{status}</RowCell>
+            <RowCell>
+              {createdAt?.seconds
+                ? convertTimestamp(createdAt.seconds * 1000)
+                : convertTimestamp(createdAt)}
+            </RowCell>
+          </TableRow>
+        )
+      )}
     </Table>
   );
 };
