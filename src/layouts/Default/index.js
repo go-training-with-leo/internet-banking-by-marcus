@@ -9,6 +9,7 @@ import SideBarItem from 'navigators/SideBar/Item';
 import useToggle from 'components/hooks/useToggle';
 import AddCustomerModal from 'views/Accounts/AddCustomerModal';
 import AddEmplModal from 'views/Employees/AddEmplModal';
+import NewSvCard from 'views/Cards/NewSvCard';
 import { getLocalStorage } from 'utils/helpers';
 import { logOut } from 'global/redux/auth/thunk';
 import { Link, Outlet, useLocation } from 'react-router-dom';
@@ -94,6 +95,9 @@ const DefaultLayout = () => {
             )}
             {showModal && pathname === '/debts' && (
               <AddDebt setToggle={setShowModal} />
+            )}
+            {showModal && pathname === '/cards' && (
+              <NewSvCard setToggle={setShowModal} />
             )}
           </div>
         </div>
