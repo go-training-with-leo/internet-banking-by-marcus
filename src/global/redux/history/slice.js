@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from '../auth/thunk';
 import { transfer } from '../transfer/thunk';
-import { getRecHistories, getTransfHistories } from './thunk';
+import { getDebtHistories, getRecHistories, getTransfHistories } from './thunk';
 
 const history = createSlice({
   name: 'history',
@@ -49,6 +49,17 @@ const history = createSlice({
         },
         ...state.transferHistories,
       ];
+    },
+    [getDebtHistories.pending]: (state) => {
+      state.isDebtHistoryLoading = true;
+    },
+    [getDebtHistories.rejected]: (state) => {
+      state.isDebtHistoryLoading = false;
+    },
+    [getDebtHistories.fulfilled]: (state, action) => {
+      state.debtHistories = [...action.payload.debtHitories];
+      state.isDebtHistoryLoading = false;
+      state.isDebtHistoryFetched = false;
     },
     [logOut.fulfilled]: (state) => {
       state.recvHistories = [];

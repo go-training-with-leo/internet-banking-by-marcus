@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchRecHistory, fetchTransfHistory } from './request';
+import {
+  fetchDebtHistory,
+  fetchRecHistory,
+  fetchTransfHistory,
+} from './request';
 
 const getRecHistories = createAsyncThunk(
   'history/getRecHistories',
@@ -12,6 +16,7 @@ const getRecHistories = createAsyncThunk(
         recHistories,
       };
     } catch (error) {
+      console.warn(error.message);
       return {
         status: false,
       };
@@ -30,6 +35,7 @@ const getTransfHistories = createAsyncThunk(
         transfHistories,
       };
     } catch (error) {
+      console.warn(error.message);
       return {
         status: false,
       };
@@ -37,4 +43,23 @@ const getTransfHistories = createAsyncThunk(
   }
 );
 
-export { getRecHistories, getTransfHistories };
+const getDebtHistories = createAsyncThunk(
+  'history/getDebtHistories',
+  async (data) => {
+    try {
+      const { cardNumber } = data;
+      const debtHitories = await fetchDebtHistory(cardNumber);
+      return {
+        status: true,
+        debtHitories,
+      };
+    } catch (error) {
+      console.warn(error.message);
+      return {
+        status: false,
+      };
+    }
+  }
+);
+
+export { getDebtHistories, getRecHistories, getTransfHistories };

@@ -40,7 +40,7 @@ const ReceiveTable = () => {
       {recvHistories?.map(({ from, totalAmount, createdAt }, index) => (
         <TableRow key={createdAt}>
           <RowCell>{index + 1}</RowCell>
-          <RowCell>{from?.accountName}</RowCell>
+          <RowCell>{dest?.contactName}</RowCell>
           <RowCell>{parseMoneyVnd(totalAmount)} VND</RowCell>
           <RowCell>{from?.bank}</RowCell>
           <RowCell>{convertTimestamp(createdAt.seconds * 1000)}</RowCell>
