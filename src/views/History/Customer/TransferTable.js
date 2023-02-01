@@ -36,7 +36,7 @@ const TransferTable = () => {
       dispatch(getTransfHistories({ cardNumber: payingCard?.cardNumber }));
     }
   }, [isFetched]);
-  return (
+  return transferHistories?.length > 0 ? (
     <Table widths={[10, 20, 20, 15, 15, 20]} headerTable={headerTable}>
       {transferHistories?.map(
         ({ dest, totalAmount, status, createdAt }, index) => (
@@ -55,6 +55,8 @@ const TransferTable = () => {
         )
       )}
     </Table>
+  ) : (
+    <span>No Transfer</span>
   );
 };
 

@@ -38,7 +38,7 @@ const DebtTable = () => {
       dispatch(getDebtHistories({ cardNumber: payingCard?.cardNumber }));
     }
   }, [isFetched]);
-  return (
+  return debtHistories?.length > 0 ? (
     <Table widths={[10, 20, 20, 15, 15, 20]} headerTable={headerTable}>
       {debtHistories?.map(
         ({ id, from, totalAmount, role, status, createdAt }, index) => (
@@ -57,6 +57,8 @@ const DebtTable = () => {
         )
       )}
     </Table>
+  ) : (
+    <span>No debts</span>
   );
 };
 

@@ -35,7 +35,7 @@ const ReceiveTable = () => {
     }
   }, [isFetched]);
 
-  return (
+  return recvHistories?.length > 0 ? (
     <Table widths={[10, 25, 25, 20, 20]} headerTable={headerTable}>
       {recvHistories?.map(({ from, totalAmount, createdAt }, index) => (
         <TableRow key={createdAt}>
@@ -47,6 +47,8 @@ const ReceiveTable = () => {
         </TableRow>
       ))}
     </Table>
+  ) : (
+    <span>No Receive</span>
   );
 };
 
