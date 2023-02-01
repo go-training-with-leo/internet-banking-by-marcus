@@ -47,15 +47,19 @@ const ContactsTable = () => {
 
   return (
     <div className='step-two-table'>
-      <Table widths={[25, 46, 25]} headerTable={headerTable}>
-        {contacts.map((row) => (
-          <TableRow key={row.id} onClick={() => handleClick(row)}>
-            <RowCell title='name'>{row?.contactName}</RowCell>
-            <RowCell title='cardNumber'>{row?.cardNumber}</RowCell>
-            <RowCell title='bank'>{row?.bank}</RowCell>
-          </TableRow>
-        ))}
-      </Table>
+      {contacts?.length > 0 ? (
+        <Table widths={[25, 46, 25]} headerTable={headerTable}>
+          {contacts.map((row) => (
+            <TableRow key={row.id} onClick={() => handleClick(row)}>
+              <RowCell title='name'>{row?.contactName}</RowCell>
+              <RowCell title='cardNumber'>{row?.cardNumber}</RowCell>
+              <RowCell title='bank'>{row?.bank}</RowCell>
+            </TableRow>
+          ))}
+        </Table>
+      ) : (
+        <span>No contact</span>
+      )}
     </div>
   );
 };
