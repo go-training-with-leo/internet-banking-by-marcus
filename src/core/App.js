@@ -5,6 +5,7 @@ import { Provider, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import CheckOnline from 'components/CheckOnline';
 import DefaultLayout from 'layouts/Default';
 import Loader from 'components/Loader';
 import { auth } from 'services/firebase';
@@ -72,7 +73,9 @@ function App() {
           theme='light'
           hideProgressBar
         />
-        <AppRoute />
+        <CheckOnline>
+          <AppRoute />
+        </CheckOnline>
       </PersistGate>
     </Provider>
   );
