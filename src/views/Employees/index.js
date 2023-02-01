@@ -7,7 +7,7 @@ import IconButton from 'components/Button/Icon';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import RowCell from 'components/Table/RowCell';
-import { CashAdd, Info, Search } from 'assets/images';
+import { Info, Search } from 'assets/images';
 import tempData from './tempData';
 
 import './style.scss';
@@ -17,6 +17,7 @@ const Employees = () => {
 
   const headerTable = (
     <HeaderTable>
+      <HeaderCell> </HeaderCell>
       <HeaderCell>Account</HeaderCell>
       <HeaderCell>Phone</HeaderCell>
       <HeaderCell>Email</HeaderCell>
@@ -42,7 +43,7 @@ const Employees = () => {
         </div>
       </div>
       <div className='employees-table'>
-        <Table widths={[25, 25, 25, 25]} headerTable={headerTable}>
+        <Table widths={[10, 25, 25, 25, 25]} headerTable={headerTable}>
           {tempData.map(({ id, account, phone, email }, index) => (
             <TableRow key={id}>
               <RowCell>{index + 1}</RowCell>
@@ -50,7 +51,6 @@ const Employees = () => {
               <RowCell>{phone}</RowCell>
               <RowCell>{email}</RowCell>
               <RowCell>
-                <CashAdd width={30} height={30} fill='red' />
                 <Info width={30} height={30} fill='red' />
               </RowCell>
             </TableRow>

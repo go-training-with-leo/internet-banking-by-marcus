@@ -85,40 +85,44 @@ const Accounts = () => {
         </div>
       </div>
       <div className='accounts-table'>
-        <Table widths={[25, 25, 25, 25]} headerTable={headerTable}>
-          {accountInfo?.map((customer, index) => (
-            <TableRow key={customer.id}>
-              <RowCell>{index + 1}</RowCell>
-              <RowCell title='accountName'>{customer.accountName}</RowCell>
-              <RowCell title='phoneNumber'>{customer.phoneNumber}</RowCell>
-              <RowCell title='email'>{customer.email}</RowCell>
-              <RowCell title='actions'>
-                <CashAdd
-                  width={30}
-                  height={30}
-                  fill='red'
-                  onClick={() =>
-                    handleShowDetail({
-                      type: 'RECHARGE',
-                      accountDetail: customer,
-                    })
-                  }
-                />
-                <Info
-                  width={30}
-                  height={30}
-                  onClick={() =>
-                    handleShowDetail({
-                      type: 'DETAIL',
-                      accountDetail: customer,
-                    })
-                  }
-                  fill='red'
-                />
-              </RowCell>
-            </TableRow>
-          ))}
-        </Table>
+        {accountInfo ? (
+          <Table widths={[25, 25, 25, 25]} headerTable={headerTable}>
+            {accountInfo?.map((customer, index) => (
+              <TableRow key={customer.id}>
+                <RowCell>{index + 1}</RowCell>
+                <RowCell title='accountName'>{customer.accountName}</RowCell>
+                <RowCell title='phoneNumber'>{customer.phoneNumber}</RowCell>
+                <RowCell title='email'>{customer.email}</RowCell>
+                <RowCell title='actions'>
+                  <CashAdd
+                    width={30}
+                    height={30}
+                    fill='red'
+                    onClick={() =>
+                      handleShowDetail({
+                        type: 'RECHARGE',
+                        accountDetail: customer,
+                      })
+                    }
+                  />
+                  <Info
+                    width={30}
+                    height={30}
+                    onClick={() =>
+                      handleShowDetail({
+                        type: 'DETAIL',
+                        accountDetail: customer,
+                      })
+                    }
+                    fill='red'
+                  />
+                </RowCell>
+              </TableRow>
+            ))}
+          </Table>
+        ) : (
+          <span>No account</span>
+        )}
       </div>
       {showDetail && (
         <AccountInfoModal

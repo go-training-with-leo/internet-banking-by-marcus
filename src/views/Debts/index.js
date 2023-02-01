@@ -113,70 +113,74 @@ const Debts = () => {
         </span>
       </div>
       <div className='debt-tables'>
-        <Table widths={[10, 25, 25, 20, 20]} headerTable={headerTable}>
-          {dataTable?.map((debt, index) => (
-            <TableRow key={debt?.id}>
-              <RowCell>{index + 1}</RowCell>
-              <RowCell>{debt?.dest?.contactName}</RowCell>
-              <RowCell>{parseMoneyVnd(debt?.totalAmount)} VND</RowCell>
-              <RowCell title='status'>{debt?.status}</RowCell>
-              <RowCell>
-                {activeTab === RECV_FROM_OTHERS &&
-                  (debt?.status === 'unpaid' ? (
-                    <CreditCardGradient
-                      className='credit-svg'
-                      width={30}
-                      height={30}
-                      onClick={() =>
-                        handleClickAction({ type: 'payment', row: debt })
-                      }
-                      fill='linear-gradient(90deg, #EF230C 2.5%, #FFD351 100%)'
-                    />
-                  ) : (
-                    <CreditCard
-                      className='disabled-icon'
-                      width={30}
-                      height={30}
-                      fill='#26292E'
-                    />
-                  ))}
+        {dataTable ? (
+          <Table widths={[10, 25, 25, 20, 20]} headerTable={headerTable}>
+            {dataTable?.map((debt, index) => (
+              <TableRow key={debt?.id}>
+                <RowCell>{index + 1}</RowCell>
+                <RowCell>{debt?.dest?.contactName}</RowCell>
+                <RowCell>{parseMoneyVnd(debt?.totalAmount)} VND</RowCell>
+                <RowCell title='status'>{debt?.status}</RowCell>
+                <RowCell>
+                  {activeTab === RECV_FROM_OTHERS &&
+                    (debt?.status === 'unpaid' ? (
+                      <CreditCardGradient
+                        className='credit-svg'
+                        width={30}
+                        height={30}
+                        onClick={() =>
+                          handleClickAction({ type: 'payment', row: debt })
+                        }
+                        fill='linear-gradient(90deg, #EF230C 2.5%, #FFD351 100%)'
+                      />
+                    ) : (
+                      <CreditCard
+                        className='disabled-icon'
+                        width={30}
+                        height={30}
+                        fill='#26292E'
+                      />
+                    ))}
 
-                {activeTab === RECV_FROM_OTHERS && (
-                  <CreditCardDone
+                  {activeTab === RECV_FROM_OTHERS && (
+                    <CreditCardDone
+                      width={30}
+                      height={30}
+                      className={classNames({
+                        'disabled-icon':
+                          debt?.status === 'pending' ||
+                          debt?.status === 'success',
+                      })}
+                      fill={
+                        debt?.status === 'pending' || debt?.status === 'success'
+                          ? '#26292E'
+                          : 'red'
+                      }
+                      onClick={() => {
+                        if (
+                          debt?.status !== 'pending' &&
+                          debt?.status !== 'success'
+                        ) {
+                          handleClickAction({ type: 'delete', row: debt });
+                        }
+                      }}
+                    />
+                  )}
+                  <Info
                     width={30}
                     height={30}
-                    className={classNames({
-                      'disabled-icon':
-                        debt?.status === 'pending' ||
-                        debt?.status === 'success',
-                    })}
-                    fill={
-                      debt?.status === 'pending' || debt?.status === 'success'
-                        ? '#26292E'
-                        : 'red'
+                    fill='red'
+                    onClick={() =>
+                      handleClickAction({ type: 'detail', row: debt })
                     }
-                    onClick={() => {
-                      if (
-                        debt?.status !== 'pending' &&
-                        debt?.status !== 'success'
-                      ) {
-                        handleClickAction({ type: 'delete', row: debt });
-                      }
-                    }}
                   />
-                )}
-                <Info
-                  width={30}
-                  height={30}
-                  fill='red'
-                  onClick={() =>
-                    handleClickAction({ type: 'detail', row: debt })
-                  }
-                />
-              </RowCell>
-            </TableRow>
-          ))}
-        </Table>
+                </RowCell>
+              </TableRow>
+            ))}
+          </Table>
+        ) : (
+          <span>No debts</span>
+        )}
       </div>
       {paymentModal && (
         <PaymentModal debtDetail={chooseRow} setToggle={setPaymentModal} />

@@ -6,6 +6,10 @@
 
   .radio-group {
     @include setFlex(row, null, null, 30px, null);
+
+    .disabled {
+      z-index: -1;
+    }
   }
 
   .saving-card-container {

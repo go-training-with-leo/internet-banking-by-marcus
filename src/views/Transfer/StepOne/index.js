@@ -93,13 +93,15 @@ const StepOne = ({ setToggle, next }) => {
             checked={formData.paymentMethod === 'paymentCard'}
             label='Use your payment card'
           />
-          <Radio
-            name='usingCard'
-            value='savingCard'
-            checked={formData.paymentMethod === 'savingCard'}
-            // onChange={(e) => setFormData({ paymentMethod: e.target.value })}
-            label='Use your saving cards'
-          />
+          <div className='disabled'>
+            <Radio
+              name='usingCard'
+              value='savingCard'
+              checked={formData.paymentMethod === 'savingCard'}
+              // onChange={(e) => setFormData({ paymentMethod: e.target.value })}
+              label='Use your saving cards'
+            />
+          </div>
         </div>
 
         <div className='saving-card-container'>

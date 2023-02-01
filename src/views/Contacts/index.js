@@ -53,32 +53,36 @@ const Contacts = () => {
   return (
     <div className='contacts-view'>
       <div className='contacts-table'>
-        <Table widths={[10, 25, 25, 25, 10]} headerTable={headerTable}>
-          {contacts.map((row, index) => {
-            return (
-              <TableRow key={row?.id}>
-                <RowCell>{index + 1}</RowCell>
-                <RowCell>{row?.contactName}</RowCell>
-                <RowCell>{row?.cardNumber}</RowCell>
-                <RowCell>{row?.bank}</RowCell>
-                <RowCell>
-                  <Edit
-                    fill='red'
-                    width={20}
-                    height={20}
-                    onClick={() => handleEdit(row)}
-                  />
-                  <DeleteIcon
-                    fill='red'
-                    width={20}
-                    height={20}
-                    onClick={() => handleDelete(row)}
-                  />
-                </RowCell>
-              </TableRow>
-            );
-          })}
-        </Table>
+        {contacts?.length > 0 ? (
+          <Table widths={[10, 25, 25, 25, 10]} headerTable={headerTable}>
+            {contacts.map((row, index) => {
+              return (
+                <TableRow key={row?.id}>
+                  <RowCell>{index + 1}</RowCell>
+                  <RowCell>{row?.contactName}</RowCell>
+                  <RowCell>{row?.cardNumber}</RowCell>
+                  <RowCell>{row?.bank}</RowCell>
+                  <RowCell>
+                    <Edit
+                      fill='red'
+                      width={20}
+                      height={20}
+                      onClick={() => handleEdit(row)}
+                    />
+                    <DeleteIcon
+                      fill='red'
+                      width={20}
+                      height={20}
+                      onClick={() => handleDelete(row)}
+                    />
+                  </RowCell>
+                </TableRow>
+              );
+            })}
+          </Table>
+        ) : (
+          <span>No contacts</span>
+        )}
       </div>
       {isShownEdit && (
         <EditModal contactData={chooseContact} setToggle={toggleEdit} />

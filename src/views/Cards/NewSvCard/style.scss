@@ -1,0 +1,11 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/extends.scss";
+
+.new-card {
+  @include setFlex(column, null, null, 30px, null);
+
+  .btn-group {
+    margin-top: 20px;
+    @include setFlex(row, null, null, 20px, null);
+  }
+}

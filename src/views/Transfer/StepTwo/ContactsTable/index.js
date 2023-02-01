@@ -45,7 +45,7 @@ const ContactsTable = () => {
     }
   }, []);
 
-  return (
+  return contacts?.length > 0 ? (
     <div className='step-two-table'>
       {contacts?.length > 0 ? (
         <Table widths={[25, 46, 25]} headerTable={headerTable}>
@@ -61,6 +61,8 @@ const ContactsTable = () => {
         <span>No contact</span>
       )}
     </div>
+  ) : (
+    <span>No contacts</span>
   );
 };
 
