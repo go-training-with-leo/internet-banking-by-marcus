@@ -16,7 +16,6 @@ const getRecHistories = createAsyncThunk(
         recHistories,
       };
     } catch (error) {
-      console.warn(error.message);
       return {
         status: false,
       };
@@ -35,7 +34,6 @@ const getTransfHistories = createAsyncThunk(
         transfHistories,
       };
     } catch (error) {
-      console.warn(error.message);
       return {
         status: false,
       };
@@ -54,7 +52,6 @@ const getDebtHistories = createAsyncThunk(
         debtHitories,
       };
     } catch (error) {
-      console.warn(error.message);
       return {
         status: false,
       };
