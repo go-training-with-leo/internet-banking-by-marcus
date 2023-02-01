@@ -6,9 +6,12 @@ import Status from 'components/Status';
 import { divideSpaceIdCard, parseMoneyVnd } from 'utils/helpers';
 
 import './style.scss';
+import { useDispatch } from 'react-redux';
+import { approveDebt, rejectDebt } from 'global/redux/debt/thunk';
 
 const statusIcons = {
   failed: <Status failed />,
+  pending: <Status pending />,
   success: <Status success />,
   refund: <Status refund />,
   paid: <Status paid />,
@@ -17,7 +20,27 @@ const statusIcons = {
 };
 
 const DetailModal = ({ detailData, setToggle }) => {
-  const { from, dest, totalAmount, desc, reason, status } = detailData;
+  const dispatch = useDispatch();
+
+  const { from, dest, totalAmount, desc, reason, status, id } = detailData;
+
+  const handleReject = async () => {
+    const {
+      payload: { status: rejectReqStatus },
+    } = await dispatch(rejectDebt({ id }));
+    if (rejectReqStatus) {
+      setToggle();
+    }
+  };
+
+  const handleApprove = async () => {
+    const {
+      payload: { status: approveStatus },
+    } = await dispatch(approveDebt({ id }));
+    if (approveStatus) {
+      setToggle();
+    }
+  };
 
   return (
     <Modal setToggle={setToggle} title='Debt details' cancel clickOutSide>
@@ -56,8 +79,16 @@ const DetailModal = ({ detailData, setToggle }) => {
             </>
           )}
         </div>
+        {status === 'pending' && (
+          <div className='btn-group'>
+            <DefaultButton onClick={handleReject}>Reject</DefaultButton>
+            <DefaultButton danger onClick={handleApprove}>
+              Approve
+            </DefaultButton>
+          </div>
+        )}
         <DefaultButton onClick={setToggle} danger>
-          OK
+          {status === 'pending' ? 'Cancel' : 'OK'}
         </DefaultButton>
       </div>
     </Modal>
