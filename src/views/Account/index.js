@@ -17,7 +17,11 @@ const Account = () => {
   const [changePwdModal, setChangePwdModal] = useToggle();
 
   const { currentUser } = useSelector(selectAuth);
-  const { currentAccount, isFetched } = useSelector(selectAccount);
+  const {
+    currentAccount,
+    isFetched,
+    isLoading: loading,
+  } = useSelector(selectAccount);
 
   const handleSignOut = () => {
     dispatch(logOut());
@@ -33,15 +37,27 @@ const Account = () => {
     <div className='account-view'>
       <div className='account-view-row'>
         <span className='title'>Name:</span>
-        <span>{currentAccount?.accountName}</span>
+        {loading ? (
+          <span>Loading...</span>
+        ) : (
+          <span>{currentAccount?.accountName}</span>
+        )}
       </div>
       <div className='account-view-row'>
         <span className='title'>Phone:</span>
-        <span>{formatPhoneVN(currentAccount?.phoneNumber)}</span>
+        {loading ? (
+          <span>Loading...</span>
+        ) : (
+          <span>{formatPhoneVN(currentAccount?.phoneNumber)}</span>
+        )}
       </div>
       <div className='account-view-row'>
         <span className='title'>Email:</span>
-        <span>{currentAccount?.email}</span>
+        {loading ? (
+          <span>Loading...</span>
+        ) : (
+          <span>{currentAccount?.email}</span>
+        )}
       </div>
       <div className='account-view-btn'>
         <DefaultButton danger onClick={setChangePwdModal}>
