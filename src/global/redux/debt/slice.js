@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from '../auth/thunk';
 import {
   addDebt,
+  approveDebt,
   deleteDebt,
   getCreDebts,
   getRecDebts,
   paymentDebt,
+  rejectDebt,
   searchContact,
   sendCode,
   verifyCode,
@@ -150,6 +152,40 @@ const debt = createSlice({
       state.recDebts[indexDebt] = {
         ...state.recDebts[indexDebt],
         ...action.payload.debt,
+      };
+      state.isLoading = false;
+    },
+    [rejectDebt.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [rejectDebt.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [rejectDebt.fulfilled]: (state, action) => {
+      const { debt: debtRejected } = action.payload;
+      const indexOfDebt = state.creDebts?.findIndex(
+        (creDebt) => creDebt?.id === debtRejected?.id
+      );
+      state.creDebts[indexOfDebt] = {
+        ...state.creDebts[indexOfDebt],
+        status: debtRejected?.status,
+      };
+      state.isLoading = false;
+    },
+    [approveDebt.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [approveDebt.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [approveDebt.fulfilled]: (state, action) => {
+      const { debt: debtApproved } = action.payload;
+      const indexOfDebt = state.creDebts?.findIndex(
+        (creDebt) => creDebt?.id === debtApproved?.id
+      );
+      state.creDebts[indexOfDebt] = {
+        ...state.creDebts[indexOfDebt],
+        status: debtApproved?.status,
       };
       state.isLoading = false;
     },

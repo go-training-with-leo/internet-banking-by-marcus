@@ -7,6 +7,8 @@ import {
   getRecDebts as getRecDebtsReq,
   paymentDebt as paymentDebtReq,
   searchContact as searchContactReq,
+  rejectDebt as rejectDebtReq,
+  approveDebt as approveDebtReq,
   sendOTP,
   verifyOTP,
 } from './request';
@@ -142,12 +144,50 @@ const paymentDebt = createAsyncThunk('debt/paymentDebt', async (data) => {
   }
 });
 
+const rejectDebt = createAsyncThunk('debt/rejectDebt', async (data) => {
+  try {
+    const { id } = data;
+    const { status: debtStatus } = await rejectDebtReq(id);
+    return {
+      status: true,
+      debt: {
+        id,
+        status: debtStatus,
+      },
+    };
+  } catch (error) {
+    return {
+      status: false,
+    };
+  }
+});
+
+const approveDebt = createAsyncThunk('debt/approveDebt', async (data) => {
+  try {
+    const { id } = data;
+    const { status: debtStatus } = await approveDebtReq(id);
+    return {
+      status: true,
+      debt: {
+        id,
+        status: debtStatus,
+      },
+    };
+  } catch (error) {
+    return {
+      status: false,
+    };
+  }
+});
+
 export {
   addDebt,
+  approveDebt,
   deleteDebt,
   getCreDebts,
   getRecDebts,
   paymentDebt,
+  rejectDebt,
   searchContact,
   sendCode,
   verifyCode,

@@ -36,12 +36,17 @@ const DeleteModal = ({ debtData, setToggle }) => {
           Appropriate notification will be sent to relevant accounts.
         </p>
         <div className='delete-textarea'>
-          <TextArea register={register} name='reason' label='Reason:' />
+          <TextArea
+            register={register}
+            name='reason'
+            placeholder='Enter your reason'
+            label='Reason:'
+          />
         </div>
         <div className='delete-btn-group'>
           <div className='btn'>
             <DefaultButton loading={loading} type='submit' danger>
-              Delete
+              Request
             </DefaultButton>
           </div>
           <div className='btn'>

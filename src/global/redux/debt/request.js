@@ -51,10 +51,10 @@ const deleteDebt = async ({ id, reason }) => {
   await updateDocFireStore({
     collect: 'debts',
     id,
-    value: { reason, status: 'success' },
+    value: { reason, status: 'pending' },
   });
   return {
-    status: 'success',
+    status: 'pending',
   };
 };
 
@@ -82,12 +82,36 @@ const paymentDebt = async (debtInfo) => {
   return debt;
 };
 
+const rejectDebt = async (id) => {
+  await updateDocFireStore({
+    collect: 'debts',
+    id,
+    value: { status: 'unpaid' },
+  });
+  return {
+    status: 'unpaid',
+  };
+};
+
+const approveDebt = async (id) => {
+  await updateDocFireStore({
+    collect: 'debts',
+    id,
+    value: { status: 'success' },
+  });
+  return {
+    status: 'success',
+  };
+};
+
 export {
   addDebt,
+  approveDebt,
   deleteDebt,
   getCreDebts,
   getRecDebts,
   paymentDebt,
+  rejectDebt,
   searchContact,
   sendOTP,
   verifyOTP,
