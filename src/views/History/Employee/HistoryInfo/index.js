@@ -1,11 +1,13 @@
 import classNames from 'classnames';
-import React, { lazy, Suspense, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Loader from 'components/Loader';
 import { Back } from 'assets/images';
 
 import './style.scss';
+import { useSelector } from 'react-redux';
+import { selectAccount } from 'core/selectors';
 
 const ReceiveTab = lazy(() => import('./ReceiveTab'));
 const TransferTab = lazy(() => import('./TransferTab'));
@@ -15,16 +17,25 @@ const TAB_RECEIVE = 'TAB_RECEIVE';
 const TAB_TRANSFER = 'TAB_TRANSFER';
 const TAB_DEBT_REPAY = 'TAB_DEBT_REPAY';
 
-const tabs = {
-  TAB_RECEIVE: <ReceiveTab />,
-  TAB_TRANSFER: <TransferTab />,
-  TAB_DEBT_REPAY: <DebtRepayTab />,
-};
-
 const HistoryInfo = () => {
   const navigate = useNavigate();
 
+  const { id } = useParams();
+  const { accounts } = useSelector(selectAccount);
+
   const [activeTab, setActiveTab] = useState(TAB_RECEIVE);
+  const [customer, setCustomer] = useState({});
+
+  const tabs = {
+    TAB_RECEIVE: <ReceiveTab customer={customer} />,
+    TAB_TRANSFER: <TransferTab customer={customer} />,
+    TAB_DEBT_REPAY: <DebtRepayTab customer={customer} />,
+  };
+
+  useEffect(() => {
+    const customerData = accounts.find((account) => account.id === id);
+    setCustomer(customerData);
+  }, [id]);
 
   return (
     <div className='history-info-view'>
@@ -39,7 +50,9 @@ const HistoryInfo = () => {
       </div>
       <div className='account-info'>
         <span>Account: </span>
-        <span>Justin Doe / 5647 4748 9102 8720 / EIGHT.Bank</span>
+        <span>
+          {customer?.accountName} / {customer?.cardNumber} / EIGHT.Bank
+        </span>
       </div>
       <div className='tabs'>
         <div

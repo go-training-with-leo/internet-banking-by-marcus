@@ -1,14 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from '../auth/thunk';
 import { transfer } from '../transfer/thunk';
-import { getDebtHistories, getRecHistories, getTransfHistories } from './thunk';
+import {
+  getAllHistories,
+  getDebtHistories,
+  getRecHistories,
+  getTransfHistories,
+} from './thunk';
 
 const history = createSlice({
   name: 'history',
   initialState: {
+    allHistories: [],
     recvHistories: [],
     transferHistories: [],
     debtHistories: [],
+    isAllHistoriesLoading: false,
+    isAllHistoriesFetched: false,
     isRecHistoryLoading: false,
     isRecHistoryFetched: false,
     isTransferHistoryLoading: false,
@@ -60,6 +68,17 @@ const history = createSlice({
       state.debtHistories = [...action.payload.debtHitories];
       state.isDebtHistoryLoading = false;
       state.isDebtHistoryFetched = false;
+    },
+    [getAllHistories.pending]: (state) => {
+      state.isAllHistoriesLoading = true;
+    },
+    [getAllHistories.rejected]: (state) => {
+      state.isAllHistoriesLoading = false;
+    },
+    [getAllHistories.fulfilled]: (state, action) => {
+      state.allHistories = [...action.payload.allHistories];
+      state.isAllHistoriesFetched = true;
+      state.isAllHistoriesLoading = false;
     },
     [logOut.fulfilled]: (state) => {
       state.recvHistories = [];
