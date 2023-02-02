@@ -66,8 +66,9 @@ const account = createSlice({
       state.isLoading = false;
     },
     [getCustomerAccounts.fulfilled]: (state, action) => {
-      state.isLoading = false;
       state.accounts = [...action.payload.customerAccounts];
+      state.isLoading = false;
+      state.isFetched = true;
     },
 
     [rechargeMoney.pending]: (state) => {

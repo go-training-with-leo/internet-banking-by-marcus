@@ -1,8 +1,10 @@
 @import "assets/scss/variables.scss";
 @import "assets/scss/mixins.scss";
+@import "assets/scss/extends.scss";
 
 .history-info-view {
-  width: 100%;
+  @extend %view;
+  color: white;
   @include setFlex(column, null, null, 50px, null);
   .navigate-back {
     @include setFlex(row, null, center, 15px, null);
@@ -33,7 +35,7 @@
 
   .history-info-table {
     width: 100%;
-    height: 60vh;
+    max-height: 60vh;
     overflow-y: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;

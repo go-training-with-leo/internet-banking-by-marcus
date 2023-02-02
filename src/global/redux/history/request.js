@@ -1,7 +1,11 @@
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { db } from 'services/firebase';
+import { getAllDocsInColl } from 'utils/helpers';
 
 const fetchRecHistory = async (cardNumber) => {
+  if (cardNumber === undefined) {
+    return null;
+  }
   const queryFireStore = query(
     collection(db, 'histories'),
     where('type', '==', 'TRANSFER'),
@@ -69,4 +73,15 @@ const fetchDebtHistory = async (cardNumber) => {
   return allDebts;
 };
 
-export { fetchDebtHistory, fetchRecHistory, fetchTransfHistory };
+const fetchAllHistories = async () => {
+  const allHistories = await getAllDocsInColl('histories');
+
+  return allHistories;
+};
+
+export {
+  fetchAllHistories,
+  fetchDebtHistory,
+  fetchRecHistory,
+  fetchTransfHistory,
+};

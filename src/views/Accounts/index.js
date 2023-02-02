@@ -25,7 +25,7 @@ const Accounts = () => {
   const [actionData, setActionData] = useState();
   const [accountInfo, setAccountInfo] = useState([]);
 
-  const { accounts } = useSelector(selectAccount);
+  const { accounts, isFetched } = useSelector(selectAccount);
   const { register, getValues, watch } = useForm();
 
   const watchInput = watch('email');
@@ -54,8 +54,10 @@ const Accounts = () => {
   };
 
   useEffect(() => {
-    dispatch(getCustomerAccounts());
-  }, []);
+    if (!isFetched) {
+      dispatch(getCustomerAccounts());
+    }
+  }, [isFetched]);
 
   useEffect(() => {
     setAccountInfo(accounts);
