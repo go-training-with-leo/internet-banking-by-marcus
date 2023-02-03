@@ -1,3 +1,4 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import DefaultButton from 'components/Button/Default';
 import Input from 'components/Input';
 import { selectAuth, selectDebt } from 'core/selectors';
@@ -5,6 +6,7 @@ import { paymentDebt, verifyCode } from 'global/redux/debt/thunk';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import validOTP from './validation';
 
 import './style.scss';
 
@@ -13,23 +15,39 @@ const StepTwo = ({ setToggle, back, debtDetail }) => {
 
   const { currentUser } = useSelector(selectAuth);
   const { isLoading: loading } = useSelector(selectDebt);
-  const { register, handleSubmit } = useForm();
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm({ resolver: yupResolver(validOTP) });
   const onVerify = async (formData) => {
     const {
-      payload: { status: verifyStatus },
+      payload: { status: verifyStatus, message },
     } = await dispatch(
       verifyCode({ email: currentUser?.email, otp: formData.otp })
     );
 
     if (verifyStatus) {
-      const {
-        payload: { status: paymentStatus },
-      } = await dispatch(paymentDebt({ debtDetail }));
+      if (message !== 'Correct') {
+        setError('otp', {
+          type: 'custom',
+          message,
+        });
+      } else {
+        const {
+          payload: { status: paymentStatus },
+        } = await dispatch(paymentDebt({ debtDetail }));
 
-      if (paymentStatus) {
-        setToggle();
+        if (paymentStatus) {
+          setToggle();
+        }
       }
+    } else {
+      setError('otp', {
+        type: 'custom',
+        message: 'Verify failed',
+      });
     }
   };
 
@@ -43,7 +61,8 @@ const StepTwo = ({ setToggle, back, debtDetail }) => {
       <Input
         register={register}
         name='otp'
-        label='OTP:'
+        label={errors?.otp ? errors?.otp?.message : 'OTP:'}
+        error={errors?.otp && true}
         placeholder='Enter the OTP code'
       />
       <div className='payment-btn-group'>

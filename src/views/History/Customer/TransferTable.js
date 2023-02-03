@@ -8,7 +8,11 @@ import { ArrowDown, Filter } from 'assets/images';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCard, selectHistory } from 'core/selectors';
 import { getTransfHistories } from 'global/redux/history/thunk';
-import { convertTimestamp, parseMoneyVnd } from 'utils/helpers';
+import {
+  convertTimestamp,
+  divideSpaceIdCard,
+  parseMoneyVnd,
+} from 'utils/helpers';
 
 const headerTable = (
   <HeaderTable>
@@ -42,7 +46,14 @@ const TransferTable = () => {
         ({ dest, totalAmount, status, createdAt }, index) => (
           <TableRow key={createdAt}>
             <RowCell>{index + 1}</RowCell>
-            <RowCell>{dest?.contactName}</RowCell>
+            <RowCell>
+              <p>
+                {dest?.contactName}
+                <br />
+                <br />
+                {divideSpaceIdCard(dest?.cardNumber)}
+              </p>
+            </RowCell>
             <RowCell>{parseMoneyVnd(totalAmount)} VND</RowCell>
             <RowCell>{dest?.bank}</RowCell>
             <RowCell title='status'>{status}</RowCell>

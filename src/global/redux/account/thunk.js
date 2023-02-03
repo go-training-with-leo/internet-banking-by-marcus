@@ -78,13 +78,15 @@ const addNewCustomer = createAsyncThunk(
 
 const getCustomerAccounts = createAsyncThunk(
   'account/getCustomers',
-  async () => {
+  async (data) => {
     try {
+      const { email } = data;
       const customerAccounts = await getCustAccounts();
 
       return {
         status: true,
         customerAccounts,
+        email,
       };
     } catch (error) {
       return {

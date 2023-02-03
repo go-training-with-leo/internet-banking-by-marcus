@@ -9,7 +9,7 @@ import IconButton from 'components/Button/Icon';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import RowCell from 'components/Table/RowCell';
-import { selectAccount } from 'core/selectors';
+import { selectAccount, selectAuth } from 'core/selectors';
 import { Search } from 'assets/images';
 
 import './style.scss';
@@ -21,6 +21,7 @@ const EmployeeHistory = () => {
 
   const [accountInfo, setAccountInfo] = useState([]);
 
+  const { currentUser } = useSelector(selectAuth);
   const { register, getValues, watch } = useForm();
   const watchInput = watch('email');
 
@@ -45,7 +46,7 @@ const EmployeeHistory = () => {
 
   useEffect(() => {
     if (!isFetched) {
-      dispatch(getCustomerAccounts());
+      dispatch(getCustomerAccounts({ email: currentUser?.email }));
     }
   }, [isFetched]);
 
@@ -82,6 +83,7 @@ const EmployeeHistory = () => {
             <TableRow
               key={customer?.id}
               onClick={() => navigate(`/employee/history/${customer?.id}`)}
+              isHover
             >
               <RowCell>{index + 1}</RowCell>
               <RowCell title='account'>{customer?.accountName}</RowCell>

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from '../auth/thunk';
 import { addDebt, paymentDebt } from '../debt/thunk';
 import { transfer } from '../transfer/thunk';
-import { getCards } from './thunk';
+import { addSavingCard, getCards } from './thunk';
 
 const card = createSlice({
   name: 'card',
@@ -10,6 +10,7 @@ const card = createSlice({
     payingCard: {},
     savingCards: [],
     isLoading: false,
+    isAddSavingCardLoading: false,
     isFetched: false,
   },
   reducers: {
@@ -34,7 +35,25 @@ const card = createSlice({
         state.isLoading = false;
       }
     },
+    [addSavingCard.pending]: (state) => {
+      state.isAddSavingCardLoading = true;
+    },
+    [addSavingCard.rejected]: (state) => {
+      state.isAddSavingCardLoading = false;
+    },
+    [addSavingCard.fulfilled]: (state, action) => {
+      state.savingCards = [...state.savingCards, action.payload.savingCard];
+      state.payingCard = {
+        ...state.payingCard,
+        balance: state.payingCard.balance - action.payload.savingCard.balance,
+      };
+      state.isAddSavingCardLoading = false;
+    },
     [logOut.fulfilled]: (state) => {
+      state.payingCard = {};
+      state.savingCards = [];
+      state.isAddSavingCardLoading = false;
+      state.isLoading = false;
       state.isFetched = false;
     },
     [transfer.fulfilled]: (state, action) => {

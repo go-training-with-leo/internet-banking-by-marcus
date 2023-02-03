@@ -7,7 +7,11 @@ import { selectCard, selectHistory } from 'core/selectors';
 import { getDebtHistories } from 'global/redux/history/thunk';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { convertTimestamp, parseMoneyVnd } from 'utils/helpers';
+import {
+  convertTimestamp,
+  divideSpaceIdCard,
+  parseMoneyVnd,
+} from 'utils/helpers';
 
 const headerTable = (
   <HeaderTable>
@@ -44,7 +48,14 @@ const DebtTable = () => {
         ({ id, from, totalAmount, role, status, createdAt }, index) => (
           <TableRow key={id}>
             <RowCell>{index + 1}</RowCell>
-            <RowCell>{from?.accountName}</RowCell>
+            <RowCell>
+              <p>
+                {from?.accountName}
+                <br />
+                <br />
+                {divideSpaceIdCard(from?.cardNumber)}
+              </p>
+            </RowCell>
             <RowCell>{parseMoneyVnd(totalAmount)} VND</RowCell>
             <RowCell title='debtType'>{role}</RowCell>
             <RowCell title='status'>{status}</RowCell>

@@ -1,3 +1,4 @@
+import api from 'services/api';
 import { queryDocs } from 'utils/helpers';
 
 const getCards = async (uid) => {
@@ -17,4 +18,16 @@ const getCards = async (uid) => {
   return { payingCard: fetchCards[0], savingCards: fetchCards[1] };
 };
 
-export { getCards };
+const addSavingCard = async ({ cardId, totalAmount, timeDeposit }) => {
+  const {
+    data: { savingCard },
+  } = await api.post('/new-savingCard', {
+    cardId,
+    totalAmount,
+    timeDeposit,
+  });
+
+  return savingCard;
+};
+
+export { addSavingCard, getCards };

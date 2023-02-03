@@ -164,12 +164,12 @@ const rejectDebt = createAsyncThunk('debt/rejectDebt', async (data) => {
 
 const approveDebt = createAsyncThunk('debt/approveDebt', async (data) => {
   try {
-    const { id } = data;
-    const { status: debtStatus } = await approveDebtReq(id);
+    const { detailData } = data;
+    const { status: debtStatus } = await approveDebtReq(detailData);
     return {
       status: true,
       debt: {
-        id,
+        id: detailData?.id,
         status: debtStatus,
       },
     };

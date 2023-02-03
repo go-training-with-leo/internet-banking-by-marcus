@@ -17,7 +17,6 @@ const getRecHistories = createAsyncThunk(
         recHistories,
       };
     } catch (error) {
-      console.warn(error.message);
       return {
         status: false,
       };
@@ -71,7 +70,6 @@ const getAllHistories = createAsyncThunk(
         allHistories,
       };
     } catch (error) {
-      console.warn(error);
       return {
         status: false,
       };

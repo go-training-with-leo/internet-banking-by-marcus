@@ -38,7 +38,7 @@ const verifyOTP = async ({ email, otp }) => {
 const transfer = async (transferInfo) => {
   const {
     data: { message, createdAt },
-  } = await axios.post('/transfer', transferInfo);
+  } = await api.post('/transfer', transferInfo);
 
   return { message, createdAt };
 };

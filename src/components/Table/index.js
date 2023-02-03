@@ -6,17 +6,23 @@ import classNames from 'classnames';
 
 import './style.scss';
 
-const TableRow = ({ children, onClick }) => {
+const TableRow = ({ children, onClick, isSelected, isHover }) => {
   return (
-    <tr className='table-body-row' onClick={onClick}>
+    <tr
+      className={classNames('table-body-row', {
+        isHover: isHover,
+        isSelected: isSelected,
+      })}
+      onClick={onClick}
+    >
       {children}
     </tr>
   );
 };
 
-const Table = ({ children, headerTable, widths }) => {
+const Table = ({ children, headerTable, widths, small }) => {
   return (
-    <table className='table'>
+    <table className={classNames('table', { small: small })}>
       <colgroup>
         {widths.map((width) => {
           return (
@@ -36,10 +42,14 @@ const Table = ({ children, headerTable, widths }) => {
 
 TableRow.defaultProps = {
   children: null,
+  isSelected: false,
+  isHover: false,
   onClick: () => {},
 };
 
 TableRow.propTypes = {
+  isSelected: PropTypes.bool,
+  isHover: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
   onClick: PropTypes.func,
 };
@@ -47,12 +57,18 @@ TableRow.propTypes = {
 Table.defaultProps = {
   headerTable: undefined,
   children: undefined,
+  small: false,
+  // medium: false,
+  // large: false,
   widths: [],
 };
 
 Table.propTypes = {
   headerTable: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
+  small: PropTypes.bool,
+  // medium: PropTypes.bool,
+  // large: PropTypes.bool,
   widths: PropTypes.array,
 };
 

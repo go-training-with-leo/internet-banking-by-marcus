@@ -7,6 +7,7 @@ import HeaderCell from 'components/Table/HeaderCell';
 import useToggle from 'components/hooks/useToggle';
 import RowCell from 'components/Table/RowCell';
 import { DeleteIcon, Edit } from 'assets/images';
+import { divideSpaceIdCard } from 'utils/helpers';
 import { getContacts } from 'global/redux/contact/thunk';
 import { selectAuth, selectContact } from 'core/selectors';
 import DeleteModal from './DeleteModal';
@@ -60,7 +61,7 @@ const Contacts = () => {
                 <TableRow key={row?.id}>
                   <RowCell>{index + 1}</RowCell>
                   <RowCell>{row?.contactName}</RowCell>
-                  <RowCell>{row?.cardNumber}</RowCell>
+                  <RowCell>{divideSpaceIdCard(row?.cardNumber)}</RowCell>
                   <RowCell>{row?.bank}</RowCell>
                   <RowCell>
                     <Edit
