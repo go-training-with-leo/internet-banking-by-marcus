@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -32,8 +32,8 @@ const Login = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'Pages.Login' });
 
   const {
-    register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(signInValidate) });
 
@@ -57,31 +57,45 @@ const Login = () => {
     <AuthLayout>
       <Wrapper title={t('loginTitle')}>
         <form className='form' onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            register={register}
-            type='email'
+          <Controller
+            control={control}
             name='email'
-            label={
-              errors.email?.message
-                ? capitalizeFirstLetter(errors.email?.message)
-                : t('accountLabel')
-            }
-            withIcon
-            error={errors.email && true}
-            placeholder={t('accountPlaceHolder')}
+            render={({ field: { onChange, value } }) => (
+              <Input
+                type='email'
+                name='email'
+                value={value}
+                label={
+                  errors.email?.message
+                    ? capitalizeFirstLetter(errors.email?.message)
+                    : t('accountLabel')
+                }
+                onChange={(val) => onChange(val)}
+                withIcon
+                error={errors.email && true}
+                placeholder={t('accountPlaceHolder')}
+              />
+            )}
           />
-          <Input
-            register={register}
-            type='password'
+          <Controller
+            control={control}
             name='password'
-            label={
-              errors.password?.message
-                ? capitalizeFirstLetter(errors.password?.message)
-                : t('passwordLabel')
-            }
-            withIcon
-            error={errors.password && true}
-            placeholder={t('passwordPlaceHolder')}
+            render={({ field: { onChange, value } }) => (
+              <Input
+                value={value}
+                type='password'
+                name='password'
+                label={
+                  errors.password?.message
+                    ? capitalizeFirstLetter(errors.password?.message)
+                    : t('passwordLabel')
+                }
+                withIcon
+                onChange={(val) => onChange(val)}
+                error={errors.password && true}
+                placeholder={t('passwordPlaceHolder')}
+              />
+            )}
           />
           <span className='forgot'>
             <Link to='/forgot'>{t('forgotPassword')}</Link>

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import DefaultButton from 'components/Button/Default';
 import useToggle from 'components/hooks/useToggle';
+import { resetTransferInfo } from 'global/redux/transfer/slice';
 import { InternalTransfer, InterBankTransfer } from 'assets/images';
 import StepFour from './StepFour';
 import StepFive from './StepFive';
@@ -20,42 +22,49 @@ const STEP_FIVE = 'STEP_FIVE';
 const SUCCESS = 'SUCCESS';
 
 const Transfer = () => {
+  const dispatch = useDispatch();
+
   const [showModal, setShowModal] = useToggle();
   const [step, setStep] = useState(STEP_ONE);
 
+  const handleSetToggle = () => {
+    dispatch(resetTransferInfo());
+    setShowModal();
+  };
+
   const modals = {
     STEP_ONE: (
-      <StepOne setToggle={setShowModal} next={() => setStep(STEP_TWO)} />
+      <StepOne setToggle={handleSetToggle} next={() => setStep(STEP_TWO)} />
     ),
     STEP_TWO: (
       <StepTwo
-        setToggle={setShowModal}
+        setToggle={handleSetToggle}
         back={() => setStep(STEP_ONE)}
         next={() => setStep(STEP_THREE)}
       />
     ),
     STEP_THREE: (
       <StepThree
-        setToggle={setShowModal}
+        setToggle={handleSetToggle}
         back={() => setStep(STEP_TWO)}
         next={() => setStep(STEP_FOUR)}
       />
     ),
     STEP_FOUR: (
       <StepFour
-        setToggle={setShowModal}
+        setToggle={handleSetToggle}
         back={() => setStep(STEP_THREE)}
         next={() => setStep(STEP_FIVE)}
       />
     ),
     STEP_FIVE: (
       <StepFive
-        setToggle={setShowModal}
+        setToggle={handleSetToggle}
         back={() => setStep(STEP_FOUR)}
         next={() => setStep(SUCCESS)}
       />
     ),
-    SUCCESS: <SuccessModal setToggle={setShowModal} />,
+    SUCCESS: <SuccessModal setToggle={handleSetToggle} />,
   };
 
   return (

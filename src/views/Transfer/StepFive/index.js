@@ -6,7 +6,7 @@ import Modal from 'components/Modal';
 import Stepper from 'components/Stepper';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTransfer } from 'core/selectors';
-import { parseMoneyVnd } from 'utils/helpers';
+import { divideSpaceIdCard, parseMoneyVnd } from 'utils/helpers';
 import { useForm } from 'react-hook-form';
 import { transfer } from 'global/redux/transfer/thunk';
 
@@ -32,7 +32,7 @@ const StepFive = ({ setToggle, back, next }) => {
   };
 
   return (
-    <Modal cancel clickOutSide setToggle={setToggle}>
+    <Modal cancel clickOutSide setToggle={setToggle} large>
       <form className='step-five' onSubmit={handleSubmit(onCharged)}>
         <Stepper title='Finish' step='5'>
           Check your payment details again and finish the process
@@ -46,13 +46,15 @@ const StepFive = ({ setToggle, back, next }) => {
           <div className='step-five-tab-info__line'>
             <span className='title'>From:</span>
             <span>
-              {from?.cardNumber} / {from?.accountName} / {from?.bank}
+              {divideSpaceIdCard(from?.cardNumber)} / {from?.accountName} /{' '}
+              {from?.bank}
             </span>
           </div>
           <div className='step-five-tab-info__line'>
             <span className='title'>To:</span>
             <span>
-              {dest?.cardNumber} / {dest?.contactName} / {dest?.bank}
+              {divideSpaceIdCard(dest?.cardNumber)} / {dest?.contactName} /{' '}
+              {dest?.bank}
             </span>
           </div>
           <div className='step-five-tab-info__line'>

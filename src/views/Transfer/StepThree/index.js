@@ -7,12 +7,13 @@ import DefaultButton from 'components/Button/Default';
 import Input from 'components/Input';
 import TextArea from 'components/TextArea';
 import Radio from 'components/Radio';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateTransferInfo } from 'global/redux/transfer/slice';
 import { sendCode } from 'global/redux/transfer/thunk';
 import { selectAuth, selectCard, selectTransfer } from 'core/selectors';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { parseMoneyVnd, removeNonNumeric } from 'utils/helpers';
 import validPayment from './validation';
 
 import './style.scss';
@@ -38,6 +39,7 @@ const StepThree = ({ setToggle, back, next }) => {
     handleSubmit,
     setError,
     clearErrors,
+    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(validPayment) });
 
@@ -94,16 +96,23 @@ const StepThree = ({ setToggle, back, next }) => {
           Provide the details of the payment
         </Stepper>
         <div className='step-three-container'>
-          <Input
-            register={register}
+          <Controller
+            control={control}
             name='totalAmount'
-            label={
-              errors?.totalAmount
-                ? handleCheckAmount(errors?.totalAmount.message)
-                : 'Total amount:'
-            }
-            error={errors?.totalAmount && true}
-            placeholder='Enter the amount of money'
+            render={({ field: { onChange, value } }) => (
+              <Input
+                name='totalAmount'
+                value={parseMoneyVnd(removeNonNumeric(value))}
+                label={
+                  errors?.totalAmount
+                    ? handleCheckAmount(errors?.totalAmount.message)
+                    : 'Total amount:'
+                }
+                onChange={(val) => onChange(val)}
+                error={errors?.totalAmount && true}
+                placeholder='Enter the amount of money'
+              />
+            )}
           />
           <div className='step-three-textarea'>
             <TextArea

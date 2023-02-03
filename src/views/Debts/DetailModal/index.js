@@ -36,7 +36,7 @@ const DetailModal = ({ detailData, setToggle }) => {
   const handleApprove = async () => {
     const {
       payload: { status: approveStatus },
-    } = await dispatch(approveDebt({ id }));
+    } = await dispatch(approveDebt({ detailData }));
     if (approveStatus) {
       setToggle();
     }

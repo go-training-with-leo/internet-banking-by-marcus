@@ -11,7 +11,7 @@ import Stepper from 'components/Stepper';
 import { updateTransferInfo } from 'global/redux/transfer/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { get4LastDigit } from 'utils/helpers';
-import { selectAuth, selectCard } from 'core/selectors';
+import { selectAccount, selectCard } from 'core/selectors';
 
 import './style.scss';
 import useMergeState from 'components/hooks/useMergeState';
@@ -24,7 +24,7 @@ const StepOne = ({ setToggle, next }) => {
   });
   const [listCards, setListCards] = useState();
 
-  const { currentUser } = useSelector(selectAuth);
+  const { currentAccount } = useSelector(selectAccount);
   const { payingCard, savingCards } = useSelector(selectCard);
   const { register, handleSubmit, watch } = useForm();
 
@@ -49,7 +49,7 @@ const StepOne = ({ setToggle, next }) => {
           formData?.paymentMethod === 'savingCard'
             ? formData?.savingCardId
             : payingCard?.id,
-        accountName: currentUser?.displayName,
+        accountName: currentAccount?.accountName,
         bank: 'EIGHT.Bank',
       },
     };

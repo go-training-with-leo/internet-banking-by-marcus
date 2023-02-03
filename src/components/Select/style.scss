@@ -7,7 +7,7 @@
   @include setFlex(row, space-between, center, null, null);
   position: relative;
 
-  z-index: 20;
+  z-index: 100;
 
   background-color: $black-dark;
   color: $pure-white;
@@ -35,4 +35,7 @@
   padding: 12px 12px;
   @include setFlex(row, null, center, 52px, null);
   cursor: pointer;
+  &:hover {
+    background-color: $red-orange;
+  }
 }

@@ -8,8 +8,9 @@ import HeaderCell from 'components/Table/HeaderCell';
 import './style.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateTransferInfo } from 'global/redux/transfer/slice';
-import { selectAuth, selectContact } from 'core/selectors';
+import { selectAuth, selectContact, selectTransfer } from 'core/selectors';
 import { getContacts } from 'global/redux/contact/thunk';
+import { divideSpaceIdCard } from 'utils/helpers';
 
 const headerTable = (
   <HeaderTable>
@@ -24,6 +25,7 @@ const ContactsTable = () => {
 
   const { currentUser } = useSelector(selectAuth);
   const { contacts, isFetched } = useSelector(selectContact);
+  const { transferInfo } = useSelector(selectTransfer);
 
   const handleClick = (contact) => {
     const { id: contactId, contactName, cardNumber, bank } = contact;
@@ -48,11 +50,18 @@ const ContactsTable = () => {
   return contacts?.length > 0 ? (
     <div className='step-two-table'>
       {contacts?.length > 0 ? (
-        <Table widths={[25, 46, 25]} headerTable={headerTable}>
+        <Table widths={[35, 46, 10]} headerTable={headerTable} small>
           {contacts.map((row) => (
-            <TableRow key={row.id} onClick={() => handleClick(row)}>
+            <TableRow
+              key={row?.id}
+              onClick={() => handleClick(row)}
+              isHover
+              isSelected={row?.id === transferInfo?.dest?.contactId}
+            >
               <RowCell title='name'>{row?.contactName}</RowCell>
-              <RowCell title='cardNumber'>{row?.cardNumber}</RowCell>
+              <RowCell title='cardNumber'>
+                {divideSpaceIdCard(row?.cardNumber)}
+              </RowCell>
               <RowCell title='bank'>{row?.bank}</RowCell>
             </TableRow>
           ))}

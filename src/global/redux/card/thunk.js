@@ -1,6 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getCards as getCardsReq } from './request';
+import {
+  getCards as getCardsReq,
+  addSavingCard as addSavingCardReq,
+} from './request';
 
 const getCards = createAsyncThunk('card/getCard', async (data) => {
   try {
@@ -20,4 +23,24 @@ const getCards = createAsyncThunk('card/getCard', async (data) => {
   }
 });
 
-export { getCards };
+const addSavingCard = createAsyncThunk('card/addSavingCard', async (data) => {
+  try {
+    const { cardId, totalAmount, timeDeposit } = data;
+
+    const savingCard = await addSavingCardReq({
+      cardId,
+      totalAmount,
+      timeDeposit,
+    });
+    return {
+      status: true,
+      savingCard,
+    };
+  } catch (error) {
+    return {
+      status: false,
+    };
+  }
+});
+
+export { addSavingCard, getCards };

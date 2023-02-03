@@ -1,5 +1,13 @@
+import { v4 as uuidv4 } from 'uuid';
+import { serverTimestamp } from 'firebase/firestore';
+
 import api from 'services/api';
-import { getDocFireStore, queryDocs, updateDocFireStore } from 'utils/helpers';
+import {
+  getDocFireStore,
+  queryDocs,
+  setDocFirestore,
+  updateDocFireStore,
+} from 'utils/helpers';
 
 const searchContact = async (cardNumber) => {
   const searchedContact = await queryDocs({
@@ -93,11 +101,21 @@ const rejectDebt = async (id) => {
   };
 };
 
-const approveDebt = async (id) => {
+const approveDebt = async (detailData) => {
   await updateDocFireStore({
     collect: 'debts',
-    id,
+    id: detailData?.id,
     value: { status: 'success' },
+  });
+  await setDocFirestore({
+    collect: 'histories',
+    id: uuidv4(),
+    data: {
+      ...detailData,
+      createdAt: serverTimestamp(),
+      status: 'success',
+      type: 'DEBT',
+    },
   });
   return {
     status: 'success',

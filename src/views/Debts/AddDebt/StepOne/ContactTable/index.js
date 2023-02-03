@@ -7,7 +7,7 @@ import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import { getContacts } from 'global/redux/contact/thunk';
 import { updateDebtInfo } from 'global/redux/debt/slice';
-import { selectAuth, selectContact } from 'core/selectors';
+import { selectAuth, selectContact, selectDebt } from 'core/selectors';
 
 import './style.scss';
 
@@ -24,6 +24,7 @@ const ContactsTable = () => {
 
   const { currentUser } = useSelector(selectAuth);
   const { contacts, isFetched } = useSelector(selectContact);
+  const { debtInfo } = useSelector(selectDebt);
 
   const handleClick = (dest) => {
     const { cardNumber, contactName, id, bank } = dest;
@@ -49,9 +50,14 @@ const ContactsTable = () => {
   return (
     <div className='add-debt-table'>
       {contacts?.length > 0 ? (
-        <Table widths={[25, 46, 25]} headerTable={headerTable}>
+        <Table widths={[25, 46, 25]} headerTable={headerTable} small>
           {contacts.map((row) => (
-            <TableRow key={row.id} onClick={() => handleClick(row)}>
+            <TableRow
+              key={row?.id}
+              onClick={() => handleClick(row)}
+              isHover
+              isSelected={row?.id === debtInfo?.dest?.contactId}
+            >
               <RowCell title='name'>{row?.contactName}</RowCell>
               <RowCell title='cardNumber'>{row?.cardNumber}</RowCell>
               <RowCell title='bank'>{row?.bank}</RowCell>

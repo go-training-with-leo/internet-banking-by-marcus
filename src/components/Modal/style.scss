@@ -26,7 +26,9 @@
     z-index: 50;
 
     transition: all 0.6s linear;
-
+    &.large {
+      width: 550px;
+    }
     &-header {
       @include setFlex(row, space-between, center, null, null);
       padding-bottom: 27px;

@@ -27,6 +27,10 @@ const debt = createSlice({
     updateDebtInfo: (state, action) => {
       state.debtInfo = { ...state.debtInfo, ...action.payload };
     },
+    resetDebtInfo: (state) => {
+      state.debtInfo = {};
+      state.isLoading = false;
+    },
   },
   extraReducers: {
     [searchContact.pending]: (state) => {
@@ -55,6 +59,7 @@ const debt = createSlice({
     },
     [addDebt.fulfilled]: (state, action) => {
       state.creDebts = [...state.creDebts, action.payload?.debt];
+      state.debtInfo = {};
       state.isLoading = false;
     },
     [getCreDebts.pending]: (state) => {
@@ -200,5 +205,5 @@ const debt = createSlice({
   },
 });
 
-export const { updateDebtInfo } = debt.actions;
+export const { updateDebtInfo, resetDebtInfo } = debt.actions;
 export default debt.reducer;

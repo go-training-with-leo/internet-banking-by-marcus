@@ -40,6 +40,9 @@ const StepOne = ({ setToggle, next }) => {
   const handleNext = () => {
     const { cardNumber, id: cardId } = payingCard;
 
+    if (!debtInfo?.dest?.contactId) {
+      return;
+    }
     dispatch(
       updateDebtInfo({
         from: {

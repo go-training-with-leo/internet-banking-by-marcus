@@ -13,8 +13,10 @@ const Input = ({
   name,
   error,
   withIcon,
+  value,
   placeholder,
   disabled,
+  onChange,
 }) => {
   const [togglePw, setTogglePw] = useState(false);
   const [inputType, setInputType] = useState(type);
@@ -48,9 +50,11 @@ const Input = ({
           {...register(name)}
           type={inputType}
           name={name}
+          value={value}
           id={`input-${name}`}
           disabled={disabled}
           placeholder={placeholder}
+          onChange={onChange}
         />
       </div>
       {!disabled &&
@@ -91,6 +95,8 @@ Input.defaultProps = {
   withIcon: false,
   label: undefined,
   disabled: false,
+  value: null,
+  onChange: () => {},
 };
 
 Input.propTypes = {
@@ -102,6 +108,8 @@ Input.propTypes = {
   withIcon: PropTypes.bool,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
+  value: PropTypes.any,
+  onChange: PropTypes.func,
 };
 
 export default Input;

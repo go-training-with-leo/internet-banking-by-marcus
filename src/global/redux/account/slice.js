@@ -17,6 +17,7 @@ const account = createSlice({
     newAccount: {},
     currentAccount: {},
     isLoading: false,
+    isUpdateLoading: false,
     isFetched: false,
   },
   reducers: {
@@ -67,6 +68,9 @@ const account = createSlice({
     },
     [getCustomerAccounts.fulfilled]: (state, action) => {
       state.accounts = [...action.payload.customerAccounts];
+      state.currentAccount = {
+        ...state.accounts?.find((acc) => acc?.email === action.payload?.email),
+      };
       state.isLoading = false;
       state.isFetched = true;
     },
@@ -92,13 +96,13 @@ const account = createSlice({
       state.isFetched = true;
     },
     [updatePassword.pending]: (state) => {
-      state.isLoading = true;
+      state.isUpdateLoading = true;
     },
     [updatePassword.rejected]: (state) => {
-      state.isLoading = false;
+      state.isUpdateLoading = false;
     },
     [updatePassword.fulfilled]: (state) => {
-      state.isLoading = false;
+      state.isUpdateLoading = false;
     },
     [logOut.fulfilled]: (state) => {
       state.accounts = [];

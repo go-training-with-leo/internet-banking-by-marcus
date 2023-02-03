@@ -9,8 +9,9 @@ import Input from 'components/Input';
 import TextArea from 'components/TextArea';
 import Radio from 'components/Radio';
 import { addDebt } from 'global/redux/debt/thunk';
-import { useForm } from 'react-hook-form';
-import { selectDebt } from 'core/selectors';
+import { parseMoneyVnd, removeNonNumeric } from 'utils/helpers';
+import { Controller, useForm } from 'react-hook-form';
+import { selectCard, selectDebt } from 'core/selectors';
 import { yupResolver } from '@hookform/resolvers/yup';
 import validPayment from './validation';
 
@@ -24,16 +25,27 @@ const StepTwo = ({ setToggle, back }) => {
 
   const [radio, setRadio] = useState(CHARGED_BY_SENDER);
 
-  const { isLoading: loading } = useSelector(selectDebt);
-  const { debtInfo } = useSelector(selectDebt);
+  const { payingCard } = useSelector(selectCard);
+  const { debtInfo, isLoading: loading } = useSelector(selectDebt);
   const {
     register,
     handleSubmit,
+    control,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm({ resolver: yupResolver(validPayment) });
 
   const handleNext = async (formData) => {
     const { totalAmount, desc } = formData;
+    if (payingCard.balance - totalAmount < 0) {
+      setError('totalAmount', {
+        type: 'custom',
+        message: 'Your balance is not enough',
+      });
+      return;
+    }
+    clearErrors();
     const {
       payload: { status },
     } = await dispatch(addDebt({ ...debtInfo, totalAmount, desc }));
@@ -56,16 +68,23 @@ const StepTwo = ({ setToggle, back }) => {
           Provide the details of the debt amount
         </Stepper>
         <div className='step-two-container'>
-          <Input
-            register={register}
+          <Controller
+            control={control}
             name='totalAmount'
-            label={
-              errors?.totalAmount
-                ? handleCheckAmount(errors?.totalAmount.message)
-                : 'Total amount:'
-            }
-            error={errors?.totalAmount && true}
-            placeholder='Enter the amount of money'
+            render={({ field: { onChange, value } }) => (
+              <Input
+                value={parseMoneyVnd(removeNonNumeric(value))}
+                name='totalAmount'
+                label={
+                  errors?.totalAmount
+                    ? handleCheckAmount(errors?.totalAmount.message)
+                    : 'Total amount:'
+                }
+                onChange={(val) => onChange(val)}
+                error={errors?.totalAmount && true}
+                placeholder='Enter the amount of money'
+              />
+            )}
           />
           <div className='step-two-textarea'>
             <TextArea

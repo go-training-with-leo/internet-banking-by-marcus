@@ -20,6 +20,7 @@ const transfer = createSlice({
     },
     resetTransferInfo: (state) => {
       state.transferInfo = {};
+      state.isLoading = false;
     },
   },
   extraReducers: {

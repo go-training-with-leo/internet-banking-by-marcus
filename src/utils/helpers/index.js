@@ -7,6 +7,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
   updateDoc,
   where,
 } from 'firebase/firestore';
@@ -45,15 +46,17 @@ const parseMoneyVnd = (value) => {
       .slice(1)
       .split(',')
       .join(' ')
-    : 'Invalid type';
+    : '';
 };
+
+const removeNonNumeric = (num) => num?.toString().replace(/[^0-9]/g, '');
 
 const divideSpaceIdCard = (idCard) => {
   return idCard ? idCard.replace(/(\d{4}(?!\s))/g, '$1 ') : idCard;
 };
 
 const get4LastDigit = (idCard) => {
-  const len = idCard.length;
+  const len = idCard?.length;
   return idCard ? idCard.slice(len - 4) : idCard;
 };
 
@@ -95,6 +98,10 @@ const queryOrderDocs = async ({ path, field, value, orderField }) => {
     return document.data();
   });
   return respone;
+};
+
+const setDocFirestore = async ({ collect, id, data }) => {
+  await setDoc(doc(db, collect, id), data);
 };
 
 const updateDocFireStore = async ({ collect, id, value }) => {
@@ -146,6 +153,8 @@ export {
   queryOrderDocs,
   removeAuthTokenFromLocalStorage,
   removeLocalStorage,
+  removeNonNumeric,
   saveAuthTokenToLocalStorage,
+  setDocFirestore,
   updateDocFireStore,
 };

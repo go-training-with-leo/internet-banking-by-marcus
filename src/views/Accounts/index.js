@@ -8,7 +8,7 @@ import IconButton from 'components/Button/Icon';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import RowCell from 'components/Table/RowCell';
-import { selectAccount } from 'core/selectors';
+import { selectAccount, selectAuth } from 'core/selectors';
 import { CashAdd, Info, Search } from 'assets/images';
 import { getCustomerAccounts } from 'global/redux/account/thunk';
 
@@ -25,6 +25,7 @@ const Accounts = () => {
   const [actionData, setActionData] = useState();
   const [accountInfo, setAccountInfo] = useState([]);
 
+  const { currentUser } = useSelector(selectAuth);
   const { accounts, isFetched } = useSelector(selectAccount);
   const { register, getValues, watch } = useForm();
 
@@ -55,7 +56,7 @@ const Accounts = () => {
 
   useEffect(() => {
     if (!isFetched) {
-      dispatch(getCustomerAccounts());
+      dispatch(getCustomerAccounts({ email: currentUser?.email }));
     }
   }, [isFetched]);
 

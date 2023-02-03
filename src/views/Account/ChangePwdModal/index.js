@@ -44,7 +44,7 @@ const ChangePasswordModal = ({ setToggle }) => {
     setError,
     formState: { errors },
   } = useForm({ resolver: yupResolver(validPassword) });
-  const { isLoading: loading } = useSelector(selectAccount);
+  const { isUpdateLoading: loading } = useSelector(selectAccount);
 
   const onSave = async (formData) => {
     const {

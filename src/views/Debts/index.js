@@ -9,7 +9,7 @@ import HeaderCell from 'components/Table/HeaderCell';
 import useToggle from 'components/hooks/useToggle';
 import Table, { TableRow } from 'components/Table';
 import { getCreDebts, getRecDebts } from 'global/redux/debt/thunk';
-import { parseMoneyVnd } from 'utils/helpers';
+import { divideSpaceIdCard, parseMoneyVnd } from 'utils/helpers';
 import {
   CreditCard,
   CreditCardDone,
@@ -113,12 +113,19 @@ const Debts = () => {
         </span>
       </div>
       <div className='debt-tables'>
-        {dataTable ? (
+        {dataTable?.length > 0 ? (
           <Table widths={[10, 25, 25, 20, 20]} headerTable={headerTable}>
             {dataTable?.map((debt, index) => (
               <TableRow key={debt?.id}>
                 <RowCell>{index + 1}</RowCell>
-                <RowCell>{debt?.dest?.contactName}</RowCell>
+                <RowCell>
+                  <p>
+                    {debt?.dest?.contactName}
+                    <br />
+                    <br />
+                    {divideSpaceIdCard(debt?.dest?.cardNumber)}
+                  </p>
+                </RowCell>
                 <RowCell>{parseMoneyVnd(debt?.totalAmount)} VND</RowCell>
                 <RowCell title='status'>{debt?.status}</RowCell>
                 <RowCell>
