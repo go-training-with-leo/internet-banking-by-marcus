@@ -1,7 +1,8 @@
+import React from 'react';
+
 import DefaultButton from 'components/Button/Default';
 import { selectAuth, selectDebt } from 'core/selectors';
 import { sendCode } from 'global/redux/debt/thunk';
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { divideSpaceIdCard, parseMoneyVnd } from 'utils/helpers';
 

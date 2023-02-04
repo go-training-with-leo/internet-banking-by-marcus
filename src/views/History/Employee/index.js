@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import Input from 'components/Input';
@@ -22,8 +22,7 @@ const EmployeeHistory = () => {
   const [accountInfo, setAccountInfo] = useState([]);
 
   const { currentUser } = useSelector(selectAuth);
-  const { register, getValues, watch } = useForm();
-  const watchInput = watch('email');
+  const { getValues, control } = useForm();
 
   const { accounts, isFetched } = useSelector(selectAccount);
 
@@ -39,7 +38,7 @@ const EmployeeHistory = () => {
   const handleFilter = () => {
     const inputValue = getValues('email');
     const filteredAccounts = accounts.filter((account) => {
-      return account?.email.toLowerCase().includes(inputValue);
+      return account?.email.toLowerCase().includes(inputValue?.toLowerCase());
     });
     setAccountInfo(filteredAccounts);
   };
@@ -54,20 +53,27 @@ const EmployeeHistory = () => {
     setAccountInfo(accounts);
   }, [accounts]);
 
-  useEffect(() => {
-    if (watchInput === '') {
-      setAccountInfo(accounts);
-    }
-  }, [watchInput]);
   return (
     <div className='empl-history-view'>
       <div className='search-bar'>
         <div className='search-bar__input'>
-          <Input
-            register={register}
+          <Controller
+            control={control}
             name='email'
-            label='Email / Card number'
-            placeholder='Enter email or card number'
+            render={({ field: { onChange, value } }) => (
+              <Input
+                name='email'
+                value={value}
+                onChange={(val) => {
+                  if (val.target.value === '') {
+                    setAccountInfo(accounts);
+                  }
+                  onChange(val);
+                }}
+                label='Email / Card number'
+                placeholder='Enter email or card number'
+              />
+            )}
           />
         </div>
         <div className='search-bar__btn'>

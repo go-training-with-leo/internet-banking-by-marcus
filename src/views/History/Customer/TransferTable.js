@@ -14,21 +14,6 @@ import {
   parseMoneyVnd,
 } from 'utils/helpers';
 
-const headerTable = (
-  <HeaderTable>
-    <HeaderCell> </HeaderCell>
-    <HeaderCell>Receive account</HeaderCell>
-    <HeaderCell>Amount</HeaderCell>
-    <HeaderCell>Bank</HeaderCell>
-    <HeaderCell>
-      Status <Filter />
-    </HeaderCell>
-    <HeaderCell>
-      Date <ArrowDown />
-    </HeaderCell>
-  </HeaderTable>
-);
-
 const TransferTable = () => {
   const dispatch = useDispatch();
 
@@ -40,6 +25,22 @@ const TransferTable = () => {
       dispatch(getTransfHistories({ cardNumber: payingCard?.cardNumber }));
     }
   }, [isFetched]);
+
+  const headerTable = (
+    <HeaderTable>
+      <HeaderCell> </HeaderCell>
+      <HeaderCell>Receive account</HeaderCell>
+      <HeaderCell>Amount</HeaderCell>
+      <HeaderCell>Bank</HeaderCell>
+      <HeaderCell>
+        Status <Filter />
+      </HeaderCell>
+      <HeaderCell>
+        Date <ArrowDown />
+      </HeaderCell>
+    </HeaderTable>
+  );
+
   return transferHistories?.length > 0 ? (
     <Table widths={[10, 20, 20, 15, 15, 20]} headerTable={headerTable}>
       {transferHistories?.map(

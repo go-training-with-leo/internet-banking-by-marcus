@@ -15,14 +15,19 @@ $sizes: (
   "large": 40px,
 );
 
-.loader {
-  animation: 1.3s spinLoader linear infinite;
+.loader-container {
+  width: 100%;
+  height: 100%;
+  @include setFlex(row, center, center, null, null);
+  .loader {
+    animation: 1.3s spinLoader linear infinite;
 
-  @each $name, $size in $sizes {
-    &.#{$name} {
-      width: $size;
-      height: $size;
-      color: $red-orange;
+    @each $name, $size in $sizes {
+      &.#{$name} {
+        width: $size;
+        height: $size;
+        color: $red-orange;
+      }
     }
   }
 }

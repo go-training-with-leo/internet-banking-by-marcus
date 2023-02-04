@@ -1,11 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from '../auth/thunk';
 
-import { addContact, deleteContact, editContact, getContacts } from './thunk';
+import {
+  addContact,
+  deleteContact,
+  editContact,
+  getContacts,
+  searchContact,
+} from './thunk';
 
 const contact = createSlice({
   name: 'contact',
-  initialState: { contacts: [], isLoading: false, isFetched: false },
+  initialState: {
+    contacts: [],
+    isLoading: false,
+    isSearchAccount: false,
+    isFetched: false,
+  },
   reducers: {
     resetContact: (state) => {
       state.contacts = [];
@@ -13,6 +24,15 @@ const contact = createSlice({
     },
   },
   extraReducers: {
+    [searchContact.pending]: (state) => {
+      state.isSearchAccount = true;
+    },
+    [searchContact.rejected]: (state) => {
+      state.isSearchAccount = false;
+    },
+    [searchContact.fulfilled]: (state) => {
+      state.isSearchAccount = false;
+    },
     [addContact.pending]: (state) => {
       state.isLoading = true;
     },

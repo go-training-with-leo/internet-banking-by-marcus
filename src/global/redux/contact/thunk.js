@@ -5,7 +5,26 @@ import {
   deleteContact as deleteContactReq,
   editContact as editContactReq,
   getContacts as getContactsReq,
+  searchContact as searchContactReq,
 } from './request';
+
+const searchContact = createAsyncThunk(
+  'contact/searchContact',
+  async (data) => {
+    try {
+      const { cardNumber } = data;
+      const accountName = await searchContactReq(cardNumber);
+      return {
+        status: true,
+        accountName,
+      };
+    } catch (error) {
+      return {
+        status: false,
+      };
+    }
+  }
+);
 
 const addContact = createAsyncThunk('contact/addContact', async (data) => {
   try {
@@ -83,4 +102,4 @@ const editContact = createAsyncThunk('contact/editContact', async (data) => {
   }
 });
 
-export { addContact, deleteContact, editContact, getContacts };
+export { addContact, deleteContact, editContact, getContacts, searchContact };

@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Search } from 'assets/images';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 import IconButton from 'components/Button/Icon';
 import Input from 'components/Input';
+import { divideSpaceIdCard } from 'utils/helpers';
 import { searchContact } from 'global/redux/transfer/thunk';
+import { selectCard, selectTransfer } from 'core/selectors';
 
 import './style.scss';
-import { divideSpaceIdCard } from 'utils/helpers';
-import { selectCard, selectTransfer } from 'core/selectors';
 
 const NewContact = () => {
   const dispatch = useDispatch();
 
-  const [contact, setContact] = useState(null);
-
-  const { isLoading: loading } = useSelector(selectTransfer);
+  const { transferInfo, isLoading: loading } = useSelector(selectTransfer);
   const { payingCard } = useSelector(selectCard);
   const {
     register,
@@ -36,13 +34,7 @@ const NewContact = () => {
       return;
     }
     clearErrors();
-    const {
-      payload: { status, contact: searchedContact },
-    } = await dispatch(searchContact({ cardNumber }));
-
-    if (status) {
-      setContact(searchedContact);
-    }
+    dispatch(searchContact({ cardNumber }));
   };
 
   return (
@@ -73,17 +65,17 @@ const NewContact = () => {
           </IconButton>
         </div>
       </div>
-      {contact && (
+      {transferInfo?.dest?.cardNumber && (
         <div className='contact-tab'>
           <div className='tab-line'>
             <span>Name:</span>
-            <span>{contact?.contactName}</span>
+            <span>{transferInfo?.dest?.contactName}</span>
             <span>Bank:</span>
             <span>EIGHT.Bank</span>
           </div>
           <div className='tab-line'>
             <span>Card number:</span>
-            <span>{divideSpaceIdCard(contact?.cardNumber)}</span>
+            <span>{divideSpaceIdCard(transferInfo?.dest?.cardNumber)}</span>
           </div>
         </div>
       )}

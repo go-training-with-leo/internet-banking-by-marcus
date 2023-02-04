@@ -30,7 +30,7 @@ const PaymentModal = ({ setToggle, debtDetail }) => {
   };
 
   return (
-    <Modal setToggle={setToggle} title='Debt payment' cancel clickOutSide>
+    <Modal setToggle={setToggle} title='Debt payment' large cancel clickOutSide>
       {modals[step]}
     </Modal>
   );

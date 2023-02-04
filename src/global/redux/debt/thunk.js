@@ -54,6 +54,7 @@ const getCreDebts = createAsyncThunk('debt/getCreDebts', async (data) => {
       creDebts,
     };
   } catch (error) {
+    console.warn(error.message);
     return {
       status: false,
     };
@@ -70,6 +71,7 @@ const getRecDebts = createAsyncThunk('debt/getRecDebts', async (data) => {
       recDebts,
     };
   } catch (error) {
+    console.warn(error.message);
     return {
       status: false,
     };

@@ -1,0 +1,7 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.coming-soon {
+  width: 100%;
+  @include setFlex(row, center, center,null, null);
+}

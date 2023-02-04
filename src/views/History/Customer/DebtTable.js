@@ -45,8 +45,8 @@ const DebtTable = () => {
   return debtHistories?.length > 0 ? (
     <Table widths={[10, 20, 20, 15, 15, 20]} headerTable={headerTable}>
       {debtHistories?.map(
-        ({ id, from, totalAmount, role, status, createdAt }, index) => (
-          <TableRow key={id}>
+        ({ from, totalAmount, role, status, createdAt }, index) => (
+          <TableRow key={createdAt}>
             <RowCell>{index + 1}</RowCell>
             <RowCell>
               <p>

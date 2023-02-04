@@ -81,7 +81,16 @@ const account = createSlice({
     [rechargeMoney.rejected]: (state) => {
       state.isLoading = false;
     },
-    [rechargeMoney.fulfilled]: (state) => {
+    [rechargeMoney.fulfilled]: (state, action) => {
+      const indexAccount = state.accounts?.findIndex(
+        (acc) => acc?.id === action.payload?.chargeInfo?.id
+      );
+      state.accounts[indexAccount] = {
+        ...state.accounts[indexAccount],
+        balance:
+          state.accounts[indexAccount].balance +
+          action.payload.chargeInfo.balance,
+      };
       state.isLoading = false;
     },
     [getCustAccount.pending]: (state) => {
