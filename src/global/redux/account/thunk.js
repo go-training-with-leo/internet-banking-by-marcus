@@ -122,6 +122,10 @@ const rechargeMoney = createAsyncThunk(
       return {
         status: true,
         message,
+        chargeInfo: {
+          id,
+          balance,
+        },
       };
     } catch (error) {
       return {

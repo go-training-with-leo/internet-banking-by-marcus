@@ -81,9 +81,12 @@ const history = createSlice({
       state.isAllHistoriesLoading = false;
     },
     [logOut.fulfilled]: (state) => {
+      state.allHistories = [];
       state.recvHistories = [];
       state.transferHistories = [];
       state.debtHistories = [];
+      state.isAllHistoriesLoading = false;
+      state.isAllHistoriesFetched = false;
       state.isRecHistoryLoading = false;
       state.isRecHistoryFetched = false;
       state.isTransferHistoryLoading = false;

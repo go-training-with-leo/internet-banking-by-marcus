@@ -13,7 +13,7 @@ import { CashAdd, Info, Search } from 'assets/images';
 import { getCustomerAccounts } from 'global/redux/account/thunk';
 
 import './style.scss';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import AccountInfoModal from './AccountInfoModal';
 import RechargeModal from './RechargeModal';
 
@@ -27,9 +27,7 @@ const Accounts = () => {
 
   const { currentUser } = useSelector(selectAuth);
   const { accounts, isFetched } = useSelector(selectAccount);
-  const { register, getValues, watch } = useForm();
-
-  const watchInput = watch('email');
+  const { getValues, control } = useForm();
 
   const headerTable = (
     <HeaderTable>
@@ -64,21 +62,27 @@ const Accounts = () => {
     setAccountInfo(accounts);
   }, [accounts]);
 
-  useEffect(() => {
-    if (watchInput === '') {
-      setAccountInfo(accounts);
-    }
-  }, [watchInput]);
-
   return (
     <div className='accounts-view'>
       <div className='search-bar'>
         <div className='search-bar__input'>
-          <Input
-            register={register}
+          <Controller
+            control={control}
             name='email'
-            label='Email / Card number'
-            placeholder='Enter email or card number'
+            render={({ field: { onChange, value } }) => (
+              <Input
+                name='email'
+                value={value}
+                onChange={(val) => {
+                  if (val.target.value === '') {
+                    setAccountInfo(accounts);
+                  }
+                  onChange(val);
+                }}
+                label='Email / Card number'
+                placeholder='Enter email or card number'
+              />
+            )}
           />
         </div>
         <div className='search-bar__btn'>

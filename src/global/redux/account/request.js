@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   EmailAuthProvider,
   reauthenticateWithCredential,
@@ -16,12 +17,15 @@ const checkEmailExist = async (email) => {
 };
 
 const addNewEmpl = async ({ email, accountName, phoneNumber }) => {
-  const { data: response } = await api.post('/new-employee', {
-    email,
-    accountName,
-    phoneNumber,
-    role: 'EMPLOYEE',
-  });
+  const { data: response } = await axios.post(
+    'http://localhost:3000/new-employee',
+    {
+      email,
+      accountName,
+      phoneNumber,
+      role: 'EMPLOYEE',
+    }
+  );
 
   const accountInfo = {
     email: response.email,
@@ -34,13 +38,16 @@ const addNewEmpl = async ({ email, accountName, phoneNumber }) => {
 };
 
 const addNewCust = async ({ email, accountName, phoneNumber, balance }) => {
-  const { data: response } = await api.post('/new-customer', {
-    email,
-    accountName,
-    phoneNumber,
-    balance,
-    role: 'CUSTOMER',
-  });
+  const { data: response } = await axios.post(
+    'http://localhost:3000/new-customer',
+    {
+      email,
+      accountName,
+      phoneNumber,
+      balance,
+      role: 'CUSTOMER',
+    }
+  );
 
   const accountInfo = {
     email: response.email,

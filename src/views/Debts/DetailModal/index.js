@@ -1,13 +1,16 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import Status from 'components/Status';
 import { divideSpaceIdCard, parseMoneyVnd } from 'utils/helpers';
+import { approveDebt, rejectDebt } from 'global/redux/debt/thunk';
+import { selectDebt } from 'core/selectors';
 
 import './style.scss';
-import { useDispatch } from 'react-redux';
-import { approveDebt, rejectDebt } from 'global/redux/debt/thunk';
+
+const CREATE_BY_YOU = 'CREATE_BY_YOU';
 
 const statusIcons = {
   failed: <Status failed />,
@@ -19,9 +22,10 @@ const statusIcons = {
   canceled: <Status canceled />,
 };
 
-const DetailModal = ({ detailData, setToggle }) => {
+const DetailModal = ({ detailData, setToggle, currentTab }) => {
   const dispatch = useDispatch();
 
+  const { isLoading: loading } = useSelector(selectDebt);
   const { from, dest, totalAmount, desc, reason, status, id } = detailData;
 
   const handleReject = async () => {
@@ -43,7 +47,7 @@ const DetailModal = ({ detailData, setToggle }) => {
   };
 
   return (
-    <Modal setToggle={setToggle} title='Debt details' cancel clickOutSide>
+    <Modal setToggle={setToggle} title='Debt details' cancel clickOutSide large>
       <div className='detail-modal'>
         <div className='detail-row'>
           <span className='title'>Lender:</span>
@@ -79,15 +83,17 @@ const DetailModal = ({ detailData, setToggle }) => {
             </>
           )}
         </div>
-        {status === 'pending' && (
+        {status === 'pending' && currentTab === CREATE_BY_YOU && (
           <div className='btn-group'>
-            <DefaultButton onClick={handleReject}>Reject</DefaultButton>
-            <DefaultButton danger onClick={handleApprove}>
+            <DefaultButton disabled={loading} onClick={handleReject}>
+              Reject
+            </DefaultButton>
+            <DefaultButton loading={loading} danger onClick={handleApprove}>
               Approve
             </DefaultButton>
           </div>
         )}
-        <DefaultButton onClick={setToggle} danger>
+        <DefaultButton disabled={loading} onClick={setToggle} danger>
           {status === 'pending' ? 'Cancel' : 'OK'}
         </DefaultButton>
       </div>

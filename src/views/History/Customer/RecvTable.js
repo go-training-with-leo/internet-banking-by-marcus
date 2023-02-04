@@ -38,7 +38,7 @@ const ReceiveTable = () => {
   return recvHistories?.length > 0 ? (
     <Table widths={[10, 25, 25, 20, 20]} headerTable={headerTable}>
       {recvHistories?.map(({ from, totalAmount, createdAt }, index) => (
-        <TableRow key={createdAt}>
+        <TableRow key={createdAt?.seconds}>
           <RowCell>{index + 1}</RowCell>
           <RowCell>
             <p>

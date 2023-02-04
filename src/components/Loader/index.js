@@ -8,13 +8,15 @@ import 'components/Loader/style.scss';
 
 const Loader = ({ small, medium, large }) => {
   return (
-    <Loading
-      className={classNames('loader', {
-        medium: medium,
-        small: small,
-        large: large,
-      })}
-    />
+    <div className='loader-container'>
+      <Loading
+        className={classNames('loader', {
+          medium: medium,
+          small: small,
+          large: large,
+        })}
+      />
+    </div>
   );
 };
 

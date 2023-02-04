@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -7,7 +7,11 @@ import DefaultButton from 'components/Button/Default';
 import Input from 'components/Input';
 import { rechargeMoney } from 'global/redux/account/thunk';
 import { selectAccount } from 'core/selectors';
-import { divideSpaceIdCard, parseMoneyVnd } from 'utils/helpers';
+import {
+  divideSpaceIdCard,
+  parseMoneyVnd,
+  removeNonNumeric,
+} from 'utils/helpers';
 import validBalance from './validation';
 
 import './style.scss';
@@ -18,9 +22,9 @@ const StepOne = ({ accountDetail, next }) => {
   const { isLoading: loading } = useSelector(selectAccount);
 
   const {
-    register,
     handleSubmit,
     setValue,
+    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(validBalance) });
 
@@ -47,13 +51,20 @@ const StepOne = ({ accountDetail, next }) => {
         <span className='title'>Balance:</span>
         <span>{parseMoneyVnd(accountDetail?.balance)} VND</span>
       </div>
-      <Input
-        register={register}
+      <Controller
+        control={control}
         name='balance'
-        disabled={loading}
-        label='Total amount:'
-        placeholder='Enter the amount of money'
-        error={errors.balance?.message && true}
+        render={({ field: { onChange, value } }) => (
+          <Input
+            name='balance'
+            disabled={loading}
+            value={parseMoneyVnd(removeNonNumeric(value))}
+            onChange={(val) => onChange(val)}
+            label='Total amount:'
+            placeholder='Enter the amount of money'
+            error={errors.balance?.message && true}
+          />
+        )}
       />
       <span>Or select an amount of money below:</span>
       <div className='balances-list'>

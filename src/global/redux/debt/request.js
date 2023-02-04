@@ -5,6 +5,7 @@ import api from 'services/api';
 import {
   getDocFireStore,
   queryDocs,
+  queryOrderDocs,
   setDocFirestore,
   updateDocFireStore,
 } from 'utils/helpers';
@@ -36,20 +37,22 @@ const addDebt = async (debtInfo) => {
 };
 
 const getCreDebts = async (cardNumber) => {
-  const creDebts = await queryDocs({
+  const creDebts = await queryOrderDocs({
     path: 'debts',
     field: 'from.cardNumber',
     value: cardNumber,
+    orderField: 'createdAt',
   });
 
   return creDebts;
 };
 
 const getRecDebts = async (cardNumber) => {
-  const recDebts = await queryDocs({
+  const recDebts = await queryOrderDocs({
     path: 'debts',
     field: 'dest.cardNumber',
     value: cardNumber,
+    orderField: 'createdAt',
   });
 
   return recDebts;
@@ -102,6 +105,7 @@ const rejectDebt = async (id) => {
 };
 
 const approveDebt = async (detailData) => {
+  console.warn(detailData);
   await updateDocFireStore({
     collect: 'debts',
     id: detailData?.id,

@@ -116,7 +116,7 @@ const Debts = () => {
         {dataTable?.length > 0 ? (
           <Table widths={[10, 25, 25, 20, 20]} headerTable={headerTable}>
             {dataTable?.map((debt, index) => (
-              <TableRow key={debt?.id}>
+              <TableRow key={debt?.createdAt?.seconds}>
                 <RowCell>{index + 1}</RowCell>
                 <RowCell>
                   <p>
@@ -193,7 +193,11 @@ const Debts = () => {
         <PaymentModal debtDetail={chooseRow} setToggle={setPaymentModal} />
       )}
       {infoModal && (
-        <DetailModal detailData={chooseRow} setToggle={setInfoModal} />
+        <DetailModal
+          currentTab={activeTab}
+          detailData={chooseRow}
+          setToggle={setInfoModal}
+        />
       )}
       {deleteModal && (
         <DeleteModal debtData={chooseRow} setToggle={setDeleteModal} />

@@ -13,6 +13,7 @@ import StepOne from './StepOne';
 
 import './style.scss';
 import SuccessModal from './SuccessModal';
+import InterBank from './Interbank';
 
 const STEP_ONE = 'STEP_ONE';
 const STEP_TWO = 'STEP_TWO';
@@ -20,6 +21,7 @@ const STEP_THREE = 'STEP_THREE';
 const STEP_FOUR = 'STEP_FOUR';
 const STEP_FIVE = 'STEP_FIVE';
 const SUCCESS = 'SUCCESS';
+const INTERBANK = 'INTERBANK';
 
 const Transfer = () => {
   const dispatch = useDispatch();
@@ -65,6 +67,7 @@ const Transfer = () => {
       />
     ),
     SUCCESS: <SuccessModal setToggle={handleSetToggle} />,
+    INTERBANK: <InterBank setToggle={setShowModal} />,
   };
 
   return (
@@ -90,7 +93,14 @@ const Transfer = () => {
           <img src={InterBankTransfer} alt='interbank transfer' />
         </div>
         <div className='transfer-button'>
-          <DefaultButton>Interbank transfer</DefaultButton>
+          <DefaultButton
+            onClick={() => {
+              setShowModal();
+              setStep(INTERBANK);
+            }}
+          >
+            Interbank transfer
+          </DefaultButton>
         </div>
       </div>
       {showModal && modals[step]}
