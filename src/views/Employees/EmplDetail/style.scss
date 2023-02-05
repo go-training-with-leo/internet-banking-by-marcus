@@ -1,0 +1,16 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.empl-info-modal {
+  @include setFlex(column, null, null, 30px, null);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  .empl-info-row {
+    @include setFlex(row, null, center, 50px, null);
+
+    .title {
+      width: 100px;
+    }
+  }
+}

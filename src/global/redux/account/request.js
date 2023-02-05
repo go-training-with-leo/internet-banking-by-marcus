@@ -77,6 +77,15 @@ const getCustAccounts = async () => {
   return accountInfo;
 };
 
+const getEmplAccounts = async () => {
+  const emplAccounts = await queryDocs({
+    path: 'accounts',
+    field: 'role',
+    value: 'EMPLOYEE',
+  });
+  return emplAccounts;
+};
+
 const getCustAccount = async (email) => {
   const custAccount = await queryDocs({
     path: 'accounts',
@@ -111,6 +120,7 @@ export {
   checkEmailExist,
   getCustAccount,
   getCustAccounts,
+  getEmplAccounts,
   rechargeMoney,
   updatePwd,
 };

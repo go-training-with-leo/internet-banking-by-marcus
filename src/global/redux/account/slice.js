@@ -6,6 +6,7 @@ import {
   existEmail,
   getCustAccount,
   getCustomerAccounts,
+  getEmplAccounts,
   rechargeMoney,
   updatePassword,
 } from './thunk';
@@ -92,6 +93,17 @@ const account = createSlice({
           action.payload.chargeInfo.balance,
       };
       state.isLoading = false;
+    },
+    [getEmplAccounts.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getEmplAccounts.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [getEmplAccounts.fulfilled]: (state, action) => {
+      state.accounts = [...action.payload.emplAccounts];
+      state.isLoading = false;
+      state.isFetched = true;
     },
     [getCustAccount.pending]: (state) => {
       state.isLoading = true;

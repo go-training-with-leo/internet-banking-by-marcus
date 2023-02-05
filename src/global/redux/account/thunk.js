@@ -4,6 +4,7 @@ import {
   addNewCust,
   checkEmailExist,
   getCustAccounts,
+  getEmplAccounts as getEmplAccountsReq,
   getCustAccount as getCustAccountReq,
   rechargeMoney as rechargeMoneyReq,
   updatePwd,
@@ -96,6 +97,23 @@ const getCustomerAccounts = createAsyncThunk(
   }
 );
 
+const getEmplAccounts = createAsyncThunk(
+  'account/getEmplAccounts',
+  async () => {
+    try {
+      const emplAccounts = await getEmplAccountsReq();
+      return {
+        status: true,
+        emplAccounts,
+      };
+    } catch (error) {
+      return {
+        status: false,
+      };
+    }
+  }
+);
+
 const getCustAccount = createAsyncThunk('account/getCustomer', async (data) => {
   try {
     const { email } = data;
@@ -158,6 +176,7 @@ export {
   existEmail,
   getCustAccount,
   getCustomerAccounts,
+  getEmplAccounts,
   rechargeMoney,
   updatePassword,
 };
