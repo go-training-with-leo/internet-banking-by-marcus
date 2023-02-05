@@ -18,10 +18,10 @@ const sideBarItems = {
       navigateTo: '/employees',
     },
     {
-      id: 'transactions',
-      label: 'Transactions',
+      id: 'adminHistory',
+      label: 'History',
       icon: <Contact width={20} height={20} />,
-      navigateTo: '/transactions',
+      navigateTo: 'admin/history',
     },
   ],
   EMPLOYEE: [

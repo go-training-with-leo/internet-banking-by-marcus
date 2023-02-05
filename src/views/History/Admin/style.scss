@@ -1,0 +1,42 @@
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+@import "assets/scss/extends.scss";
+
+.admin-history-view {
+  @extend %view;
+  @include setFlex(column, null, null, 40px, null);
+  .search-bar {
+    width: 100%;
+    @include setFlex(row, null, center, 25px, null);
+    @include Responsive(SM) {
+      width: 50%;
+    }
+    &__input {
+      width: 90%;
+      @include Responsive(SM) {
+        width: 80%;
+      }
+    }
+    &__btn {
+      width: 58px;
+    }
+  }
+
+  span {
+    color: $pure-white;
+  }
+
+  .admin-history-table {
+    width: 100%;
+    max-height: 60vh;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+       display: none;
+    }
+    .table-body-row {
+      cursor: pointer;
+    }
+  }
+}
