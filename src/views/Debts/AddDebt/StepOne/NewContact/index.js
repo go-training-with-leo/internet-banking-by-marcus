@@ -17,7 +17,7 @@ const NewContact = () => {
 
   const [contact, setContact] = useState(null);
 
-  const { isLoading: loading } = useSelector(selectDebt);
+  const { isLoading: loading, debtInfo } = useSelector(selectDebt);
   const { payingCard } = useSelector(selectCard);
   const {
     register,
@@ -74,7 +74,7 @@ const NewContact = () => {
           </IconButton>
         </div>
       </div>
-      {contact && (
+      {debtInfo?.dest?.cardNumber && (
         <div className='contact-tab'>
           <div className='tab-line'>
             <span>Name:</span>

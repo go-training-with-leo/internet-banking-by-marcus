@@ -6,9 +6,15 @@ import { CreditCardDone, NotifyRemove } from 'assets/images';
 
 import './style.scss';
 
-const Notification = ({ messages }) => {
+const Notification = ({ messages, setToggle, clickOutSide }) => {
   return (
-    <div className='notification'>
+    <div
+      className='notification'
+      role='dialog'
+      onClick={() => {
+        if (clickOutSide) setToggle(false);
+      }}
+    >
       {messages ? (
         messages?.map((message) => (
           <div className='notification-item' key={message?.id}>
@@ -63,10 +69,14 @@ const Notification = ({ messages }) => {
 
 Notification.defaultProps = {
   messages: null,
+  setToggle: () => {},
+  clickOutSide: false,
 };
 
 Notification.propTypes = {
   messages: PropTypes.array,
+  setToggle: PropTypes.func,
+  clickOutSide: PropTypes.bool,
 };
 
 export default Notification;

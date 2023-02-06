@@ -1,5 +1,5 @@
-import { useDispatch } from 'react-redux';
-import React, { cloneElement, isValidElement, memo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import React, { cloneElement, isValidElement, memo, useEffect } from 'react';
 
 import AddDebt from 'views/Debts/AddDebt';
 import Header from 'navigators/Header';
@@ -13,6 +13,8 @@ import NewSvCard from 'views/Cards/NewSvCard';
 import { getLocalStorage } from 'utils/helpers';
 import { logOut } from 'global/redux/auth/thunk';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { getAllNotifs } from 'global/redux/notification/thunk';
+import { selectNotif } from 'core/selectors';
 import headerItems from './headerItems';
 import {
   sideBarItems as sideBarByRole,
@@ -28,6 +30,7 @@ const DefaultLayout = () => {
   const [showModal, setShowModal] = useToggle();
 
   const { pathname } = useLocation();
+  const { isFetched } = useSelector(selectNotif);
 
   const sideBarItems = {
     items: sideBarByRole[userRole],
@@ -49,6 +52,33 @@ const DefaultLayout = () => {
       dispatch(logOut());
     }
   };
+
+  useEffect(() => {
+    if (!isFetched) {
+      dispatch(getAllNotifs());
+    }
+  }, [isFetched]);
+
+  // useEffect(() => {
+  //   const q = query(
+  //     collection(db, 'debts'),
+  //     where('dest.cardNumber', '==', payingCard?.cardNumber)
+  //   );
+  //   const unsubscribe = onSnapshot(q, (snapshot) => {
+  //     snapshot.docChanges().forEach((change) => {
+  //       if (change.type === 'added') {
+  //         console.warn('New: ', change.doc.data());
+  //       }
+  //       if (change.type === 'modified') {
+  //         console.warn('Modified: ', change.doc.data());
+  //       }
+  //       if (change.type === 'removed') {
+  //         console.warn('Removed: ', change.doc.data());
+  //       }
+  //     });
+  //   });
+  //   return () => unsubscribe();
+  // }, [payingCard]);
   return (
     <div>
       <div className='page-layout'>

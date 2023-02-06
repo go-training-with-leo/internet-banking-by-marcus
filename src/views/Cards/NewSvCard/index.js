@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -18,19 +18,56 @@ import {
 import validSavingCard from './validation';
 
 import './style.scss';
+import SuccessModal from './Success';
+
+const STEP_ONE = 'STEP_ONE';
+const STEP_TWO = 'STEP_TWO';
+
+const week = 6.048e8;
 
 const options = [
-  { id: 'TS-1', label: '1 week (0.2%)', value: 604800 },
-  { id: 'TS-2', label: '1 month (0.5%)', value: 2592000 },
-  { id: 'TS-3', label: '2 months (0.7%)', value: 2592000 },
-  { id: 'TS-4', label: '3 months (0.9%)', value: 2592000 },
-  { id: 'TS-5', label: '4 months (1%)', value: 2592000 },
-  { id: 'TS-6', label: '5 months (1.3%)', value: 2592000 },
-  { id: 'TS-7', label: '1 year (1.7%)', value: 31536000 },
+  {
+    id: 'TS-1',
+    label: '1 week (0.1%)',
+    value: { time: week, interest: 0.1 / 10 },
+  },
+  {
+    id: 'TS-2',
+    label: '1 month (0.4%)',
+    value: { time: week * 4, interest: 0.4 / 10 },
+  },
+  {
+    id: 'TS-3',
+    label: '2 months (0.8%)',
+    value: { time: week * 8, interest: 0.8 / 10 },
+  },
+  {
+    id: 'TS-4',
+    label: '3 months (1.2%)',
+    value: { time: week * 12, interest: 1.2 / 10 },
+  },
+  {
+    id: 'TS-5',
+    label: '4 months (1.6%)',
+    value: { time: week * 16, interest: 1.6 / 10 },
+  },
+  {
+    id: 'TS-6',
+    label: '5 months (2%)',
+    value: { time: week * 20, interest: 2 / 10 },
+  },
+  {
+    id: 'TS-7',
+    label: '1 year (4.8%)',
+    value: { time: week * 52, interest: 4.8 / 10 },
+  },
 ];
 
 const NewSvCard = ({ setToggle }) => {
   const dispatch = useDispatch();
+
+  const [step, setStep] = useState(STEP_ONE);
+  const [savingCardInfo, setSavingCardInfo] = useState({});
 
   const {
     handleSubmit,
@@ -52,17 +89,24 @@ const NewSvCard = ({ setToggle }) => {
     }
 
     const {
-      payload: { status },
+      payload: { status, savingCard },
     } = await dispatch(
       addSavingCard({
         cardId: payingCard?.id,
         totalAmount: formData.balance,
-        timeDeposit: formData?.timeDeposit,
+        timeDeposit: formData?.timeDeposit.time,
       })
     );
 
     if (status) {
-      setToggle();
+      setSavingCardInfo({
+        cardNumber: payingCard?.cardNumber,
+        balance: formData.balance,
+        timeDeposit: formData?.timeDeposit.time,
+        interest: formData?.timeDeposit.interest,
+        createdAt: savingCard?.createdAt,
+      });
+      setStep(STEP_TWO);
     }
   };
 
@@ -73,56 +117,68 @@ const NewSvCard = ({ setToggle }) => {
   };
 
   return (
-    <Modal title='New saving card' setToggle={setToggle} clickOutSide cancel>
-      <form className='new-card' onSubmit={handleSubmit(onCreate)}>
-        <Input
-          disabled
-          name='cardNumber'
-          label='Source card'
-          value={divideSpaceIdCard(payingCard?.cardNumber)}
-        />
-        <Controller
-          control={control}
-          name='timeDeposit'
-          defaultValue={options[0].value}
-          render={({ field: { onChange, value } }) => (
-            <Selection
-              options={options}
-              value={value}
-              name='timeDeposit'
-              label='Time deposit'
-              onChange={(val) => onChange(val)}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name='balance'
-          render={({ field: { onChange, value } }) => (
+    <>
+      {step === STEP_ONE && (
+        <Modal
+          title='New saving card'
+          setToggle={setToggle}
+          clickOutSide
+          cancel
+        >
+          <form className='new-card' onSubmit={handleSubmit(onCreate)}>
             <Input
-              name='balance'
-              value={parseMoneyVnd(removeNonNumeric(value))}
-              onChange={(val) => onChange(val)}
-              error={errors?.balance && true}
-              label={
-                errors?.balance
-                  ? handleCheckAmount(errors?.balance.message)
-                  : 'Balance'
-              }
-              placeholder='Enter your balance'
+              disabled
+              name='cardNumber'
+              label='Source card'
+              value={divideSpaceIdCard(payingCard?.cardNumber)}
             />
-          )}
-        />
-        <div className='btn-group'>
-          <DefaultButton disabled={loading} onClick={setToggle}>
-            Cancel
-          </DefaultButton>
-          <DefaultButton loading={loading} type='submit' danger>
-            Create
-          </DefaultButton>
-        </div>
-      </form>
-    </Modal>
+            <Controller
+              control={control}
+              name='timeDeposit'
+              defaultValue={options[0].value}
+              render={({ field: { onChange, value } }) => (
+                <Selection
+                  options={options}
+                  value={value}
+                  name='timeDeposit'
+                  label='Time deposit'
+                  onChange={(val) => onChange(val)}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name='balance'
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  name='balance'
+                  value={parseMoneyVnd(removeNonNumeric(value))}
+                  onChange={(val) => onChange(val)}
+                  error={errors?.balance && true}
+                  label={
+                    errors?.balance
+                      ? handleCheckAmount(errors?.balance.message)
+                      : 'Balance'
+                  }
+                  placeholder='Enter your balance'
+                />
+              )}
+            />
+            <div className='btn-group'>
+              <DefaultButton disabled={loading} onClick={setToggle}>
+                Cancel
+              </DefaultButton>
+              <DefaultButton loading={loading} type='submit' danger>
+                Create
+              </DefaultButton>
+            </div>
+          </form>
+        </Modal>
+      )}
+      {step === STEP_TWO && (
+        <SuccessModal savingCardInfo={savingCardInfo} setToggle={setToggle} />
+      )}
+    </>
   );
 };
 

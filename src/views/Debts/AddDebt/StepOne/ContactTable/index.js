@@ -50,7 +50,7 @@ const ContactsTable = () => {
   return (
     <div className='add-debt-table'>
       {contacts?.length > 0 ? (
-        <Table widths={[25, 46, 25]} headerTable={headerTable} small>
+        <Table widths={[35, 46, 10]} headerTable={headerTable} small>
           {contacts.map((row) => (
             <TableRow
               key={row?.id}
