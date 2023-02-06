@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from 'services/api';
 import {
   deleteDocFireStore,
   getDocFireStore,
@@ -25,7 +25,7 @@ const searchContact = async (cardNumber) => {
 const addContact = async ({ email, cardNumber, contactName, bank }) => {
   const {
     data: { message, newContact },
-  } = await axios.post('http://localhost:3000/new-contact', {
+  } = await api.post('/new-contact', {
     email,
     cardNumber,
     contactName,

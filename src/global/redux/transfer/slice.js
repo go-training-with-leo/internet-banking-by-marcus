@@ -10,6 +10,7 @@ import {
 const transfer = createSlice({
   name: 'transfer',
   initialState: {
+    transfers: [],
     transferInfo: {},
     isLoading: false,
     isFetched: false,

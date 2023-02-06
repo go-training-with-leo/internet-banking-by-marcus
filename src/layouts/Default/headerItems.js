@@ -16,9 +16,9 @@ const headerItems = {
       ),
     },
     {
-      id: 'transactions',
-      titleHeader: 'Transactions',
-      path: '/transactions',
+      id: 'adminHistory',
+      titleHeader: 'History',
+      path: '/admin/history',
     },
   ],
   EMPLOYEE: [

@@ -8,6 +8,7 @@ import IconButton from 'components/Button/Icon';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import RowCell from 'components/Table/RowCell';
+import Loader from 'components/Loader';
 import useToggle from 'components/hooks/useToggle';
 import { Info, Search } from 'assets/images';
 import { selectAccount, selectAuth } from 'core/selectors';
@@ -20,7 +21,7 @@ const Employees = () => {
   const dispatch = useDispatch();
 
   const { control, getValues } = useForm();
-  const { accounts, isFetched } = useSelector(selectAccount);
+  const { accounts, isLoading } = useSelector(selectAccount);
   const { currentUser } = useSelector(selectAuth);
 
   const [showDetail, setShowDetail] = useToggle();
@@ -51,16 +52,14 @@ const Employees = () => {
   };
 
   useEffect(() => {
-    if (!isFetched) {
-      dispatch(getEmplAccounts());
-    }
-  }, [currentUser, isFetched]);
+    dispatch(getEmplAccounts());
+  }, [currentUser]);
 
   useEffect(() => {
     setEmplAccounts(accounts);
   }, [accounts]);
 
-  return (
+  return !isLoading ? (
     <div className='employees-view'>
       <div className='search-bar'>
         <div className='search-bar__input'>
@@ -113,6 +112,8 @@ const Employees = () => {
         <EmplDetail emplDetail={emplAccount} setToggle={setShowDetail} />
       )}
     </div>
+  ) : (
+    <Loader large />
   );
 };
 

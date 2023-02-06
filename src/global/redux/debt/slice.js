@@ -58,7 +58,7 @@ const debt = createSlice({
       state.isLoading = false;
     },
     [addDebt.fulfilled]: (state, action) => {
-      state.creDebts = [...state.creDebts, action.payload?.debt];
+      state.creDebts = [action.payload?.debt, ...state.creDebts];
       state.debtInfo = {};
       state.isLoading = false;
     },

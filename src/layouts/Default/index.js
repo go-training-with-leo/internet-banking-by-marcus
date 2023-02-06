@@ -37,6 +37,13 @@ const DefaultLayout = () => {
   const { titleHeader, button: btnHeader } =
     headerItems[userRole].find(({ path }) => path === pathname) || {};
 
+  const showTitle = () => {
+    if (pathname.includes('/employee/history/')) {
+      return 'History';
+    }
+    return titleHeader;
+  };
+
   const handleClick = () => {
     if (userRole === 'ADMIN' || userRole === 'EMPLOYEE') {
       dispatch(logOut());
@@ -78,7 +85,7 @@ const DefaultLayout = () => {
           )}
         </SideBar>
         <div className='page-layout__right'>
-          <Header title={titleHeader} type={userRole === 'CUSTOMER' && 'free'}>
+          <Header title={showTitle()} type={userRole === 'CUSTOMER' && 'free'}>
             {isValidElement(btnHeader) &&
               cloneElement(btnHeader, { onClick: setShowModal })}
           </Header>
