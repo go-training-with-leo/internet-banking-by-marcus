@@ -76,7 +76,7 @@ const Cards = () => {
               )}
             </div>
             <div className='list-cards-vertical'>
-              {savingCards.map((savingCard) => (
+              {savingCards?.map((savingCard) => (
                 <ListCardItem
                   key={savingCard?.id}
                   isActive={currentSavingCard?.id === savingCard?.id}

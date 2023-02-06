@@ -4,6 +4,7 @@ const selectCard = (state) => state.card;
 const selectContact = (state) => state.contact;
 const selectDebt = (state) => state.debt;
 const selectHistory = (state) => state.history;
+const selectNotif = (state) => state.notification;
 const selectTransfer = (state) => state.transfer;
 
 export {
@@ -13,5 +14,6 @@ export {
   selectContact,
   selectDebt,
   selectHistory,
+  selectNotif,
   selectTransfer,
 };

@@ -22,7 +22,6 @@ const DebtRepayTab = ({ customer }) => {
     if (!isFetched) {
       dispatch(getAllHistories());
     } else {
-      console.warn(allHistories);
       const filteredDebts = allHistories
         ?.filter(
           (history) =>

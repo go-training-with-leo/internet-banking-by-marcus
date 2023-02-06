@@ -105,7 +105,6 @@ const rejectDebt = async (id) => {
 };
 
 const approveDebt = async (detailData) => {
-  console.warn(detailData);
   await updateDocFireStore({
     collect: 'debts',
     id: detailData?.id,

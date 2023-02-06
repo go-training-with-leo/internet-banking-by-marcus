@@ -6,6 +6,7 @@ import card from 'global/redux/card/slice';
 import contact from 'global/redux/contact/slice';
 import debt from 'global/redux/debt/slice';
 import history from 'global/redux/history/slice';
+import notification from 'global/redux/notification/slice';
 import transfer from 'global/redux/transfer/slice';
 
 const reducers = combineReducers({
@@ -15,6 +16,7 @@ const reducers = combineReducers({
   contact,
   debt,
   history,
+  notification,
   transfer,
 });
 
