@@ -156,11 +156,15 @@ Object {
           role="button"
           tabindex="0"
         >
-          <svg
-            class="loader medium"
+          <div
+            class="loader-container"
           >
-            loadingV2.svg
-          </svg>
+            <svg
+              class="loader medium"
+            >
+              loadingV2.svg
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -174,11 +178,15 @@ Object {
         role="button"
         tabindex="0"
       >
-        <svg
-          class="loader medium"
+        <div
+          class="loader-container"
         >
-          loadingV2.svg
-        </svg>
+          <svg
+            class="loader medium"
+          >
+            loadingV2.svg
+          </svg>
+        </div>
       </div>
     </div>
   </div>,

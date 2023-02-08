@@ -18,13 +18,17 @@ Object {
             Button
           </button>
         </div>
-        <svg
-          class="notif-busy"
-          height="40"
-          width="40"
+        <div
+          class="notif"
         >
-          notificationBusy.svg
-        </svg>
+          <svg
+            class="notif-busy"
+            height="40"
+            width="40"
+          >
+            notificationBusy.svg
+          </svg>
+        </div>
       </div>
     </div>
   </body>,
@@ -42,13 +46,17 @@ Object {
           Button
         </button>
       </div>
-      <svg
-        class="notif-busy"
-        height="40"
-        width="40"
+      <div
+        class="notif"
       >
-        notificationBusy.svg
-      </svg>
+        <svg
+          class="notif-busy"
+          height="40"
+          width="40"
+        >
+          notificationBusy.svg
+        </svg>
+      </div>
     </div>
   </div>,
   "debug": [Function],
@@ -123,13 +131,17 @@ Object {
             Button
           </button>
         </div>
-        <svg
-          class="notif-free"
-          height="40"
-          width="40"
+        <div
+          class="notif"
         >
-          notificationFree.svg
-        </svg>
+          <svg
+            class="notif-free"
+            height="40"
+            width="40"
+          >
+            notificationFree.svg
+          </svg>
+        </div>
       </div>
     </div>
   </body>,
@@ -147,13 +159,17 @@ Object {
           Button
         </button>
       </div>
-      <svg
-        class="notif-free"
-        height="40"
-        width="40"
+      <div
+        class="notif"
       >
-        notificationFree.svg
-      </svg>
+        <svg
+          class="notif-free"
+          height="40"
+          width="40"
+        >
+          notificationFree.svg
+        </svg>
+      </div>
     </div>
   </div>,
   "debug": [Function],
@@ -228,13 +244,17 @@ Object {
             Button
           </button>
         </div>
-        <svg
-          class="notif-remove"
-          height="40"
-          width="40"
+        <div
+          class="notif"
         >
-          notificationRemove.svg
-        </svg>
+          <svg
+            class="notif-remove"
+            height="40"
+            width="40"
+          >
+            notificationRemove.svg
+          </svg>
+        </div>
       </div>
     </div>
   </body>,
@@ -252,13 +272,17 @@ Object {
           Button
         </button>
       </div>
-      <svg
-        class="notif-remove"
-        height="40"
-        width="40"
+      <div
+        class="notif"
       >
-        notificationRemove.svg
-      </svg>
+        <svg
+          class="notif-remove"
+          height="40"
+          width="40"
+        >
+          notificationRemove.svg
+        </svg>
+      </div>
     </div>
   </div>,
   "debug": [Function],
@@ -333,13 +357,17 @@ Object {
             Button
           </button>
         </div>
-        <svg
-          class="notif-busy"
-          height="40"
-          width="40"
+        <div
+          class="notif"
         >
-          notificationBusy.svg
-        </svg>
+          <svg
+            class="notif-busy"
+            height="40"
+            width="40"
+          >
+            notificationBusy.svg
+          </svg>
+        </div>
       </div>
     </div>
   </body>,
@@ -357,13 +385,17 @@ Object {
           Button
         </button>
       </div>
-      <svg
-        class="notif-busy"
-        height="40"
-        width="40"
+      <div
+        class="notif"
       >
-        notificationBusy.svg
-      </svg>
+        <svg
+          class="notif-busy"
+          height="40"
+          width="40"
+        >
+          notificationBusy.svg
+        </svg>
+      </div>
     </div>
   </div>,
   "debug": [Function],

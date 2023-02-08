@@ -8,7 +8,7 @@ describe('Default Card', () => {
     const tree = render(<DefaultCard isLoading>1500000</DefaultCard>);
 
     const card = tree.container.querySelector('div.card');
-    expect(card.firstChild).toHaveClass('loader');
+    expect(card.firstChild).toHaveClass('loader-container');
     expect(tree).toMatchSnapshot();
   });
 

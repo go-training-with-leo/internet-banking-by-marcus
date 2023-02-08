@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
-import Table from 'components/Table';
+import Table, { TableRow } from 'components/Table';
 import RowCell from 'components/Table/RowCell';
 
 import { DeleteIcon, PlusIcon } from 'assets/images';
@@ -68,26 +68,24 @@ describe('Test Table', () => {
       </HeaderTable>
     );
     const tree = render(
-      <Table dataTable={dataTable} headerTable={headerTable}>
-        <RowCell title='id' />
-        <RowCell title='name' />
-        <RowCell title='age' />
-        <RowCell title='email' />
-        <RowCell title='status' />
-        <RowCell title='actions'>
-          <PlusIcon width={20} height={20} />
-          <DeleteIcon width={20} height={20} />
-        </RowCell>
+      <Table headerTable={headerTable}>
+        {dataTable?.map((data) => (
+          <TableRow key={data.id}>
+            <RowCell title='id'>{data.id}</RowCell>
+            <RowCell title='name'>{data.name}</RowCell>
+            <RowCell title='age'>{data.age}</RowCell>
+            <RowCell title='email'>{data.email}</RowCell>
+            <RowCell title='status'>{data.email}</RowCell>
+            <RowCell title='actions'>
+              <PlusIcon width={20} height={20} />
+              <DeleteIcon width={20} height={20} />
+            </RowCell>
+          </TableRow>
+        ))}
       </Table>
     );
 
     const table = tree.container.querySelector('tbody');
-
-    expect(table).toHaveTextContent('Id');
-    expect(table).toHaveTextContent('Name');
-    expect(table).toHaveTextContent('Age');
-    expect(table).toHaveTextContent('Email');
-    expect(table).toHaveTextContent('Actions');
 
     expect(table).toHaveTextContent('wasif@email.com');
     expect(table).toHaveTextContent('Wasif');

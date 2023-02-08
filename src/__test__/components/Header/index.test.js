@@ -27,7 +27,7 @@ test('Test notifyBusy props order', () => {
 
   const header = tree.container.querySelector('div.header');
 
-  expect(header.lastElementChild).toHaveClass('notif-busy');
+  expect(header.lastElementChild).toHaveClass('notif');
   expect(header.childElementCount).toEqual(2);
   expect(tree).toMatchSnapshot();
 });
@@ -41,7 +41,7 @@ test('Test notifyRemove props order', () => {
 
   const header = tree.container.querySelector('div.header');
 
-  expect(header.lastElementChild).toHaveClass('notif-remove');
+  expect(header.lastElementChild).toHaveClass('notif');
   expect(header.childElementCount).toEqual(2);
   expect(tree).toMatchSnapshot();
 });
@@ -54,7 +54,7 @@ test('Test notifyFree props order', () => {
 
   const header = tree.container.querySelector('div.header');
 
-  expect(header.lastElementChild).toHaveClass('notif-free');
+  expect(header.lastElementChild).toHaveClass('notif');
   expect(header.childElementCount).toEqual(2);
   expect(tree).toMatchSnapshot();
 });
