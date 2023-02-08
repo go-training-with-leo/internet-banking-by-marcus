@@ -1,0 +1,38 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.options {
+  width: 100%;
+  border-radius: 1em;
+  background-color: $black-dark;
+  padding: 0 0 1em 0;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: darkgray;
+    letter-spacing: 0.2em;
+  }
+
+  .slider {
+    width: 80%;
+    margin: auto;
+  }
+
+  .ticks {
+    display: flex;
+    justify-content: space-between;
+    .o_txt {
+      flex: 1;
+      font-size: 14px;
+    }
+    .o_on {
+      font-weight: 500;
+      color: blue;
+    }
+  }
+}

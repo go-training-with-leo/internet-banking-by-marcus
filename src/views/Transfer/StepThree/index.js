@@ -128,14 +128,14 @@ const StepThree = ({ setToggle, back, next }) => {
               onChange={(e) => setRadio(e.target.value)}
               value={CHARGED_BY_SENDER}
               checked={radio === CHARGED_BY_SENDER}
-              label='Charged by the sender (you)'
+              label='Paid by the sender (you)'
             />
             <Radio
               name='charge'
               value={CHARGED_BY_RECEIVER}
               checked={radio === CHARGED_BY_RECEIVER}
               onChange={(e) => setRadio(e.target.value)}
-              label='Charged by the receiver'
+              label='Paid by the receiver'
             />
           </div>
         </div>

@@ -32,6 +32,21 @@
         font-size: 15px;
       }
 
+      .saving-card-detail {
+        @include setFlex(row, null, null, 30px, null);
+
+        .card-actions {
+          @include setFlex(column, null, null, 20px, null);
+          .action {
+            cursor: pointer;
+            transition: all 0.3s linear;
+            &:hover {
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
+
       .no-card {
         color: $pure-white;
         font-weight: 400;

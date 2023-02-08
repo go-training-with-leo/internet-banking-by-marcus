@@ -28,10 +28,10 @@ const SuccessModal = ({ setToggle }) => {
       <div className='success-modal'>
         <p>
           You have succesfully transfered the amout of{' '}
-          {parseMoneyVnd(transferInfo?.totalAmount)} VND to the account{' '}
-          {divideSpaceIdCard(transferInfo?.dest?.cardNumber)} /{' '}
-          {transferInfo?.dest?.contactName} / EIGHT.Bank at{' '}
-          {convertTimestamp(transferInfo.createdAt?.seconds)}
+          <b>{parseMoneyVnd(transferInfo?.totalAmount)}</b> VND to the account{' '}
+          <b>{divideSpaceIdCard(transferInfo?.dest?.cardNumber)}</b> /{' '}
+          <b>{transferInfo?.dest?.contactName}</b> / <b>EIGHT.Bank at</b>{' '}
+          <b>{convertTimestamp(transferInfo.createdAt?.seconds)}</b>
         </p>
         <DefaultButton danger onClick={handleFinish}>
           OK

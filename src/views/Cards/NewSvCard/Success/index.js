@@ -10,11 +10,12 @@ import {
 } from 'utils/helpers';
 
 import './style.scss';
+import { useSelector } from 'react-redux';
+import { selectCard } from 'core/selectors';
 
-const SuccessModal = ({ setToggle, savingCardInfo }) => {
-  const date = new Date(savingCardInfo.createdAt);
-  const seconds = date.getTime();
-  const interestMoney = savingCardInfo.balance * savingCardInfo.interest;
+const SuccessModal = ({ setToggle }) => {
+  const { newSavingCard, payingCard } = useSelector(selectCard);
+
   return (
     <Modal
       title='Saving card information'
@@ -25,29 +26,38 @@ const SuccessModal = ({ setToggle, savingCardInfo }) => {
       <div className='saving-info-modal'>
         <div className='saving-info-row'>
           <span className='title'>From card:</span>
-          <span>{divideSpaceIdCard(savingCardInfo?.cardNumber)}</span>
+          <span>{divideSpaceIdCard(payingCard?.cardNumber)}</span>
         </div>
         <div className='saving-info-row'>
-          <span className='title'>Time deposit:</span>
-          <span>{convertTimestamp(seconds + savingCardInfo.timeDeposit)}</span>
+          <span className='title'>Card number:</span>
+          <span>{divideSpaceIdCard(newSavingCard?.cardNumber)}</span>
         </div>
         <div className='saving-info-row'>
           <span className='title'>Rate (%): </span>
-          <span>{savingCardInfo.interest * 10}%</span>
+          <span>{newSavingCard.interest * 100}%</span>
         </div>
         <div className='saving-info-row'>
           <span className='title'>Balance:</span>
-          <span>{parseMoneyVnd(savingCardInfo?.balance)} VND</span>
+          <span>{parseMoneyVnd(newSavingCard?.balance)} VND</span>
         </div>
         <div className='saving-info-row'>
           <span className='title'>Interest:</span>
-          <span>{parseMoneyVnd(interestMoney)} VND</span>
+          <span>{parseMoneyVnd(newSavingCard?.interestMoney)} VND</span>
         </div>
         <div className='saving-info-row'>
           <span className='title'>Total: </span>
           <span>
-            {parseMoneyVnd(interestMoney + savingCardInfo.balance)} VND
+            {parseMoneyVnd(newSavingCard.interestMoney + newSavingCard.balance)}{' '}
+            VND
           </span>
+        </div>
+        <div className='saving-info-row'>
+          <span className='title'>Created at: </span>
+          <span>{convertTimestamp(newSavingCard.createdAt)}</span>
+        </div>
+        <div className='saving-info-row'>
+          <span className='title'>Time deposit:</span>
+          <span>{convertTimestamp(newSavingCard.timeDeposit)}</span>
         </div>
         <DefaultButton onClick={setToggle} danger>
           OK

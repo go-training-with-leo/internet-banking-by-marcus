@@ -31,6 +31,7 @@ const Accounts = () => {
 
   const headerTable = (
     <HeaderTable>
+      <HeaderCell> </HeaderCell>
       <HeaderCell>Account</HeaderCell>
       <HeaderCell>Phone</HeaderCell>
       <HeaderCell>Email</HeaderCell>

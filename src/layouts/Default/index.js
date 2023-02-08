@@ -59,26 +59,6 @@ const DefaultLayout = () => {
     }
   }, [isFetched]);
 
-  // useEffect(() => {
-  //   const q = query(
-  //     collection(db, 'debts'),
-  //     where('dest.cardNumber', '==', payingCard?.cardNumber)
-  //   );
-  //   const unsubscribe = onSnapshot(q, (snapshot) => {
-  //     snapshot.docChanges().forEach((change) => {
-  //       if (change.type === 'added') {
-  //         console.warn('New: ', change.doc.data());
-  //       }
-  //       if (change.type === 'modified') {
-  //         console.warn('Modified: ', change.doc.data());
-  //       }
-  //       if (change.type === 'removed') {
-  //         console.warn('Removed: ', change.doc.data());
-  //       }
-  //     });
-  //   });
-  //   return () => unsubscribe();
-  // }, [payingCard]);
   return (
     <div>
       <div className='page-layout'>

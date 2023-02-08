@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import Status from 'components/Status';
-import { divideSpaceIdCard, parseMoneyVnd } from 'utils/helpers';
+import {
+  convertTimestamp,
+  divideSpaceIdCard,
+  parseMoneyVnd,
+} from 'utils/helpers';
 import { approveDebt, rejectDebt } from 'global/redux/debt/thunk';
 import { selectDebt } from 'core/selectors';
 
@@ -26,7 +30,8 @@ const DetailModal = ({ detailData, setToggle, currentTab }) => {
   const dispatch = useDispatch();
 
   const { isLoading: loading } = useSelector(selectDebt);
-  const { from, dest, totalAmount, desc, reason, status, id } = detailData;
+  const { from, dest, totalAmount, desc, reason, status, id, createdAt } =
+    detailData;
 
   const handleReject = async () => {
     const {
@@ -74,6 +79,16 @@ const DetailModal = ({ detailData, setToggle, currentTab }) => {
         <div className='detail-row'>
           <span className='title'>Status:</span>
           {statusIcons[status]}
+        </div>
+        <div className='detail-row'>
+          <span className='title'>Created at:</span>
+          <span>
+            {convertTimestamp(
+              createdAt?.seconds
+                ? createdAt.seconds * 1000
+                : new Date(createdAt)
+            )}
+          </span>
         </div>
         <div className='detail-col'>
           {reason && (

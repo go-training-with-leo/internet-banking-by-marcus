@@ -63,7 +63,7 @@ const StepFive = ({ setToggle, back, next }) => {
           </div>
           <div className='step-five-tab-info__line'>
             <span className='title'>Payment fee:</span>
-            <span>Charged by {chargedBy}</span>
+            <span>Paid by {chargedBy}</span>
           </div>
         </div>
         <div className='btn-group'>

@@ -56,13 +56,13 @@ const fetchDebtHistory = async (cardNumber) => {
   const debtors = getDebtor.docs.map((debtor) => {
     return {
       ...debtor.data(),
-      role: 'debt',
+      role: 'loan',
     };
   });
   const lenders = getLender.docs.map((lender) => {
     return {
       ...lender.data(),
-      role: 'loan',
+      role: 'debt',
     };
   });
 

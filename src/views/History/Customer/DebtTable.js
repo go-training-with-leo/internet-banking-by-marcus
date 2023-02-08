@@ -45,15 +45,17 @@ const DebtTable = () => {
   return debtHistories?.length > 0 ? (
     <Table widths={[10, 20, 20, 15, 15, 20]} headerTable={headerTable}>
       {debtHistories?.map(
-        ({ from, totalAmount, role, status, createdAt }, index) => (
+        ({ from, dest, totalAmount, role, status, createdAt }, index) => (
           <TableRow key={createdAt}>
             <RowCell>{index + 1}</RowCell>
             <RowCell>
               <p>
-                {from?.accountName}
+                {role === 'loan' ? dest?.contactName : from?.accountName}
                 <br />
                 <br />
-                {divideSpaceIdCard(from?.cardNumber)}
+                {divideSpaceIdCard(
+                  role === 'loan' ? dest?.cardNumber : from?.cardNumber
+                )}
               </p>
             </RowCell>
             <RowCell>{parseMoneyVnd(totalAmount)} VND</RowCell>

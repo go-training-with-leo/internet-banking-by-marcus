@@ -1,0 +1,24 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/variables.scss";
+
+.deposit-modal {
+  @include setFlex(column, null, null, 30px, null);
+
+  .deposit-info-row {
+    @include setFlex(row, null, center, 60px, null);
+
+    .title {
+      width: 110px;
+    }
+  }
+  .tracking-time {
+    width: 100%;
+    & > input {
+      width: 100%;
+    }
+  }
+
+  .btn-group {
+    @include setFlex(row, null, null, 20px, null);
+  }
+}
