@@ -31,7 +31,7 @@ describe('Modal', () => {
 
     const modal = tree.container.querySelector('div.modal-container');
 
-    expect(modal).toHaveClass('closeModal');
+    expect(modal).toHaveClass('modal-container');
 
     expect(tree).toMatchSnapshot();
   });

@@ -151,7 +151,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="modal-container closeModal"
+        class="modal-container"
         role="dialog"
       >
         <div
@@ -195,7 +195,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="modal-container closeModal"
+      class="modal-container"
       role="dialog"
     >
       <div

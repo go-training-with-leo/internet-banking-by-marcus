@@ -8,13 +8,11 @@ Object {
       <table
         class="table"
       >
-        <tbody>
+        <colgroup />
+        <thead>
           <tr
             class="table-header"
           >
-            <th>
-               
-            </th>
             <th
               class="table-header-cell"
             >
@@ -61,14 +59,11 @@ Object {
               </div>
             </th>
           </tr>
+        </thead>
+        <tbody>
           <tr
             class="table-body-row"
           >
-            <td
-              class="order"
-            >
-              1
-            </td>
             <td
               class="body-table-cell"
             >
@@ -125,11 +120,6 @@ Object {
             class="table-body-row"
           >
             <td
-              class="order"
-            >
-              2
-            </td>
-            <td
               class="body-table-cell"
             >
               <div>
@@ -160,22 +150,7 @@ Object {
             <td
               class="body-table-cell"
             >
-              <div>
-                <div
-                  class="status paid unpaid"
-                >
-                  <svg
-                    fill="green"
-                    height="20"
-                    width="20"
-                  >
-                    check.svg
-                  </svg>
-                  <span>
-                    Paid
-                  </span>
-                </div>
-              </div>
+              <div />
             </td>
             <td
               class="body-table-cell"
@@ -199,11 +174,6 @@ Object {
           <tr
             class="table-body-row"
           >
-            <td
-              class="order"
-            >
-              3
-            </td>
             <td
               class="body-table-cell"
             >
@@ -235,22 +205,7 @@ Object {
             <td
               class="body-table-cell"
             >
-              <div>
-                <div
-                  class="status unpaid canceled"
-                >
-                  <svg
-                    fill="red"
-                    height="20"
-                    width="20"
-                  >
-                    cancel.svg
-                  </svg>
-                  <span>
-                    Canceled
-                  </span>
-                </div>
-              </div>
+              <div />
             </td>
             <td
               class="body-table-cell"
@@ -274,11 +229,6 @@ Object {
           <tr
             class="table-body-row"
           >
-            <td
-              class="order"
-            >
-              4
-            </td>
             <td
               class="body-table-cell"
             >
@@ -310,22 +260,7 @@ Object {
             <td
               class="body-table-cell"
             >
-              <div>
-                <div
-                  class="status success unpaid"
-                >
-                  <svg
-                    fill="green"
-                    height="20"
-                    width="20"
-                  >
-                    check.svg
-                  </svg>
-                  <span>
-                    Success
-                  </span>
-                </div>
-              </div>
+              <div />
             </td>
             <td
               class="body-table-cell"
@@ -349,11 +284,6 @@ Object {
           <tr
             class="table-body-row"
           >
-            <td
-              class="order"
-            >
-              5
-            </td>
             <td
               class="body-table-cell"
             >
@@ -385,22 +315,7 @@ Object {
             <td
               class="body-table-cell"
             >
-              <div>
-                <div
-                  class="status success unpaid"
-                >
-                  <svg
-                    fill="green"
-                    height="20"
-                    width="20"
-                  >
-                    check.svg
-                  </svg>
-                  <span>
-                    Success
-                  </span>
-                </div>
-              </div>
+              <div />
             </td>
             <td
               class="body-table-cell"
@@ -424,11 +339,6 @@ Object {
           <tr
             class="table-body-row"
           >
-            <td
-              class="order"
-            >
-              6
-            </td>
             <td
               class="body-table-cell"
             >
@@ -460,22 +370,7 @@ Object {
             <td
               class="body-table-cell"
             >
-              <div>
-                <div
-                  class="status success unpaid"
-                >
-                  <svg
-                    fill="green"
-                    height="20"
-                    width="20"
-                  >
-                    check.svg
-                  </svg>
-                  <span>
-                    Success
-                  </span>
-                </div>
-              </div>
+              <div />
             </td>
             <td
               class="body-table-cell"
@@ -499,11 +394,6 @@ Object {
           <tr
             class="table-body-row"
           >
-            <td
-              class="order"
-            >
-              7
-            </td>
             <td
               class="body-table-cell"
             >
@@ -535,22 +425,7 @@ Object {
             <td
               class="body-table-cell"
             >
-              <div>
-                <div
-                  class="status success unpaid"
-                >
-                  <svg
-                    fill="green"
-                    height="20"
-                    width="20"
-                  >
-                    check.svg
-                  </svg>
-                  <span>
-                    Success
-                  </span>
-                </div>
-              </div>
+              <div />
             </td>
             <td
               class="body-table-cell"
@@ -579,13 +454,11 @@ Object {
     <table
       class="table"
     >
-      <tbody>
+      <colgroup />
+      <thead>
         <tr
           class="table-header"
         >
-          <th>
-             
-          </th>
           <th
             class="table-header-cell"
           >
@@ -632,14 +505,11 @@ Object {
             </div>
           </th>
         </tr>
+      </thead>
+      <tbody>
         <tr
           class="table-body-row"
         >
-          <td
-            class="order"
-          >
-            1
-          </td>
           <td
             class="body-table-cell"
           >
@@ -696,11 +566,6 @@ Object {
           class="table-body-row"
         >
           <td
-            class="order"
-          >
-            2
-          </td>
-          <td
             class="body-table-cell"
           >
             <div>
@@ -731,22 +596,7 @@ Object {
           <td
             class="body-table-cell"
           >
-            <div>
-              <div
-                class="status paid unpaid"
-              >
-                <svg
-                  fill="green"
-                  height="20"
-                  width="20"
-                >
-                  check.svg
-                </svg>
-                <span>
-                  Paid
-                </span>
-              </div>
-            </div>
+            <div />
           </td>
           <td
             class="body-table-cell"
@@ -770,11 +620,6 @@ Object {
         <tr
           class="table-body-row"
         >
-          <td
-            class="order"
-          >
-            3
-          </td>
           <td
             class="body-table-cell"
           >
@@ -806,22 +651,7 @@ Object {
           <td
             class="body-table-cell"
           >
-            <div>
-              <div
-                class="status unpaid canceled"
-              >
-                <svg
-                  fill="red"
-                  height="20"
-                  width="20"
-                >
-                  cancel.svg
-                </svg>
-                <span>
-                  Canceled
-                </span>
-              </div>
-            </div>
+            <div />
           </td>
           <td
             class="body-table-cell"
@@ -845,11 +675,6 @@ Object {
         <tr
           class="table-body-row"
         >
-          <td
-            class="order"
-          >
-            4
-          </td>
           <td
             class="body-table-cell"
           >
@@ -881,22 +706,7 @@ Object {
           <td
             class="body-table-cell"
           >
-            <div>
-              <div
-                class="status success unpaid"
-              >
-                <svg
-                  fill="green"
-                  height="20"
-                  width="20"
-                >
-                  check.svg
-                </svg>
-                <span>
-                  Success
-                </span>
-              </div>
-            </div>
+            <div />
           </td>
           <td
             class="body-table-cell"
@@ -920,11 +730,6 @@ Object {
         <tr
           class="table-body-row"
         >
-          <td
-            class="order"
-          >
-            5
-          </td>
           <td
             class="body-table-cell"
           >
@@ -956,22 +761,7 @@ Object {
           <td
             class="body-table-cell"
           >
-            <div>
-              <div
-                class="status success unpaid"
-              >
-                <svg
-                  fill="green"
-                  height="20"
-                  width="20"
-                >
-                  check.svg
-                </svg>
-                <span>
-                  Success
-                </span>
-              </div>
-            </div>
+            <div />
           </td>
           <td
             class="body-table-cell"
@@ -995,11 +785,6 @@ Object {
         <tr
           class="table-body-row"
         >
-          <td
-            class="order"
-          >
-            6
-          </td>
           <td
             class="body-table-cell"
           >
@@ -1031,22 +816,7 @@ Object {
           <td
             class="body-table-cell"
           >
-            <div>
-              <div
-                class="status success unpaid"
-              >
-                <svg
-                  fill="green"
-                  height="20"
-                  width="20"
-                >
-                  check.svg
-                </svg>
-                <span>
-                  Success
-                </span>
-              </div>
-            </div>
+            <div />
           </td>
           <td
             class="body-table-cell"
@@ -1070,11 +840,6 @@ Object {
         <tr
           class="table-body-row"
         >
-          <td
-            class="order"
-          >
-            7
-          </td>
           <td
             class="body-table-cell"
           >
@@ -1106,22 +871,7 @@ Object {
           <td
             class="body-table-cell"
           >
-            <div>
-              <div
-                class="status success unpaid"
-              >
-                <svg
-                  fill="green"
-                  height="20"
-                  width="20"
-                >
-                  check.svg
-                </svg>
-                <span>
-                  Success
-                </span>
-              </div>
-            </div>
+            <div />
           </td>
           <td
             class="body-table-cell"

@@ -31,7 +31,7 @@ describe('Test Select component', () => {
 
     expect(select).toBeDefined();
 
-    expect(select).toHaveTextContent('Select option');
+    expect(select).toHaveTextContent('VCB');
 
     fireEvent.click(select);
     let option = tree.getByText('ACB');

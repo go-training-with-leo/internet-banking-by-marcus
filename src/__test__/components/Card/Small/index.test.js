@@ -42,7 +42,7 @@ describe('Small Card', () => {
     const handleClick = jest.fn();
     const tree = render(
       <SmallCard isActive label='visa' onClick={handleClick}>
-        <span>Element</span>
+        Element
       </SmallCard>
     );
 

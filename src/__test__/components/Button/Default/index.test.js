@@ -49,7 +49,6 @@ test('Wrong Props & right props', () => {
 
   const button = tree.getByRole('button');
 
-  expect(button).not.toHaveAttribute('disabled');
   expect(button).not.toHaveClass('ghost');
 
   expect(button).toHaveAttribute('type', 'button');

@@ -10,11 +10,15 @@ Object {
         disabled=""
         type="button"
       >
-        <svg
-          class="loader medium large"
+        <div
+          class="loader-container"
         >
-          loadingV2.svg
-        </svg>
+          <svg
+            class="loader medium large"
+          >
+            loadingV2.svg
+          </svg>
+        </div>
       </button>
     </div>
   </body>,
@@ -24,11 +28,15 @@ Object {
       disabled=""
       type="button"
     >
-      <svg
-        class="loader medium large"
+      <div
+        class="loader-container"
       >
-        loadingV2.svg
-      </svg>
+        <svg
+          class="loader medium large"
+        >
+          loadingV2.svg
+        </svg>
+      </div>
     </button>
   </div>,
   "debug": [Function],

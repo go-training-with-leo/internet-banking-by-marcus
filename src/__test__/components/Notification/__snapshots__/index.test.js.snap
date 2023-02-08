@@ -7,6 +7,7 @@ Object {
     <div>
       <div
         class="notification"
+        role="dialog"
       >
         <div
           class="notification-item"
@@ -170,6 +171,7 @@ Object {
   "container": <div>
     <div
       class="notification"
+      role="dialog"
     >
       <div
         class="notification-item"
