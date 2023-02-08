@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Search } from 'assets/images';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 import IconButton from 'components/Button/Icon';
 import Input from 'components/Input';
 import { searchContact } from 'global/redux/debt/thunk';
 
-import { divideSpaceIdCard } from 'utils/helpers';
+import { divideSpaceIdCard, removeNonNumeric } from 'utils/helpers';
 import { selectCard, selectDebt } from 'core/selectors';
 
 import './style.scss';
@@ -20,10 +20,10 @@ const NewContact = () => {
   const { isLoading: loading, debtInfo } = useSelector(selectDebt);
   const { payingCard } = useSelector(selectCard);
   const {
-    register,
     getValues,
     setError,
     clearErrors,
+    control,
     formState: { errors },
   } = useForm();
 
@@ -39,7 +39,9 @@ const NewContact = () => {
     clearErrors();
     const {
       payload: { status, contact: searchedContact },
-    } = await dispatch(searchContact({ cardNumber }));
+    } = await dispatch(
+      searchContact({ cardNumber: removeNonNumeric(cardNumber) })
+    );
 
     if (status) {
       setContact(searchedContact);
@@ -50,17 +52,24 @@ const NewContact = () => {
     <div className='contact-container'>
       <div className='search-contact'>
         <div className='contact-input'>
-          <Input
+          <Controller
             name='cardNumber'
-            register={register}
-            disabled={loading}
-            error={errors?.cardNumber && true}
-            label={
-              errors?.cardNumber?.message
-                ? errors?.cardNumber?.message
-                : 'Card number'
-            }
-            placeholder='Enter the contact’s card number'
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Input
+                name='cardNumber'
+                disabled={loading}
+                value={divideSpaceIdCard(removeNonNumeric(value))}
+                onChange={(val) => onChange(val)}
+                error={errors?.cardNumber && true}
+                label={
+                  errors?.cardNumber?.message
+                    ? errors?.cardNumber?.message
+                    : 'Card number'
+                }
+                placeholder='Enter the contact’s card number'
+              />
+            )}
           />
         </div>
         <div className='contact-btn'>

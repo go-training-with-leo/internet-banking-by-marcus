@@ -23,43 +23,43 @@ import SuccessModal from './Success';
 const STEP_ONE = 'STEP_ONE';
 const STEP_TWO = 'STEP_TWO';
 
-const week = 6.048e8;
+const week = 604800;
 
 const options = [
   {
     id: 'TS-1',
-    label: '1 week (0.1%)',
-    value: { time: week, interest: 0.1 / 10 },
+    label: '1 week (0.2%)',
+    value: { time: week, interest: 0.2 / 100 },
   },
   {
     id: 'TS-2',
-    label: '1 month (0.4%)',
-    value: { time: week * 4, interest: 0.4 / 10 },
+    label: '1 month (0.8%)',
+    value: { time: 2629746, interest: 0.8 / 100 },
   },
   {
     id: 'TS-3',
-    label: '2 months (0.8%)',
-    value: { time: week * 8, interest: 0.8 / 10 },
+    label: '2 months (1.6%)',
+    value: { time: 5259492, interest: 1.6 / 100 },
   },
   {
     id: 'TS-4',
-    label: '3 months (1.2%)',
-    value: { time: week * 12, interest: 1.2 / 10 },
+    label: '3 months (2.4%)',
+    value: { time: 7889238, interest: 2.4 / 100 },
   },
   {
     id: 'TS-5',
-    label: '4 months (1.6%)',
-    value: { time: week * 16, interest: 1.6 / 10 },
+    label: '4 months (3.2%)',
+    value: { time: 10518984, interest: 3.2 / 100 },
   },
   {
     id: 'TS-6',
-    label: '5 months (2%)',
-    value: { time: week * 20, interest: 2 / 10 },
+    label: '5 months (4%)',
+    value: { time: 13148730, interest: 4 / 100 },
   },
   {
     id: 'TS-7',
-    label: '1 year (4.8%)',
-    value: { time: week * 52, interest: 4.8 / 10 },
+    label: '1 year (9.6%)',
+    value: { time: 31556952, interest: 9.6 / 100 },
   },
 ];
 
@@ -95,6 +95,7 @@ const NewSvCard = ({ setToggle }) => {
         cardId: payingCard?.id,
         totalAmount: formData.balance,
         timeDeposit: formData?.timeDeposit.time,
+        interest: formData?.timeDeposit.interest,
       })
     );
 

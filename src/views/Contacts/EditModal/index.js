@@ -11,6 +11,7 @@ import { selectContact } from 'core/selectors';
 import { ACB } from 'assets/images';
 
 import './style.scss';
+import { divideSpaceIdCard, removeNonNumeric } from 'utils/helpers';
 
 const options = [
   { id: 'OT1', label: 'EIGHT.Bank', value: 'EIGHT.Bank', icon: ACB },
@@ -36,7 +37,10 @@ const EditModal = ({ setToggle, contactData }) => {
 
   useEffect(() => {
     setValue('bank', contactData?.bank);
-    setValue('cardNumber', contactData?.cardNumber);
+    setValue(
+      'cardNumber',
+      divideSpaceIdCard(removeNonNumeric(contactData?.cardNumber))
+    );
     setValue('contactName', contactData?.contactName);
   }, []);
 

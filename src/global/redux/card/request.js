@@ -1,5 +1,10 @@
 import api from 'services/api';
-import { queryDocs } from 'utils/helpers';
+
+import {
+  deleteDocFireStore,
+  queryDocs,
+  updateDocFireStore,
+} from 'utils/helpers';
 
 const getCards = async (uid) => {
   const payingCardInfo = queryDocs({
@@ -18,16 +23,37 @@ const getCards = async (uid) => {
   return { payingCard: fetchCards[0], savingCards: fetchCards[1] };
 };
 
-const addSavingCard = async ({ cardId, totalAmount, timeDeposit }) => {
+const addSavingCard = async ({
+  cardId,
+  totalAmount,
+  timeDeposit,
+  interest,
+}) => {
   const {
     data: { savingCard },
   } = await api.post('/new-savingCard', {
     cardId,
     totalAmount,
     timeDeposit,
+    interest,
   });
 
   return savingCard;
 };
 
-export { addSavingCard, getCards };
+const rechargeSavingMoney = async ({
+  fromPayingCardId,
+  savingCardId,
+  currentBalance,
+  interestMoney,
+  totalAmount,
+}) => {
+  await updateDocFireStore({
+    collect: 'payingCards',
+    id: fromPayingCardId,
+    value: { balance: currentBalance + interestMoney + totalAmount },
+  });
+  await deleteDocFireStore({ collect: 'savingCards', id: savingCardId });
+};
+
+export { addSavingCard, getCards, rechargeSavingMoney };

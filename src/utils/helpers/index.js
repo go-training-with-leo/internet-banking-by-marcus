@@ -112,6 +112,7 @@ const updateDocFireStore = async ({ collect, id, value }) => {
     updateAt: serverTimestamp(),
   });
 };
+
 const getAllDocsInColl = async (collect) => {
   const querySnapshot = await getDocs(collection(db, collect));
 
@@ -121,6 +122,10 @@ const getAllDocsInColl = async (collect) => {
 
 const convertTimestamp = (timestamp) => {
   return moment(timestamp).format('HH:mm DD/MM/YYYY');
+};
+
+const convertDatetamp = (timestamp) => {
+  return moment(timestamp).format('DD/MM/YYYY');
 };
 
 const formatPhoneVN = (phoneNumber) => {
@@ -134,8 +139,16 @@ const getMainPageByRole = (role) => {
   return mainPagesRole[role] || null;
 };
 
+const compareDate = ({ currentDate, destDate }) => {
+  const currentTimeInSec = new Date(currentDate) / 1000;
+  const destTimeInSec = new Date(destDate) / 1000;
+  return currentTimeInSec >= destTimeInSec;
+};
+
 export {
   capitalizeFirstLetter,
+  compareDate,
+  convertDatetamp,
   convertTimestamp,
   deleteDocFireStore,
   divideSpaceIdCard,

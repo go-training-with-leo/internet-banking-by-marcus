@@ -8,13 +8,13 @@ import ListCardItem from 'components/ListCardItem';
 import Modal from 'components/Modal';
 import Radio from 'components/Radio';
 import Stepper from 'components/Stepper';
+import useMergeState from 'components/hooks/useMergeState';
 import { updateTransferInfo } from 'global/redux/transfer/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { get4LastDigit } from 'utils/helpers';
 import { selectAccount, selectCard } from 'core/selectors';
 
 import './style.scss';
-import useMergeState from 'components/hooks/useMergeState';
 
 const StepOne = ({ setToggle, next }) => {
   const dispatch = useDispatch();
@@ -93,15 +93,6 @@ const StepOne = ({ setToggle, next }) => {
             checked={formData.paymentMethod === 'paymentCard'}
             label='Use your payment card'
           />
-          <div className='disabled'>
-            <Radio
-              name='usingCard'
-              value='savingCard'
-              checked={formData.paymentMethod === 'savingCard'}
-              // onChange={(e) => setFormData({ paymentMethod: e.target.value })}
-              label='Use your saving cards'
-            />
-          </div>
         </div>
 
         <div className='saving-card-container'>

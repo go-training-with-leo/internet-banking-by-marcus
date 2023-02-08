@@ -1,6 +1,6 @@
 import PropType from 'prop-types';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 import DefaultButton from 'components/Button/Default';
 import Input from 'components/Input';
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAccount } from 'core/selectors';
 import { addNewCustomer } from 'global/redux/account/thunk';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { parseMoneyVnd, removeNonNumeric } from 'utils/helpers';
 import validBalance from './validation';
 
 import './style.scss';
@@ -21,9 +22,9 @@ const StepThree = ({ back, next }) => {
     isLoading: loading,
   } = useSelector(selectAccount);
   const {
-    register,
     handleSubmit,
     setValue,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validBalance),
@@ -50,12 +51,19 @@ const StepThree = ({ back, next }) => {
       <Stepper title='Intial balance' step='3'>
         Adjust intial value of balance
       </Stepper>
-      <Input
-        register={register}
+      <Controller
         name='balance'
-        label='Balance:'
-        placeholder='Enter your balance'
-        error={errors.balance?.message}
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          <Input
+            value={parseMoneyVnd(removeNonNumeric(value))}
+            onChange={(val) => onChange(val)}
+            name='balance'
+            label='Balance:'
+            placeholder='Enter your balance'
+            error={errors.balance?.message}
+          />
+        )}
       />
       <span>Or select an amount of money below:</span>
       <div className='balances-list'>

@@ -6,11 +6,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import Input from 'components/Input';
+import Loader from 'components/Loader';
 import Selection from 'components/Select';
 import { addContact, searchContact } from 'global/redux/contact/thunk';
 import { ACB } from 'assets/images';
 import { useDebounce } from 'rooks';
 import { selectAuth, selectContact } from 'core/selectors';
+import { divideSpaceIdCard, removeNonNumeric } from 'utils/helpers';
 import validContact from './validation';
 
 import './style.scss';
@@ -22,8 +24,7 @@ const options = [
 const AddContactModal = ({ setToggle }) => {
   const dispatch = useDispatch();
 
-  const { isLoading: loading, isSearchAccountLoading } =
-    useSelector(selectContact);
+  const { isLoading: loading, isSearchAccount } = useSelector(selectContact);
   const { currentUser } = useSelector(selectAuth);
   const {
     register,
@@ -38,7 +39,9 @@ const AddContactModal = ({ setToggle }) => {
   const handleGetName = async (cardNumber) => {
     const {
       payload: { status, accountName },
-    } = await dispatch(searchContact({ cardNumber }));
+    } = await dispatch(
+      searchContact({ cardNumber: removeNonNumeric(cardNumber) })
+    );
     if (status) {
       clearErrors('contactName');
       setValue('contactName', accountName);
@@ -54,7 +57,13 @@ const AddContactModal = ({ setToggle }) => {
     }
     const {
       payload: { status, message },
-    } = await dispatch(addContact({ email: currentUser.email, ...formData }));
+    } = await dispatch(
+      addContact({
+        ...formData,
+        email: currentUser.email,
+        cardNumber: removeNonNumeric(formData.cardNumber),
+      })
+    );
 
     if (status) {
       if (message === 'Success') {
@@ -102,6 +111,10 @@ const AddContactModal = ({ setToggle }) => {
               clearErrors();
               setValue('contactName', '');
             } else if (val.target.value?.length < 16) {
+              setValue(
+                'cardNumber',
+                divideSpaceIdCard(removeNonNumeric(val.target?.value))
+              );
               setError('cardNumber', {
                 type: 'custom',
                 message: 'Card number must be at least 16 characters',
@@ -109,21 +122,29 @@ const AddContactModal = ({ setToggle }) => {
               setValue('contactName', '');
             } else {
               clearErrors('cardNumber');
+              setValue(
+                'cardNumber',
+                divideSpaceIdCard(removeNonNumeric(val.target?.value))
+              );
               handleGetName(val.target?.value);
             }
-          }, 300)}
+          }, 500)}
           label={errors.cardNumber ? errors.cardNumber?.message : 'Card number'}
           placeholder='Enter the contact’s card number'
           error={errors.cardNumber && true}
         />
-        <Input
-          disabled={loading || isSearchAccountLoading}
-          register={register}
-          name='contactName'
-          error={errors?.contactName && true}
-          label={errors?.contactName ? errors?.contactName?.message : 'Name'}
-          placeholder='Enter the contact’s name'
-        />
+        {!isSearchAccount ? (
+          <Input
+            disabled={loading || isSearchAccount}
+            register={register}
+            name='contactName'
+            error={errors?.contactName && true}
+            label={errors?.contactName ? errors?.contactName?.message : 'Name'}
+            placeholder='Enter the contact’s name'
+          />
+        ) : (
+          <Loader large />
+        )}
         <div className='btn-modal'>
           <DefaultButton loading={loading} danger type='submit'>
             Create
