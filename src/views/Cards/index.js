@@ -158,6 +158,7 @@ const Cards = () => {
               {savingCards?.map((savingCard, index) => (
                 <ListCardItem
                   key={savingCard?.id}
+                  isCompleted={savingCard?.status === 'success'}
                   isActive={currentSavingCard?.id === savingCard?.id}
                   label={savingCard?.bank}
                   cardId={get4LastDigit(savingCard?.cardNumber)}
