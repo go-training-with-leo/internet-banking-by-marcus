@@ -1,0 +1,676 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Default Card Test card order 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="card-container napas-card visa-card master-card"
+      >
+        <div
+          class="card"
+          role="button"
+          tabindex="0"
+        >
+          <svg>
+            eightBank.svg
+          </svg>
+          <span
+            class="card-money"
+          >
+            1 500 000
+             VND
+          </span>
+          <div
+            class="card-info"
+          >
+            <div
+              class="info"
+            >
+              <span
+                class="info-id"
+              >
+                3212
+              </span>
+              <span
+                class="info-expire"
+              />
+            </div>
+            <svg
+              data-testid="master-card"
+            >
+              masterCard.svg
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="card-container napas-card visa-card master-card"
+    >
+      <div
+        class="card"
+        role="button"
+        tabindex="0"
+      >
+        <svg>
+          eightBank.svg
+        </svg>
+        <span
+          class="card-money"
+        >
+          1 500 000
+           VND
+        </span>
+        <div
+          class="card-info"
+        >
+          <div
+            class="info"
+          >
+            <span
+              class="info-id"
+            >
+              3212
+            </span>
+            <span
+              class="info-expire"
+            />
+          </div>
+          <svg
+            data-testid="master-card"
+          >
+            masterCard.svg
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Default Card Test loading card 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="card-container loading"
+      >
+        <div
+          class="card loading"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="loader-container"
+          >
+            <svg
+              class="loader medium"
+            >
+              loadingV2.svg
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="card-container loading"
+    >
+      <div
+        class="card loading"
+        role="button"
+        tabindex="0"
+      >
+        <div
+          class="loader-container"
+        >
+          <svg
+            class="loader medium"
+          >
+            loadingV2.svg
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Default Card Test valid props & napasCard 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="card-container napas-card"
+      >
+        <div
+          class="card"
+          role="button"
+          tabindex="0"
+        >
+          <svg>
+            eightBank.svg
+          </svg>
+          <span
+            class="card-money"
+          >
+            1 500 000
+             VND
+          </span>
+          <div
+            class="card-info"
+          >
+            <div
+              class="info"
+            >
+              <span
+                class="info-id"
+              >
+                3212
+              </span>
+              <span
+                class="info-expire"
+              />
+            </div>
+            <svg
+              data-testid="napas-card"
+            >
+              napas.svg
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="card-container napas-card"
+    >
+      <div
+        class="card"
+        role="button"
+        tabindex="0"
+      >
+        <svg>
+          eightBank.svg
+        </svg>
+        <span
+          class="card-money"
+        >
+          1 500 000
+           VND
+        </span>
+        <div
+          class="card-info"
+        >
+          <div
+            class="info"
+          >
+            <span
+              class="info-id"
+            >
+              3212
+            </span>
+            <span
+              class="info-expire"
+            />
+          </div>
+          <svg
+            data-testid="napas-card"
+          >
+            napas.svg
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Default Card Test visaCard props 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="card-container master-card"
+      >
+        <div
+          class="card"
+          role="button"
+          tabindex="0"
+        >
+          <svg>
+            eightBank.svg
+          </svg>
+          <span
+            class="card-money"
+          >
+            1 500 000
+             VND
+          </span>
+          <div
+            class="card-info"
+          >
+            <div
+              class="info"
+            >
+              <span
+                class="info-id"
+              >
+                3212
+              </span>
+              <span
+                class="info-expire"
+              />
+            </div>
+            <svg
+              data-testid="master-card"
+            >
+              masterCard.svg
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="card-container master-card"
+    >
+      <div
+        class="card"
+        role="button"
+        tabindex="0"
+      >
+        <svg>
+          eightBank.svg
+        </svg>
+        <span
+          class="card-money"
+        >
+          1 500 000
+           VND
+        </span>
+        <div
+          class="card-info"
+        >
+          <div
+            class="info"
+          >
+            <span
+              class="info-id"
+            >
+              3212
+            </span>
+            <span
+              class="info-expire"
+            />
+          </div>
+          <svg
+            data-testid="master-card"
+          >
+            masterCard.svg
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Default Card Test visaCard props 2`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="card-container visa-card"
+      >
+        <div
+          class="card"
+          role="button"
+          tabindex="0"
+        >
+          <svg>
+            eightBank.svg
+          </svg>
+          <span
+            class="card-money"
+          >
+            1 500 000
+             VND
+          </span>
+          <div
+            class="card-info"
+          >
+            <div
+              class="info"
+            >
+              <span
+                class="info-id"
+              >
+                3212
+              </span>
+              <span
+                class="info-expire"
+              />
+            </div>
+            <svg
+              data-testid="visa-card"
+              fill="white"
+            >
+              visa.svg
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="card-container visa-card"
+    >
+      <div
+        class="card"
+        role="button"
+        tabindex="0"
+      >
+        <svg>
+          eightBank.svg
+        </svg>
+        <span
+          class="card-money"
+        >
+          1 500 000
+           VND
+        </span>
+        <div
+          class="card-info"
+        >
+          <div
+            class="info"
+          >
+            <span
+              class="info-id"
+            >
+              3212
+            </span>
+            <span
+              class="info-expire"
+            />
+          </div>
+          <svg
+            data-testid="visa-card"
+            fill="white"
+          >
+            visa.svg
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

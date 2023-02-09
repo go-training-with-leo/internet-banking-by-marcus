@@ -1,118 +1,123 @@
 {
-	"name": "internet-banking-by-marcus",
-	"version": "0.1.0",
-	"private": true,
-	"dependencies": {
-		"@hookform/resolvers": "^2.9.10",
-		"@reduxjs/toolkit": "^1.9.1",
-		"@sentry/react": "^7.28.1",
-		"@sentry/tracing": "^7.28.1",
-		"@testing-library/dom": "^8.19.1",
-		"@testing-library/jest-dom": "^5.14.1",
-		"@testing-library/react": "^13.0.0",
-		"@testing-library/user-event": "^13.2.1",
-		"axios": "^1.2.2",
-		"classnames": "^2.3.2",
-		"cypress": "^12.1.0",
-		"date-fns": "^2.29.3",
-		"dotenv": "^16.0.3",
-		"firebase": "^9.15.0",
-		"i18next": "^22.4.6",
-		"lodash": "^4.17.21",
-		"moment": "^2.29.4",
-		"node-sass": "^8.0.0",
-		"normalize.css": "^8.0.1",
-		"prop-types": "^15.8.1",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"react-google-recaptcha": "^2.1.0",
-		"react-hook-form": "^7.41.0",
-		"react-hot-loader": "^4.13.1",
-		"react-i18next": "^12.1.1",
-		"react-redux": "^8.0.5",
-		"react-router-dom": "6.4.4",
-		"react-scripts": "5.0.1",
-		"react-select": "^5.7.0",
-		"react-toastify": "^9.1.1",
-		"redux-persist": "^6.0.0",
-		"reselect": "^4.1.7",
-		"rooks": "^7.4.3",
-		"uuid": "^9.0.0",
-		"web-vitals": "^2.1.0",
-		"yup": "^0.32.11"
-	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject",
-		"prepare": "husky install",
-		"storybook": "start-storybook -p 6006 -s public",
-		"build-storybook": "build-storybook -s public"
-	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		],
-		"overrides": [
-			{
-				"files": [
-					"**/*.stories.*"
-				],
-				"rules": {
-					"import/no-anonymous-default-export": "off"
-				}
-			}
-		]
-	},
-	"lint-staged": {
-		"**/*.{js,jsx,ts,tsx}": [
-			"npx prettier --write",
-			"npx eslint --fix"
-		]
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
-	"devDependencies": {
-		"@storybook/addon-actions": "^6.5.15",
-		"@storybook/addon-essentials": "^6.5.15",
-		"@storybook/addon-interactions": "^6.5.15",
-		"@storybook/addon-links": "^6.5.15",
-		"@storybook/builder-webpack5": "^6.5.15",
-		"@storybook/manager-webpack5": "^6.5.15",
-		"@storybook/node-logger": "^6.5.15",
-		"@storybook/preset-create-react-app": "^4.1.2",
-		"@storybook/react": "^6.5.15",
-		"@storybook/testing-library": "^0.0.13",
-		"@welldone-software/why-did-you-render": "^7.0.1",
-		"babel-plugin-named-exports-order": "^0.0.2",
-		"eslint": "^7.32.0 || ^8.2.0",
-		"eslint-config-airbnb": "^19.0.4",
-		"eslint-config-prettier": "8.5.0",
-		"eslint-plugin-import": "^2.25.3",
-		"eslint-plugin-jsx-a11y": "^6.5.1",
-		"eslint-plugin-react": "^7.28.0",
-		"eslint-plugin-react-hooks": "^4.3.0",
-		"eslint-plugin-sort-exports": "^0.8.0",
-		"eslint-plugin-storybook": "^0.6.8",
-		"husky": "^8.0.0",
-		"lint-staged": "^13.1.0",
-		"prettier": "2.8.1",
-		"webpack": "^5.75.0"
-	},
-	"main": "index.js",
-	"repository": "git@github.com-marcus:go-training-with-leo/internet-banking-by-marcus.git",
-	"author": "Marcus <marcus.nguyen.goldenowl@gmail.com>",
-	"license": "MIT"
+  "name": "internet-banking-by-marcus",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
+    "@reduxjs/toolkit": "^1.9.1",
+    "@sentry/react": "^7.28.1",
+    "@sentry/tracing": "^7.28.1",
+    "@testing-library/dom": "^8.19.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "axios": "^1.2.2",
+    "classnames": "^2.3.2",
+    "cypress": "^12.1.0",
+    "date-fns": "^2.29.3",
+    "dotenv": "^16.0.3",
+    "firebase": "^9.15.0",
+    "i18next": "^22.4.6",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "node-sass": "^8.0.0",
+    "normalize.css": "^8.0.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-google-recaptcha": "^2.1.0",
+    "react-hook-form": "^7.41.0",
+    "react-hot-loader": "^4.13.1",
+    "react-i18next": "^12.1.1",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "6.4.4",
+    "react-scripts": "5.0.1",
+    "react-select": "^5.7.0",
+    "react-toastify": "^9.1.1",
+    "redux-persist": "^6.0.0",
+    "reselect": "^4.1.7",
+    "rooks": "^7.4.3",
+    "uuid": "^9.0.0",
+    "web-vitals": "^2.1.0",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "prepare": "husky install",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "^.*.test.js.snap"
+    ]
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npx prettier --write",
+      "npx eslint --fix"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^6.5.15",
+    "@storybook/addon-essentials": "^6.5.15",
+    "@storybook/addon-interactions": "^6.5.15",
+    "@storybook/addon-links": "^6.5.15",
+    "@storybook/builder-webpack5": "^6.5.15",
+    "@storybook/manager-webpack5": "^6.5.15",
+    "@storybook/node-logger": "^6.5.15",
+    "@storybook/preset-create-react-app": "^4.1.2",
+    "@storybook/react": "^6.5.15",
+    "@storybook/testing-library": "^0.0.13",
+    "@welldone-software/why-did-you-render": "^7.0.1",
+    "babel-plugin-named-exports-order": "^0.0.2",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-sort-exports": "^0.8.0",
+    "eslint-plugin-storybook": "^0.6.8",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.1.0",
+    "prettier": "2.8.1",
+    "webpack": "^5.75.0"
+  },
+  "main": "index.js",
+  "repository": "git@github.com-marcus:go-training-with-leo/internet-banking-by-marcus.git",
+  "author": "Marcus <marcus.nguyen.goldenowl@gmail.com>",
+  "license": "MIT"
 }

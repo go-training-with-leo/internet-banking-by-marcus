@@ -32,7 +32,7 @@ const Input = ({
         withIcon &&
         (!error ? (
           type === 'password' ? (
-            <Locker width={15} height={15} />
+            <Locker data-testid='locker-icon' width={15} height={15} />
           ) : (
             <User width={15} height={15} fill='red' />
           )

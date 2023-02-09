@@ -16,6 +16,9 @@ const card = createSlice({
     isFetched: false,
   },
   reducers: {
+    updatePayingCard: (state, action) => {
+      state.payingCard = { ...action.payload };
+    },
     updateSavingCard: (state, action) => {
       const indexOfSavingCard = state.savingCards.findIndex(
         (savingCard) => savingCard.id === action.payload.id
@@ -132,5 +135,5 @@ const card = createSlice({
   },
 });
 
-export const { resetCards, updateSavingCard } = card.actions;
+export const { resetCards, updateSavingCard, updatePayingCard } = card.actions;
 export default card.reducer;

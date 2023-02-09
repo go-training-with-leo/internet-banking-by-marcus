@@ -60,6 +60,6 @@ describe('Test get4LastDigit function', () => {
 
 describe('Test formatPhoneVN function', () => {
   it('Test param', () => {
-    expect(formatPhoneVN('0813908117')).toEqual('+84813908117');
+    expect(formatPhoneVN('0813908117')).toEqual('+84 813908117');
   });
 });
