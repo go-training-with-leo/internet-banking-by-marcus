@@ -71,7 +71,7 @@ const EmployeeHistory = () => {
                   onChange(val);
                 }}
                 label='Email / Card number'
-                placeholder='Enter email or card number'
+                placeholder='Enter email'
               />
             )}
           />

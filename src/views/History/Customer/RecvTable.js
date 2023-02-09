@@ -8,7 +8,11 @@ import { ArrowDown } from 'assets/images';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCard, selectHistory } from 'core/selectors';
 import { getRecHistories } from 'global/redux/history/thunk';
-import { convertTimestamp, parseMoneyVnd } from 'utils/helpers';
+import {
+  convertTimestamp,
+  divideSpaceIdCard,
+  parseMoneyVnd,
+} from 'utils/helpers';
 
 const headerTable = (
   <HeaderTable>
@@ -45,7 +49,7 @@ const ReceiveTable = () => {
               {from?.accountName}
               <br />
               <br />
-              {from?.cardNumber}
+              {divideSpaceIdCard(from?.cardNumber)}
             </p>
           </RowCell>
           <RowCell>{parseMoneyVnd(totalAmount)} VND</RowCell>

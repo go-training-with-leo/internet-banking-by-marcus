@@ -1,75 +1,69 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Table, { TableRow } from 'components/Table';
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
 import RowCell from 'components/Table/RowCell';
-import { selectHistory } from 'core/selectors';
+import { ArrowDown, Filter } from 'assets/images';
 import { getAllHistories } from 'global/redux/history/thunk';
-import { useDispatch, useSelector } from 'react-redux';
-import { ArrowDown } from 'assets/images';
+import { selectHistory } from 'core/selectors';
 import {
   convertTimestamp,
   divideSpaceIdCard,
   parseMoneyVnd,
 } from 'utils/helpers';
 
-const DebtRepayTab = ({ customer }) => {
+const TransferTab = ({ customer }) => {
   const dispatch = useDispatch();
 
   const { allHistories, isAllHistoriesFetched: isFetched } =
     useSelector(selectHistory);
 
-  const [debts, setDebts] = useState([]);
+  const [transfer, setTransfer] = useState([]);
 
   useEffect(() => {
     if (!isFetched) {
       dispatch(getAllHistories());
     } else {
-      const filteredDebts = allHistories
-        ?.filter(
-          (history) =>
-            history.type === 'DEBT' &&
-            (history?.from?.cardNumber === customer?.cardNumber ||
-              history?.dest?.cardNumber === customer?.cardNumber)
-        )
-        ?.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
-      setDebts([...filteredDebts]);
+      const filteredTransfer = allHistories?.filter(
+        (history) =>
+          history.from.cardNumber === customer?.cardNumber &&
+          history.type === 'TRANSFER'
+      );
+      setTransfer(filteredTransfer);
     }
   }, [customer]);
 
   const headerTable = (
     <HeaderTable>
       <HeaderCell> </HeaderCell>
-      <HeaderCell>Lender/Borrower</HeaderCell>
+      <HeaderCell>Receive account</HeaderCell>
       <HeaderCell>Amount</HeaderCell>
+      <HeaderCell>Bank</HeaderCell>
       <HeaderCell>
-        Type <ArrowDown />
+        Status <Filter fill='white' />
       </HeaderCell>
-      <HeaderCell>Status</HeaderCell>
       <HeaderCell>
         Date <ArrowDown />
       </HeaderCell>
     </HeaderTable>
   );
-
-  return debts?.length > 0 ? (
-    <Table widths={[10, 20, 20, 15, 15, 30]} headerTable={headerTable}>
-      {debts?.map(({ id, from, totalAmount, status, createdAt }, index) => (
-        <TableRow key={id}>
+  return transfer?.length > 0 ? (
+    <Table widths={[10, 20, 20, 15, 15, 20]} headerTable={headerTable}>
+      {transfer?.map(({ dest, totalAmount, status, createdAt }, index) => (
+        <TableRow key={createdAt}>
           <RowCell>{index + 1}</RowCell>
           <RowCell>
             <p>
-              {from?.accountName}
+              {dest?.contactName}
               <br />
               <br />
-              {divideSpaceIdCard(from?.cardNumber)}
+              {divideSpaceIdCard(dest?.cardNumber)}
             </p>
           </RowCell>
           <RowCell>{parseMoneyVnd(totalAmount)} VND</RowCell>
-          <RowCell title='debtType'>
-            {from?.cardNumber === customer?.cardNumber ? 'debt' : 'loan'}
-          </RowCell>
+          <RowCell>{dest?.bank}</RowCell>
           <RowCell title='status'>{status}</RowCell>
           <RowCell>
             {createdAt?.seconds
@@ -80,8 +74,8 @@ const DebtRepayTab = ({ customer }) => {
       ))}
     </Table>
   ) : (
-    <span>No debts</span>
+    <span>No Receive</span>
   );
 };
 
-export default DebtRepayTab;
+export default TransferTab;

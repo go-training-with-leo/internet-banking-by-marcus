@@ -1,0 +1,46 @@
+@import "assets/scss/variables.scss";
+@import "assets/scss/mixins.scss";
+@import "assets/scss/extends.scss";
+
+.history-info-view {
+  @extend %view;
+  color: white;
+  @include setFlex(column, null, null, 50px, null);
+  .navigate-back {
+    @include setFlex(row, null, center, 15px, null);
+    font-weight: 700;
+    font-size: 15px;
+    color: $red-orange;
+    cursor: pointer;
+    transition: all 0.2s linear;
+
+    &:hover {
+      color: $pure-white;
+    }
+  }
+
+  .account-info {
+    @include setFlex(row, null, center, 50px, null);
+    color: $pure-white;
+  }
+
+  .tabs {
+    @include setFlex(row, null, center, 130px, null);
+    color: $pure-white;
+    cursor: pointer;
+    .active {
+      border-bottom: $pure-white 2px solid;
+    }
+  }
+
+  .history-info-table {
+    width: 100%;
+    max-height: 60vh;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+       display: none;
+    }
+  }
+}

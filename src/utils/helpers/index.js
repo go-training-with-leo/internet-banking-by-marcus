@@ -132,7 +132,7 @@ const formatPhoneVN = (phoneNumber) => {
   if (!phoneNumber) {
     return null;
   }
-  return `+84${phoneNumber.slice(1, phoneNumber.length)}`;
+  return `+84 ${phoneNumber.slice(1, phoneNumber.length)}`;
 };
 
 const getMainPageByRole = (role) => {

@@ -6,6 +6,7 @@ import Modal from 'components/Modal';
 import {
   convertTimestamp,
   divideSpaceIdCard,
+  formatPhoneVN,
   parseMoneyVnd,
 } from 'utils/helpers';
 
@@ -26,7 +27,7 @@ const AccountInfoModal = ({ setToggle, accountDetail }) => {
         </div>
         <div className='account-info-row'>
           <span className='title'>Phone:</span>
-          <span>{accountDetail?.phoneNumber}</span>
+          <span>{formatPhoneVN(accountDetail?.phoneNumber)}</span>
         </div>
         <div className='account-info-row'>
           <span className='title'>Card Number:</span>
