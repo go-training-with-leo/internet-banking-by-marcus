@@ -137,14 +137,14 @@ const Cards = () => {
                       className='action'
                       width={40}
                       height={40}
-                      fill='white'
+                      fill='red'
                       onClick={handleShowDetail}
                     />
                     <CreditCardDone
                       className='action'
                       width={40}
                       height={40}
-                      fill='#07911e'
+                      fill='red'
                       onClick={handleShowDeposit}
                     />
                   </div>
