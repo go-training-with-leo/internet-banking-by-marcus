@@ -29,7 +29,7 @@ const SettleSuccess = ({ setToggle, cardDetail }) => {
   };
 
   return (
-    <Modal title='Deposit successful' setToggle={setToggle} cancel clickOutSide>
+    <Modal title='Settle information' setToggle={setToggle} cancel clickOutSide>
       <div className='success-modal'>
         <div className='success-info-row'>
           <span className='title'>Saving card number:</span>
