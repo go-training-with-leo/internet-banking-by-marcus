@@ -24,9 +24,6 @@ const TimeTracking = ({ currentTime, min, max }) => {
         list='steplist'
         value={currentTime / 1000}
       />
-      {/* <span className='label-tracking'>
-        {convertDatetamp(currentTime)}
-      </span> */}
 
       <div className='ticks'>
         <span className='o_txt'>
