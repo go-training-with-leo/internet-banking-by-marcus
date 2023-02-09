@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Controller, useForm } from 'react-hook-form';
 
 import Input from 'components/Input';
 import Table, { TableRow } from 'components/Table';
@@ -11,11 +12,11 @@ import RowCell from 'components/Table/RowCell';
 import { selectAccount, selectAuth } from 'core/selectors';
 import { CashAdd, Info, Search } from 'assets/images';
 import { getCustomerAccounts } from 'global/redux/account/thunk';
-
-import './style.scss';
-import { Controller, useForm } from 'react-hook-form';
+import { formatPhoneVN } from 'utils/helpers';
 import AccountInfoModal from './AccountInfoModal';
 import RechargeModal from './RechargeModal';
+
+import './style.scss';
 
 const Accounts = () => {
   const dispatch = useDispatch();
@@ -81,7 +82,7 @@ const Accounts = () => {
                   onChange(val);
                 }}
                 label='Email / Card number'
-                placeholder='Enter email or card number'
+                placeholder='Enter email'
               />
             )}
           />
@@ -99,7 +100,9 @@ const Accounts = () => {
               <TableRow key={customer.id}>
                 <RowCell>{index + 1}</RowCell>
                 <RowCell title='accountName'>{customer.accountName}</RowCell>
-                <RowCell title='phoneNumber'>{customer.phoneNumber}</RowCell>
+                <RowCell title='phoneNumber'>
+                  {formatPhoneVN(customer.phoneNumber)}
+                </RowCell>
                 <RowCell title='email'>{customer.email}</RowCell>
                 <RowCell title='actions'>
                   <CashAdd

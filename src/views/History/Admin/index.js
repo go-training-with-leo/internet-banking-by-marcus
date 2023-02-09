@@ -1,6 +1,8 @@
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Search } from 'assets/images';
 import IconButton from 'components/Button/Icon';
-import useToggle from 'components/hooks/useToggle';
 import Input from 'components/Input';
 import Loader from 'components/Loader';
 import Table, { TableRow } from 'components/Table';
@@ -9,19 +11,17 @@ import HeaderCell from 'components/Table/HeaderCell';
 import RowCell from 'components/Table/RowCell';
 import { selectAccount, selectAuth } from 'core/selectors';
 import { getCustomerAccounts } from 'global/redux/account/thunk';
-import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import DetailModal from './DetailModal';
 
 import './style.scss';
+import { formatPhoneVN } from 'utils/helpers';
 
 const AdminHistory = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [accountInfo, setAccountInfo] = useState([]);
-  const [customerDetail, setCustomerDetail] = useState({});
-  const [showModal, setShowModal] = useToggle();
 
   const { control, getValues } = useForm();
   const { currentUser } = useSelector(selectAuth);
@@ -42,11 +42,6 @@ const AdminHistory = () => {
       return account?.email.toLowerCase().includes(inputValue?.toLowerCase());
     });
     setAccountInfo(filteredAccounts);
-  };
-
-  const handleShowDetail = (customer) => {
-    setCustomerDetail(customer);
-    setShowModal();
   };
 
   useEffect(() => {
@@ -75,7 +70,7 @@ const AdminHistory = () => {
                   onChange(val);
                 }}
                 label='Email / Card number'
-                placeholder='Enter email or card number'
+                placeholder='Enter email'
               />
             )}
           />
@@ -92,20 +87,19 @@ const AdminHistory = () => {
           {accountInfo?.map((customer, index) => (
             <TableRow
               key={customer?.id}
-              onClick={() => handleShowDetail(customer)}
+              onClick={() => navigate(`/admin/history/${customer?.id}`)}
               isHover
             >
               <RowCell>{index + 1}</RowCell>
               <RowCell title='account'>{customer?.accountName}</RowCell>
-              <RowCell title='phone'>{customer?.phoneNumber}</RowCell>
+              <RowCell title='phone'>
+                {formatPhoneVN(customer?.phoneNumber)}
+              </RowCell>
               <RowCell title='email'>{customer?.email}</RowCell>
             </TableRow>
           ))}
         </Table>
       </div>
-      {showModal && (
-        <DetailModal customerDetail={customerDetail} setToggle={setShowModal} />
-      )}
     </div>
   ) : (
     <Loader large />

@@ -9,6 +9,7 @@ const Debts = lazy(() => import('views/Debts'));
 const Employees = lazy(() => import('views/Employees'));
 const EmployeeHistory = lazy(() => import('views/History/Employee'));
 const HistoryInfo = lazy(() => import('views/History/Employee/HistoryInfo'));
+const AdminHistoryInfo = lazy(() => import('views/History/Admin/HistoryInfo'));
 const AdminHistory = lazy(() => import('views/History/Admin'));
 const Transfer = lazy(() => import('views/Transfer'));
 
@@ -80,6 +81,12 @@ const routes = [
     title: 'Employees',
     path: '/employees',
     element: <Employees />,
+    roles: ['ADMIN'],
+  },
+  {
+    id: 'historyAdmin',
+    path: '/admin/history/:id',
+    element: <AdminHistoryInfo />,
     roles: ['ADMIN'],
   },
   {

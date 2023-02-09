@@ -41,7 +41,10 @@ const DefaultLayout = () => {
     headerItems[userRole].find(({ path }) => path === pathname) || {};
 
   const showTitle = () => {
-    if (pathname.includes('/employee/history/')) {
+    if (
+      pathname.includes('/employee/history/') ||
+      pathname.includes('/admin/history/')
+    ) {
       return 'History';
     }
     return titleHeader;

@@ -47,7 +47,7 @@ const HistoryInfo = () => {
         tabIndex={0}
       >
         <Back />
-        <span>Back to customer filter</span>
+        <span>Back to customerr filter</span>
       </div>
       <div className='account-info'>
         <span>Account: </span>

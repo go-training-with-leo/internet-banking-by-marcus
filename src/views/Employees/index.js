@@ -13,6 +13,7 @@ import useToggle from 'components/hooks/useToggle';
 import { Info, Search } from 'assets/images';
 import { selectAccount, selectAuth } from 'core/selectors';
 import { getEmplAccounts } from 'global/redux/account/thunk';
+import { formatPhoneVN } from 'utils/helpers';
 import EmplDetail from './EmplDetail';
 
 import './style.scss';
@@ -94,7 +95,7 @@ const Employees = () => {
             <TableRow key={employee?.createdAt?.seconds}>
               <RowCell>{index + 1}</RowCell>
               <RowCell>{employee?.accountName}</RowCell>
-              <RowCell>{employee?.phoneNumber}</RowCell>
+              <RowCell>{formatPhoneVN(employee?.phoneNumber)}</RowCell>
               <RowCell>{employee?.email}</RowCell>
               <RowCell>
                 <Info
