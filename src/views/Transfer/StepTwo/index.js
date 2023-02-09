@@ -7,7 +7,7 @@ import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
 import Radio from 'components/Radio';
 import Stepper from 'components/Stepper';
-import { selectTransfer } from 'core/selectors';
+import { selectAccount, selectCard, selectTransfer } from 'core/selectors';
 import { updateTransferInfo } from 'global/redux/transfer/slice';
 import ContactsTable from './ContactsTable';
 import NewContact from './NewContact';
@@ -17,12 +17,14 @@ import './style.scss';
 const EXIST_CONTACT = 'existContact';
 const NEW_CONTACT = 'newContact';
 
-const StepTwo = ({ setToggle, back, next }) => {
+const StepTwo = ({ setToggle, next }) => {
   const dispatch = useDispatch();
 
   const [radio, setRadio] = useState(EXIST_CONTACT);
 
   const { handleSubmit } = useForm();
+  const { payingCard } = useSelector(selectCard);
+  const { currentAccount } = useSelector(selectAccount);
   const { transferInfo } = useSelector(selectTransfer);
 
   const tabs = {
@@ -37,6 +39,21 @@ const StepTwo = ({ setToggle, back, next }) => {
 
   const handleNext = () => {
     if (transferInfo?.dest?.contactId) {
+      const updateData = {
+        paymentMethod: 'paymentCard',
+        from: {
+          cardNumber: payingCard?.cardNumber,
+          cardId: payingCard?.id,
+          accountName: currentAccount?.accountName,
+          bank: 'EIGHT.Bank',
+        },
+      };
+
+      dispatch(
+        updateTransferInfo({
+          ...updateData,
+        })
+      );
       next();
     }
   };
@@ -66,7 +83,7 @@ const StepTwo = ({ setToggle, back, next }) => {
         <div className='step-two-container'>{tabs[radio]}</div>
         <div className='btn-group'>
           <div className='step-two-btn'>
-            <DefaultButton onClick={back}>Back</DefaultButton>
+            <DefaultButton onClick={setToggle}>Cancel</DefaultButton>
           </div>
           <div className='step-two-btn'>
             <DefaultButton
@@ -84,13 +101,11 @@ const StepTwo = ({ setToggle, back, next }) => {
 
 StepTwo.defaultProps = {
   setToggle: () => {},
-  back: () => {},
   next: () => {},
 };
 
 StepTwo.propTypes = {
   setToggle: PropTypes.func,
-  back: PropTypes.func,
   next: PropTypes.func,
 };
 

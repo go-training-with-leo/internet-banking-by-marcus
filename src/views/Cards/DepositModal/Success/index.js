@@ -9,10 +9,31 @@ import {
   divideSpaceIdCard,
   parseMoneyVnd,
 } from 'utils/helpers';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCard } from 'core/selectors';
+import { rechargeSavingMoney } from 'global/redux/card/thunk';
 
 const Success = ({ setToggle, cardDetail }) => {
+  const dispatch = useDispatch();
+
+  const { isDeleteSavingCardLoading: isLoading } = useSelector(selectCard);
+
+  const handleDeposit = async () => {
+    const {
+      payload: { status },
+    } = await dispatch(rechargeSavingMoney(cardDetail));
+    if (status) {
+      setToggle();
+    }
+  };
+
   return (
-    <Modal title='Deposit successful' setToggle={setToggle} cancel clickOutSide>
+    <Modal
+      title='Deposit information'
+      setToggle={setToggle}
+      cancel
+      clickOutSide
+    >
       <div className='success-modal'>
         <div className='success-info-row'>
           <span className='title'>Saving card number:</span>
@@ -56,7 +77,7 @@ const Success = ({ setToggle, cardDetail }) => {
             )}
           </span>
         </div>
-        <DefaultButton onClick={setToggle} danger>
+        <DefaultButton loading={isLoading} onClick={handleDeposit} danger>
           OK
         </DefaultButton>
       </div>
