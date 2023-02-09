@@ -20,11 +20,15 @@ const TimeTracking = ({ currentTime, min, max }) => {
         type='range'
         min={minDateInSeconds}
         max={maxDateInSeconds}
-        disabled
         list='steplist'
         value={currentTime / 1000}
       />
 
+      <div className='range__output' aria-hidden='true' data-tip>
+        <div className='range__output-value-track'>
+          <div className='range__output-values' data-values />
+        </div>
+      </div>
       <div className='ticks'>
         <span className='o_txt'>
           {convertDatetamp(minDateInSeconds * 1000)}

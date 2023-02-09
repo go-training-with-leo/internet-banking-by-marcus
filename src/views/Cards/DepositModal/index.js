@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { rechargeSavingMoney } from 'global/redux/card/thunk';
 import { selectCard } from 'core/selectors';
 import Success from './Success';
+import SettleSuccess from './SettleSuccess';
 
 import './style.scss';
 
@@ -23,6 +24,7 @@ const DepositModal = ({ setToggle, cardDetail }) => {
   const currentTime = new Date().getTime();
 
   const [step, setStep] = useState(DEPOSIT);
+  const [settleData, setSettleData] = useState({});
 
   const { payingCard, isDeleteSavingCardLoading: loading } =
     useSelector(selectCard);
@@ -50,22 +52,19 @@ const DepositModal = ({ setToggle, cardDetail }) => {
     }
   };
 
-  const handleSettle = async () => {
-    const {
-      payload: { status },
-    } = await dispatch(
-      rechargeSavingMoney({
-        fromPayingCardId: cardDetail?.fromPayingCard,
-        savingCardId: cardDetail?.id,
-        currentBalance: payingCard?.balance,
-        interestMoney:
-          (cardDetail.balance * (0.03 / 100) * calcInterestTime) / 31104000,
-        totalAmount: cardDetail?.balance,
-      })
-    );
-    if (status) {
-      setStep(SUCCESS_SETTLE);
-    }
+  const handleSettle = () => {
+    const depositSaving = {
+      ...cardDetail,
+      fromPayingCardId: cardDetail?.fromPayingCard,
+      savingCardId: cardDetail?.id,
+      currentBalance: payingCard?.balance,
+      interest: 0.03 / 100,
+      interestMoney:
+        (cardDetail.balance * (0.03 / 100) * calcInterestTime) / 31104000,
+      totalAmount: cardDetail?.balance,
+    };
+    setSettleData(depositSaving);
+    setStep(SUCCESS_SETTLE);
   };
 
   const modals = {
@@ -131,15 +130,7 @@ const DepositModal = ({ setToggle, cardDetail }) => {
     ),
     SUCCESS_DEPOSIT: <Success setToggle={setToggle} cardDetail={cardDetail} />,
     SUCCESS_SETTLE: (
-      <Success
-        setToggle={setToggle}
-        cardDetail={{
-          ...cardDetail,
-          interest: 0.03 / 100,
-          interestMoney:
-            (cardDetail.balance * (0.03 / 100) * calcInterestTime) / 31104000,
-        }}
-      />
+      <SettleSuccess setToggle={setToggle} cardDetail={settleData} />
     ),
   };
 
