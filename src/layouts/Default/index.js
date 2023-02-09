@@ -14,7 +14,10 @@ import { getLocalStorage } from 'utils/helpers';
 import { logOut } from 'global/redux/auth/thunk';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { getAllNotifs } from 'global/redux/notification/thunk';
-import { selectNotif } from 'core/selectors';
+import { selectAuth, selectNotif } from 'core/selectors';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { db } from 'services/firebase';
+import { updatePayingCard } from 'global/redux/card/slice';
 import headerItems from './headerItems';
 import {
   sideBarItems as sideBarByRole,
@@ -31,6 +34,7 @@ const DefaultLayout = () => {
 
   const { pathname } = useLocation();
   const { isFetched } = useSelector(selectNotif);
+  const { currentUser } = useSelector(selectAuth);
 
   const sideBarItems = {
     items: sideBarByRole[userRole],
@@ -61,6 +65,23 @@ const DefaultLayout = () => {
       dispatch(getAllNotifs());
     }
   }, [isFetched]);
+
+  useEffect(() => {
+    const q = query(
+      collection(db, 'payingCards'),
+      where('email', '==', currentUser?.email ? currentUser?.email : '')
+    );
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === 'modified') {
+          const data = change.doc.data();
+          dispatch(updatePayingCard(data));
+          console.warn(data);
+        }
+      });
+    });
+    return () => unsubscribe();
+  }, [currentUser]);
 
   return (
     <div>
