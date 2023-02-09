@@ -12,7 +12,7 @@ const Modal = ({ title, cancel, setToggle, children, clickOutSide, large }) => {
       className={classNames('modal-container')}
       role='dialog'
       onClick={() => {
-        if (clickOutSide) setToggle(false);
+        if (clickOutSide) setToggle();
       }}
     >
       <div

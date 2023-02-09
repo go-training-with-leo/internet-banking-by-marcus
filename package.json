@@ -68,7 +68,10 @@
   },
   "jest": {
     "coveragePathIgnorePatterns": [
-      "^.*.test.js.snap"
+      "^.*.test.js.snap",
+			"^.*\\.stories\\.[jt]sx?$",
+			"src/components/hooks",
+			"src/components/Select/styleSelect.js"
     ]
   },
   "lint-staged": {
