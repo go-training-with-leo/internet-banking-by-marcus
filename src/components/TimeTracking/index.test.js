@@ -3,29 +3,19 @@ import { render } from '@testing-library/react';
 import TimeTracking from '.';
 
 describe('Time tracking', () => {
+  const currentTime = 10000;
+  const min = 5000;
+  const max = 15000;
   it('Props valid', () => {
-    const currentTime = new Date().getTime();
     const tree = render(
-      <TimeTracking
-        currentTime={currentTime}
-        min={currentTime}
-        max={currentTime}
-      />
+      <TimeTracking currentTime={currentTime} min={min} max={max} />
     );
 
     const timeTracking = tree.container.querySelector('input.slider');
-    const tick = tree.container.querySelector('span.o_txt');
 
-    expect(timeTracking).toHaveAttribute(
-      'min',
-      String(Math.floor(currentTime / 1000))
-    );
-    expect(timeTracking).toHaveAttribute(
-      'max',
-      String(Math.floor(currentTime / 1000))
-    );
+    expect(timeTracking).toHaveAttribute('min', String(Math.floor(min / 1000)));
+    expect(timeTracking).toHaveAttribute('max', String(Math.floor(max / 1000)));
     expect(timeTracking).toHaveAttribute('value', String(currentTime / 1000));
-    expect(tick).toHaveTextContent('09/02/2023');
 
     expect(tree).toMatchSnapshot();
   });

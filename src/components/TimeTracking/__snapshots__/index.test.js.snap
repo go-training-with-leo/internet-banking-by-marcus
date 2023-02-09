@@ -15,11 +15,11 @@ Object {
           class="slider"
           disabled=""
           list="steplist"
-          max="1675932937"
-          min="1675932937"
+          max="15"
+          min="5"
           readonly=""
           type="range"
-          value="1675932937.018"
+          value="10"
         />
         <div
           class="ticks"
@@ -27,17 +27,17 @@ Object {
           <span
             class="o_txt"
           >
-            09/02/2023
+            01/01/1970
           </span>
           <span
             class="o_txt"
           >
-            09/02/2023
+            01/01/1970
           </span>
           <span
             class="o_txt"
           >
-            09/02/2023
+            01/01/1970
           </span>
         </div>
       </div>
@@ -54,11 +54,11 @@ Object {
         class="slider"
         disabled=""
         list="steplist"
-        max="1675932937"
-        min="1675932937"
+        max="15"
+        min="5"
         readonly=""
         type="range"
-        value="1675932937.018"
+        value="10"
       />
       <div
         class="ticks"
@@ -66,17 +66,17 @@ Object {
         <span
           class="o_txt"
         >
-          09/02/2023
+          01/01/1970
         </span>
         <span
           class="o_txt"
         >
-          09/02/2023
+          01/01/1970
         </span>
         <span
           class="o_txt"
         >
-          09/02/2023
+          01/01/1970
         </span>
       </div>
     </div>
