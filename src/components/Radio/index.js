@@ -17,12 +17,7 @@ const Radio = ({ name, label, value, onChange, checked }) => {
         />
         <span className={classNames('pseudo-input', { dot: checked })} />
       </div>
-      <span
-        onChange={() => onChange(value)}
-        className={classNames('label', { hide: !label })}
-      >
-        {label}
-      </span>
+      <span className={classNames('label', { hide: !label })}>{label}</span>
     </span>
   );
 };
