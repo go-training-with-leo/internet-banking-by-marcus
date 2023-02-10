@@ -19,7 +19,7 @@ const StepTwo = ({ back, next }) => {
 
   const {
     newAccount: { email },
-    isLoading: loading,
+    isAddLoading: loading,
   } = useSelector(selectAccount);
   const {
     register,

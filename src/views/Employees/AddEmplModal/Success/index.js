@@ -7,6 +7,7 @@ import { selectAccount } from 'core/selectors';
 
 import './style.scss';
 import { resetAccount } from 'global/redux/account/slice';
+import { replaceAll } from 'utils/helpers';
 
 const Success = ({ setToggle }) => {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const Success = ({ setToggle }) => {
         </div>
         <div className='tab-info-row'>
           <span className='title'>Password:</span>
-          <span>{password}</span>
+          <span>{replaceAll({ text: password, replacement: '*' })}</span>
         </div>
       </div>
       <span>Personal information</span>

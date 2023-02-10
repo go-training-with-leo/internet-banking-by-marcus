@@ -99,13 +99,12 @@ Object {
       <div
         class="status pending unpaid"
       >
-        <svg
-          fill="yellow"
+        <img
+          alt="clock"
           height="20"
+          src="clock.png"
           width="20"
-        >
-          time.svg
-        </svg>
+        />
         <span>
           Pending
         </span>
@@ -116,13 +115,12 @@ Object {
     <div
       class="status pending unpaid"
     >
-      <svg
-        fill="yellow"
+      <img
+        alt="clock"
         height="20"
+        src="clock.png"
         width="20"
-      >
-        time.svg
-      </svg>
+      />
       <span>
         Pending
       </span>

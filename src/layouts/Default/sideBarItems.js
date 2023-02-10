@@ -67,7 +67,7 @@ const sideBarItems = {
     {
       id: 'customerHistory',
       label: 'History',
-      icon: <Clock width={20} height={20} />,
+      icon: <img src={Clock} width={20} height={20} alt='clock' />,
       navigateTo: '/customer/history',
     },
   ],

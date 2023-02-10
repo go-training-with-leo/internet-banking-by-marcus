@@ -34,7 +34,7 @@ const Status = ({
         </>
       ) : pending ? (
         <>
-          <Clock width={20} height={20} fill='yellow' />
+          <img src={Clock} width={20} height={20} alt='clock' />
           <span>Pending</span>
         </>
       ) : success ? (
@@ -60,7 +60,7 @@ const Status = ({
       ) : (
         unpaid && (
           <>
-            <Clock width={20} height={20} fill='yellow' />
+            <img src={Clock} width={20} height={20} alt='clock' />
             <span>Unpaid</span>
           </>
         )
