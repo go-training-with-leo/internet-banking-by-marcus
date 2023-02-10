@@ -73,7 +73,9 @@
 			"src/components/hooks",
 			"src/components/Select/styleSelect.js",
 			"src/components/Notification",
-			"src/components/CheckOnline"
+			"src/components/CheckOnline",
+			"src/components/ListCards/Horizontal",
+			"src/components/ListCardItem"
     ]
   },
   "lint-staged": {
