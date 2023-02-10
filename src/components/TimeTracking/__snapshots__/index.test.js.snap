@@ -13,7 +13,6 @@ Object {
         </h1>
         <input
           class="slider"
-          disabled=""
           list="steplist"
           max="15"
           min="5"
@@ -21,6 +20,20 @@ Object {
           type="range"
           value="10"
         />
+        <div
+          aria-hidden="true"
+          class="range__output"
+          data-tip="true"
+        >
+          <div
+            class="range__output-value-track"
+          >
+            <div
+              class="range__output-values"
+              data-values="true"
+            />
+          </div>
+        </div>
         <div
           class="ticks"
         >
@@ -52,7 +65,6 @@ Object {
       </h1>
       <input
         class="slider"
-        disabled=""
         list="steplist"
         max="15"
         min="5"
@@ -60,6 +72,20 @@ Object {
         type="range"
         value="10"
       />
+      <div
+        aria-hidden="true"
+        class="range__output"
+        data-tip="true"
+      >
+        <div
+          class="range__output-value-track"
+        >
+          <div
+            class="range__output-values"
+            data-values="true"
+          />
+        </div>
+      </div>
       <div
         class="ticks"
       >

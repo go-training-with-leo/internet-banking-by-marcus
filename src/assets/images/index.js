@@ -5,7 +5,6 @@ import { ReactComponent as CreditCardDone } from 'assets/images/icons/creditCard
 import { ReactComponent as CreditCardGradient } from 'assets/images/icons/creditCardGradient.svg';
 import { ReactComponent as Transfer } from 'assets/images/icons/transfer.svg';
 import { ReactComponent as Exit } from 'assets/images/icons/exit.svg';
-import { ReactComponent as Clock } from 'assets/images/icons/time.svg';
 import { ReactComponent as DeleteIcon } from 'assets/images/icons/delete.svg';
 import { ReactComponent as Edit } from 'assets/images/icons/edit.svg';
 import { ReactComponent as Cash } from 'assets/images/icons/cash.svg';
@@ -36,6 +35,7 @@ import { ReactComponent as Napas } from 'assets/images/icons/napas.svg';
 
 import Eye from 'assets/images/icons/eye.png';
 import EyeCross from 'assets/images/icons/eyeCross.png';
+import Clock from 'assets/images/icons/clock.png';
 
 import { ReactComponent as ACB } from 'assets/images/icons/acb.svg';
 

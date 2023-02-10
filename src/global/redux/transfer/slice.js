@@ -11,7 +11,7 @@ const transfer = createSlice({
   name: 'transfer',
   initialState: {
     transfers: [],
-    transferInfo: {},
+    transferInfo: { paymentMethod: 'paymentCard' },
     isLoading: false,
     isFetched: false,
   },
@@ -20,8 +20,9 @@ const transfer = createSlice({
       state.transferInfo = { ...state.transferInfo, ...action.payload };
     },
     resetTransferInfo: (state) => {
-      state.transferInfo = {};
+      state.transferInfo = { paymentMethod: 'paymentCard' };
       state.isLoading = false;
+      state.isFetched = false;
     },
   },
   extraReducers: {

@@ -17,7 +17,7 @@ import './style.scss';
 const StepOne = ({ setToggle, next }) => {
   const dispatch = useDispatch();
 
-  const { isLoading: loading } = useSelector(selectAccount);
+  const { isAddLoading: loading } = useSelector(selectAccount);
 
   const {
     register,

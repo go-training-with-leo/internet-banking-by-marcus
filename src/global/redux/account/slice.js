@@ -19,6 +19,7 @@ const account = createSlice({
     currentAccount: {},
     isLoading: false,
     isUpdateLoading: false,
+    isAddLoading: false,
     isFetched: false,
   },
   reducers: {
@@ -31,24 +32,24 @@ const account = createSlice({
   },
   extraReducers: {
     [existEmail.pending]: (state) => {
-      state.isLoading = true;
+      state.isAddLoading = true;
     },
     [existEmail.rejected]: (state) => {
-      state.isLoading = false;
+      state.isAddLoading = false;
     },
     [existEmail.fulfilled]: (state, action) => {
       state.newAccount = { ...state.newAccount, email: action.payload?.email };
-      state.isLoading = false;
+      state.isAddLoading = false;
     },
     [addNewEmployee.pending]: (state) => {
-      state.isLoading = true;
+      state.isAddLoading = true;
     },
     [addNewEmployee.rejected]: (state) => {
-      state.isLoading = false;
+      state.isAddLoading = false;
     },
     [addNewEmployee.fulfilled]: (state, action) => {
       state.newAccount = { ...state.newAccount, ...action.payload };
-      state.isLoading = false;
+      state.isAddLoading = false;
     },
     [addNewCustomer.pending]: (state) => {
       state.isLoading = true;
@@ -128,6 +129,8 @@ const account = createSlice({
     [logOut.fulfilled]: (state) => {
       state.accounts = [];
       state.currentAccount = {};
+      state.isAddLoading = false;
+      state.isUpdateLoading = false;
       state.isLoading = false;
       state.isFetched = false;
     },

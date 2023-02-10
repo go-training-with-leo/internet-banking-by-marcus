@@ -135,6 +135,13 @@ const formatPhoneVN = (phoneNumber) => {
   return `+84 ${phoneNumber.slice(1, phoneNumber.length)}`;
 };
 
+const replaceAll = ({ text, replacement }) => {
+  return text
+    .split('')
+    .map(() => replacement)
+    .join('');
+};
+
 const getMainPageByRole = (role) => {
   return mainPagesRole[role] || null;
 };
@@ -167,6 +174,7 @@ export {
   removeAuthTokenFromLocalStorage,
   removeLocalStorage,
   removeNonNumeric,
+  replaceAll,
   saveAuthTokenToLocalStorage,
   setDocFirestore,
   updateDocFireStore,

@@ -7,10 +7,10 @@ import TimeTracking from 'components/TimeTracking';
 import Status from 'components/Status';
 import { convertTimestamp } from 'utils/helpers';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { rechargeSavingMoney } from 'global/redux/card/thunk';
+import { useSelector } from 'react-redux';
 import { selectCard } from 'core/selectors';
 import Success from './Success';
+import SettleSuccess from './SettleSuccess';
 
 import './style.scss';
 
@@ -19,53 +19,45 @@ const SUCCESS_DEPOSIT = 'SUCCESS_DEPOSIT';
 const SUCCESS_SETTLE = 'SUCCESS_SETTLE';
 
 const DepositModal = ({ setToggle, cardDetail }) => {
-  const dispatch = useDispatch();
   const currentTime = new Date().getTime();
 
   const [step, setStep] = useState(DEPOSIT);
+  const [settleData, setSettleData] = useState({});
 
   const { payingCard, isDeleteSavingCardLoading: loading } =
     useSelector(selectCard);
 
-  const calcInterestTime = cardDetail?.timeDeposit?.seconds
-    ? cardDetail.timeDeposit.seconds - cardDetail.createdAt.seconds
-    : (new Date(cardDetail?.timeDeposit) - new Date(cardDetail?.createdAt)) /
-      1000;
+  const calcInterestTime = cardDetail?.createdAt?.seconds
+    ? new Date().getTime() / 1000 - cardDetail.createdAt.seconds
+    : new Date().getTime() / 1000 - new Date(cardDetail?.createdAt) / 1000;
 
   const handleDeposit = async () => {
     if (cardDetail?.status === 'pending') return;
-    const {
-      payload: { status },
-    } = await dispatch(
-      rechargeSavingMoney({
-        fromPayingCardId: cardDetail?.fromPayingCard,
-        savingCardId: cardDetail?.id,
-        currentBalance: payingCard?.balance,
-        interestMoney: cardDetail?.interestMoney,
-        totalAmount: cardDetail?.balance,
-      })
-    );
-    if (status) {
-      setStep(SUCCESS_DEPOSIT);
-    }
+    const depositSaving = {
+      ...cardDetail,
+      fromPayingCardId: cardDetail?.fromPayingCard,
+      savingCardId: cardDetail?.id,
+      currentBalance: payingCard?.balance,
+      interestMoney: cardDetail?.interestMoney,
+      totalAmount: cardDetail?.balance,
+    };
+    setSettleData(depositSaving);
+    setStep(SUCCESS_DEPOSIT);
   };
 
-  const handleSettle = async () => {
-    const {
-      payload: { status },
-    } = await dispatch(
-      rechargeSavingMoney({
-        fromPayingCardId: cardDetail?.fromPayingCard,
-        savingCardId: cardDetail?.id,
-        currentBalance: payingCard?.balance,
-        interestMoney:
-          (cardDetail.balance * (0.03 / 100) * calcInterestTime) / 31104000,
-        totalAmount: cardDetail?.balance,
-      })
-    );
-    if (status) {
-      setStep(SUCCESS_SETTLE);
-    }
+  const handleSettle = () => {
+    const depositSaving = {
+      ...cardDetail,
+      fromPayingCardId: cardDetail?.fromPayingCard,
+      savingCardId: cardDetail?.id,
+      currentBalance: payingCard?.balance,
+      interest: 0.03 / 100,
+      interestMoney:
+        (cardDetail.balance * (0.03 / 100) * calcInterestTime) / 31104000,
+      totalAmount: cardDetail?.balance,
+    };
+    setSettleData(depositSaving);
+    setStep(SUCCESS_SETTLE);
   };
 
   const modals = {
@@ -129,17 +121,9 @@ const DepositModal = ({ setToggle, cardDetail }) => {
         </div>
       </Modal>
     ),
-    SUCCESS_DEPOSIT: <Success setToggle={setToggle} cardDetail={cardDetail} />,
+    SUCCESS_DEPOSIT: <Success setToggle={setToggle} cardDetail={settleData} />,
     SUCCESS_SETTLE: (
-      <Success
-        setToggle={setToggle}
-        cardDetail={{
-          ...cardDetail,
-          interest: 0.03 / 100,
-          interestMoney:
-            (cardDetail.balance * (0.03 / 100) * calcInterestTime) / 31104000,
-        }}
-      />
+      <SettleSuccess setToggle={setToggle} cardDetail={settleData} />
     ),
   };
 

@@ -36,8 +36,10 @@ describe('Modal', () => {
     expect(tree).toMatchSnapshot();
   });
   it('Close click cancel', async () => {
+    const setToggle = jest.fn();
+
     const tree = render(
-      <Modal title='Title' cancel>
+      <Modal setToggle={setToggle} title='Title' cancel>
         <span>Children</span>
       </Modal>
     );
@@ -49,6 +51,7 @@ describe('Modal', () => {
       fireEvent.click(cancelButton);
     });
 
+    expect(setToggle).toBeCalled();
     expect(modal).toBeInTheDocument();
 
     expect(tree).toMatchSnapshot();
@@ -57,18 +60,47 @@ describe('Modal', () => {
   it('Cancle click outside', async () => {
     const setToggle = jest.fn();
     const tree = render(
-      <Modal title='Title' setToggle={setToggle} cancel clickOutSide>
-        <span>Children</span>
-      </Modal>
+      <div className='container'>
+        <Modal title='Title' setToggle={setToggle} cancel clickOutSide>
+          <span>Children</span>
+        </Modal>
+      </div>
     );
 
+    const modalContainer = tree.container.querySelector('div.container');
     const modal = tree.container.querySelector('div.modal-container');
 
     await act(async () => {
       fireEvent.click(modal);
     });
 
+    expect(modalContainer).toHaveTextContent('Children');
     expect(setToggle).toBeCalled();
+    expect(setToggle).toBeCalledTimes(1);
+    expect(modal).toBeInTheDocument();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('Cancle click outside false', async () => {
+    const setToggle = jest.fn();
+    const tree = render(
+      <div className='container'>
+        <Modal title='Title' setToggle={setToggle} cancel>
+          <span>Children</span>
+        </Modal>
+      </div>
+    );
+
+    const modalContainer = tree.container.querySelector('div.container');
+    const modal = tree.container.querySelector('div.modal-container');
+
+    await act(async () => {
+      fireEvent.click(modal);
+    });
+
+    expect(modalContainer).toHaveTextContent('Children');
+    expect(setToggle).toBeCalledTimes(0);
     expect(modal).toBeInTheDocument();
 
     expect(tree).toMatchSnapshot();

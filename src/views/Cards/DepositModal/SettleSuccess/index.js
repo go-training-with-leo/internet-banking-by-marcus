@@ -1,24 +1,25 @@
 import React from 'react';
 
 import Modal from 'components/Modal';
+import { useDispatch, useSelector } from 'react-redux';
 
-import './style.scss';
 import DefaultButton from 'components/Button/Default';
 import {
   convertTimestamp,
   divideSpaceIdCard,
   parseMoneyVnd,
 } from 'utils/helpers';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectCard } from 'core/selectors';
 import { rechargeSavingMoney } from 'global/redux/card/thunk';
+import { selectCard } from 'core/selectors';
 
-const Success = ({ setToggle, cardDetail }) => {
+import './style.scss';
+
+const SettleSuccess = ({ setToggle, cardDetail }) => {
   const dispatch = useDispatch();
 
   const { isDeleteSavingCardLoading: isLoading } = useSelector(selectCard);
 
-  const handleDeposit = async () => {
+  const handleSettle = async () => {
     const {
       payload: { status },
     } = await dispatch(rechargeSavingMoney(cardDetail));
@@ -28,12 +29,7 @@ const Success = ({ setToggle, cardDetail }) => {
   };
 
   return (
-    <Modal
-      title='Deposit information'
-      setToggle={setToggle}
-      cancel
-      clickOutSide
-    >
+    <Modal title='Settle information' setToggle={setToggle} cancel clickOutSide>
       <div className='success-modal'>
         <div className='success-info-row'>
           <span className='title'>Saving card number:</span>
@@ -77,7 +73,7 @@ const Success = ({ setToggle, cardDetail }) => {
             )}
           </span>
         </div>
-        <DefaultButton loading={isLoading} onClick={handleDeposit} danger>
+        <DefaultButton loading={isLoading} onClick={handleSettle} danger>
           OK
         </DefaultButton>
       </div>
@@ -85,4 +81,4 @@ const Success = ({ setToggle, cardDetail }) => {
   );
 };
 
-export default Success;
+export default SettleSuccess;

@@ -15,7 +15,6 @@ import './style.scss';
 import SuccessModal from './SuccessModal';
 import InterBank from './Interbank';
 
-const STEP_ONE = 'STEP_ONE';
 const STEP_TWO = 'STEP_TWO';
 const STEP_THREE = 'STEP_THREE';
 const STEP_FOUR = 'STEP_FOUR';
@@ -27,7 +26,7 @@ const Transfer = () => {
   const dispatch = useDispatch();
 
   const [showModal, setShowModal] = useToggle();
-  const [step, setStep] = useState(STEP_ONE);
+  const [step, setStep] = useState(STEP_TWO);
 
   const handleSetToggle = () => {
     dispatch(resetTransferInfo());
@@ -39,11 +38,7 @@ const Transfer = () => {
       <StepOne setToggle={handleSetToggle} next={() => setStep(STEP_TWO)} />
     ),
     STEP_TWO: (
-      <StepTwo
-        setToggle={handleSetToggle}
-        back={() => setStep(STEP_ONE)}
-        next={() => setStep(STEP_THREE)}
-      />
+      <StepTwo setToggle={handleSetToggle} next={() => setStep(STEP_THREE)} />
     ),
     STEP_THREE: (
       <StepThree
@@ -81,7 +76,7 @@ const Transfer = () => {
             danger
             onClick={() => {
               setShowModal();
-              setStep(STEP_ONE);
+              setStep(STEP_TWO);
             }}
           >
             EIGHT.Bank internal transfer

@@ -10,13 +10,7 @@ import useToggle from 'components/hooks/useToggle';
 import Table, { TableRow } from 'components/Table';
 import { getCreDebts, getRecDebts } from 'global/redux/debt/thunk';
 import { divideSpaceIdCard, parseMoneyVnd } from 'utils/helpers';
-import {
-  CreditCard,
-  CreditCardDone,
-  CreditCardGradient,
-  Filter,
-  Info,
-} from 'assets/images';
+import { CreditCard, CreditCardGradient, Filter, Info } from 'assets/images';
 import DeleteModal from './DeleteModal';
 import DetailModal from './DetailModal';
 import PaymentModal from './PaymentModal';
@@ -148,31 +142,6 @@ const Debts = () => {
                         fill='#26292E'
                       />
                     ))}
-
-                  {activeTab === RECV_FROM_OTHERS && (
-                    <CreditCardDone
-                      width={30}
-                      height={30}
-                      className={classNames({
-                        'disabled-icon':
-                          debt?.status === 'pending' ||
-                          debt?.status === 'success',
-                      })}
-                      fill={
-                        debt?.status === 'pending' || debt?.status === 'success'
-                          ? '#26292E'
-                          : 'red'
-                      }
-                      onClick={() => {
-                        if (
-                          debt?.status !== 'pending' &&
-                          debt?.status !== 'success'
-                        ) {
-                          handleClickAction({ type: 'delete', row: debt });
-                        }
-                      }}
-                    />
-                  )}
                   <Info
                     width={30}
                     height={30}

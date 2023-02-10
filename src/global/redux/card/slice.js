@@ -90,6 +90,7 @@ const card = createSlice({
       state.payingCard = {};
       state.savingCards = [];
       state.isAddSavingCardLoading = false;
+      state.isDeleteSavingCardLoading = false;
       state.isLoading = false;
       state.isFetched = false;
     },

@@ -20,6 +20,6 @@
   }
 
   &.active {
-     border: $red-orange 3px solid;
+    background: radial-gradient(circle at -1% 57.5%, rgb(54, 237, 130) 0%, rgb(5, 162, 71) 90%);
   }
 }
