@@ -6,6 +6,7 @@ import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import Card from 'components/Card/Default';
 import Loader from 'components/Loader';
 import IconButton from 'components/Button/Icon';
+import useWindowDimensions from 'components/hooks/useWindowDimensions';
 import { db } from 'services/firebase';
 import { selectAccount, selectAuth, selectCard } from 'core/selectors';
 import { getCards } from 'global/redux/card/thunk';
@@ -35,6 +36,7 @@ const Cards = () => {
     isLoading: loading,
   } = useSelector((state) => state.card);
   const { currentUser } = useSelector(selectAuth);
+  const { width } = useWindowDimensions();
   const { isFetched, isDeleteSavingCardLoading: isDeleteLoading } =
     useSelector(selectCard);
   const { isFetched: isAccountsFetched } = useSelector(selectAccount);
@@ -63,7 +65,16 @@ const Cards = () => {
   };
 
   const handleNext = () => {
-    if (startPosition + 4 < savingCards.length) {
+    let limitStep;
+    if (width >= 1500) {
+      limitStep = 3;
+    } else if (width >= 1170 && width < 1500) {
+      limitStep = 2;
+    } else if (width < 1170) {
+      limitStep = 1;
+    }
+
+    if (startPosition + limitStep < savingCards.length) {
       setStartPosition(startPosition + 1);
     }
   };

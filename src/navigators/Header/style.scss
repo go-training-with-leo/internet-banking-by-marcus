@@ -19,7 +19,12 @@
 
   &-left {
     @include setFlex(row, null, center, 60px, null);
-    
+    .mobile-menu {
+      display: block;
+      @include Responsive(SM) {
+        display: none;
+      }
+    }
     span {
       min-width: 105px;
     }

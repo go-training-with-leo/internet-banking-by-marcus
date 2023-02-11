@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { NotifyBusy, NotifyRemove, NotifyFree } from 'assets/images';
+import { NotifyBusy, NotifyRemove, NotifyFree, Menu } from 'assets/images';
 
 import Notification from 'components/Notification';
 import useToggle from 'components/hooks/useToggle';
@@ -81,7 +81,7 @@ const messages = [
   },
 ];
 
-const Header = ({ type, title, children }) => {
+const Header = ({ type, title, children, onMenuClick }) => {
   const [showNotif, setShowNotif] = useToggle();
 
   const notifycation = {
@@ -113,10 +113,11 @@ const Header = ({ type, title, children }) => {
   return (
     <div className='header'>
       <div className='header-left'>
+        <Menu className='mobile-menu' fill='white' onClick={onMenuClick} />
         <span>{title}</span>
         {children}
       </div>
-      <div className='notif'>
+      <div className='notif hide'>
         {notifycation[type]}
         {showNotif && <Notification messages={messages} />}
       </div>

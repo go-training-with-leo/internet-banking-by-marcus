@@ -47,7 +47,7 @@
           transition: 0.2s all linear;
           border-radius: 50%;
           align-items: center;
-          margin: auto;
+
           &:hover {
             background-color: gray;
             transform: scale(1.2);
@@ -56,9 +56,21 @@
         }
 
         &-horizontal {
-          @include setFlex(row, null, center, 40px, null);
+          @include setFlex(row, null, center, 25px, null);
           overflow-x: hidden;
-          width: 1160px;
+          width: 230px;
+          @include Responsive(MD) {
+            width: 230px;
+            gap: 25px;
+          }
+          @include Responsive(XL) {
+            width: 550px;
+            gap: 40px;
+          }
+          @include Responsive(XXL) {
+            width: 850px;
+          }
+
           height: 250px;
           padding: 0 30px;
           &__detail {
