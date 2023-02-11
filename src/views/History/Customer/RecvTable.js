@@ -40,7 +40,7 @@ const ReceiveTable = () => {
   }, [isFetched]);
 
   return recvHistories?.length > 0 ? (
-    <Table widths={[10, 25, 25, 20, 20]} headerTable={headerTable}>
+    <Table widths={[5, 30, 25, 20, 20]} headerTable={headerTable}>
       {recvHistories?.map(({ from, totalAmount, createdAt }, index) => (
         <TableRow key={createdAt?.seconds}>
           <RowCell>{index + 1}</RowCell>

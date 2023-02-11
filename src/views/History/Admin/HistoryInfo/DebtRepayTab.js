@@ -54,7 +54,7 @@ const DebtRepayTab = ({ customer }) => {
   );
 
   return debts?.length > 0 ? (
-    <Table widths={[10, 20, 20, 15, 15, 30]} headerTable={headerTable}>
+    <Table widths={[5, 25, 20, 15, 15, 30]} headerTable={headerTable}>
       {debts?.map(({ id, from, totalAmount, status, createdAt }, index) => (
         <TableRow key={id}>
           <RowCell>{index + 1}</RowCell>

@@ -14,6 +14,7 @@ import { Search } from 'assets/images';
 
 import './style.scss';
 import { getCustomerAccounts } from 'global/redux/account/thunk';
+import { formatPhoneVN } from 'utils/helpers';
 
 const EmployeeHistory = () => {
   const dispatch = useDispatch();
@@ -84,7 +85,7 @@ const EmployeeHistory = () => {
       </div>
       <span>Account:</span>
       <div className='empl-history-table'>
-        <Table widths={[25, 25, 25, 25]} headerTable={headerTable}>
+        <Table widths={[5, 35, 25, 25, 25]} headerTable={headerTable}>
           {accountInfo?.map((customer, index) => (
             <TableRow
               key={customer?.id}
@@ -93,7 +94,9 @@ const EmployeeHistory = () => {
             >
               <RowCell>{index + 1}</RowCell>
               <RowCell title='account'>{customer?.accountName}</RowCell>
-              <RowCell title='phone'>{customer?.phoneNumber}</RowCell>
+              <RowCell title='phone'>
+                {formatPhoneVN(customer?.phoneNumber)}
+              </RowCell>
               <RowCell title='email'>{customer?.email}</RowCell>
             </TableRow>
           ))}

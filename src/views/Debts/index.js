@@ -108,7 +108,7 @@ const Debts = () => {
       </div>
       <div className='debt-tables'>
         {dataTable?.length > 0 ? (
-          <Table widths={[10, 25, 25, 20, 20]} headerTable={headerTable}>
+          <Table widths={[5, 30, 25, 20, 20]} headerTable={headerTable}>
             {dataTable?.map((debt, index) => (
               <TableRow key={debt?.createdAt?.seconds}>
                 <RowCell>{index + 1}</RowCell>

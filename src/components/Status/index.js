@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Cancel, Check, Clock, Reverse } from 'assets/images';
+import { Cancel, Check, Reverse, Time } from 'assets/images';
 
 import './style.scss';
 
@@ -34,7 +34,7 @@ const Status = ({
         </>
       ) : pending ? (
         <>
-          <img src={Clock} width={20} height={20} alt='clock' />
+          <Time width={20} height={20} fill='#ffd351' />
           <span>Pending</span>
         </>
       ) : success ? (
@@ -44,7 +44,7 @@ const Status = ({
         </>
       ) : refund ? (
         <>
-          <Reverse width={20} height={20} fill='yellow' />
+          <Reverse width={20} height={20} fill='#ffd351' />
           <span>Refund</span>
         </>
       ) : paid ? (
@@ -60,7 +60,7 @@ const Status = ({
       ) : (
         unpaid && (
           <>
-            <img src={Clock} width={20} height={20} alt='clock' />
+            <Time width={20} height={20} fill='#ffd351' />
             <span>Unpaid</span>
           </>
         )

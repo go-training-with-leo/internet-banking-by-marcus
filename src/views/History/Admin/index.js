@@ -83,7 +83,7 @@ const AdminHistory = () => {
       </div>
       <span>Account: </span>
       <div className='empl-history-table'>
-        <Table widths={[25, 25, 25, 25]} headerTable={headerTable}>
+        <Table widths={[5, 35, 30, 30]} headerTable={headerTable}>
           {accountInfo?.map((customer, index) => (
             <TableRow
               key={customer?.id}

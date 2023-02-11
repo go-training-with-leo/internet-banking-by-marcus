@@ -114,7 +114,7 @@ const NewSvCard = ({ setToggle }) => {
   const handleCheckAmount = (message) => {
     return message === 'Your balance is not enough'
       ? 'Your balance is not enough'
-      : 'The amount must be at least 10 000 VND';
+      : 'The amount must be at least 500 000 VND';
   };
 
   return (

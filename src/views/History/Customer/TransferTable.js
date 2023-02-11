@@ -42,7 +42,7 @@ const TransferTable = () => {
   );
 
   return transferHistories?.length > 0 ? (
-    <Table widths={[10, 20, 20, 15, 15, 20]} headerTable={headerTable}>
+    <Table widths={[5, 25, 20, 15, 15, 20]} headerTable={headerTable}>
       {transferHistories?.map(
         ({ dest, totalAmount, status, createdAt }, index) => (
           <TableRow key={createdAt}>
