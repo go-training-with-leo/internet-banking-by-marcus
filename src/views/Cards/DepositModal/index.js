@@ -5,7 +5,11 @@ import Modal from 'components/Modal';
 
 import TimeTracking from 'components/TimeTracking';
 import Status from 'components/Status';
-import { convertTimestamp } from 'utils/helpers';
+import {
+  convertTimestamp,
+  divideSpaceIdCard,
+  parseMoneyVnd,
+} from 'utils/helpers';
 
 import { useSelector } from 'react-redux';
 import { selectCard } from 'core/selectors';
@@ -71,11 +75,27 @@ const DepositModal = ({ setToggle, cardDetail }) => {
       >
         <div className='deposit-modal'>
           <div className='deposit-info-row'>
+            <span className='title'>Card number:</span>
+            <span>{divideSpaceIdCard(cardDetail?.cardNumber)}</span>
+          </div>
+          <div className='deposit-info-row'>
             <span className='title'>Status:</span>
             <Status
               pending={cardDetail?.status === 'pending'}
               success={cardDetail?.status === 'success'}
             />
+          </div>
+          <div className='deposit-info-row'>
+            <span className='title'>Balance:</span>
+            <span>{parseMoneyVnd(cardDetail?.balance)} VND</span>
+          </div>
+          <div className='deposit-info-row'>
+            <span className='title'>Settle rate:</span>
+            <span>{0.03}%</span>
+          </div>
+          <div className='deposit-info-row'>
+            <span className='title'>Deposit rate:</span>
+            <span>{cardDetail.interest * 100}%</span>
           </div>
           <div className='deposit-info-row'>
             <span className='title'>Current time:</span>

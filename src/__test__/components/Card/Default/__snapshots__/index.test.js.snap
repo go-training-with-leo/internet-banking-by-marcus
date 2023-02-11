@@ -13,9 +13,26 @@ Object {
           role="button"
           tabindex="0"
         >
-          <svg>
-            eightBank.svg
-          </svg>
+          <div
+            class="top-line"
+          >
+            <svg>
+              eightBank.svg
+            </svg>
+            <div
+              class="icon-btn"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                fill="white"
+                height="30"
+                width="30"
+              >
+                creditCard.svg
+              </svg>
+            </div>
+          </div>
           <span
             class="card-money"
           >
@@ -56,9 +73,26 @@ Object {
         role="button"
         tabindex="0"
       >
-        <svg>
-          eightBank.svg
-        </svg>
+        <div
+          class="top-line"
+        >
+          <svg>
+            eightBank.svg
+          </svg>
+          <div
+            class="icon-btn"
+            role="button"
+            tabindex="0"
+          >
+            <svg
+              fill="white"
+              height="30"
+              width="30"
+            >
+              creditCard.svg
+            </svg>
+          </div>
+        </div>
         <span
           class="card-money"
         >
@@ -257,9 +291,26 @@ Object {
           role="button"
           tabindex="0"
         >
-          <svg>
-            eightBank.svg
-          </svg>
+          <div
+            class="top-line"
+          >
+            <svg>
+              eightBank.svg
+            </svg>
+            <div
+              class="icon-btn"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                fill="white"
+                height="30"
+                width="30"
+              >
+                creditCard.svg
+              </svg>
+            </div>
+          </div>
           <span
             class="card-money"
           >
@@ -300,9 +351,26 @@ Object {
         role="button"
         tabindex="0"
       >
-        <svg>
-          eightBank.svg
-        </svg>
+        <div
+          class="top-line"
+        >
+          <svg>
+            eightBank.svg
+          </svg>
+          <div
+            class="icon-btn"
+            role="button"
+            tabindex="0"
+          >
+            <svg
+              fill="white"
+              height="30"
+              width="30"
+            >
+              creditCard.svg
+            </svg>
+          </div>
+        </div>
         <span
           class="card-money"
         >
@@ -400,9 +468,26 @@ Object {
           role="button"
           tabindex="0"
         >
-          <svg>
-            eightBank.svg
-          </svg>
+          <div
+            class="top-line"
+          >
+            <svg>
+              eightBank.svg
+            </svg>
+            <div
+              class="icon-btn"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                fill="white"
+                height="30"
+                width="30"
+              >
+                creditCard.svg
+              </svg>
+            </div>
+          </div>
           <span
             class="card-money"
           >
@@ -443,9 +528,26 @@ Object {
         role="button"
         tabindex="0"
       >
-        <svg>
-          eightBank.svg
-        </svg>
+        <div
+          class="top-line"
+        >
+          <svg>
+            eightBank.svg
+          </svg>
+          <div
+            class="icon-btn"
+            role="button"
+            tabindex="0"
+          >
+            <svg
+              fill="white"
+              height="30"
+              width="30"
+            >
+              creditCard.svg
+            </svg>
+          </div>
+        </div>
         <span
           class="card-money"
         >
@@ -543,9 +645,26 @@ Object {
           role="button"
           tabindex="0"
         >
-          <svg>
-            eightBank.svg
-          </svg>
+          <div
+            class="top-line"
+          >
+            <svg>
+              eightBank.svg
+            </svg>
+            <div
+              class="icon-btn"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                fill="white"
+                height="30"
+                width="30"
+              >
+                creditCard.svg
+              </svg>
+            </div>
+          </div>
           <span
             class="card-money"
           >
@@ -587,9 +706,26 @@ Object {
         role="button"
         tabindex="0"
       >
-        <svg>
-          eightBank.svg
-        </svg>
+        <div
+          class="top-line"
+        >
+          <svg>
+            eightBank.svg
+          </svg>
+          <div
+            class="icon-btn"
+            role="button"
+            tabindex="0"
+          >
+            <svg
+              fill="white"
+              height="30"
+              width="30"
+            >
+              creditCard.svg
+            </svg>
+          </div>
+        </div>
         <span
           class="card-money"
         >

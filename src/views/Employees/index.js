@@ -90,7 +90,7 @@ const Employees = () => {
         </div>
       </div>
       <div className='employees-table'>
-        <Table widths={[10, 25, 25, 25, 25]} headerTable={headerTable}>
+        <Table widths={[5, 30, 25, 25, 25]} headerTable={headerTable}>
           {emplAccounts.map((employee, index) => (
             <TableRow key={employee?.createdAt?.seconds}>
               <RowCell>{index + 1}</RowCell>

@@ -131,12 +131,13 @@ Object {
                 <div
                   class="status unpaid"
                 >
-                  <img
-                    alt="clock"
+                  <svg
+                    fill="#ffd351"
                     height="20"
-                    src="clock.png"
                     width="20"
-                  />
+                  >
+                    time.svg
+                  </svg>
                   <span>
                     Unpaid
                   </span>
@@ -784,12 +785,13 @@ Object {
               <div
                 class="status unpaid"
               >
-                <img
-                  alt="clock"
+                <svg
+                  fill="#ffd351"
                   height="20"
-                  src="clock.png"
                   width="20"
-                />
+                >
+                  time.svg
+                </svg>
                 <span>
                   Unpaid
                 </span>

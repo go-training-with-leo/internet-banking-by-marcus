@@ -11,6 +11,7 @@ import { ReactComponent as Cash } from 'assets/images/icons/cash.svg';
 import { ReactComponent as CashAdd } from 'assets/images/icons/cashAdd.svg';
 import { ReactComponent as Cancel } from 'assets/images/icons/cancel.svg';
 import { ReactComponent as User } from 'assets/images/icons/user.svg';
+import { ReactComponent as Time } from 'assets/images/icons/time.svg';
 import { ReactComponent as ArrowDown } from 'assets/images/icons/arrowDown.svg';
 import { ReactComponent as Check } from 'assets/images/icons/check.svg';
 import { ReactComponent as Reverse } from 'assets/images/icons/reverse.svg';
@@ -81,6 +82,7 @@ export {
   PlusIcon,
   Reverse,
   Search,
+  Time,
   Transfer,
   User,
   Visa,

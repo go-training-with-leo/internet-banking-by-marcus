@@ -14,6 +14,9 @@
       font-weight: 700;
       font-size: 15px;
     }
+    &__detail {
+      margin-left: 55px;
+    }
   }
 
   .saving-card {
@@ -22,7 +25,6 @@
     @include Responsive(MD) {
       @include setFlex(row, space-between, null, 35px, null);
     }
-
     &__container {
       @include setFlex(column, null, null, 35px, null);
       flex: 1;
@@ -30,6 +32,62 @@
         color: $pure-white;
         font-weight: 700;
         font-size: 15px;
+      }
+      & > .add-btn {
+        width: 200px;
+        margin-left: 55px;
+      }
+
+      .saving-card-list {
+        @include setFlex(row, null, center, 20px, null);
+
+        .nav-button {
+          cursor: pointer;
+          user-select: none;
+          transition: 0.2s all linear;
+          border-radius: 50%;
+          align-items: center;
+          margin: auto;
+          &:hover {
+            background-color: gray;
+            transform: scale(1.2);
+            border-radius: 50%;
+          }
+        }
+
+        &-horizontal {
+          @include setFlex(row, null, center, 40px, null);
+          overflow-x: hidden;
+          width: 1160px;
+          height: 250px;
+          padding: 0 30px;
+          &__detail {
+            @include setFlex(column, null, null, 10px, null);
+            cursor: pointer;
+            transition: all 0.4s linear;
+            .group-actions {
+              opacity: 0;
+              transition: opacity 0.3s linear;
+              .action {
+                cursor: pointer;
+                transition: all 0.4s linear;
+                &:hover {
+                  transform: scale(1.1);
+                }
+              }
+              &.isActive {
+                transform: scale(1.1);
+                display: block;
+              }
+            }
+            &:hover {
+              transform: scale(1.1);
+              .group-actions {
+                opacity: 1;
+              }
+            }
+          }
+        }
       }
 
       .saving-card-detail {

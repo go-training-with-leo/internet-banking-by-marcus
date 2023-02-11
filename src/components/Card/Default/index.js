@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Loader from 'components/Loader';
-import { EightLogo, MasterCard, Napas, Visa } from 'assets/images';
+import { CreditCard, EightLogo, MasterCard, Napas, Visa } from 'assets/images';
 import { parseMoneyVnd } from 'utils/helpers';
 
 import './style.scss';
@@ -11,12 +11,15 @@ import './style.scss';
 const Card = ({
   idCard,
   isLoading,
+  isActive,
+  isCompleted,
   children,
   visaCard,
   masterCard,
   napasCard,
   expireTime,
   onClick,
+  depositClick,
 }) => {
   return (
     <div
@@ -24,7 +27,10 @@ const Card = ({
         'napas-card': napasCard,
         'visa-card': visaCard,
         'master-card': masterCard,
+        isCompleted: isCompleted,
+        isActive: isActive,
         loading: isLoading,
+        isHover: depositClick,
       })}
     >
       <div
@@ -37,7 +43,17 @@ const Card = ({
           <Loader fill='red' />
         ) : (
           <>
-            <EightLogo />
+            <div className='top-line'>
+              <EightLogo />
+              <div
+                className={classNames('icon-btn')}
+                role='button'
+                tabIndex={0}
+                onClick={depositClick}
+              >
+                <CreditCard width={30} height={30} fill='white' />
+              </div>
+            </div>
             <span className='card-money'>{parseMoneyVnd(children)} VND</span>
             <div className='card-info'>
               <div className='info'>
@@ -68,6 +84,7 @@ Card.defaultProps = {
   onClick: undefined,
   isLoading: false,
   expireTime: undefined,
+  depositClick: undefined,
 };
 
 Card.propTypes = {
@@ -79,6 +96,7 @@ Card.propTypes = {
   napasCard: PropTypes.bool,
   isLoading: PropTypes.bool,
   onClick: PropTypes.func,
+  depositClick: PropTypes.func,
 };
 
 export default Card;

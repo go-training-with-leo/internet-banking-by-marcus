@@ -9,7 +9,7 @@ Object {
         class="status refund unpaid"
       >
         <svg
-          fill="yellow"
+          fill="#ffd351"
           height="20"
           width="20"
         >
@@ -26,7 +26,7 @@ Object {
       class="status refund unpaid"
     >
       <svg
-        fill="yellow"
+        fill="#ffd351"
         height="20"
         width="20"
       >
@@ -99,12 +99,13 @@ Object {
       <div
         class="status pending unpaid"
       >
-        <img
-          alt="clock"
+        <svg
+          fill="#ffd351"
           height="20"
-          src="clock.png"
           width="20"
-        />
+        >
+          time.svg
+        </svg>
         <span>
           Pending
         </span>
@@ -115,12 +116,13 @@ Object {
     <div
       class="status pending unpaid"
     >
-      <img
-        alt="clock"
+      <svg
+        fill="#ffd351"
         height="20"
-        src="clock.png"
         width="20"
-      />
+      >
+        time.svg
+      </svg>
       <span>
         Pending
       </span>

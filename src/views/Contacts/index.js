@@ -55,7 +55,7 @@ const Contacts = () => {
     <div className='contacts-view'>
       <div className='contacts-table'>
         {contacts?.length > 0 ? (
-          <Table widths={[10, 25, 25, 25, 10]} headerTable={headerTable}>
+          <Table widths={[5, 30, 25, 25, 10]} headerTable={headerTable}>
             {contacts.map((row, index) => {
               return (
                 <TableRow key={row?.id}>

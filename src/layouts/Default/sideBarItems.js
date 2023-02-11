@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  Clock,
   Cash,
   Transfer,
   Contact,
   CreditCard,
   Exit,
   User,
+  Time,
 } from 'assets/images';
 
 const sideBarItems = {
@@ -67,7 +67,7 @@ const sideBarItems = {
     {
       id: 'customerHistory',
       label: 'History',
-      icon: <img src={Clock} width={20} height={20} alt='clock' />,
+      icon: <Time width={20} height={20} />,
       navigateTo: '/customer/history',
     },
   ],

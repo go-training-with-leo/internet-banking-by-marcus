@@ -43,11 +43,6 @@ const headerItems = {
       id: 'cards',
       titleHeader: 'Cards',
       path: '/cards',
-      button: (
-        <IconButton>
-          New Saving Card <PlusIcon fill='red' />
-        </IconButton>
-      ),
     },
     {
       id: 'contacts',

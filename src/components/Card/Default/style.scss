@@ -15,7 +15,19 @@ $bg-colors: (
   border-radius: 20px;
   position: relative;
 
-  cursor: pointer;
+  &:after {
+    content: "";
+    @include setWidthHeight(92%, 16px);
+    position: absolute;
+    display: block;
+    top: -11px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background: #c4c4c4;
+    border-radius: 20px 20px 0px 0px;
+    z-index: -1;
+  }
 
   @each $name, $bg-color in $bg-colors {
     &.#{$name} {
@@ -23,19 +35,32 @@ $bg-colors: (
     }
   }
 
+  &.isCompleted {
+    background-image: $card-completed-gradient;  
+  }
+  
   &.loading {
     background: $pure-white;
     color: $red-orange;
   }
 
-  & > .card {
-    width: 100%;
+  .card {
+    width: 230px;
     height: 100%;
     font-family: $font-family;
 
     @include setFlex(column, space-between, null, null, null);
 
     z-index: 1;
+
+    .top-line {
+      @include setFlex(row, space-between, center, null, null);
+      & > .icon-btn {
+        opacity: 0;
+        cursor: pointer;
+        transition: all 0.5s linear;
+      }
+    }
 
     & > .card-money {
       font-weight: 400;
@@ -63,18 +88,27 @@ $bg-colors: (
     &.loading {
       @include setFlex(row, center, center, null, null);
     }
-    &:after {
-      content: "";
-      @include setWidthHeight(92%, 16px);
-      position: absolute;
-      display: block;
-      top: -11px;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      background: #c4c4c4;
-      border-radius: 20px 20px 0px 0px;
-      z-index: -1;
+  }
+  &.isActive {
+    cursor:auto;
+    border: 2px white solid;
+    .card {
+      .top-line {
+        & > .icon-btn {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &.isHover {
+    &:hover {
+      .card {
+        .top-line {
+          & > .icon-btn {
+            opacity: 1;
+          }
+        }
+      }
     }
   }
 }

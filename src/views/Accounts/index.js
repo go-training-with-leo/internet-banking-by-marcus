@@ -95,7 +95,7 @@ const Accounts = () => {
       </div>
       <div className='accounts-table'>
         {accountInfo ? (
-          <Table widths={[25, 25, 25, 25]} headerTable={headerTable}>
+          <Table widths={[5, 30, 25, 25, 25]} headerTable={headerTable}>
             {accountInfo?.map((customer, index) => (
               <TableRow key={customer.id}>
                 <RowCell>{index + 1}</RowCell>
