@@ -40,11 +40,11 @@ const Login = () => {
   const { currentUser, isLoading } = useSelector(selectAuth);
 
   const onSubmit = (account) => {
-    const captchaToken = captchaRef.current.getValue();
-    if (captchaToken.length) {
-      const { email, password } = account;
-      dispatch(logIn({ email, password }));
-    }
+    // const captchaToken = captchaRef.current.getValue();
+    // if (captchaToken.length) {
+    const { email, password } = account;
+    dispatch(logIn({ email, password }));
+    // }
   };
 
   useEffect(() => {
