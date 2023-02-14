@@ -6,15 +6,15 @@ import Env from 'config/Env';
 import useToggle from 'components/hooks/useToggle';
 import { resetTransferInfo } from 'global/redux/transfer/slice';
 import { InternalTransfer, InterBankTransfer } from 'assets/images';
+import InterBank from './Interbank';
 import StepFour from './StepFour';
 import StepFive from './StepFive';
 import StepThree from './StepThree';
 import StepTwo from './StepTwo';
+import SuccessModal from './SuccessModal';
 import StepOne from './StepOne';
 
 import './style.scss';
-import SuccessModal from './SuccessModal';
-import InterBank from './Interbank';
 
 const STEP_TWO = 'STEP_TWO';
 const STEP_THREE = 'STEP_THREE';
