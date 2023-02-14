@@ -87,6 +87,5 @@ Test file must be in /cypress/e2e/
 Create file with *.spect.cy.js in /cypress/e2e/ to create a new end to end test.
  
 Check the [Jest document](https://docs.cypress.io/guides/getting-started/installing-cypress) to get you started!
-
 Cheers 🍺🍺
 Happy coding!
