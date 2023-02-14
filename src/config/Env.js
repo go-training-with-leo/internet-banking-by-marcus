@@ -9,6 +9,7 @@ const Env = {
   APP_ID: process.env.REACT_APP_FIREBASE_APP_ID,
   MEASUREMENT_ID: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
   CYPRESS: process.env.REACT_APP_CYPRESS,
+  DNS: process.env.REACT_APP_DNS,
 };
 
 export default Env;

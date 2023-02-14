@@ -34,6 +34,8 @@ REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
 REACT_APP_FIREBASE_APP_ID=
 REACT_APP_FIREBASE_MEASUREMENT_ID=
 REACT_BASEURL=
+REACT_APP_DNS=
+REACT_APP_CYPRESS=
 ```
 **Note:** Please ask another dev to get access to the env vars in these files.
 
