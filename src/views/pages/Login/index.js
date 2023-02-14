@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { toast } from 'react-toastify';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,7 +10,6 @@ import AuthLayout from 'layouts/Auth';
 import Button from 'components/Button/Default';
 import Input from 'components/Input';
 import Wrapper from 'components/Wrapper';
-
 import Env from 'config/Env';
 import { selectAuth } from 'core/selectors';
 import { useTranslation } from 'react-i18next';
@@ -40,11 +40,13 @@ const Login = () => {
   const { currentUser, isLoading } = useSelector(selectAuth);
 
   const onSubmit = (account) => {
-    // const captchaToken = captchaRef.current.getValue();
-    // if (captchaToken.length) {
-    const { email, password } = account;
-    dispatch(logIn({ email, password }));
-    // }
+    const captchaToken = captchaRef.current.getValue();
+    if (captchaToken.length) {
+      const { email, password } = account;
+      dispatch(logIn({ email, password }));
+    } else {
+      toast.info('Check captcha before Sign-In');
+    }
   };
 
   useEffect(() => {
