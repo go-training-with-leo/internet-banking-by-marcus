@@ -6,6 +6,7 @@ import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import Card from 'components/Card/Default';
 import Loader from 'components/Loader';
 import IconButton from 'components/Button/Icon';
+import useToggle from 'components/hooks/useToggle';
 import useWindowDimensions from 'components/hooks/useWindowDimensions';
 import { db } from 'services/firebase';
 import { selectAccount, selectAuth, selectCard } from 'core/selectors';
@@ -14,13 +15,11 @@ import { divideSpaceIdCard } from 'utils/helpers';
 import { getCustAccount } from 'global/redux/account/thunk';
 import { updateSavingCard } from 'global/redux/card/slice';
 import { Back, Next, PlusIcon } from 'assets/images';
-
-import useToggle from 'components/hooks/useToggle';
 import DetailModal from './DetailModal';
 import DepositModal from './DepositModal';
+import NewSvCard from './NewSvCard';
 
 import './style.scss';
-import NewSvCard from './NewSvCard';
 
 const CARD_DEPOSIT = 'CARD_DEPOSIT';
 const ADD_DEPOSIT = 'ADD_DEPOSIT';
@@ -45,6 +44,7 @@ const Cards = () => {
 
   const [currentSavingCard, setCurrentSavingCard] = useState({});
   const [modal, setModal] = useState();
+  const [showNav, setShowNav] = useState(true);
   const [showModal, setShowModal] = useToggle();
 
   const modals = {
@@ -74,7 +74,7 @@ const Cards = () => {
       limitStep = 1;
     }
 
-    if (startPosition + limitStep < savingCards.length) {
+    if (startPosition + limitStep < savingCards?.length) {
       setStartPosition(startPosition + 1);
     }
   };
@@ -136,6 +136,28 @@ const Cards = () => {
     return () => unsubscribe();
   }, [currentUser]);
 
+  useEffect(() => {
+    if (width >= 1500) {
+      if (savingCards?.length <= 3) {
+        setShowNav(false);
+      } else {
+        setShowNav(true);
+      }
+    } else if (width >= 1170 && width < 1500) {
+      if (savingCards?.length <= 2) {
+        setShowNav(false);
+      } else {
+        setShowNav(true);
+      }
+    } else if (width < 1170) {
+      if (savingCards?.length <= 1) {
+        setShowNav(false);
+      } else {
+        setShowNav(true);
+      }
+    }
+  }, [savingCards]);
+
   return (
     <div className='cards-view'>
       <div className='paying-card'>
@@ -166,7 +188,7 @@ const Cards = () => {
             {savingCards.length > 0 ? (
               <div className='saving-card-list'>
                 <Back
-                  className='nav-button'
+                  className={classNames('nav-button', { invisible: !showNav })}
                   width={30}
                   height={30}
                   color='white'
@@ -203,7 +225,7 @@ const Cards = () => {
                   ))}
                 </div>
                 <Next
-                  className='nav-button'
+                  className={classNames('nav-button', { invisible: !showNav })}
                   width={30}
                   height={30}
                   fill='white'
