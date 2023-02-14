@@ -28,6 +28,7 @@ const DefaultLayout = () => {
   const userRole = getLocalStorage('role') || 'NO_ROLE';
 
   const [showModal, setShowModal] = useToggle();
+  const [showMenu, setShowMenu] = useToggle();
 
   const { pathname } = useLocation();
   const { isFetched } = useSelector(selectNotif);
@@ -66,6 +67,8 @@ const DefaultLayout = () => {
     <div>
       <div className='page-layout'>
         <SideBar
+          showSideBar={showMenu}
+          setShowSideBar={setShowMenu}
           bottomItem={
             <Link
               reloadDocument={false}
@@ -98,7 +101,11 @@ const DefaultLayout = () => {
           )}
         </SideBar>
         <div className='page-layout__right'>
-          <Header title={showTitle()} type={userRole === 'CUSTOMER' && 'free'}>
+          <Header
+            onMenuClick={setShowMenu}
+            title={showTitle()}
+            type={userRole === 'CUSTOMER' && 'free'}
+          >
             {isValidElement(btnHeader) &&
               cloneElement(btnHeader, { onClick: setShowModal })}
           </Header>

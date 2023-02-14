@@ -11,11 +11,23 @@ Object {
         <div
           class="side-bar__top"
         >
-          <svg
-            class="logo"
+          <div
+            class="navigate-btn"
           >
-            eightBank.svg
-          </svg>
+            <svg
+              class="logo"
+            >
+              eightBank.svg
+            </svg>
+            <svg
+              class="back-btn"
+              fill="white"
+              height="30"
+              width="30"
+            >
+              back.svg
+            </svg>
+          </div>
           <div
             class="list-item"
           >
@@ -46,11 +58,23 @@ Object {
       <div
         class="side-bar__top"
       >
-        <svg
-          class="logo"
+        <div
+          class="navigate-btn"
         >
-          eightBank.svg
-        </svg>
+          <svg
+            class="logo"
+          >
+            eightBank.svg
+          </svg>
+          <svg
+            class="back-btn"
+            fill="white"
+            height="30"
+            width="30"
+          >
+            back.svg
+          </svg>
+        </div>
         <div
           class="list-item"
         >
@@ -138,11 +162,23 @@ Object {
         <div
           class="side-bar__top"
         >
-          <svg
-            class="logo"
+          <div
+            class="navigate-btn"
           >
-            eightBank.svg
-          </svg>
+            <svg
+              class="logo"
+            >
+              eightBank.svg
+            </svg>
+            <svg
+              class="back-btn"
+              fill="white"
+              height="30"
+              width="30"
+            >
+              back.svg
+            </svg>
+          </div>
           <div
             class="list-item"
           >
@@ -167,11 +203,23 @@ Object {
       <div
         class="side-bar__top"
       >
-        <svg
-          class="logo"
+        <div
+          class="navigate-btn"
         >
-          eightBank.svg
-        </svg>
+          <svg
+            class="logo"
+          >
+            eightBank.svg
+          </svg>
+          <svg
+            class="back-btn"
+            fill="white"
+            height="30"
+            width="30"
+          >
+            back.svg
+          </svg>
+        </div>
         <div
           class="list-item"
         >

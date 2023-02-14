@@ -11,6 +11,12 @@ Object {
         <div
           class="header-left"
         >
+          <svg
+            class="mobile-menu"
+            fill="white"
+          >
+            menu.svg
+          </svg>
           <span>
             Title
           </span>
@@ -19,7 +25,7 @@ Object {
           </button>
         </div>
         <div
-          class="notif"
+          class="notif hide"
         >
           <svg
             class="notif-busy"
@@ -39,6 +45,12 @@ Object {
       <div
         class="header-left"
       >
+        <svg
+          class="mobile-menu"
+          fill="white"
+        >
+          menu.svg
+        </svg>
         <span>
           Title
         </span>
@@ -47,7 +59,7 @@ Object {
         </button>
       </div>
       <div
-        class="notif"
+        class="notif hide"
       >
         <svg
           class="notif-busy"
@@ -124,6 +136,12 @@ Object {
         <div
           class="header-left"
         >
+          <svg
+            class="mobile-menu"
+            fill="white"
+          >
+            menu.svg
+          </svg>
           <span>
             Title
           </span>
@@ -132,7 +150,7 @@ Object {
           </button>
         </div>
         <div
-          class="notif"
+          class="notif hide"
         >
           <svg
             class="notif-free"
@@ -152,6 +170,12 @@ Object {
       <div
         class="header-left"
       >
+        <svg
+          class="mobile-menu"
+          fill="white"
+        >
+          menu.svg
+        </svg>
         <span>
           Title
         </span>
@@ -160,7 +184,7 @@ Object {
         </button>
       </div>
       <div
-        class="notif"
+        class="notif hide"
       >
         <svg
           class="notif-free"
@@ -237,6 +261,12 @@ Object {
         <div
           class="header-left"
         >
+          <svg
+            class="mobile-menu"
+            fill="white"
+          >
+            menu.svg
+          </svg>
           <span>
             Title
           </span>
@@ -245,7 +275,7 @@ Object {
           </button>
         </div>
         <div
-          class="notif"
+          class="notif hide"
         >
           <svg
             class="notif-remove"
@@ -265,6 +295,12 @@ Object {
       <div
         class="header-left"
       >
+        <svg
+          class="mobile-menu"
+          fill="white"
+        >
+          menu.svg
+        </svg>
         <span>
           Title
         </span>
@@ -273,7 +309,7 @@ Object {
         </button>
       </div>
       <div
-        class="notif"
+        class="notif hide"
       >
         <svg
           class="notif-remove"
@@ -350,6 +386,12 @@ Object {
         <div
           class="header-left"
         >
+          <svg
+            class="mobile-menu"
+            fill="white"
+          >
+            menu.svg
+          </svg>
           <span>
             Title
           </span>
@@ -358,7 +400,7 @@ Object {
           </button>
         </div>
         <div
-          class="notif"
+          class="notif hide"
         >
           <svg
             class="notif-busy"
@@ -378,6 +420,12 @@ Object {
       <div
         class="header-left"
       >
+        <svg
+          class="mobile-menu"
+          fill="white"
+        >
+          menu.svg
+        </svg>
         <span>
           Title
         </span>
@@ -386,7 +434,7 @@ Object {
         </button>
       </div>
       <div
-        class="notif"
+        class="notif hide"
       >
         <svg
           class="notif-busy"

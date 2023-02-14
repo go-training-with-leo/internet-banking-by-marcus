@@ -58,8 +58,6 @@ Table.defaultProps = {
   headerTable: undefined,
   children: undefined,
   small: false,
-  // medium: false,
-  // large: false,
   widths: [],
 };
 
@@ -67,8 +65,6 @@ Table.propTypes = {
   headerTable: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]),
   small: PropTypes.bool,
-  // medium: PropTypes.bool,
-  // large: PropTypes.bool,
   widths: PropTypes.array,
 };
 

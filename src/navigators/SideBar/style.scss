@@ -7,7 +7,14 @@
   min-width: 223px;
   height: 100vh;
   display: none;
-
+  &.showSideBar {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    justify-content: space-between;
+    left: 0;
+    z-index: 100;
+  }
   background-color: $black-medium;
 
   @include Responsive(SM) {
@@ -16,10 +23,25 @@
 
   &__top {
     @include setFlex(column, null, null, 44px, null);
-    & > .logo {
-      margin-top: 22px;
-      margin-left: 24px;
+    .navigate-btn {
+      @include setFlex(row, space-between, center, null, null);
+      & > .logo {
+        margin-top: 22px;
+        margin-left: 24px;
+      }
+      & > .back-btn {
+        margin-top: 25px;
+        cursor: pointer;
+        transition: all 0.3s linear;
+        &:hover {
+          transform: scale(1.1);
+        }
+        @include Responsive(SM) {
+          display: none;
+        }
+      }
     }
+
     & > .list-item {
       @include setFlex(column, null, null, 18px, null);
     }

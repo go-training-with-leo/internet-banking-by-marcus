@@ -152,11 +152,16 @@ const compareDate = ({ currentDate, destDate }) => {
   return currentTimeInSec >= destTimeInSec;
 };
 
+const dateInSeconds = (date) => {
+  return date?.seconds ? date.seconds : Math.floor(new Date(date) / 1000);
+};
+
 export {
   capitalizeFirstLetter,
   compareDate,
   convertDatetamp,
   convertTimestamp,
+  dateInSeconds,
   deleteDocFireStore,
   divideSpaceIdCard,
   formatPhoneVN,
