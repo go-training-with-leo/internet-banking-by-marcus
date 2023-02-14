@@ -7,9 +7,10 @@ import Modal from 'components/Modal';
 import TextArea from 'components/TextArea';
 import { deleteDebt } from 'global/redux/debt/thunk';
 
-import './style.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectDebt } from 'core/selectors';
+
+import './style.scss';
 
 const DeleteModal = ({ debtData, setToggle }) => {
   const dispatch = useDispatch();
