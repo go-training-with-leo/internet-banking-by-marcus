@@ -8,14 +8,14 @@ describe('Cards view test', () => {
     cy.url().should('include', '/login');
 
     cy.get('input[placeholder="Enter your email"]').type(
-      'ba3chaoga9x@gmail.com'
+      'hieulechanhkk@gmail.com'
     );
 
     cy.get('input[placeholder="Enter your password"]').type('admin123');
 
     cy.get('input[placeholder="Enter your email"]').should(
       'have.value',
-      'ba3chaoga9x@gmail.com'
+      'hieulechanhkk@gmail.com'
     );
     cy.get('input[placeholder="Enter your password"]').should(
       'have.value',
