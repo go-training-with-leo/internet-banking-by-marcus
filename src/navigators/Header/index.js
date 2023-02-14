@@ -113,7 +113,13 @@ const Header = ({ type, title, children, onMenuClick }) => {
   return (
     <div className='header'>
       <div className='header-left'>
-        <Menu className='mobile-menu' fill='white' onClick={onMenuClick} />
+        <Menu
+          width={50}
+          height={50}
+          className='mobile-menu'
+          fill='white'
+          onClick={onMenuClick}
+        />
         <span>{title}</span>
         {children}
       </div>

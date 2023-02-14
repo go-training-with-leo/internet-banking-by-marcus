@@ -3,7 +3,7 @@
 @import "assets/scss/extends.scss";
 
 .wrapper {
-  @include setWidthHeight(435px, 100%);
+  @include setWidthHeight(265px, 100%);
   background-image: $gray-gradient;
   padding: 60px 54px;
   color: $pure-white;
@@ -11,6 +11,10 @@
   font-family: $font-family;
 
   transition: all 1s linear;
+
+  @include Responsive(XS) {
+    width: 435px;
+  }
   
   &-header {
     @include setFlex(row, start, center, null, null);

@@ -7,11 +7,17 @@
     @include setWidthHeight(90%, 100vh);
     margin: 0 auto;
     font-family: $font-family;
-    @include setFlex(row, space-between, center, null, null);
+    @include setFlex(row, center, center, null, null);
+    @include Responsive(MD) {
+      justify-content: space-between;
+    }
   }
   &-logo {
-  
-    @include setFlex(column, center, null, 28px, null);
+    
+    display: none;
+    @include Responsive(MD) {
+      @include setFlex(column, center, null, 28px, null);
+    }
     span {
       color: $pure-white;
       font-weight: 400;
