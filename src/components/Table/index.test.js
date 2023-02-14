@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 
 import HeaderTable from 'components/Table/Header';
 import HeaderCell from 'components/Table/HeaderCell';
@@ -60,7 +60,7 @@ describe('Test Table', () => {
       status: 'success',
     },
   ];
-  it('Test Props', () => {
+  it('Test Props', async () => {
     const headerTable = (
       <HeaderTable>
         <HeaderCell>Id</HeaderCell>
@@ -74,10 +74,11 @@ describe('Test Table', () => {
         <HeaderCell>Actions</HeaderCell>
       </HeaderTable>
     );
+    const onRowClick = jest.fn();
     const tree = render(
       <Table widths={[10, 20, 20, 20, 20, 20]} headerTable={headerTable}>
         {dataTable?.map((data) => (
-          <TableRow key={data.id}>
+          <TableRow key={data.id} onClick={onRowClick}>
             <RowCell title='id'>{data.id}</RowCell>
             <RowCell title='name'>{data.name}</RowCell>
             <RowCell title='age'>{data.age}</RowCell>
@@ -94,7 +95,13 @@ describe('Test Table', () => {
     );
 
     const table = tree.container.querySelector('tbody');
+    const row = tree.container.querySelector('tr.table-body-row');
 
+    await act(async () => {
+      fireEvent.click(row);
+    });
+
+    expect(onRowClick).toBeCalled();
     expect(table).toHaveTextContent('wasif@email.com');
     expect(table).toHaveTextContent('Wasif');
     expect(tree).toMatchSnapshot();

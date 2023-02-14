@@ -1,16 +1,9 @@
 import React from 'react';
-import { convertDatetamp } from 'utils/helpers';
+import { convertDatetamp, dateInSeconds } from 'utils/helpers';
 
 import './style.scss';
 
 const TimeTracking = ({ currentTime, min, max }) => {
-  const minDateInSeconds = min?.seconds
-    ? min.seconds
-    : Math.floor(new Date(min) / 1000);
-  const maxDateInSeconds = max?.seconds
-    ? max.seconds
-    : Math.floor(new Date(max) / 1000);
-
   return (
     <div className='options'>
       <h1>TIME TRACKING</h1>
@@ -18,8 +11,8 @@ const TimeTracking = ({ currentTime, min, max }) => {
         readOnly
         className='slider'
         type='range'
-        min={minDateInSeconds}
-        max={maxDateInSeconds}
+        min={dateInSeconds(min)}
+        max={dateInSeconds(max)}
         list='steplist'
         value={currentTime / 1000}
       />
@@ -31,13 +24,15 @@ const TimeTracking = ({ currentTime, min, max }) => {
       </div>
       <div className='ticks'>
         <span className='o_txt'>
-          {convertDatetamp(minDateInSeconds * 1000)}
+          {convertDatetamp(dateInSeconds(min) * 1000)}
         </span>
         <span className='o_txt'>
-          {convertDatetamp(((minDateInSeconds + maxDateInSeconds) / 2) * 1000)}
+          {convertDatetamp(
+            ((dateInSeconds(min) + dateInSeconds(max)) / 2) * 1000
+          )}
         </span>
         <span className='o_txt'>
-          {convertDatetamp(maxDateInSeconds * 1000)}
+          {convertDatetamp(dateInSeconds(max) * 1000)}
         </span>
       </div>
     </div>
