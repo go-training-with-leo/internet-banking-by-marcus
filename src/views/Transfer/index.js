@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import DefaultButton from 'components/Button/Default';
+import Env from 'config/Env';
 import useToggle from 'components/hooks/useToggle';
 import { resetTransferInfo } from 'global/redux/transfer/slice';
 import { InternalTransfer, InterBankTransfer } from 'assets/images';
@@ -44,7 +45,7 @@ const Transfer = () => {
       <StepThree
         setToggle={handleSetToggle}
         back={() => setStep(STEP_TWO)}
-        next={() => setStep(STEP_FOUR)}
+        next={() => setStep(Env.CYPRESS ? STEP_FIVE : STEP_FOUR)}
       />
     ),
     STEP_FOUR: (
