@@ -1,9 +1,6 @@
 # INTERNET - BANKING
 INTERNET - BANKING
 
-## Deployment
-**Note:** [Live demo](https://eightbank.netlify.app/)
-
 ## Prerequisite
 
 ### yarn
@@ -89,6 +86,14 @@ Test file must be in /cypress/e2e/
 Create file with *.spect.cy.js in /cypress/e2e/ to create a new end to end test.
  
 Check the [Jest document](https://docs.cypress.io/guides/getting-started/installing-cypress) to get you started!
+
+## Deployment
+**Deployed on Netlify:**
+Contact your team to join Netlify team. Then go to `Site setting/Build & deploy` to config stating and production deploy
+
+**Staging:** Auto deploy & generate a different domain to test after PR
+
+**Production:** [Production](https://eightbank.netlify.app/)
 
 Cheers 🍺🍺
 Happy coding!
