@@ -7,10 +7,12 @@ import { deleteContact } from 'global/redux/contact/thunk';
 import { selectContact } from 'core/selectors';
 
 import './style.scss';
+import { useTranslation } from 'react-i18next';
 
 const DeleteModal = ({ setToggle, contactData }) => {
   const dispatch = useDispatch();
 
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Contacts' });
   const { isLoading: loading } = useSelector(selectContact);
 
   const handleConfirm = async () => {
@@ -24,19 +26,17 @@ const DeleteModal = ({ setToggle, contactData }) => {
   };
 
   return (
-    <Modal setToggle={setToggle} title='Alert!' clickOutSide cancel>
+    <Modal setToggle={setToggle} title={t('alert')} clickOutSide cancel>
       <div className='delete-modal'>
-        <span className='confirm-text'>
-          You are about to remove a contact! This action cannot be restore.
-        </span>
+        <span className='confirm-text'>{t('alertDesc')}</span>
         <div className='btns-group'>
           <div className='btn'>
             <DefaultButton loading={loading} onClick={handleConfirm} danger>
-              Confirm
+              {t('confirm')}
             </DefaultButton>
           </div>
           <div className='btn'>
-            <DefaultButton onClick={setToggle}>Cancel</DefaultButton>
+            <DefaultButton onClick={setToggle}>{t('cancel')}</DefaultButton>
           </div>
         </div>
       </div>

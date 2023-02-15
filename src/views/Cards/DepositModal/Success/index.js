@@ -12,11 +12,15 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCard } from 'core/selectors';
 import { rechargeSavingMoney } from 'global/redux/card/thunk';
+import { useTranslation } from 'react-i18next';
 
 const Success = ({ setToggle, cardDetail }) => {
   const dispatch = useDispatch();
 
   const { isDeleteSavingCardLoading: isLoading } = useSelector(selectCard);
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Pages.Cards',
+  });
 
   const handleDeposit = async () => {
     const {
@@ -36,29 +40,29 @@ const Success = ({ setToggle, cardDetail }) => {
     >
       <div className='success-modal'>
         <div className='success-info-row'>
-          <span className='title'>Saving card number:</span>
+          <span className='title'>{t('cardNumber')}:</span>
           <span>{divideSpaceIdCard(cardDetail?.cardNumber)}</span>
         </div>
         <div className='success-info-row'>
-          <span className='title'>Balance:</span>
+          <span className='title'>{t('balance')}:</span>
           <span>{parseMoneyVnd(cardDetail?.balance)} VND</span>
         </div>
         <div className='success-info-row'>
-          <span className='title'>Rate:</span>
+          <span className='title'>{t('rate')}:</span>
           <span>{cardDetail.interest * 100}%</span>
         </div>
         <div className='success-info-row'>
-          <span className='title'>Interest money:</span>
+          <span className='title'>{t('interestMoney')}:</span>
           <span>{parseMoneyVnd(cardDetail?.interestMoney)} VND</span>
         </div>
         <div className='success-info-row'>
-          <span className='title'>Receive:</span>
+          <span className='title'>{t('receive')}:</span>
           <span>
             {parseMoneyVnd(cardDetail.balance + cardDetail.interestMoney)} VND
           </span>
         </div>
         <div className='success-info-row'>
-          <span className='title'>Created at:</span>
+          <span className='title'>{t('createdAt')}:</span>
           <span>
             {convertTimestamp(
               cardDetail?.createdAt?.seconds
@@ -68,7 +72,7 @@ const Success = ({ setToggle, cardDetail }) => {
           </span>
         </div>
         <div className='success-info-row'>
-          <span className='title'>Time deposit:</span>
+          <span className='title'>{t('depositTime')}:</span>
           <span>
             {convertTimestamp(
               cardDetail?.timeDeposit?.seconds

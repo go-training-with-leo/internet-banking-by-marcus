@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAuth } from 'core/selectors';
 import { useTranslation } from 'react-i18next';
-// import { useNavigate } from 'react-router-dom';
 
 import AuthLayout from 'layouts/Auth';
 import Wrapper from 'components/Wrapper';

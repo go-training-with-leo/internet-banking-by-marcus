@@ -15,6 +15,7 @@ import { divideSpaceIdCard } from 'utils/helpers';
 import { getCustAccount } from 'global/redux/account/thunk';
 import { updateSavingCard } from 'global/redux/card/slice';
 import { Back, Next, PlusIcon } from 'assets/images';
+import { useTranslation } from 'react-i18next';
 import DetailModal from './DetailModal';
 import DepositModal from './DepositModal';
 import NewSvCard from './NewSvCard';
@@ -29,6 +30,9 @@ const Cards = () => {
   const ref = useRef(0);
   const itemRef = useRef(null);
 
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Pages.Cards',
+  });
   const {
     payingCard,
     savingCards,
@@ -161,7 +165,7 @@ const Cards = () => {
   return (
     <div className='cards-view'>
       <div className='paying-card'>
-        <span className='paying-card__title'>Paying card</span>
+        <span className='paying-card__title'>{t('payingCard')}</span>
         <div className='paying-card__detail'>
           <Card
             isLoading={loading}
@@ -178,10 +182,10 @@ const Cards = () => {
           <Loader large />
         ) : (
           <div className='saving-card__container'>
-            <span className='title'>Saving cards</span>
+            <span className='title'>{t('savingCards')}</span>
             <div className='add-btn'>
               <IconButton danger onClick={handleAddSavingCard}>
-                New saving card
+                {t('newSavingCard')}
                 <PlusIcon width={15} height={15} fill='white' />
               </IconButton>
             </div>

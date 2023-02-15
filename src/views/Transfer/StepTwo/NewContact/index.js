@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import IconButton from 'components/Button/Icon';
 import Input from 'components/Input';
+import { useTranslation } from 'react-i18next';
 import { divideSpaceIdCard, removeNonNumeric } from 'utils/helpers';
 import { searchContact } from 'global/redux/transfer/thunk';
 import { selectCard, selectTransfer } from 'core/selectors';
@@ -14,6 +15,7 @@ import './style.scss';
 const NewContact = () => {
   const dispatch = useDispatch();
 
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Transfer' });
   const { transferInfo, isLoading: loading } = useSelector(selectTransfer);
   const { payingCard } = useSelector(selectCard);
   const {
@@ -29,7 +31,7 @@ const NewContact = () => {
     if (cardNumber === payingCard?.cardNumber) {
       setError('cardNumber', {
         type: 'custom',
-        message: 'This is your card number',
+        message: t('thisIsYourCard'),
       });
       return;
     }
@@ -54,9 +56,9 @@ const NewContact = () => {
                 label={
                   errors?.cardNumber?.message
                     ? errors?.cardNumber?.message
-                    : 'Card number'
+                    : t('cardNumber')
                 }
-                placeholder='Enter the contact’s card number'
+                placeholder={t('enterCardNumber')}
               />
             )}
           />
@@ -75,13 +77,13 @@ const NewContact = () => {
       {transferInfo?.dest?.cardNumber && (
         <div className='contact-tab'>
           <div className='tab-line'>
-            <span>Name:</span>
+            <span>{t('name')}:</span>
             <span>{transferInfo?.dest?.contactName}</span>
-            <span>Bank:</span>
+            <span>{t('bank')}:</span>
             <span>EIGHT.Bank</span>
           </div>
           <div className='tab-line'>
-            <span>Card number:</span>
+            <span>{t('cardNumber')}:</span>
             <span>{divideSpaceIdCard(transferInfo?.dest?.cardNumber)}</span>
           </div>
         </div>

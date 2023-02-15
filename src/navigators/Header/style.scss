@@ -13,8 +13,22 @@
   font-size: 25px;
   font-weight: 700;
 
-  .nofi {
+  .notif {
     position: relative;
+
+    .translate {
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+
+    .lang {
+      margin-left: 5px;
+      font-size: 16px;
+    }
   }
 
   &-left {
@@ -32,8 +46,13 @@
 
   svg {
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.2);
+      user-select: none;
+    }
   }
-  
+
   .hide {
     display: none;
   }

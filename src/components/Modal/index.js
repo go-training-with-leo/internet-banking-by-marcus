@@ -5,8 +5,10 @@ import React from 'react';
 import { Cancel } from 'assets/images';
 
 import './style.scss';
+import { useTranslation } from 'react-i18next';
 
 const Modal = ({ title, cancel, setToggle, children, clickOutSide, large }) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Cards' });
   return (
     <div
       className={classNames('modal-container')}
@@ -32,7 +34,7 @@ const Modal = ({ title, cancel, setToggle, children, clickOutSide, large }) => {
               onClick={() => setToggle(false)}
             >
               <Cancel width={20} height={20} />
-              <span>CANCEL</span>
+              <span>{t('cancel')}</span>
             </div>
           )}
         </div>

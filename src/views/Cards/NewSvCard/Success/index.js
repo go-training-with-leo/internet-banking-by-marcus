@@ -12,55 +12,57 @@ import {
 import './style.scss';
 import { useSelector } from 'react-redux';
 import { selectCard } from 'core/selectors';
+import { useTranslation } from 'react-i18next';
 
 const SuccessModal = ({ setToggle }) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Cards' });
   const { newSavingCard, payingCard } = useSelector(selectCard);
 
   return (
     <Modal
-      title='Saving card information'
+      title={t('savingCardInfo')}
       setToggle={setToggle}
       cancel
       clickOutSide
     >
       <div className='saving-info-modal'>
         <div className='saving-info-row'>
-          <span className='title'>From card:</span>
+          <span className='title'>{t('sourceCard')}:</span>
           <span>{divideSpaceIdCard(payingCard?.cardNumber)}</span>
         </div>
         <div className='saving-info-row'>
-          <span className='title'>Card number:</span>
+          <span className='title'>{t('cardNumber')}:</span>
           <span>{divideSpaceIdCard(newSavingCard?.cardNumber)}</span>
         </div>
         <div className='saving-info-row'>
-          <span className='title'>Rate (%): </span>
+          <span className='title'>{t('rate')} (%): </span>
           <span>{newSavingCard.interest * 100}%</span>
         </div>
         <div className='saving-info-row'>
-          <span className='title'>Balance:</span>
+          <span className='title'>{t('balance')}:</span>
           <span>{parseMoneyVnd(newSavingCard?.balance)} VND</span>
         </div>
         <div className='saving-info-row'>
-          <span className='title'>Interest:</span>
+          <span className='title'>{t('interest')}:</span>
           <span>{parseMoneyVnd(newSavingCard?.interestMoney)} VND</span>
         </div>
         <div className='saving-info-row'>
-          <span className='title'>Total: </span>
+          <span className='title'>{t('total')}: </span>
           <span>
             {parseMoneyVnd(newSavingCard.interestMoney + newSavingCard.balance)}{' '}
             VND
           </span>
         </div>
         <div className='saving-info-row'>
-          <span className='title'>Created at: </span>
+          <span className='title'>{t('createdAt')}: </span>
           <span>{convertTimestamp(newSavingCard.createdAt)}</span>
         </div>
         <div className='saving-info-row'>
-          <span className='title'>Time deposit:</span>
+          <span className='title'>{t('timeDeposit')}:</span>
           <span>{convertTimestamp(newSavingCard.timeDeposit)}</span>
         </div>
         <DefaultButton onClick={setToggle} danger>
-          OK
+          {t('ok')}
         </DefaultButton>
       </div>
     </Modal>

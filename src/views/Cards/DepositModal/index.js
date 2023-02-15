@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
-
 import TimeTracking from 'components/TimeTracking';
 import Status from 'components/Status';
+import { selectCard } from 'core/selectors';
 import {
   convertTimestamp,
   divideSpaceIdCard,
   parseMoneyVnd,
 } from 'utils/helpers';
-
-import { useSelector } from 'react-redux';
-import { selectCard } from 'core/selectors';
 import Success from './Success';
 import SettleSuccess from './SettleSuccess';
 
@@ -28,6 +27,9 @@ const DepositModal = ({ setToggle, cardDetail }) => {
   const [step, setStep] = useState(DEPOSIT);
   const [settleData, setSettleData] = useState({});
 
+  const { t } = useTranslation('translation', {
+    keyPrefix: 'Pages.Cards',
+  });
   const { payingCard, isDeleteSavingCardLoading: loading } =
     useSelector(selectCard);
 
@@ -68,41 +70,41 @@ const DepositModal = ({ setToggle, cardDetail }) => {
     DEPOSIT: (
       <Modal
         large
-        title='Deposit detail'
+        title={t('depositDetail')}
         cancel
         clickOutSide
         setToggle={setToggle}
       >
         <div className='deposit-modal'>
           <div className='deposit-info-row'>
-            <span className='title'>Card number:</span>
+            <span className='title'>{t('cardNumber')}:</span>
             <span>{divideSpaceIdCard(cardDetail?.cardNumber)}</span>
           </div>
           <div className='deposit-info-row'>
-            <span className='title'>Status:</span>
+            <span className='title'>{t('status')}:</span>
             <Status
               pending={cardDetail?.status === 'pending'}
               success={cardDetail?.status === 'success'}
             />
           </div>
           <div className='deposit-info-row'>
-            <span className='title'>Balance:</span>
+            <span className='title'>{t('balance')}:</span>
             <span>{parseMoneyVnd(cardDetail?.balance)} VND</span>
           </div>
           <div className='deposit-info-row'>
-            <span className='title'>Settle rate:</span>
+            <span className='title'>{t('settleRate')}:</span>
             <span>{0.03}%</span>
           </div>
           <div className='deposit-info-row'>
-            <span className='title'>Deposit rate:</span>
+            <span className='title'>{t('depositRate')}:</span>
             <span>{cardDetail.interest * 100}%</span>
           </div>
           <div className='deposit-info-row'>
-            <span className='title'>Current time:</span>
+            <span className='title'>{t('currentTime')}:</span>
             <span>{convertTimestamp(currentTime)}</span>
           </div>
           <div className='deposit-info-row'>
-            <span className='title'>Created at:</span>
+            <span className='title'>{t('createdAt')}:</span>
             <span>
               {convertTimestamp(
                 cardDetail?.createdAt?.seconds
@@ -112,7 +114,7 @@ const DepositModal = ({ setToggle, cardDetail }) => {
             </span>
           </div>
           <div className='deposit-info-row'>
-            <span className='title'>Time deposit:</span>
+            <span className='title'>{t('depositTime')}:</span>
             <span>
               {convertTimestamp(
                 cardDetail?.timeDeposit?.seconds
@@ -127,14 +129,14 @@ const DepositModal = ({ setToggle, cardDetail }) => {
             currentTime={currentTime}
           />
           <div className='btn-group'>
-            <DefaultButton onClick={setToggle}>Cancel</DefaultButton>
+            <DefaultButton onClick={setToggle}>{t('cancel')}</DefaultButton>
             {cardDetail?.status === 'success' ? (
               <DefaultButton loading={loading} danger onClick={handleDeposit}>
-                Confirm
+                {t('confirm')}
               </DefaultButton>
             ) : (
               <DefaultButton loading={loading} onClick={handleSettle} danger>
-                Settle
+                {t('settle')}
               </DefaultButton>
             )}
           </div>

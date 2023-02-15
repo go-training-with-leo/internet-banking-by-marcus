@@ -11,21 +11,23 @@ import { updateTransferInfo } from 'global/redux/transfer/slice';
 import { selectAuth, selectContact, selectTransfer } from 'core/selectors';
 import { getContacts } from 'global/redux/contact/thunk';
 import { divideSpaceIdCard } from 'utils/helpers';
-
-const headerTable = (
-  <HeaderTable>
-    <HeaderCell>Name</HeaderCell>
-    <HeaderCell>Card number</HeaderCell>
-    <HeaderCell>Bank</HeaderCell>
-  </HeaderTable>
-);
+import { useTranslation } from 'react-i18next';
 
 const ContactsTable = () => {
   const dispatch = useDispatch();
 
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Transfer' });
   const { currentUser } = useSelector(selectAuth);
   const { contacts, isFetched } = useSelector(selectContact);
   const { transferInfo } = useSelector(selectTransfer);
+
+  const headerTable = (
+    <HeaderTable>
+      <HeaderCell>{t('name')}</HeaderCell>
+      <HeaderCell>{t('cardNumber')}</HeaderCell>
+      <HeaderCell>{t('bank')}</HeaderCell>
+    </HeaderTable>
+  );
 
   const handleClick = (contact) => {
     const { id: contactId, contactName, cardNumber, bank } = contact;

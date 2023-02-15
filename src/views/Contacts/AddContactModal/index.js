@@ -2,6 +2,7 @@ import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from 'react-i18next';
 
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
@@ -24,6 +25,7 @@ const options = [
 const AddContactModal = ({ setToggle }) => {
   const dispatch = useDispatch();
 
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Contacts' });
   const { isLoading: loading, isSearchAccount } = useSelector(selectContact);
   const { currentUser } = useSelector(selectAuth);
   const {
@@ -83,9 +85,9 @@ const AddContactModal = ({ setToggle }) => {
   };
 
   return (
-    <Modal setToggle={setToggle} title='Add new contact' cancel clickOutSide>
+    <Modal setToggle={setToggle} title={t('addNewContact')} cancel clickOutSide>
       <form className='edit-modal' onSubmit={handleSubmit(onSubmit)}>
-        <span>Enter the new infomation for this contact</span>
+        <span>{t('addContDesc')}</span>
         <Controller
           control={control}
           name='bank'
@@ -95,7 +97,7 @@ const AddContactModal = ({ setToggle }) => {
               options={options}
               value={value}
               name='bank'
-              label='Bank'
+              label={t('bank')}
               onChange={(val) => {
                 onChange(val);
               }}
@@ -130,7 +132,7 @@ const AddContactModal = ({ setToggle }) => {
             }
           }, 500)}
           label={errors.cardNumber ? errors.cardNumber?.message : 'Card number'}
-          placeholder='Enter the contact’s card number'
+          placeholder={t('enterCardNumber')}
           error={errors.cardNumber && true}
         />
         {!isSearchAccount ? (
@@ -140,14 +142,14 @@ const AddContactModal = ({ setToggle }) => {
             name='contactName'
             error={errors?.contactName && true}
             label={errors?.contactName ? errors?.contactName?.message : 'Name'}
-            placeholder='Enter the contact’s name'
+            placeholder={t('enterName')}
           />
         ) : (
           <Loader large />
         )}
         <div className='btn-modal'>
           <DefaultButton loading={loading} danger type='submit'>
-            Create
+            {t('create')}
           </DefaultButton>
         </div>
       </form>
