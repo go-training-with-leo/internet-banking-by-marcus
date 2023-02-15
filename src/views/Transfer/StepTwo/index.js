@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -22,6 +23,7 @@ const StepTwo = ({ setToggle, next }) => {
 
   const [radio, setRadio] = useState(EXIST_CONTACT);
 
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Transfer' });
   const { handleSubmit } = useForm();
   const { payingCard } = useSelector(selectCard);
   const { currentAccount } = useSelector(selectAccount);
@@ -59,10 +61,10 @@ const StepTwo = ({ setToggle, next }) => {
   };
 
   return (
-    <Modal setToggle={setToggle} title='Internal transfer' cancel clickOutSide>
+    <Modal setToggle={setToggle} title={t('internal')} cancel clickOutSide>
       <form className='step-two' onSubmit={handleSubmit(handleNext)}>
-        <Stepper title='Contact' step='2'>
-          Provide the information of the receiver
+        <Stepper title={t('contact')} step='2'>
+          {t('provideTheInfo')}
         </Stepper>
         <div className='radio-group'>
           <Radio
@@ -70,27 +72,27 @@ const StepTwo = ({ setToggle, next }) => {
             onChange={handleClickRadio}
             value={EXIST_CONTACT}
             checked={radio === 'existContact'}
-            label='From your existing contacts'
+            label={t('existContact')}
           />
           <Radio
             name='contact'
             value={NEW_CONTACT}
             checked={radio === 'newContact'}
             onChange={handleClickRadio}
-            label='From a new contact'
+            label={t('newContact')}
           />
         </div>
         <div className='step-two-container'>{tabs[radio]}</div>
         <div className='btn-group'>
           <div className='step-two-btn'>
-            <DefaultButton onClick={setToggle}>Cancel</DefaultButton>
+            <DefaultButton onClick={setToggle}>{t('cancel')}</DefaultButton>
           </div>
           <div className='step-two-btn'>
             <DefaultButton
               danger={transferInfo?.dest?.contactId && true}
               type='submit'
             >
-              Next
+              {t('next')}
             </DefaultButton>
           </div>
         </div>

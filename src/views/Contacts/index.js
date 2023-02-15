@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 
 import Table, { TableRow } from 'components/Table';
 import HeaderTable from 'components/Table/Header';
@@ -22,16 +23,17 @@ const Contacts = () => {
   const [isShownDelete, toggleDelete] = useToggle();
   const [chooseContact, setChooseContact] = useState();
 
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Contacts' });
   const { currentUser } = useSelector(selectAuth);
   const { contacts, isFetched } = useSelector(selectContact);
 
   const headerTable = (
     <HeaderTable>
       <HeaderCell> </HeaderCell>
-      <HeaderCell>Name</HeaderCell>
-      <HeaderCell>Card number</HeaderCell>
-      <HeaderCell>Bank</HeaderCell>
-      <HeaderCell>Actions</HeaderCell>
+      <HeaderCell>{t('name')}</HeaderCell>
+      <HeaderCell>{t('cardNumber')}</HeaderCell>
+      <HeaderCell>{t('bank')}</HeaderCell>
+      <HeaderCell>{t('actions')}</HeaderCell>
     </HeaderTable>
   );
 

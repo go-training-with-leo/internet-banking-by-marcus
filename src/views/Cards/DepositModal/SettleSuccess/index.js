@@ -13,10 +13,12 @@ import { rechargeSavingMoney } from 'global/redux/card/thunk';
 import { selectCard } from 'core/selectors';
 
 import './style.scss';
+import { useTranslation } from 'react-i18next';
 
 const SettleSuccess = ({ setToggle, cardDetail }) => {
   const dispatch = useDispatch();
 
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Cards' });
   const { isDeleteSavingCardLoading: isLoading } = useSelector(selectCard);
 
   const handleSettle = async () => {
@@ -29,32 +31,32 @@ const SettleSuccess = ({ setToggle, cardDetail }) => {
   };
 
   return (
-    <Modal title='Settle information' setToggle={setToggle} cancel clickOutSide>
+    <Modal title={t('settleInfo')} setToggle={setToggle} cancel clickOutSide>
       <div className='success-modal'>
         <div className='success-info-row'>
-          <span className='title'>Saving card number:</span>
+          <span className='title'>{t('cardNumber')}:</span>
           <span>{divideSpaceIdCard(cardDetail?.cardNumber)}</span>
         </div>
         <div className='success-info-row'>
-          <span className='title'>Balance:</span>
+          <span className='title'>{t('amount')}:</span>
           <span>{parseMoneyVnd(cardDetail?.balance)} VND</span>
         </div>
         <div className='success-info-row'>
-          <span className='title'>Rate:</span>
+          <span className='title'>{t('rate')}:</span>
           <span>{cardDetail.interest * 100}%</span>
         </div>
         <div className='success-info-row'>
-          <span className='title'>Interest money:</span>
+          <span className='title'>{t('interestMoney')}:</span>
           <span>{parseMoneyVnd(cardDetail?.interestMoney)} VND</span>
         </div>
         <div className='success-info-row'>
-          <span className='title'>Receive:</span>
+          <span className='title'>{t('receive')}:</span>
           <span>
             {parseMoneyVnd(cardDetail.balance + cardDetail.interestMoney)} VND
           </span>
         </div>
         <div className='success-info-row'>
-          <span className='title'>Created at:</span>
+          <span className='title'>{t('createdAt')}:</span>
           <span>
             {convertTimestamp(
               cardDetail?.createdAt?.seconds
@@ -64,7 +66,7 @@ const SettleSuccess = ({ setToggle, cardDetail }) => {
           </span>
         </div>
         <div className='success-info-row'>
-          <span className='title'>Time deposit:</span>
+          <span className='title'>{t('depositTime')}:</span>
           <span>
             {convertTimestamp(
               cardDetail?.timeDeposit?.seconds
@@ -74,7 +76,7 @@ const SettleSuccess = ({ setToggle, cardDetail }) => {
           </span>
         </div>
         <DefaultButton loading={isLoading} onClick={handleSettle} danger>
-          OK
+          {t('settle')}
         </DefaultButton>
       </div>
     </Modal>

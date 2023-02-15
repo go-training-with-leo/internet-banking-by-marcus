@@ -42,13 +42,11 @@ const Login = () => {
   const onSubmit = (account) => {
     const captchaToken = captchaRef.current.getValue();
     if (captchaToken?.length || Env.CYPRESS === 'true') {
-      console.warn(captchaToken, '-', Env.CYPRESS);
       const { email, password } = account;
       dispatch(logIn({ email, password }));
     } else {
       toast.info('Check captcha before Sign-In');
     }
-    console.warn(Env.CYPRESS);
   };
 
   useEffect(() => {

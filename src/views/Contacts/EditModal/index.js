@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import DefaultButton from 'components/Button/Default';
 import Modal from 'components/Modal';
@@ -8,10 +9,10 @@ import Input from 'components/Input';
 import Selection from 'components/Select';
 import { editContact } from 'global/redux/contact/thunk';
 import { selectContact } from 'core/selectors';
+import { divideSpaceIdCard, removeNonNumeric } from 'utils/helpers';
 import { ACB } from 'assets/images';
 
 import './style.scss';
-import { divideSpaceIdCard, removeNonNumeric } from 'utils/helpers';
 
 const options = [
   { id: 'OT1', label: 'EIGHT.Bank', value: 'EIGHT.Bank', icon: ACB },
@@ -20,6 +21,7 @@ const options = [
 const EditModal = ({ setToggle, contactData }) => {
   const dispatch = useDispatch();
 
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Contacts' });
   const { register, handleSubmit, control, setValue } = useForm();
   const { isLoading: loading } = useSelector(selectContact);
 
@@ -45,9 +47,9 @@ const EditModal = ({ setToggle, contactData }) => {
   }, []);
 
   return (
-    <Modal setToggle={setToggle} title='Edit contact' cancel clickOutSide>
+    <Modal setToggle={setToggle} title={t('editContact')} cancel clickOutSide>
       <form className='edit-modal' onSubmit={handleSubmit(onSubmit)}>
-        <span>Enter the new infomation for this contact</span>
+        <span>{t('addContDesc')}</span>
         <Controller
           control={control}
           name='bank'
@@ -65,19 +67,19 @@ const EditModal = ({ setToggle, contactData }) => {
           register={register}
           name='cardNumber'
           disabled
-          label='Card number'
+          label={t('cardNumber')}
           placeholder={contactData?.cardNumber}
         />
         <Input
           disabled={loading}
           register={register}
           name='contactName'
-          label='Name'
-          placeholder='Contact name'
+          label={t('name')}
+          placeholder={t('enterName')}
         />
         <div className='btn-modal'>
           <DefaultButton loading={loading} danger type='submit'>
-            Save changes
+            {t('saveChange')}
           </DefaultButton>
         </div>
       </form>

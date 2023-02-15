@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -25,49 +26,51 @@ const STEP_TWO = 'STEP_TWO';
 
 const week = 604800;
 
-const options = [
-  {
-    id: 'TS-1',
-    label: '1 week (0.2%)',
-    value: { time: week, interest: 0.2 / 100 },
-  },
-  {
-    id: 'TS-2',
-    label: '1 month (0.8%)',
-    value: { time: 2629746, interest: 0.8 / 100 },
-  },
-  {
-    id: 'TS-3',
-    label: '2 months (1.6%)',
-    value: { time: 5259492, interest: 1.6 / 100 },
-  },
-  {
-    id: 'TS-4',
-    label: '3 months (2.4%)',
-    value: { time: 7889238, interest: 2.4 / 100 },
-  },
-  {
-    id: 'TS-5',
-    label: '4 months (3.2%)',
-    value: { time: 10518984, interest: 3.2 / 100 },
-  },
-  {
-    id: 'TS-6',
-    label: '5 months (4%)',
-    value: { time: 13148730, interest: 4 / 100 },
-  },
-  {
-    id: 'TS-7',
-    label: '1 year (9.6%)',
-    value: { time: 31556952, interest: 9.6 / 100 },
-  },
-];
-
 const NewSvCard = ({ setToggle }) => {
   const dispatch = useDispatch();
 
   const [step, setStep] = useState(STEP_ONE);
   const [savingCardInfo, setSavingCardInfo] = useState({});
+
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Cards' });
+
+  const options = [
+    {
+      id: 'TS-1',
+      label: `1 ${t('week')} (0.2%)`,
+      value: { time: week, interest: 0.2 / 100 },
+    },
+    {
+      id: 'TS-2',
+      label: `1 ${t('month')} (0.8%)`,
+      value: { time: 2629746, interest: 0.8 / 100 },
+    },
+    {
+      id: 'TS-3',
+      label: `2 ${t('months')} (1.6%)`,
+      value: { time: 5259492, interest: 1.6 / 100 },
+    },
+    {
+      id: 'TS-4',
+      label: `3 ${t('month')} (2.4%)`,
+      value: { time: 7889238, interest: 2.4 / 100 },
+    },
+    {
+      id: 'TS-5',
+      label: `4 ${t('month')} (3.2%)`,
+      value: { time: 10518984, interest: 3.2 / 100 },
+    },
+    {
+      id: 'TS-6',
+      label: `5 ${t('month')} (4%)`,
+      value: { time: 13148730, interest: 4 / 100 },
+    },
+    {
+      id: 'TS-7',
+      label: `1 ${t('year')} (9.6%)`,
+      value: { time: 31556952, interest: 9.6 / 100 },
+    },
+  ];
 
   const {
     handleSubmit,
@@ -121,7 +124,7 @@ const NewSvCard = ({ setToggle }) => {
     <>
       {step === STEP_ONE && (
         <Modal
-          title='New saving card'
+          title={t('newSavingCard')}
           setToggle={setToggle}
           clickOutSide
           cancel
@@ -130,7 +133,7 @@ const NewSvCard = ({ setToggle }) => {
             <Input
               disabled
               name='cardNumber'
-              label='Source card'
+              label={t('sourceCard')}
               value={divideSpaceIdCard(payingCard?.cardNumber)}
             />
             <Controller
@@ -159,18 +162,18 @@ const NewSvCard = ({ setToggle }) => {
                   label={
                     errors?.balance
                       ? handleCheckAmount(errors?.balance.message)
-                      : 'Balance'
+                      : `${t('amount')}`
                   }
-                  placeholder='Enter your balance'
+                  placeholder={t('enterYourBalance')}
                 />
               )}
             />
             <div className='btn-group'>
               <DefaultButton disabled={loading} onClick={setToggle}>
-                Cancel
+                {t('cancel')}
               </DefaultButton>
               <DefaultButton loading={loading} type='submit' danger>
-                Create
+                {t('create')}
               </DefaultButton>
             </div>
           </form>

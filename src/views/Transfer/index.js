@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import DefaultButton from 'components/Button/Default';
 import Env from 'config/Env';
@@ -28,6 +29,8 @@ const Transfer = () => {
 
   const [showModal, setShowModal] = useToggle();
   const [step, setStep] = useState(STEP_TWO);
+
+  const { t } = useTranslation('translation', { keyPrefix: 'Pages.Transfer' });
 
   const handleSetToggle = () => {
     dispatch(resetTransferInfo());
@@ -80,7 +83,7 @@ const Transfer = () => {
               setStep(STEP_TWO);
             }}
           >
-            EIGHT.Bank internal transfer
+            EIGHT.Bank {t('internal')}
           </DefaultButton>
         </div>
       </div>
@@ -95,7 +98,7 @@ const Transfer = () => {
               setStep(INTERBANK);
             }}
           >
-            Interbank transfer
+            {t('interbank')}
           </DefaultButton>
         </div>
       </div>
