@@ -28,7 +28,7 @@ describe('Cards view test', () => {
 
     cy.get('.modal').should('be.visible');
 
-    cy.get('input[placeholder="Enter your balance"]').type(500000);
+    cy.get('input[placeholder="Enter your amount"]').type(500000);
     cy.get('.button').contains('Create').click();
 
     cy.wait(3000);
@@ -39,21 +39,21 @@ describe('Cards view test', () => {
     cy.get('.sidebar-item').contains('Transfer').click();
     cy.url().should('include', '/transfer');
 
-    cy.get('.button').contains('EIGHT.Bank internal transfer').click();
+    cy.get('.button').contains('EIGHT.Bank Internal transfer').click();
     cy.get('input[value="newContact"]').click();
     cy.get('input[name="cardNumber"]').type('6362645656114148');
     cy.get('.contact-btn').click();
-    cy.wait(2000);
+    cy.wait(4000);
     cy.get('.button').contains('Next').click();
 
     cy.get('input[name="totalAmount"]').type(50000);
     cy.get('input[name="totalAmount"]').should('have.value', '50 000');
     cy.get('textarea[name="detail"]').type('Transfer money to you');
     cy.get('.button').contains('Next').click();
-    cy.wait(2000);
+    cy.wait(4000);
 
     cy.get('.button').contains('Next').click();
-    cy.wait(2000);
+    cy.wait(4000);
 
     cy.get('.button').contains('OK').click();
 

@@ -36,7 +36,7 @@ Object {
                   cancel.svg
                 </svg>
                 <span>
-                  CANCEL
+                  cancel
                 </span>
               </div>
             </div>
@@ -84,7 +84,7 @@ Object {
                 cancel.svg
               </svg>
               <span>
-                CANCEL
+                cancel
               </span>
             </div>
           </div>
@@ -189,7 +189,7 @@ Object {
                   cancel.svg
                 </svg>
                 <span>
-                  CANCEL
+                  cancel
                 </span>
               </div>
             </div>
@@ -237,7 +237,7 @@ Object {
                 cancel.svg
               </svg>
               <span>
-                CANCEL
+                cancel
               </span>
             </div>
           </div>
@@ -339,7 +339,7 @@ Object {
                 cancel.svg
               </svg>
               <span>
-                CANCEL
+                cancel
               </span>
             </div>
           </div>
@@ -383,7 +383,7 @@ Object {
               cancel.svg
             </svg>
             <span>
-              CANCEL
+              cancel
             </span>
           </div>
         </div>
@@ -484,7 +484,7 @@ Object {
                 cancel.svg
               </svg>
               <span>
-                CANCEL
+                cancel
               </span>
             </div>
           </div>
@@ -528,7 +528,7 @@ Object {
               cancel.svg
             </svg>
             <span>
-              CANCEL
+              cancel
             </span>
           </div>
         </div>
@@ -629,7 +629,7 @@ Object {
                 cancel.svg
               </svg>
               <span>
-                CANCEL
+                cancel
               </span>
             </div>
           </div>
@@ -673,7 +673,7 @@ Object {
               cancel.svg
             </svg>
             <span>
-              CANCEL
+              cancel
             </span>
           </div>
         </div>

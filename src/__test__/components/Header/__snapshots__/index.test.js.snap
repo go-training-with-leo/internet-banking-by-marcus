@@ -14,6 +14,8 @@ Object {
           <svg
             class="mobile-menu"
             fill="white"
+            height="50"
+            width="50"
           >
             menu.svg
           </svg>
@@ -23,17 +25,6 @@ Object {
           <button>
             Button
           </button>
-        </div>
-        <div
-          class="notif hide"
-        >
-          <svg
-            class="notif-busy"
-            height="40"
-            width="40"
-          >
-            notificationBusy.svg
-          </svg>
         </div>
       </div>
     </div>
@@ -48,6 +39,8 @@ Object {
         <svg
           class="mobile-menu"
           fill="white"
+          height="50"
+          width="50"
         >
           menu.svg
         </svg>
@@ -57,17 +50,6 @@ Object {
         <button>
           Button
         </button>
-      </div>
-      <div
-        class="notif hide"
-      >
-        <svg
-          class="notif-busy"
-          height="40"
-          width="40"
-        >
-          notificationBusy.svg
-        </svg>
       </div>
     </div>
   </div>,
@@ -139,6 +121,8 @@ Object {
           <svg
             class="mobile-menu"
             fill="white"
+            height="50"
+            width="50"
           >
             menu.svg
           </svg>
@@ -148,17 +132,6 @@ Object {
           <button>
             Button
           </button>
-        </div>
-        <div
-          class="notif hide"
-        >
-          <svg
-            class="notif-free"
-            height="40"
-            width="40"
-          >
-            notificationFree.svg
-          </svg>
         </div>
       </div>
     </div>
@@ -173,6 +146,8 @@ Object {
         <svg
           class="mobile-menu"
           fill="white"
+          height="50"
+          width="50"
         >
           menu.svg
         </svg>
@@ -182,17 +157,6 @@ Object {
         <button>
           Button
         </button>
-      </div>
-      <div
-        class="notif hide"
-      >
-        <svg
-          class="notif-free"
-          height="40"
-          width="40"
-        >
-          notificationFree.svg
-        </svg>
       </div>
     </div>
   </div>,
@@ -264,6 +228,8 @@ Object {
           <svg
             class="mobile-menu"
             fill="white"
+            height="50"
+            width="50"
           >
             menu.svg
           </svg>
@@ -273,17 +239,6 @@ Object {
           <button>
             Button
           </button>
-        </div>
-        <div
-          class="notif hide"
-        >
-          <svg
-            class="notif-remove"
-            height="40"
-            width="40"
-          >
-            notificationRemove.svg
-          </svg>
         </div>
       </div>
     </div>
@@ -298,6 +253,8 @@ Object {
         <svg
           class="mobile-menu"
           fill="white"
+          height="50"
+          width="50"
         >
           menu.svg
         </svg>
@@ -307,17 +264,6 @@ Object {
         <button>
           Button
         </button>
-      </div>
-      <div
-        class="notif hide"
-      >
-        <svg
-          class="notif-remove"
-          height="40"
-          width="40"
-        >
-          notificationRemove.svg
-        </svg>
       </div>
     </div>
   </div>,
@@ -389,6 +335,8 @@ Object {
           <svg
             class="mobile-menu"
             fill="white"
+            height="50"
+            width="50"
           >
             menu.svg
           </svg>
@@ -398,17 +346,6 @@ Object {
           <button>
             Button
           </button>
-        </div>
-        <div
-          class="notif hide"
-        >
-          <svg
-            class="notif-busy"
-            height="40"
-            width="40"
-          >
-            notificationBusy.svg
-          </svg>
         </div>
       </div>
     </div>
@@ -423,6 +360,8 @@ Object {
         <svg
           class="mobile-menu"
           fill="white"
+          height="50"
+          width="50"
         >
           menu.svg
         </svg>
@@ -432,17 +371,6 @@ Object {
         <button>
           Button
         </button>
-      </div>
-      <div
-        class="notif hide"
-      >
-        <svg
-          class="notif-busy"
-          height="40"
-          width="40"
-        >
-          notificationBusy.svg
-        </svg>
       </div>
     </div>
   </div>,

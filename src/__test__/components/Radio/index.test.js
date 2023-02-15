@@ -6,7 +6,7 @@ import Radio from 'components/Radio';
 describe('Radio', () => {
   it('Props valid', () => {
     const tree = render(
-      <Radio label='radio' name='radioBox' value={20} checked />
+      <Radio label='radio' name='radioBox' value='20' checked />
     );
     const input = tree.container.querySelector('input.radio-input');
     const label = tree.container.querySelector('span.label');
