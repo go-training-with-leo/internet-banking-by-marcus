@@ -14,7 +14,7 @@ test('Test props', () => {
 
   expect(header).toHaveTextContent('Button');
   expect(header).toHaveTextContent('Title');
-  expect(header.childElementCount).toEqual(2);
+  expect(header.childElementCount).toEqual(1);
   expect(tree).toMatchSnapshot();
 });
 
@@ -27,8 +27,8 @@ test('Test notifyBusy props order', () => {
 
   const header = tree.container.querySelector('div.header');
 
-  expect(header.lastElementChild).toHaveClass('notif');
-  expect(header.childElementCount).toEqual(2);
+  expect(header.lastElementChild).toHaveClass('header-left');
+  expect(header.childElementCount).toEqual(1);
   expect(tree).toMatchSnapshot();
 });
 
@@ -41,8 +41,8 @@ test('Test notifyRemove props order', () => {
 
   const header = tree.container.querySelector('div.header');
 
-  expect(header.lastElementChild).toHaveClass('notif');
-  expect(header.childElementCount).toEqual(2);
+  expect(header.lastElementChild).toHaveClass('header-left');
+  expect(header.childElementCount).toEqual(1);
   expect(tree).toMatchSnapshot();
 });
 test('Test notifyFree props order', () => {
@@ -54,7 +54,7 @@ test('Test notifyFree props order', () => {
 
   const header = tree.container.querySelector('div.header');
 
-  expect(header.lastElementChild).toHaveClass('notif');
-  expect(header.childElementCount).toEqual(2);
+  expect(header.lastElementChild).toHaveClass('header-left');
+  expect(header.childElementCount).toEqual(1);
   expect(tree).toMatchSnapshot();
 });
