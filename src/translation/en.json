@@ -40,6 +40,7 @@
     },
     "Cards": {
       "cards":"Cards",
+      "confirm": "Confirm",
       "payingCard": "Paying card",
       "savingCards": "Saving cards",
       "newSavingCard": "New saving card",

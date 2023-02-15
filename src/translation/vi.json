@@ -40,6 +40,7 @@
     },
     "Cards": {
       "amount": "Tiền gửi",
+      "confirm": "Xác nhận",
       "cards":"Thẻ",
       "payingCard": "Thẻ thanh toán",
       "savingCards": "Thẻ tiết kiệm",
